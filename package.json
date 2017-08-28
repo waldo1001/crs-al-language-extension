@@ -1,0 +1,54 @@
+{
+    "name": "crs-al-language-extension",
+    "displayName": "CRS AL Language Extension",
+    "description": "Make working with the (Dynamics NAV / 365) AL Language easier and more efficient.",
+    "version": "0.0.1",
+    "publisher": "CloudReadySoftware",
+    "engines": {
+        "vscode": "^1.15.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+            "*"
+            ],
+    "main": "./out/src/extension",
+    "contributes": {
+        "commands": [
+            {
+                "command": "extension.WaldoSaysHello",
+                "title": "CRS: Let waldo say 'Hello'"
+            },
+            {
+                "command": "extension.InstallWaldosModules",
+                "title": "CRS: Install Waldo's Modules"
+            }
+        ]
+    },
+    "scripts": { 
+        "vscode:prepublish": "tsc -p ./", 
+        "postinstall": "node ./node_modules/vscode/bin/install", 
+        "tslint": "tslint src/*.ts",
+        "build": "npm run build:powershell && npm run compile:typescript",        
+        "build:powershell": "ncp src/powershell out/src/powershell",
+        "compile:typescript": "tsc -watch -p ./"
+    }, 
+        
+    "dependencies": { 
+        "powershell": "^2.2.0", 
+        "format-duration": "^1.0.0", 
+        "path": "^0.12.7", 
+        "vscode": "^1.1.0", 
+        "time-stamp": "^1.0.1" 
+    },
+        
+    "devDependencies": {
+        "powershell": "^2.2.0",
+        "typescript": "^2.0.3",
+        "vscode": "^1.0.0",
+        "mocha": "^2.3.3",
+        "@types/node": "^6.0.40",
+        "@types/mocha": "^2.2.32"
+    }
+}
