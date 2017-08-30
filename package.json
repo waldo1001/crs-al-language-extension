@@ -7,9 +7,21 @@
     "engines": {
         "vscode": "^1.15.0"
     },
+    "author": {
+        "email": "info@cloud-ready-software.com",
+        "name": "Cloud Ready Software GmbH",
+        "url": "www.cloud-ready-software.com"
+    },
+    "icon": "images/icon.png",
     "categories": [
-        "Other"
+        "Other",
+        "Extension Packs",
+        "Snippets"
     ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/CloudReadySoftware/crs-al-language-extension.git"
+    },
     "activationEvents": [
             "*"
             ],
@@ -23,9 +35,41 @@
             {
                 "command": "extension.InstallWaldosModules",
                 "title": "CRS: Install Waldo's Modules"
+            },
+            {
+                "command": "extension.RunObjectWeb",
+                "title": "CRS: Run Object (Web Client)"
+            },
+            {
+                "command": "extension.RunObjectTablet",
+                "title": "CRS: Run Object (Tablet Client)"
+            },
+            {
+                "command": "extension.RunObjectPhone",
+                "title": "CRS: Run Object (Phone Client)"
+            },
+            {
+                "command": "extension.RunObjectWindows",
+                "title": "CRS: Run Object (Windows Client)"
             }
-        ]
-    },
+            
+        ],
+        "configuration": {
+            "title": "CRS AL Language Extension Configuration",
+            "properties": {
+                "CRS.DefaultRunObjectType":{
+                    "type":"string",
+                    "default":"Page",
+                    "description": "Default Object Type for the Run-commands"                    
+                },
+                "CRS.DefaultRunObjectId":{
+                    "type":"number",
+                    "default":22,
+                    "description": "Default Object Type for the Run-commands"
+                }
+            }
+        }
+    },    
     "scripts": { 
         "vscode:prepublish": "tsc -p ./", 
         "postinstall": "node ./node_modules/vscode/bin/install", 

@@ -14,7 +14,12 @@ export function activate(context: vscode.ExtensionContext) { //is called when yo
     // The commandId parameter must match the command field in package.json    
     let commandlist = [
         vscode.commands.registerCommand('extension.WaldoSaysHello', CRSFunctions.WaldoSaysHello),
-        vscode.commands.registerCommand('extension.InstallWaldosModules', CRSFunctions.InstallWaldosModules)
+        vscode.commands.registerCommand('extension.InstallWaldosModules', CRSFunctions.InstallWaldosModules),
+        vscode.commands.registerCommand('extension.RunObjectWeb', CRSFunctions.RunObjectWeb),
+        vscode.commands.registerCommand('extension.RunObjectTablet', CRSFunctions.RunObjectTablet),
+        vscode.commands.registerCommand('extension.RunObjectPhone', CRSFunctions.RunObjectPhone),
+        vscode.commands.registerCommand('extension.RunObjectWindows', CRSFunctions.RunObjectWindows)
+
     ];
 
     context.subscriptions.concat(commandlist);
