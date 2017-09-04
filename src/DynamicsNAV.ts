@@ -1,7 +1,10 @@
 import {Powershell} from './PowerShell'
 import * as PSScripts from './PSScripts'
 import { ConsoleLogger, OutputLogger } from './logging';
-import {QuickPickItem} from 'vscode'
+import {QuickPickItem} from 'vscode';
+import {Settings} from './Settings';
+
+const open = require('opn');
 
 let observers = [
     ConsoleLogger.getInstance(), 
@@ -80,24 +83,45 @@ export class DynamicsNAV {
         return items
     }
 
-    static RunWeb(objecttype: QuickPickItem, objectid: any){
-        let ps = new Powershell(PSScripts.RUNOBJECTWEB);
+    static RunObjectInWebClient(objecttype: QuickPickItem, objectid: any, clienttype: string){
+        let workspacesettings = Settings.GetAllSettings();  
+
+        if (clienttype != 'WebClient'){
+            clienttype = clienttype + '.aspx'
+        }
+
+        let runURL = this.ComposeWebURL(workspacesettings[Settings.WebServer], 
+                                        workspacesettings[Settings.WebServerInstancePort],
+                                        workspacesettings[Settings.WebServerInstance],
+                                        clienttype,
+                                        workspacesettings[Settings.Tenant]);
+        runURL += '&' + objecttype.label + '=' + objectid;
         
-        ps.observers = observers;
-
-        ps.settings = {
-            ObjectType: objecttype.label,
-            ObjectID: objectid,
-            WebServerInstance: 'NAV'
-        };
-
-        console.log(PSScripts.RUNOBJECTWEB + ' ' + objecttype + ' ' + objectid)
-
-        ps.invoke();
-               
+        console.log('url: ' + runURL);
+        open(runURL);
     }
 
-    static RunWindows(objecttype: String, objectid: any){
+    private static ComposeWebURL(server: String, Port: string, NAVInstance: string, ClientType: string, Tenant: string): String {
+       return server  + ':' + Port + '/' + NAVInstance + '/' + ClientType + '?tenant=' + Tenant 
+    }
+
+
+    static RunObjectInWindowsClient(objecttype: QuickPickItem, objectid: any){
+        let workspacesettings = Settings.GetAllSettings();  
+        
+        let runURL = this.ComposeRunObjectInWindowsClientURL(workspacesettings[Settings.WinServer], 
+                                                            workspacesettings[Settings.WinServerInstancePort],
+                                                            workspacesettings[Settings.WinServerInstance],
+                                                            workspacesettings[Settings.Tenant],
+                                                            objecttype.label,
+                                                            objectid);
+                
+        console.log('url: ' + runURL);
+        open(runURL);
+    }
+
+    private static ComposeRunObjectInWindowsClientURL(server: String, Port: string, NAVInstance: string, Tenant: string,runObjectType:String,runObjectid:number): String {
+        return "DynamicsNAV://" + server  + ':' + Port + '/' + NAVInstance + '//Run' + runObjectType  + '?'+runObjectType + '=' + runObjectid + '&tenant=' + Tenant 
         
     }
 }

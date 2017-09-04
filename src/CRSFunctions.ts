@@ -23,20 +23,10 @@ export function WaldoSaysHello(){
 export function InstallWaldosModules(){
     console.log('Running: InstallWaldosModules');
     
-    //let settings = Settings.GetAllSettings();
     let ps = new Powershell(PSScripts.INSTALLWALDOSMODULES);
     
     ps.observers = observers;
     
-    /* ps.modules = [
-        
-    ]; */
-/*     ps.settings = {
-        SourceDatabaseInstance: settings[Settings.REMOTEDBINSTANCE],
-        SourceDatabaseName: settings[Settings.REMOTEDBNAME],
-        CommonSQLLocation: settings[Settings.COMMONSQLLOCATION],
-        DestinationDatabaseName: settings[Settings.SOLUTIONNAME]
-    }; */
     ps.invoke();
 
     console.log('Done: InstallWaldosModules');
@@ -45,14 +35,9 @@ export function InstallWaldosModules(){
 export function RunObjectWeb(){
     console.log('Running: RunObjectWeb');
 
-    let workspacesettings = Settings.GetAllSettings();
-
-    console.log(workspacesettings);
-
     vscode.window.showQuickPick(DynamicsNAV.GetRunWebObjectTypesAsQuickPickItem()).then(objecttype => 
         vscode.window.showInputBox({prompt: 'ObjectID:'}).then(objectid => 
-            DynamicsNAV.RunWeb(objecttype,objectid)));            
-    
+            DynamicsNAV.RunObjectInWebClient(objecttype,objectid, 'WebClient')));            
 
     console.log('Done: RunObjectWeb')
 }
@@ -60,17 +45,29 @@ export function RunObjectWeb(){
 export function RunObjectTablet(){
     console.log('Running: RunObjectTablet');
 
+    vscode.window.showQuickPick(DynamicsNAV.GetRunWebObjectTypesAsQuickPickItem()).then(objecttype => 
+        vscode.window.showInputBox({prompt: 'ObjectID:'}).then(objectid => 
+            DynamicsNAV.RunObjectInWebClient(objecttype,objectid, 'Tablet')));   
+
     console.log('Done: RunObjectTablet')
 }
 
 export function RunObjectPhone(){
     console.log('Running: RunObjectPhone');
 
+    vscode.window.showQuickPick(DynamicsNAV.GetRunWebObjectTypesAsQuickPickItem()).then(objecttype => 
+        vscode.window.showInputBox({prompt: 'ObjectID:'}).then(objectid => 
+            DynamicsNAV.RunObjectInWebClient(objecttype,objectid, 'Phone'))); 
+
     console.log('Done: RunObjectPhone')
 }
 
 export function RunObjectWindows(){
     console.log('Running: RunObjectWindows');
+
+    vscode.window.showQuickPick(DynamicsNAV.GetRunRTCObjectTypesAsQuickPickItem()).then(objecttype => 
+        vscode.window.showInputBox({prompt: 'ObjectID:'}).then(objectid => 
+            DynamicsNAV.RunObjectInWindowsClient(objecttype,objectid))); 
 
     console.log('Done: RunObjectWindows')
 }

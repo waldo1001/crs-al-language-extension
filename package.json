@@ -57,16 +57,32 @@
         "configuration": {
             "title": "CRS AL Language Extension Configuration",
             "properties": {
-                "CRS.DefaultRunObjectType":{
+                "CRS.nstfolder":{
                     "type":"string",
-                    "default":"Page",
-                    "description": "Default Object Type for the Run-commands"                    
+                    "default":"C:\\Program Files\\Microsoft Dynamics NAV\\*\\Service",
+                    "description": "Folder of the NST"                    
                 },
-                "CRS.DefaultRunObjectId":{
+                "CRS.WebServerInstancePort":{
                     "type":"number",
-                    "default":22,
-                    "description": "Default Object Type for the Run-commands"
+                    "default": 8080,
+                    "description":"Port number for the web client"
+                },
+                "CRS.WinServer":{
+                    "type": "string",
+                    "default": "localhost",
+                    "description": "Server where the windows client is connecting to"
+                },
+                "CRS.WinServerInstance":{
+                    "type": "String",
+                    "default": "NAV",
+                    "description": "Serverinstance where the windows client is connecting to"
+                },
+                "CRS.WinServerInstancePort":{
+                    "type": "number",
+                    "default": 7046,
+                    "description": "Portnumber of the serverinstance where the windows client is connecting to"
                 }
+                
             }
         }
     },    
@@ -84,7 +100,8 @@
         "format-duration": "^1.0.0", 
         "path": "^0.12.7", 
         "vscode": "^1.1.0", 
-        "time-stamp": "^1.0.1" 
+        "time-stamp": "^1.0.1",
+        "opn": "^5.1.0"
     },
         
     "devDependencies": {
@@ -93,6 +110,7 @@
         "vscode": "^1.0.0",
         "mocha": "^2.3.3",
         "@types/node": "^6.0.40",
-        "@types/mocha": "^2.2.32"
+        "@types/mocha": "^2.2.32",
+        "opn": "^5.1.0"
     }
 }
