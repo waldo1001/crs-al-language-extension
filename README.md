@@ -49,5 +49,8 @@ Please report issues hier: https://github.com/CloudReadySoftware/crs-al-language
 
 ## Release Notes
 
-### 1.0.0
+### 0.0.2
+Bugfixing - getting everything decently published on the Marketplace
+
+### 0.0.1
 Initial release 
