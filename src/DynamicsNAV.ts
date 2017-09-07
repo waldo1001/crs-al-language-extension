@@ -90,19 +90,35 @@ export class DynamicsNAV {
             clienttype = clienttype + '.aspx'
         }
 
-        let runURL = this.ComposeWebURL(workspacesettings[Settings.WebServer], 
+        let runURL = this.ComposeRunObjectInWebClientURL(workspacesettings[Settings.WebServer], 
                                         workspacesettings[Settings.WebServerInstancePort],
                                         workspacesettings[Settings.WebServerInstance],
                                         clienttype,
-                                        workspacesettings[Settings.Tenant]);
-        runURL += '&' + objecttype.label + '=' + objectid;
+                                        workspacesettings[Settings.Tenant],
+                                        objecttype.label,
+                                        objectid);
         
         console.log('url: ' + runURL);
         open(runURL);
     }
 
-    private static ComposeWebURL(server: String, Port: string, NAVInstance: string, ClientType: string, Tenant: string): String {
-       return server  + ':' + Port + '/' + NAVInstance + '/' + ClientType + '?tenant=' + Tenant 
+    private static ComposeRunObjectInWebClientURL(server: String, Port: string, NAVInstance: string, ClientType: string, Tenant: string,runObjectType:String,runObjectid:number): String {
+       let returnUrl =  server;
+       if (Port != ""){
+           returnUrl += ':' + Port
+       }
+
+       returnUrl += '/' + NAVInstance + '/' + ClientType;
+
+       if (Tenant != ''){
+           returnUrl += '?tenant=' + Tenant + '&';
+       } else {
+           returnUrl += '?'
+       }
+       
+       returnUrl += runObjectType + '=' + runObjectid;
+
+       return returnUrl
     }
 
 
