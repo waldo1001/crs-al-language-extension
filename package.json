@@ -91,7 +91,7 @@
         "postinstall": "node ./node_modules/vscode/bin/install", 
         "tslint": "tslint src/*.ts",
         "build": "npm run build:powershell && npm run compile:typescript",        
-        "build:powershell": "ncp src/powershell out/src/powershell",
+        "build:powershell": "mkdirp out/src && ncp src/powershell out/src/powershell",
         "compile:typescript": "tsc -watch -p ./"
     }, 
         
@@ -104,13 +104,14 @@
         "opn": "^5.1.0"
     },
         
-    "devDependencies": {
+    "devDependencgies": {
         "powershell": "^2.2.0",
         "typescript": "^2.0.3",
         "vscode": "^1.0.0",
         "mocha": "^2.3.3",
         "@types/node": "^6.0.40",
         "@types/mocha": "^2.2.32",
-        "opn": "^5.1.0"
+        "opn": "^5.1.0",
+        "ncp": "^1.0.0"
     }
 }
