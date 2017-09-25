@@ -49,6 +49,13 @@ Please report issues hier: https://github.com/CloudReadySoftware/crs-al-language
 
 ## Release Notes
 
+### 0.0.5
+Added Snippet - Page Wizard
+
+### 0.0.4
+- Added Snippet - Method Codeunit (No UI)
+- Bugfixing - for build operation
+
 ### 0.0.3
 Bugfixing - for September Release.
 
@@ -57,3 +64,4 @@ Bugfixing - getting everything decently published on the Marketplace
 
 ### 0.0.1
 Initial release 
+

@@ -1,0 +1,42 @@
+{
+    "Snippet (CRS): Method Codeunit (No UI)":{
+        "description": "Snippet (CRS): Method Codeunit (No UI)",
+        "prefix": "tcodeunit (CRS: Method - No UI)",
+        "body": [
+            "codeunit ${1:id} \"${2:Name} Meth\"",
+            "{",
+            "\ttrigger OnRun();",
+            "\tbegin",
+            "\tend;",
+            "",
+            "\tprocedure ${3:MethodName}();",
+            "\tvar",
+            "\t\tHandled : Boolean;",
+            "\tbegin",
+            "\t\tOnBefore${3:MethodName}(Handled);",
+            "",
+            "\t\tDo${3:MethodName}(Handled);",
+            "",
+            "\t\tOnAfter${3:MethodName};",
+            "\tend;",
+            "",
+            "\tlocal procedure Do${3:MethodName}(var Handled: Boolean);",
+            "\tbegin",
+            "\t\tIF Handled THEN",
+            "\t\t\tEXIT;",
+            "",
+            "\tend;",
+            "",
+            "\t[IntegrationEvent(false, false)]",
+            "\tlocal procedure OnBefore${3:MethodName}(var Handled : Boolean);",
+            "\tbegin",
+            "\tend;",
+            "",
+            "\t[IntegrationEvent(false, false)]",
+            "\tlocal procedure OnAfter${3:MethodName}();",
+            "\tbegin",
+            "\tend;",
+            "}"
+        ]
+    }
+}

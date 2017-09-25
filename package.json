@@ -2,7 +2,7 @@
     "name": "crs-al-language-extension",
     "displayName": "CRS AL Language Extension",
     "description": "Make working with the (Dynamics NAV / 365) AL Language easier and more efficient.",
-    "version": "0.0.3",
+    "version": "0.0.5",
     "publisher": "waldo",
     "engines": {
         "vscode": "^1.15.0"
@@ -16,7 +16,7 @@
     "categories": [
         "Other",
         "Extension Packs",
-        "Snippets"
+        "Snippets"        
     ],
     "repository": {
         "type": "git",
@@ -27,6 +27,16 @@
             ],
     "main": "./out/src/extension",
     "contributes": {
+        "snippets": [
+            {
+                "language": "al",
+                "path":"./snippets/DesignPatterns.json"
+            },
+            {
+                "language": "al",
+                "path": "./snippets/Pages.json"
+            }
+        ],
         "commands": [
             {
                 "command": "extension.WaldoSaysHello",
