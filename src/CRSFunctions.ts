@@ -14,12 +14,6 @@ let observers = [
     OutputLogger.getInstance()
     ];
 
-export function WaldoSaysHello(){
-    console.log('Run: WaldoSaysHello');
-
-    vscode.window.showInformationMessage('waldo says good night!');    
-}
-
 export function InstallWaldosModules(){
     console.log('Running: InstallWaldosModules');
     

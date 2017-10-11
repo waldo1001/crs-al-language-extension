@@ -39,10 +39,6 @@
         ],
         "commands": [
             {
-                "command": "extension.WaldoSaysHello",
-                "title": "CRS: Let waldo say 'Hello'"
-            },
-            {
                 "command": "extension.InstallWaldosModules",
                 "title": "CRS: Install Waldo's Modules"
             },
