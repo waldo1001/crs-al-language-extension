@@ -57,6 +57,14 @@
             {
                 "command": "extension.RunObjectWindows",
                 "title": "CRS: Run Object (Windows Client)"
+            },            
+            {
+                "command": "extension.RenameCurrentFile",
+                "title": "CRS: Reorganize - Current File"
+            },
+            {
+                "command": "extension.RenameAllFiles",
+                "title": "CRS: Reorganize - All Files"
             }
             
         ],

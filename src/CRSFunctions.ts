@@ -1,12 +1,13 @@
 import * as vscode from 'vscode';
-import {Powershell} from './PowerShell'
-import * as PSScripts  from './PSScripts'
-import * as PSModules from './PSModules'
+import {Powershell} from './PowerShell';
+import * as PSScripts  from './PSScripts';
+import * as PSModules from './PSModules';
 import { ConsoleLogger, OutputLogger } from './logging';
-import {Settings} from './Settings'
-import {DynamicsNAV} from './DynamicsNAV'
+import {Settings} from './Settings';
+import {DynamicsNAV} from './DynamicsNAV';
 import * as loadJsonFile from 'load-json-file';
 import {join} from 'path';
+import {WorkspaceFiles} from './WorkspaceFiles';
     
 
 let observers = [
@@ -64,4 +65,20 @@ export function RunObjectWindows(){
             DynamicsNAV.RunObjectInWindowsClient(objecttype,objectid))); 
 
     console.log('Done: RunObjectWindows')
+}
+
+export function RenameCurrentFile(){
+    console.log('Running: ReorganizeCurrentFile');
+    
+    WorkspaceFiles.RenameCurrentFile(vscode.window.activeTextEditor.document.fileName);
+
+    console.log('Done: ReorganizeCurrentFile')
+}
+
+export function RenameAllFiles(){
+    console.log('Running: ReorganizeAllFiles');
+    
+    WorkspaceFiles.RenameAllFiles();
+
+    console.log('Done: ReorganizeAllFiles')
 }
