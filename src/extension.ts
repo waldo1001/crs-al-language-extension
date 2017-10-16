@@ -21,7 +21,10 @@ export function activate(context: vscode.ExtensionContext) { //is called when yo
         vscode.commands.registerCommand('extension.RunObjectWindows', CRSFunctions.RunObjectWindows),
         
         vscode.commands.registerCommand('extension.RenameCurrentFile', CRSFunctions.RenameCurrentFile),
-        vscode.commands.registerCommand('extension.RenameAllFiles', CRSFunctions.RenameAllFiles)
+        vscode.commands.registerCommand('extension.RenameAllFiles', CRSFunctions.RenameAllFiles),
+        vscode.commands.registerCommand('extension.ReorganizeCurrentFile', CRSFunctions.ReorganizeCurrentFile),
+        vscode.commands.registerCommand('extension.ReorganizeAllFiles', CRSFunctions.ReorganizeAllFiles)
+        
     ];
 
     context.subscriptions.concat(commandlist);

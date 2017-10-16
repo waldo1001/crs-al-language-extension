@@ -60,13 +60,20 @@
             },            
             {
                 "command": "extension.RenameCurrentFile",
-                "title": "CRS: Reorganize - Current File"
+                "title": "CRS: Rename - Current File"
             },
             {
                 "command": "extension.RenameAllFiles",
+                "title": "CRS: Rename - All Files"
+            },
+            {
+                "command": "extension.ReorganizeCurrentFile",
+                "title": "CRS: Reorganize - Current File"
+            },
+            {
+                "command": "extension.ReorganizeAllFiles",
                 "title": "CRS: Reorganize - All Files"
-            }
-            
+            }           
         ],
         "configuration": {
             "title": "CRS AL Language Extension Configuration",

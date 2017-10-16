@@ -68,17 +68,41 @@ export function RunObjectWindows(){
 }
 
 export function RenameCurrentFile(){
-    console.log('Running: ReorganizeCurrentFile');
-    
-    WorkspaceFiles.RenameCurrentFile(vscode.window.activeTextEditor.document.fileName);
+    console.log('Running: RenameCurrentFile');
 
-    console.log('Done: ReorganizeCurrentFile')
+    WorkspaceFiles.RenameFile(vscode.window.activeTextEditor.document.fileName);
+    
+    console.log('Done: RenameCurrentFile')
 }
 
 export function RenameAllFiles(){
+    console.log('Running: RenameAllFiles');
+    
+    vscode.window.showWarningMessage('Are you sure to rename all files?','Yes','No').then((action: String) => {
+        if (action === 'Yes'){
+            WorkspaceFiles.RenameAllFiles();
+        }
+    });
+
+    console.log('Done: RenameAllFiles')
+}
+
+export function ReorganizeCurrentFile(){
+    console.log('Running: ReorganizeCurrentFile');
+    
+    WorkspaceFiles.ReorganizeFile(vscode.window.activeTextEditor.document.fileName);
+    
+    console.log('Done: ReorganizeCurrentFile')
+}
+
+export function ReorganizeAllFiles(){
     console.log('Running: ReorganizeAllFiles');
     
-    WorkspaceFiles.RenameAllFiles();
-
+    vscode.window.showWarningMessage('Are you sure to reorganize all files?','Yes','No').then((action: String) => {
+        if (action === 'Yes'){
+            WorkspaceFiles.ReorganizeAllFiles();
+        }
+    });
+    
     console.log('Done: ReorganizeAllFiles')
 }
