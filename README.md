@@ -4,9 +4,6 @@ This extension is going to have a lot of useful functions to enhance the way to 
 ## Features
 These features are concluded at this moment:
 
-###Waldo Says Hi
-A classic Hello-World example
-
 ###Install waldo's modules: 
 Download all PowerShell modules of author "waldo" from the PowerShellGallery.  Basically resulting in:
 * Cloud.Ready.Software.NAV
@@ -22,10 +19,22 @@ The idea is to be able to run an object straight from the development environmen
 * CRS: Run Object (Windows Client)
 Depending on which client, you will be asked for object type and object id.  The functionality looks at the settings (launch.json and configuration settings).
 
+###Reorganize Files
+The commands can rename your file, and move the file to the folder, corresponding to the object type. There are four functions in the Command Palette:
+* CRS: Rename - Current File
+* CRS: Rename - All Files
+* CRS: Reorganize - Current File
+* CRS: CRS: Reorganize - All Files
+
 ###Snippets
-At a certain point, new snippets will be included here
-####tpagewizard
-TODO
+New snippets were included:
+####tpagewizard (CRS: 3 steps)
+* creates a wizard with 3 steps
+* includes placeholders
+####tcodeunit (CRS: Method - No UI)
+* creates a codeunit, conform on the "Event Based Software Architecture"
+* no functions for UI
+* includes placeholders
 
 ## Requirements
 
@@ -48,6 +57,9 @@ This extension contributes the following settings:
 Please report issues hier: https://github.com/CloudReadySoftware/crs-al-language-extension/issues 
 
 ## Release Notes
+
+### 0.0.7
+Updated Readme.md
 
 ### 0.0.6
 The following commands were added:
