@@ -49,6 +49,15 @@ Please report issues hier: https://github.com/CloudReadySoftware/crs-al-language
 
 ## Release Notes
 
+### 0.0.6
+The following commands were added:
+- Rename Current File
+- Rename All Files
+- Reorganize Current File
+- Reorganize All Files
+Rename: reads the file, and renames it to a certain filename, depending on the object.
+Reorganize: move the file to a folder, corresponding to the object type.
+
 ### 0.0.5
 Added Snippet - Page Wizard
 
