@@ -58,6 +58,9 @@ Please report issues hier: https://github.com/CloudReadySoftware/crs-al-language
 
 ## Release Notes
 
+### 0.0.8
+Minor but important (;-)) bugfix.
+
 ### 0.0.7
 Updated Readme.md
 
