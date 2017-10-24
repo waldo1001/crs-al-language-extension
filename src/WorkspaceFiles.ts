@@ -77,7 +77,7 @@ export class WorkspaceFiles {
                 }
                 case 'pageextension':
                 case 'tableextension':{
-                    var patternObject = new RegExp('(\\w+)( +[0-9]+)( +"?[ a-zA-Z]+"?) +extends( +"?[ a-zA-Z]+"?)');
+                    var patternObject = new RegExp('(\\w+)( +[0-9]+)( +"?[ a-zA-Z0-9]+"?) +extends( +"?[ a-zA-Z]+"?)');
                     let currObject = ObjectText.match(patternObject);
                     
                     objectType = currObject[1].trim().toString();
