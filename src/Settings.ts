@@ -54,8 +54,8 @@ export class Settings {
         let currentLaunchConfig = this.launchconfig.configurations;
         result[this.WebServer] = currentLaunchConfig[0].server;
         result[this.WebServerInstance] = currentLaunchConfig[0].serverInstance;                    
-        result[this.Tenant] = currentLaunchConfig[0].tenant;    
-
+        result[this.Tenant] = currentLaunchConfig[0].tenant ? currentLaunchConfig[0].tenant : "default"; 
+        
         result[this.DefaultRunObjectType] = 'Page'; 
         result[this.DefaultRunObjectId] = currentLaunchConfig[0].startupObjectId;         
         

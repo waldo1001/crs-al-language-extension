@@ -5,7 +5,6 @@ import * as PSModules from './PSModules';
 import { ConsoleLogger, OutputLogger } from './logging';
 import {Settings} from './Settings';
 import {DynamicsNAV} from './DynamicsNAV';
-import * as loadJsonFile from 'load-json-file';
 import {join} from 'path';
 import {WorkspaceFiles} from './WorkspaceFiles';
     

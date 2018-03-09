@@ -7,30 +7,31 @@
     "engines": {
         "vscode": "^1.15.0"
     },
+    "license": "UNLICENSED",
     "author": {
         "email": "info@cloud-ready-software.com",
         "name": "Cloud Ready Software GmbH",
-        "url": "www.cloud-ready-software.com"
+        "url": "http://www.cloud-ready-software.com"
     },
     "icon": "images/icon.png",
     "categories": [
         "Other",
         "Extension Packs",
-        "Snippets"        
+        "Snippets"
     ],
     "repository": {
         "type": "git",
         "url": "https://github.com/CloudReadySoftware/crs-al-language-extension.git"
     },
     "activationEvents": [
-            "*"
-            ],
+        "*"
+    ],
     "main": "./out/src/extension",
     "contributes": {
         "snippets": [
             {
                 "language": "al",
-                "path":"./snippets/DesignPatterns.json"
+                "path": "./snippets/DesignPatterns.json"
             },
             {
                 "language": "al",
@@ -57,7 +58,7 @@
             {
                 "command": "extension.RunObjectWindows",
                 "title": "CRS: Run Object (Windows Client)"
-            },            
+            },
             {
                 "command": "extension.RenameCurrentFile",
                 "title": "CRS: Rename - Current File"
@@ -73,58 +74,58 @@
             {
                 "command": "extension.ReorganizeAllFiles",
                 "title": "CRS: Reorganize - All Files"
-            }           
+            }
         ],
         "configuration": {
             "title": "CRS AL Language Extension Configuration",
             "properties": {
-                "CRS.nstfolder":{
-                    "type":"string",
-                    "default":"C:\\Program Files\\Microsoft Dynamics NAV\\*\\Service",
-                    "description": "Folder of the NST"                    
+                "CRS.nstfolder": {
+                    "type": "string",
+                    "default": "C:\\Program Files\\Microsoft Dynamics NAV\\*\\Service",
+                    "description": "Folder of the NST"
                 },
-                "CRS.WebServerInstancePort":{
-                    "type":"String",
+                "CRS.WebServerInstancePort": {
+                    "type": "String",
                     "default": "",
-                    "description":"Port number for the web client"
+                    "description": "Port number for the web client"
                 },
-                "CRS.WinServer":{
+                "CRS.WinServer": {
                     "type": "string",
                     "default": "localhost",
                     "description": "Server where the windows client is connecting to"
                 },
-                "CRS.WinServerInstance":{
+                "CRS.WinServerInstance": {
                     "type": "String",
                     "default": "NAV",
                     "description": "Serverinstance where the windows client is connecting to"
                 },
-                "CRS.WinServerInstancePort":{
+                "CRS.WinServerInstancePort": {
                     "type": "number",
                     "default": 7046,
                     "description": "Portnumber of the serverinstance where the windows client is connecting to"
                 }
-                
             }
         }
-    },    
-    "scripts": { 
-        "vscode:prepublish": "tsc -p ./", 
-        "postinstall": "node ./node_modules/vscode/bin/install", 
+    },
+    "scripts": {
+        "vscode:prepublish": "tsc -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install",
         "tslint": "tslint src/*.ts",
-        "build": "npm run build:powershell && npm run compile:typescript",        
+        "build": "npm run build:powershell && npm run compile:typescript",
         "build:powershell": "mkdirp out/src && ncp src/powershell out/src/powershell",
         "compile:typescript": "tsc -watch -p ./"
-    }, 
-        
-    "dependencies": { 
-        "powershell": "^2.2.0", 
-        "format-duration": "^1.0.0", 
-        "path": "^0.12.7", 
-        "vscode": "^1.1.0", 
-        "time-stamp": "^1.0.1",
-        "opn": "^5.1.0"
     },
-        
+    "dependencies": {
+        "@types/node": "^9.4.7",
+        "format-duration": "^1.0.0",
+        "mocha": "^5.0.4",
+        "ncp": "^2.0.0",
+        "opn": "^5.1.0",
+        "path": "^0.12.7",
+        "powershell": "^2.3.0",
+        "time-stamp": "^1.0.1",
+        "vscode": "^1.1.0"
+    },
     "devDependencgies": {
         "powershell": "^2.2.0",
         "typescript": "^2.0.3",

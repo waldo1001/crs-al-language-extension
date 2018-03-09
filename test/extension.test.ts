@@ -5,6 +5,7 @@
 
 // The module 'assert' provides assertion methods from node
 import * as assert from 'assert';
+import {suite,test} from 'mocha';
 import {FileFunctions} from '../src/FileFunctions'
 import {WorkspaceFiles} from '../src/WorkspaceFiles'
 import {StringFunctions} from '../src/StringFunctions'
