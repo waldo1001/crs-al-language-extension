@@ -58,6 +58,9 @@ Please report issues hier: https://github.com/CloudReadySoftware/crs-al-language
 
 ## Release Notes
 
+### 0.1.1
+Added ability to run Table in web client
+
 ### 0.0.8
 Minor but important (;-)) bugfix.
 

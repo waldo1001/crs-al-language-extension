@@ -70,6 +70,7 @@ export class DynamicsNAV {
         
         items.push({label:'Page',description: 'Page'})        
         items.push({label:'Report',description: 'Report'})
+        items.push({label:'Table',description: 'Table'})
 
         return items
     }
@@ -79,6 +80,7 @@ export class DynamicsNAV {
 
         items.push('Page');
         items.push('Report');
+        items.push('Table');
 
         return items
     }
