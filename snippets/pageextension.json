@@ -1,0 +1,20 @@
+{
+    "Snippet: Page Extension": {
+        "prefix": "tpageext (CRS)",
+        "body": [
+            "pageextension ${1:Id} ${2:MyExtension} extends ${3:MyTargetPage} //${4:MyTargetPageId}",
+            "{",
+            "\tlayout",
+            "\t{",
+            "\t\t${5:// Add changes to page layout here}",
+            "\t}",
+            "\t",
+            "\tactions",
+            "\t{",
+            "\t\t${6:// Add changes to page actions here}",
+            "\t}",
+            "}"
+        ],
+        "description": "Snippet (CRS): Page Extension"
+    }
+}

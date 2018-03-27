@@ -2,7 +2,7 @@
     "name": "crs-al-language-extension",
     "displayName": "CRS AL Language Extension",
     "description": "Make working with the (Dynamics NAV / 365) AL Language easier and more efficient.",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "publisher": "waldo",
     "engines": {
         "vscode": "^1.15.0"
@@ -36,6 +36,18 @@
             {
                 "language": "al",
                 "path": "./snippets/Pages.json"
+            },
+            {
+                "language": "al",
+                "path": "./snippets/pageextension.json"
+            },
+            {
+                "language": "al",
+                "path": "./snippets/tableextension.json"
+            },
+            {
+                "language": "al",
+                "path": "./snippets/pagecustomization.json"
             }
         ],
         "commands": [
@@ -102,7 +114,22 @@
                 "CRS.WinServerInstancePort": {
                     "type": "number",
                     "default": 7046,
-                    "description": "Portnumber of the serverinstance where the windows client is connecting to"
+                    "description ": "Portnumber of the serverinstance where the windows client is connecting to"
+                },
+                "CRS.FileNamePattern": {
+                    "Type": "string",
+                    "default": "<ObjectTypeShort><ObjectId>.<ObjectName>.al",
+                    "description": "The pattern of the filename for non-extension objects..  These vars can be used: <ObjectType>,<ObjectTypeShort>,<ObjectId>,<ObjectName>"
+                },
+                "CRS.FileNamePatternExtensions": {
+                    "Type": "string",
+                    "default": "<ObjectTypeShort><BaseId>-Ext<ObjectId>.<ObjectName>.al",
+                    "description": "The pattern of the filename for extension objects.  These vars can be used: <ObjectType>,<ObjectTypeShort>,<ObjectId>,<ObjectName>,<BaseName>,<BaseId> (If you want this to work, you need to put the Id in comment after the base name, like //21)"                    
+                },
+                "CRS.FileNamePatternPageCustomizations": {
+                    "Type": "string",
+                    "default": "<ObjectTypeShort><BaseId>-PageCust.<ObjectName>.al",
+                    "description": "The pattern of the filename for extension objects.  These vars can be used: <ObjectType>,<ObjectTypeShort>,<ObjectName>,<BaseName>,<BaseId> (If you want this to work, you need to put the Id in comment after the base name, like //21)"                    
                 }
             }
         }

@@ -4,6 +4,8 @@ import * as fs from 'fs';
 import {StringFunctions} from './StringFunctions'
 import {FileFunctions} from './FileFunctions'
 import * as path from 'path'
+import {Settings} from './Settings';
+import {DynamicsNAV} from './DynamicsNAV';
 
 
 export class WorkspaceFiles {
@@ -25,7 +27,7 @@ export class WorkspaceFiles {
         });        
     }
 
-    static RenameFile(fileName: string){
+    static RenameFile(fileName: string) : string {
         let data = fs.readFileSync(fileName,null);
         
         let objectProperties = this.getFilePropertiesFromObjectText(data.toString());
@@ -33,91 +35,101 @@ export class WorkspaceFiles {
         if (objectProperties.objectFileName != ''){
             if(path.join(path.dirname(fileName),objectProperties.objectFileName) == fileName){
                 console.log('paths are the same.');
-            } else {                
-                fs.renameSync(fileName,path.join(path.dirname(fileName),objectProperties.objectFileName));
-                console.log('renamed',fileName,'-->', path.join(path.dirname(fileName),objectProperties.objectFileName));
+             } else {
+                let newFilePath = path.join(path.dirname(fileName),objectProperties.objectFileName);
+                fs.renameSync(fileName,newFilePath);
+                console.log('renamed',fileName,'-->', newFilePath);
+                return newFilePath;
             }
         }
+
+        return '';
     }  
     
     static getFilePropertiesFromObjectText(ObjectText: string) : any{
+        let workspacesettings = Settings.GetAllSettings();
 
         var patternObjectType = new RegExp('(codeunit |page |pagecustomization |pageextension |profile |query |report |requestpage |table |tableextension |xmlport )')
-        let objectFileName, objectType, objectId, objectName, objectNameShort: string;
+        let objectFileName, objectType, objectTypeShort, objectId, objectName, objectNameShort, baseName, baseId: string;
 
         let ObjectTypeArr = ObjectText.match(patternObjectType);
         if (! ObjectTypeArr){
             objectType = '';
+            objectTypeShort = '';
             objectId = '';
             objectName = '';
             objectNameShort = '';
-            objectFileName = '';    
+            objectFileName = '';                
+            baseName = '';
+            baseId = '';
         } else {
             switch (ObjectTypeArr[0].trim().toLowerCase()) {
                 case 'page':
                 case 'codeunit':
                 case 'query':
                 case 'report':
-                case 'requestpage':
+                case 'requestpage':                
                 case 'table':
                 case 'xmlport':{
-                    var patternObject = new RegExp('(\\w+)( +[0-9]+)( +"?[ a-zA-Z]+"?)');
+
+                    var patternObject = new RegExp('(\\w+)( +[0-9]+)( +"?[ a-zA-Z0-9._/-]+"?)');
                     let currObject = ObjectText.match(patternObject);
                     
                     objectType = currObject[1].trim().toString();
                     objectId = currObject[2].trim().toString();
-                    objectName = currObject[3].trim().toString();
-                    objectNameShort =  StringFunctions.replaceAll(StringFunctions.replaceAll(currObject[3].trim(),'"',''),' ','')
+                    objectName = currObject[3].trim().toString().replace(/"/g,'');
+                    objectNameShort =  StringFunctions.removeAllButAlfaNumeric(currObject[3].trim());
     
-                    objectFileName = objectType + ' ' 
-                                        + objectId + ' ' 
-                                            + objectNameShort
-                                                + '.al';       
+                    objectFileName = workspacesettings[Settings.FileNamePattern];
+                                                
                     break;           
                 }
                 case 'pageextension':
                 case 'tableextension':{
-                    var patternObject = new RegExp('(\\w+)( +[0-9]+)( +"?[ a-zA-Z0-9]+"?) +extends( +"?[ a-zA-Z]+"?)');
+
+                    var patternObject = new RegExp('(\\w+)( +[0-9]+)( +"?[ a-zA-Z0-9._/-]+"?) +extends( +"?[ a-zA-Z0-9._/-]+"?) (//+ *)?([0-9]+)?');
                     let currObject = ObjectText.match(patternObject);
                     
                     objectType = currObject[1].trim().toString();
                     objectId = currObject[2].trim().toString();     
-                    objectName = currObject[3].trim().toString();
-                    objectNameShort =  StringFunctions.replaceAll(StringFunctions.replaceAll(currObject[3].trim(),'"',''),' ','')
-                    
-                    objectFileName =  currObject[1].substring(0,currObject[1].length - 'ension'.length).trim() + ' ' 
-                                        + objectId + ' ' 
-                                            + objectNameShort
-                                                + '.al';       
+                    objectName = currObject[3].trim().toString().replace(/"/g,'');
+                    baseName = currObject[4].trim().toString().replace(/"/g,'');
+                    baseId = currObject[6] ? currObject[6].trim().toString() : '';                    
+                    objectNameShort = StringFunctions.removeAllButAlfaNumeric(currObject[3].trim());
+
+                    objectFileName = workspacesettings[Settings.FileNamePatternExtensions];
+                                 
                     break;           
                 } 
     
                 case 'profile' :{
-                    var patternObject = new RegExp('(profile)( +"?[ a-zA-Z]+"?)');
+
+                    var patternObject = new RegExp('(profile)( +"?[ a-zA-Z0-9._/-]+"?)');
                     let currObject = ObjectText.match(patternObject);
     
                     objectType = currObject[1].trim().toString();
                     objectId = '';
-                    objectName = currObject[2].trim().toString();
-                    objectNameShort =  StringFunctions.replaceAll(StringFunctions.replaceAll(currObject[2].trim(),'"',''),' ','')
+                    objectName = currObject[2].trim().toString().replace(/"/g,'');
+                    objectNameShort =  StringFunctions.removeAllButAlfaNumeric(currObject[2].trim());
                     
-                    objectFileName =  objectType + ' ' 
-                                        + objectNameShort
-                                            + '.al';       
+                    objectFileName = workspacesettings[Settings.FileNamePattern];
+
                     break;           
                 }
                 case 'pagecustomization':{
-                    var patternObject = new RegExp('(\\w+)( +"?[ a-zA-Z]+"?) +customizes( +"?[ a-zA-Z]+"?)');
+
+                    var patternObject = new RegExp('(\\w+)( +"?[ a-zA-Z0-9._/-]+"?) +customizes( +"?[ a-zA-Z0-9._/-]+"?) (//+ *)?([0-9]+)?');
                     let currObject = ObjectText.match(patternObject);
                     
                     objectType = currObject[1].trim().toString();
                     objectId = '';
-                    objectName = currObject[2].trim().toString();
-                    objectNameShort =  StringFunctions.replaceAll(StringFunctions.replaceAll(currObject[2].trim(),'"',''),' ','')
+                    objectName = currObject[2].trim().toString().replace(/"/g,'');
+                    baseName = currObject[3].trim().toString().replace(/"/g,'');
+                    baseId = currObject[5] ? currObject[5].trim().toString() : '';
+                    objectNameShort =  StringFunctions.removeAllButAlfaNumeric(currObject[2].trim());
                                     
-                    objectFileName =  currObject[1].substring(0,currObject[1].length - 'omization'.length).trim() + ' ' 
-                                        + objectNameShort
-                                            + '.al';       
+                    objectFileName = workspacesettings[Settings.FileNamePatternPageCustomizations];
+                    
                     break;           
                 }
                 default: {                
@@ -126,10 +138,21 @@ export class WorkspaceFiles {
             }
         }
         
+        objectTypeShort = DynamicsNAV.getBestPracticeAbbreviatedObjectType(objectType);
+        objectFileName = StringFunctions.replaceAll(objectFileName,'<ObjectType>',objectType)
+        objectFileName = StringFunctions.replaceAll(objectFileName,'<ObjectTypeShort>',objectTypeShort);
+        objectFileName = StringFunctions.replaceAll(objectFileName,'<ObjectId>',objectId)
+        objectFileName = StringFunctions.replaceAll(objectFileName,'<ObjectName>',objectNameShort)
+        objectFileName = StringFunctions.replaceAll(objectFileName,'<BaseName>', baseName);
+        objectFileName = StringFunctions.replaceAll(objectFileName,'<BaseId>', baseId);
+        
         return {
             objectType: objectType,
+            objectTypeShort: objectTypeShort,
             objectId: objectId,
             objectName: objectName,
+            baseName: baseName,
+            baseId: baseId,
             objectNameShort: objectNameShort,
             objectFileName: objectFileName
         }
@@ -145,7 +168,7 @@ export class WorkspaceFiles {
         });
     }
     
-    static ReorganizeFile(fileName: string){
+    static ReorganizeFile(fileName: string) : string {
         let data = fs.readFileSync(fileName,null);
         
         let objectProperties = this.getFilePropertiesFromObjectText(data.toString());
@@ -153,6 +176,7 @@ export class WorkspaceFiles {
         if (objectProperties.objectFileName != ''){            
             if(path.join(workspace.rootPath,objectProperties.objectType,objectProperties.objectFileName) == fileName){
                 console.log('paths are the same.');
+                return fileName;
             } else {  
                 let objectFolder = path.join(workspace.rootPath,'Objects');
                 let objectTypeFolder = path.join(objectFolder, objectProperties.objectType);
@@ -164,8 +188,12 @@ export class WorkspaceFiles {
                 fs.renameSync(fileName,destinationFileName);
                 
                 console.log('renamed',fileName,'-->', destinationFileName);
+
+                return destinationFileName;
             }
         }
+
+        return fileName;
     }
 
 

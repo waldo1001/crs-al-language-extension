@@ -16,9 +16,13 @@ export class Settings {
     
     static readonly Tenant = 'Tenant';
 
-    static readonly AppName = 'name'
-    static readonly NstFolder = 'nstfolder'
-    static readonly ManagementModule = 'managementmodule'
+    static readonly AppName = 'name';
+    static readonly NstFolder = 'nstfolder';
+    static readonly ManagementModule = 'managementmodule';
+
+    static readonly FileNamePattern = 'FileNamePattern';
+    static readonly FileNamePatternExtensions = 'FileNamePatternExtensions';
+    static readonly FileNamePatternPageCustomizations = 'FileNamePatternPageCustomizations';
 
     private static config: WorkspaceConfiguration;
     private static launchconfig: WorkspaceConfiguration;
@@ -45,9 +49,13 @@ export class Settings {
         result[this.WinServer] = this.getSetting(this.WinServer);
         result[this.WinServerInstance] = this.getSetting(this.WinServerInstance);
         result[this.WinServerInstancePort] = this.getSetting(this.WinServerInstancePort);
+        result[this.FileNamePattern] = this.getSetting(this.FileNamePattern);
+        result[this.FileNamePatternExtensions] = this.getSetting(this.FileNamePatternExtensions);
+        result[this.FileNamePatternPageCustomizations] = this.getSetting(this.FileNamePatternPageCustomizations);
 
         //appsettings
-        let appSettings = require(join(workspace.rootPath,"app.json"));
+        let appSettings = require(join(workspace.rootPath,"app.json")); //TODO: work with "workspace.workspaceFolders" or "workspace.getWorkspaceFolder" instead
+                
         result[this.AppName] = appSettings.name
         
         //launchsettings

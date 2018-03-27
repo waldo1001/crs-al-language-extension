@@ -6,4 +6,8 @@ export class StringFunctions {
     static escapeRegExp(str)  {
         return str.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
     }
+
+    static removeAllButAlfaNumeric(str) {
+        return str.replace(/\W/g, '');
+    }
 }

@@ -69,7 +69,8 @@ export function RunObjectWindows(){
 export function RenameCurrentFile(){
     console.log('Running: RenameCurrentFile');
 
-    WorkspaceFiles.RenameFile(vscode.window.activeTextEditor.document.fileName);
+    let newFileName = WorkspaceFiles.RenameFile(vscode.window.activeTextEditor.document.fileName);
+    vscode.workspace.openTextDocument(newFileName).then(doc => vscode.window.showTextDocument(doc));
     
     console.log('Done: RenameCurrentFile')
 }
@@ -89,7 +90,8 @@ export function RenameAllFiles(){
 export function ReorganizeCurrentFile(){
     console.log('Running: ReorganizeCurrentFile');
     
-    WorkspaceFiles.ReorganizeFile(vscode.window.activeTextEditor.document.fileName);
+    let newFileName = WorkspaceFiles.ReorganizeFile(vscode.window.activeTextEditor.document.fileName);
+    vscode.workspace.openTextDocument(newFileName).then(doc => vscode.window.showTextDocument(doc));
     
     console.log('Done: ReorganizeCurrentFile')
 }

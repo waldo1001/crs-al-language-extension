@@ -142,4 +142,20 @@ export class DynamicsNAV {
         return "DynamicsNAV://" + server  + ':' + Port + '/' + NAVInstance + '//Run' + runObjectType  + '?'+runObjectType + '=' + runObjectid + '&tenant=' + Tenant 
         
     }
+
+    static getBestPracticeAbbreviatedObjectType(ObjectType: String) : string {
+        //https://docs.microsoft.com/da-dk/dynamics-nav/compliance/apptest-bestpracticesforalcode
+        switch (ObjectType.trim().toLowerCase()) {
+            case 'page': return 'Pag';
+            case 'pageextension': return 'Pag';
+            case 'codeunit': return 'Cod';
+            case 'table': return 'Tab';
+            case 'tableextension': return 'Tab';
+            case 'xmlport': return 'Xml';
+            case 'report': return 'Rep';
+            case 'query': return 'Que';
+            case 'profile': return 'Prof';
+            case 'pagecustomization': return 'Pag';
+        }
+    }
 }
