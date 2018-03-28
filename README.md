@@ -60,12 +60,14 @@ This extension contributes the following settings:
     - \<ObjectType\>
     - \<ObjectTypeShort\> - a short notation of the object type.
     - \<ObjectId\>
-    - \<ObjectName\>
+    - \<ObjectName\> - might result into errors when you have "weird" chars in your name
+    - \<ObjectNameShort\>
 * `CRS.FileNamePatternExtensions`: The pattern of the filename for extension objects.  These vars can be used: 
     - \<ObjectType\>
     - \<ObjectTypeShort\> - a short notation of the object type.
     - \<ObjectId\>
-    - \<ObjectName\>
+    - \<ObjectName\> - might result into errors when you have "weird" chars in your name
+    - \<ObjectNameShort\>
     - \<BaseName\>
     - \<BaseId\> - If you want this to work, you need to put the Id in comment after the base name, like this example: 
 ```al
@@ -84,7 +86,8 @@ tableextension 50100 "Just Some Table Extension" extends Customer //18
 * `CRS.FileNamePatternPageCustomizations`: The pattern of the filename for page customizations.  These vars can be used:
     - \<ObjectType\>
     - \<ObjectTypeShort\> - a short notation of the object type.
-    - \<ObjectName\>
+    - \<ObjectName\> - might result into errors when you have "weird" chars in your name
+    - \<ObjectNameShort\>
     - \<BaseName\>
     - \<BaseId\> - same remarks as above!
 
@@ -94,6 +97,10 @@ The extension doesn't work well with multi-folder workspaces.  The issue was men
 Please report issues hier: https://github.com/CloudReadySoftware/crs-al-language-extension/issues 
 
 ## Release Notes
+
+### 0.1.4
+Added ability to use "ObjectNameShort" or "ObjectName" for renaming files.
+Added support for "&" in the name.
 
 ### 0.1.2
 Following Changes were added:
