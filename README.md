@@ -98,6 +98,9 @@ Please report issues hier: https://github.com/CloudReadySoftware/crs-al-language
 
 ## Release Notes
 
+### 0.1.6
+Quite an important bugfix: ObjectId was swapped into ObjectName (typo :-/)
+
 ### 0.1.4
 Added ability to use "ObjectNameShort" or "ObjectName" for renaming files.
 Added support for "&" in the name.

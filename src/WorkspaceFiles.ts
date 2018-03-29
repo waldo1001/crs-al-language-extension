@@ -139,7 +139,7 @@ export class WorkspaceFiles {
         
         objectType = objectType.trim().toString();
         objectTypeShort = DynamicsNAV.getBestPracticeAbbreviatedObjectType(objectType);
-        objectId = objectType.trim().toString();
+        objectId = objectId.trim().toString();
         objectName = objectName.trim().toString().replace(/"/g,'').replace(/[^ 0-9a-zA-Z._&-]/g,'_');
         baseName = baseName.trim().toString().replace(/"/g,'');
         baseId = baseId.trim().toString();
