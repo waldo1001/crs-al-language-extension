@@ -47,7 +47,7 @@ export class WorkspaceFiles {
     }  
     
     static getFilePropertiesFromObjectText(ObjectText: string) : any{
-        let workspacesettings = Settings.GetAllSettings();
+        let workspacesettings = Settings.GetExtensionSettings();
 
         var patternObjectType = new RegExp('(codeunit |page |pagecustomization |pageextension |profile |query |report |requestpage |table |tableextension |xmlport )')
         let objectFileName, objectType, objectTypeShort, objectId, objectName, objectNameShort, baseName, baseId: string;
