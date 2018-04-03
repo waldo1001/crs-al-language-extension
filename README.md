@@ -27,20 +27,23 @@ The commands can rename your file, and move the file to the folder, correspondin
 * CRS: CRS: Reorganize - All Files
 
 ### Snippets
-New snippets were included:
-#### tpagewizard (CRS: 3 steps)
-* creates a wizard with 3 steps
-* includes placeholders
-#### tcodeunit (CRS: Method - No UI)
-* creates a codeunit, conform on the "Event Based Software Architecture"
-* no functions for UI
-* includes placeholders
-#### ttableextension (CRS)
-* Quite the same as the default snippet, but with the comment to include an TargetTableId to be able to properly rename the file (which might need that ID).
-#### tpageextension (CRS)
-* Quite the same as the default snippet, but with the comment to include an TargetPageId to be able to properly rename the file (which might need that ID).
-#### tpagecustomization (CRS)
-* Quite the same as the default snippet, but with the comment to include an TargetPageId to be able to properly rename the file (which might need that ID).
+al Snippets:
+* tpagewizard (CRS: 3 steps)
+    * creates a wizard with 3 steps
+    * includes placeholders
+* tcodeunit (CRS: Method - No UI)
+    * creates a codeunit, conform on the "Event Based Software Architecture"
+    * no functions for UI
+    * includes placeholders
+* ttableextension (CRS)
+    * Quite the same as the default snippet, but with the comment to include an TargetTableId to be able to properly rename the file (which might need that ID).
+* tpageextension (CRS)
+    * Quite the same as the default snippet, but with the comment to include an TargetPageId to be able to properly rename the file (which might need that ID).
+* tpagecustomization (CRS)
+    * Quite the same as the default snippet, but with the comment to include an TargetPageId to be able to properly rename the file (which might need that ID).
+Snippets for building metadata (used in an xml-file):
+* twebservice.. - 2 snippets
+* tpermission.. - 3 snippets
 
 ## Requirements
 if all is well, these dependencies will be installed automagically:
@@ -97,6 +100,8 @@ The extension doesn't work well with multi-folder workspaces.  The issue was men
 Please report issues hier: https://github.com/CloudReadySoftware/crs-al-language-extension/issues 
 
 ## Release Notes
+### 0.1.8
+New snippets to create a permission- & Webservice-metadata file.
 
 ### 0.1.6
 Quite an important bugfix: ObjectId was swapped into ObjectName (typo :-/)

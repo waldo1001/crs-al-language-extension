@@ -1,0 +1,85 @@
+{
+    "Snippet (CRS): Web Service Collection": {
+        "description": "Snippet (CRS): Web Service Collection",
+        "prefix": "twebservicecollection (CRS)",
+        "body": [
+            "<?xml version=\"1.0\" encoding=\"utf-8\"?>",
+            "<ExportedData>",
+            "\t<TenantWebServiceCollection>",
+            "\t\t<TenantWebService>",
+            "\t\t\t<ObjectType>${1|Codeunit,Page,Query|}</ObjectType>",
+            "\t\t\t<ObjectID>${2:ObjectID}</ObjectID>",
+            "\t\t\t<ServiceName>${3:Name}</ServiceName>",
+            "\t\t\t<Published>${4:true}</Published>",
+            "\t\t</TenantWebService>",
+            "\t</TenantWebServiceCollection>",
+            "</ExportedData>"
+        ]        
+    },
+    "Snippet (CRS): Web Service": {
+        "description": "Snippet (CRS): Web Service",
+        "prefix": "twebservice (CRS)",
+        "body": [
+            "<TenantWebService>",
+            "\t<ObjectType>${1|Codeunit,Page,Query|}</ObjectType>",
+            "\t<ObjectID>${2:ObjectID}</ObjectID>",
+            "\t<ServiceName>${3:Name}</ServiceName>",
+            "\t<Published>${4:true}</Published>",
+            "</TenantWebService>"
+        ]        
+    },
+    "Snippet (CRS): Permission Set Collection": {
+        "description": "Snippet (CRS): Permission Set Collection",
+        "prefix": "tpermissionsetcollection (CRS)",
+        "body": [
+            "<PermissionSets>",
+            "\t<PermissionSet RoleID=\"${1:PermissionSetId}\" RoleName=\"${2:PermissionSetName}\">",
+            "\t\t<Permission>",
+            "\t\t\t<ObjectType>${3:ObjectType}</ObjectType>",
+            "\t\t\t<ObjectID>${4:ObjectId}</ObjectID>",
+            "\t\t\t<ReadPermission>${5:0}</ReadPermission>",
+            "\t\t\t<InsertPermission>${6:0}</InsertPermission>",
+            "\t\t\t<ModifyPermission>${7:0}</ModifyPermission>",
+            "\t\t\t<DeletePermission>${8:0}</DeletePermission>",
+            "\t\t\t<ExecutePermission>${9:0}</ExecutePermission>",
+            "\t\t\t<SecurityFilter />",
+            "\t\t</Permission>",
+            "\t</PermissionSet>",
+            "</PermissionSets>"
+        ]
+    },
+    "Snippet (CRS): Permission Set": {
+        "description": "Snippet (CRS): Permission Set",
+        "prefix": "tpermissionset (CRS)",
+        "body": [
+            "<PermissionSet RoleID=\"${1:PermissionSetId}\" RoleName=\"${2:PermissionSetName}\">",
+            "\t<Permission>",
+            "\t\t<ObjectType>${3:ObjectType}</ObjectType>",
+            "\t\t<ObjectID>${4:ObjectId}</ObjectID>",
+            "\t\t<ReadPermission>${5:0}</ReadPermission>",
+            "\t\t<InsertPermission>${6:0}</InsertPermission>",
+            "\t\t<ModifyPermission>${7:0}</ModifyPermission>",
+            "\t\t<DeletePermission>${8:0}</DeletePermission>",
+            "\t\t<ExecutePermission>${9:0}</ExecutePermission>",
+            "\t\t<SecurityFilter />",
+            "\t</Permission>",
+            "</PermissionSet>"  
+        ]
+    },
+    "Snippet (CRS): Permission": {
+        "description": "Snippet (CRS): Permission",
+        "prefix": "tpermission (CRS)",
+        "body": [
+            "\t<Permission>",
+            "\t\t<ObjectType>${1:ObjectType}</ObjectType>",
+            "\t\t<ObjectID>${2:ObjectId}</ObjectID>",
+            "\t\t<ReadPermission>${3:0}</ReadPermission>",
+            "\t\t<InsertPermission>${4:0}</InsertPermission>",
+            "\t\t<ModifyPermission>${5:0}</ModifyPermission>",
+            "\t\t<DeletePermission>${6:0}</DeletePermission>",
+            "\t\t<ExecutePermission>${7:0}</ExecutePermission>",
+            "\t\t<SecurityFilter />",
+            "\t</Permission>"        ]
+    }
+
+}
