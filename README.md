@@ -103,8 +103,9 @@ Please report issues hier: https://github.com/CloudReadySoftware/crs-al-language
 
 ## Release Notes
 
-### latest
+### 0.1.10
 Reorganize File(s) - Variable subfolder
+Support multi-root workspaces
 
 ### 0.1.8
 New snippets to create a permission- & Webservice-metadata file.
