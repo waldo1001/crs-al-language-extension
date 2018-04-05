@@ -1,5 +1,5 @@
 //import {fs} from fs;
-import { window, WorkspaceConfiguration, workspace, commands } from 'vscode';
+import * as vscode from 'vscode';
 import * as fs from 'fs';
 import { StringFunctions } from './StringFunctions'
 import { FileFunctions } from './FileFunctions'
@@ -8,40 +8,38 @@ import { Settings } from './Settings';
 import { DynamicsNAV } from './DynamicsNAV';
 import { settings } from 'cluster';
 import { error } from 'util';
-import * as vscode from 'vscode';
 
 
 export class WorkspaceFiles {
     static getAlFilesFromCurrentWorkspace() {
-        if (workspace.rootPath === null) {
-            Error('No Workspace Root!')
-        }
+        //TODO: Current Workspace with "RelativePattern" (which doesn't work yet)
 
-        return workspace.findFiles('**/*al*');
+        return vscode.workspace.findFiles('**/*.al');
+        
     }
 
     static RenameAllFiles() {
-        commands.executeCommand('vscode.SaveAll');
+        vscode.commands.executeCommand('vscode.SaveAll');
 
         this.getAlFilesFromCurrentWorkspace().then(Files => {
             Files.forEach(file => {
-                this.RenameFile(file.fsPath);
+                this.RenameFile(file);
             })
         });
     }
 
-    static RenameFile(fileName: string): string {
-        let data = fs.readFileSync(fileName, null);
+    static RenameFile(fileName: vscode.Uri): string {
+        let data = fs.readFileSync(fileName.fsPath, null);
 
-        let objectProperties = this.getFilePropertiesFromObjectText(data.toString());
+        let objectProperties = this.getFilePropertiesFromObjectText(data.toString(), fileName);
 
         if (objectProperties.objectFileName != '') {
-            if (path.join(path.dirname(fileName), objectProperties.objectFileName) == fileName) {
+            if (path.join(path.dirname(fileName.fsPath), objectProperties.objectFileName) == fileName.fsPath) {
                 console.log('paths are the same.');
             } else {
-                let newFilePath = path.join(path.dirname(fileName), objectProperties.objectFileName);
-                fs.renameSync(fileName, newFilePath);
-                console.log('renamed', fileName, '-->', newFilePath);
+                let newFilePath = path.join(path.dirname(fileName.fsPath), objectProperties.objectFileName);
+                fs.renameSync(fileName.fsPath, newFilePath);
+                console.log('renamed', fileName.fsPath, '-->', newFilePath);
                 return newFilePath;
             }
         }
@@ -49,8 +47,8 @@ export class WorkspaceFiles {
         return '';
     }
 
-    static getFilePropertiesFromObjectText(ObjectText: string): any {
-        let workspacesettings = Settings.GetConfigSettings();
+    static getFilePropertiesFromObjectText(ObjectText: string, file: vscode.Uri): any {
+        let workspacesettings = Settings.GetConfigSettings(file);
 
         var patternObjectType = new RegExp('(codeunit |page |pagecustomization |pageextension |profile |query |report |requestpage |table |tableextension |xmlport )')
         let objectFileName, objectType, objectTypeShort, objectId, objectName, objectNameShort, baseName, baseId: string;
@@ -169,47 +167,44 @@ export class WorkspaceFiles {
     }
 
     static ReorganizeAllFiles() {
-        let mySettings = Settings.GetConfigSettings();
-        this.throwErrorIfReorgFilesNotAllowed(mySettings);
-
-        commands.executeCommand('vscode.SaveAll');
+        vscode.commands.executeCommand('vscode.SaveAll');
 
         this.getAlFilesFromCurrentWorkspace().then(Files => {
             Files.forEach(file => {
-                this.ReorganizeFile(file.fsPath);
+                this.ReorganizeFile(file);
             })
         });
     }
 
-    static ReorganizeFile(fileName: string): string {
-        let mySettings = Settings.GetConfigSettings();
+    static ReorganizeFile(fileName: vscode.Uri): string {
+        let mySettings = Settings.GetConfigSettings(fileName);
         this.throwErrorIfReorgFilesNotAllowed(mySettings);
 
-        let data = fs.readFileSync(fileName, null);
+        let data = fs.readFileSync(fileName.fsPath, null);
         
-        let objectProperties = this.getFilePropertiesFromObjectText(data.toString());
+        let objectProperties = this.getFilePropertiesFromObjectText(data.toString(), fileName);
         
         if (objectProperties.objectFileName != '') {
-            if (path.join(workspace.rootPath, objectProperties.objectType, objectProperties.objectFileName) == fileName) {
+            if (path.join(vscode.workspace.getWorkspaceFolder(fileName).uri.fsPath, objectProperties.objectType, objectProperties.objectFileName) == fileName.fsPath) {
                 console.log('paths are the same.');
-                return fileName;
+                return fileName.fsPath;
             } else {
-                let objectFolder = path.join(workspace.rootPath, mySettings[Settings.AlSubFolderName]);
+                let objectFolder = path.join(vscode.workspace.getWorkspaceFolder(fileName).uri.fsPath, mySettings[Settings.AlSubFolderName]);
                 let objectTypeFolder = path.join(objectFolder, objectProperties.objectType);
                 let destinationFileName = path.join(objectTypeFolder, objectProperties.objectFileName);
                 
                 (!fs.existsSync(objectFolder)) ? fs.mkdirSync(objectFolder) : '';
                 (!fs.existsSync(objectTypeFolder)) ? fs.mkdirSync(objectTypeFolder) : '';
                 
-                fs.renameSync(fileName, destinationFileName);
+                fs.renameSync(fileName.fsPath, destinationFileName);
                 
-                console.log('renamed', fileName, '-->', destinationFileName);
+                console.log('renamed', fileName.fsPath, '-->', destinationFileName);
                 
                 return destinationFileName;
             }
         }
         
-        return fileName;
+        return fileName.fsPath;
     }
     
     static throwErrorIfReorgFilesNotAllowed(mySettings: any){        

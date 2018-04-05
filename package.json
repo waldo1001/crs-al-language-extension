@@ -19,6 +19,9 @@
         "Extension Packs",
         "Snippets"
     ],
+    "keywords": [
+        "multi-root ready"
+    ],
     "repository": {
         "type": "git",
         "url": "https://github.com/CloudReadySoftware/crs-al-language-extension.git"
@@ -91,49 +94,57 @@
                 "command": "extension.ReorganizeAllFiles",
                 "title": "CRS: Reorganize - All Files"
             }
-        ],        
+        ],
         "configuration": {
             "title": "CRS AL Language Extension Configuration",
             "properties": {
                 "CRS.nstfolder": {
                     "type": "string",
                     "default": "C:\\Program Files\\Microsoft Dynamics NAV\\*\\Service",
-                    "description": "Folder of the NST"
+                    "description": "Folder of the NST",
+                    "scope": "resource"
                 },
                 "CRS.WebServerInstancePort": {
                     "type": "String",
                     "default": "",
-                    "description": "Port number for the web client"
+                    "description": "Port number for the web client",
+                    "scope": "resource"
                 },
                 "CRS.WinServer": {
                     "type": "string",
                     "default": "localhost",
-                    "description": "Server where the windows client is connecting to"
+                    "description": "Server where the windows client is connecting to",
+                    "scope": "resource"
                 },
                 "CRS.WinServerInstance": {
                     "type": "String",
                     "default": "NAV",
-                    "description": "Serverinstance where the windows client is connecting to"
+                    "description": "Serverinstance where the windows client is connecting to",
+                    "scope": "resource"
                 },
                 "CRS.WinServerInstancePort": {
                     "type": "number",
                     "default": 7046,
-                    "description ": "Portnumber of the serverinstance where the windows client is connecting to"
+                    "description ": "Portnumber of the serverinstance where the windows client is connecting to",
+                    "scope": "resource"
                 },
                 "CRS.FileNamePattern": {
                     "Type": "string",
                     "default": "<ObjectTypeShort><ObjectId>.<ObjectNameShort>.al",
-                    "description": "The pattern of the filename for non-extension objects..  These vars can be used: <ObjectType>,<ObjectTypeShort>,<ObjectId>,<ObjectName>,<ObjectNameShort>"
+                    "description": "The pattern of the filename for non-extension objects..  These vars can be used: <ObjectType>,<ObjectTypeShort>,<ObjectId>,<ObjectName>,<ObjectNameShort>",
+                    "scope": "resource"
                 },
                 "CRS.FileNamePatternExtensions": {
                     "Type": "string",
                     "default": "<ObjectTypeShort><BaseId>-Ext<ObjectId>.<ObjectNameShort>.al",
-                    "description": "The pattern of the filename for extension objects.  These vars can be used: <ObjectType>,<ObjectTypeShort>,<ObjectId>,<ObjectName>,<ObjectNameShort>,<BaseName>,<BaseId> (If you want this to work, you need to put the Id in comment after the base name, like //21)"
+                    "description": "The pattern of the filename for extension objects.  These vars can be used: <ObjectType>,<ObjectTypeShort>,<ObjectId>,<ObjectName>,<ObjectNameShort>,<BaseName>,<BaseId> (If you want this to work, you need to put the Id in comment after the base name, like //21)",
+                    "scope": "resource"
                 },
                 "CRS.FileNamePatternPageCustomizations": {
                     "Type": "string",
                     "default": "<ObjectTypeShort><BaseId>-PageCust.<ObjectNameShort>.al",
-                    "description": "The pattern of the filename for extension objects.  These vars can be used: <ObjectType>,<ObjectTypeShort>,<ObjectName>,<ObjectNameShort>,<BaseName>,<BaseId> (If you want this to work, you need to put the Id in comment after the base name, like //21)"
+                    "description": "The pattern of the filename for extension objects.  These vars can be used: <ObjectType>,<ObjectTypeShort>,<ObjectName>,<ObjectNameShort>,<BaseName>,<BaseId> (If you want this to work, you need to put the Id in comment after the base name, like //21)",
+                    "scope": "resource"
                 },
                 "CRS.AlSubFolderName": {
                     "enum": [
@@ -143,8 +154,9 @@
                     ],
                     "type": "string",
                     "default": "Al",
-                    "description": "Sets the subfoldername of where the objects will be placed.  If 'None', then 'Reorganize'-commands won't work."
-                }                
+                    "description": "Sets the subfoldername of where the objects will be placed.  If 'None', then 'Reorganize'-commands won't work.",
+                    "scope": "resource"
+                }
             }
         }
     },
@@ -157,7 +169,7 @@
         "compile:typescript": "tsc -watch -p ./"
     },
     "dependencies": {
-        "@types/node": "^9.4.7",
+        "@types/node": "^9.6.2",
         "format-duration": "^1.0.0",
         "mocha": "^5.0.4",
         "ncp": "^2.0.0",
@@ -165,7 +177,7 @@
         "path": "^0.12.7",
         "powershell": "^2.3.0",
         "time-stamp": "^1.0.1",
-        "vscode": "^1.1.0"
+        "vscode": "^1.1.14"
     },
     "devDependencgies": {
         "powershell": "^2.2.0",

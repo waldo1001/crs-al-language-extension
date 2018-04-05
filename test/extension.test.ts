@@ -29,17 +29,17 @@ suite("Extension Tests", () => {
     test("WorkspaceFiles", () => {
         let objectText: any;
         objectText = 'page 50010 "My new page"';
-        assert.equal(WorkspaceFiles.getFilePropertiesFromObjectText(objectText).objectType,'page');
-        assert.equal(WorkspaceFiles.getFilePropertiesFromObjectText(objectText).objectId,'50010');
-        assert.equal(WorkspaceFiles.getFilePropertiesFromObjectText(objectText).objectNameShort,'Mynewpage');
+        assert.equal(WorkspaceFiles.getFilePropertiesFromObjectText(objectText,null).objectType,'page');
+        assert.equal(WorkspaceFiles.getFilePropertiesFromObjectText(objectText,null).objectId,'50010');
+        assert.equal(WorkspaceFiles.getFilePropertiesFromObjectText(objectText,null).objectNameShort,'Mynewpage');
 
         objectText = 'pagecustomization "My new pagecustomization" customizes "Some default page"';
-        assert.equal(WorkspaceFiles.getFilePropertiesFromObjectText(objectText).objectType,'pagecustomization');
-        assert.equal(WorkspaceFiles.getFilePropertiesFromObjectText(objectText).objectNameShort,'Mynewpagecustomization');
-        assert.equal(WorkspaceFiles.getFilePropertiesFromObjectText(objectText).objectFileName,'pagecust Mynewpagecustomization.al');
+        assert.equal(WorkspaceFiles.getFilePropertiesFromObjectText(objectText,null).objectType,'pagecustomization');
+        assert.equal(WorkspaceFiles.getFilePropertiesFromObjectText(objectText,null).objectNameShort,'Mynewpagecustomization');
+        assert.equal(WorkspaceFiles.getFilePropertiesFromObjectText(objectText,null).objectFileName,'pagecust Mynewpagecustomization.al');
         
         objectText = 'profile "My New Rolecenter"';
-        assert.equal(WorkspaceFiles.getFilePropertiesFromObjectText(objectText).objectType,'profile');
-        assert.equal(WorkspaceFiles.getFilePropertiesFromObjectText(objectText).objectNameShort,'MyNewRolecenter');
+        assert.equal(WorkspaceFiles.getFilePropertiesFromObjectText(objectText,null).objectType,'profile');
+        assert.equal(WorkspaceFiles.getFilePropertiesFromObjectText(objectText,null).objectNameShort,'MyNewRolecenter');
     });
 });

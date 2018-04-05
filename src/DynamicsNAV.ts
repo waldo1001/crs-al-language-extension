@@ -86,7 +86,7 @@ export class DynamicsNAV {
     }
 
     static RunObjectInWebClient(objecttype: QuickPickItem, objectid: any, clienttype: string){
-        let workspacesettings = Settings.GetAllSettings();  
+        let workspacesettings = Settings.GetAllSettings(null);  
 
         if (clienttype != 'WebClient'){
             clienttype = clienttype + '.aspx'
@@ -125,7 +125,7 @@ export class DynamicsNAV {
 
 
     static RunObjectInWindowsClient(objecttype: QuickPickItem, objectid: any){
-        let workspacesettings = Settings.GetAllSettings();  
+        let workspacesettings = Settings.GetAllSettings(null);  
         
         let runURL = this.ComposeRunObjectInWindowsClientURL(workspacesettings[Settings.WinServer], 
                                                             workspacesettings[Settings.WinServerInstancePort],

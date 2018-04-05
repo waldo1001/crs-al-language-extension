@@ -69,7 +69,7 @@ export function RunObjectWindows(){
 export function RenameCurrentFile(){
     console.log('Running: RenameCurrentFile');
 
-    let newFileName = WorkspaceFiles.RenameFile(vscode.window.activeTextEditor.document.fileName);
+    let newFileName = WorkspaceFiles.RenameFile(vscode.window.activeTextEditor.document.uri);
     vscode.workspace.openTextDocument(newFileName).then(doc => vscode.window.showTextDocument(doc));
     
     console.log('Done: RenameCurrentFile')
@@ -78,7 +78,7 @@ export function RenameCurrentFile(){
 export function RenameAllFiles(){
     console.log('Running: RenameAllFiles');
     
-    vscode.window.showWarningMessage('Are you sure to rename all files?','Yes','No').then((action: String) => {
+    vscode.window.showWarningMessage('Are you sure to rename all files from all opened workspaces?','Yes','No').then((action: String) => {
         if (action === 'Yes'){
             WorkspaceFiles.RenameAllFiles();
         }
@@ -90,7 +90,7 @@ export function RenameAllFiles(){
 export function ReorganizeCurrentFile(){
     console.log('Running: ReorganizeCurrentFile');
     
-    let newFileName = WorkspaceFiles.ReorganizeFile(vscode.window.activeTextEditor.document.fileName);
+    let newFileName = WorkspaceFiles.ReorganizeFile(vscode.window.activeTextEditor.document.uri);
     vscode.workspace.openTextDocument(newFileName).then(doc => vscode.window.showTextDocument(doc));
     
     console.log('Done: ReorganizeCurrentFile')
@@ -99,7 +99,7 @@ export function ReorganizeCurrentFile(){
 export function ReorganizeAllFiles(){
     console.log('Running: ReorganizeAllFiles');
     
-    vscode.window.showWarningMessage('Are you sure to reorganize all files?','Yes','No').then((action: String) => {
+    vscode.window.showWarningMessage('Are you sure to reorganize all files from all opened workspaces?','Yes','No').then((action: String) => {
         if (action === 'Yes'){
             WorkspaceFiles.ReorganizeAllFiles();
         }
