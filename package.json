@@ -91,7 +91,7 @@
                 "command": "extension.ReorganizeAllFiles",
                 "title": "CRS: Reorganize - All Files"
             }
-        ],
+        ],        
         "configuration": {
             "title": "CRS AL Language Extension Configuration",
             "properties": {
@@ -134,7 +134,17 @@
                     "Type": "string",
                     "default": "<ObjectTypeShort><BaseId>-PageCust.<ObjectNameShort>.al",
                     "description": "The pattern of the filename for extension objects.  These vars can be used: <ObjectType>,<ObjectTypeShort>,<ObjectName>,<ObjectNameShort>,<BaseName>,<BaseId> (If you want this to work, you need to put the Id in comment after the base name, like //21)"
-                }
+                },
+                "CRS.AlSubFolderName": {
+                    "enum": [
+                        "Objects",
+                        "Al",
+                        "None"
+                    ],
+                    "type": "string",
+                    "default": "Al",
+                    "description": "Sets the subfoldername of where the objects will be placed.  If 'None', then 'Reorganize'-commands won't work."
+                }                
             }
         }
     },

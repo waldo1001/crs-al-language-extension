@@ -24,6 +24,8 @@ export class Settings {
     static readonly FileNamePatternExtensions = 'FileNamePatternExtensions';
     static readonly FileNamePatternPageCustomizations = 'FileNamePatternPageCustomizations';
 
+    static readonly AlSubFolderName = 'AlSubFolderName';
+
     private static config: WorkspaceConfiguration;
     private static launchconfig: WorkspaceConfiguration;
 
@@ -60,6 +62,7 @@ export class Settings {
         this.SettingCollection[this.FileNamePattern] = this.getSetting(this.FileNamePattern);
         this.SettingCollection[this.FileNamePatternExtensions] = this.getSetting(this.FileNamePatternExtensions);
         this.SettingCollection[this.FileNamePatternPageCustomizations] = this.getSetting(this.FileNamePatternPageCustomizations);
+        this.SettingCollection[this.AlSubFolderName] = this.getSetting(this.AlSubFolderName);
         
         this.ConfigSettingsLoaded = true;
     }
@@ -109,7 +112,7 @@ export class Settings {
         return this.SettingCollection;
     }
 
-    public static GetExtensionSettings(){
+    public static GetConfigSettings(){
         this.getConfigSettings();
         
         return this.SettingCollection;

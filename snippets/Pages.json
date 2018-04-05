@@ -39,7 +39,7 @@
                 "\t\t\t\t  Editable=false;",
                 "\t\t\t\t  ShowCaption=false;",
                 "\t\t\t\t}",
-                "\t\t\t}",  //
+                "\t\t\t}",  
                 "",
     
     
@@ -95,9 +95,9 @@
                 "\t\t\t\t}",
                 "\t\t\t}",
     
-                "\t\t}",  //Area
+                "\t\t}",  
     
-                "\t}",  //layout
+                "\t}",  
     
 
 
@@ -167,10 +167,10 @@
     
     
                 "var",
-                "\tMediaRepositoryStandard : Record 9400;",
-                "\tMediaRepositoryDone : Record 9400;",
-                "\tMediaResourcesStandard : Record 2000000182;",
-                "\tMediaResourcesDone : Record 2000000182;",
+                "\tMediaRepositoryStandard : Record \"Media Repository\";",
+                "\tMediaRepositoryDone : Record \"Media Repository\";",
+                "\tMediaResourcesStandard : Record \"Media Resources\";",
+                "\tMediaResourcesDone : Record \"Media Resources\";",
                 "\tStep : Option Start,Step2,Finish;",
                 "\tTopBannerVisible : Boolean;",
                 "\tStep1Visible : Boolean;",

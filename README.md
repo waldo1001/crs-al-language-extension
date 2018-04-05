@@ -41,6 +41,7 @@ al Snippets:
     * Quite the same as the default snippet, but with the comment to include an TargetPageId to be able to properly rename the file (which might need that ID).
 * tpagecustomization (CRS)
     * Quite the same as the default snippet, but with the comment to include an TargetPageId to be able to properly rename the file (which might need that ID).
+
 Snippets for building metadata (used in an xml-file):
 * twebservice.. - 2 snippets
 * tpermission.. - 3 snippets
@@ -93,6 +94,7 @@ tableextension 50100 "Just Some Table Extension" extends Customer //18
     - \<ObjectNameShort\>
     - \<BaseName\>
     - \<BaseId\> - same remarks as above!
+* `CRS.AlSubFolderName`: Variable subfoldername.  "None" means you want to disable the command to move files to a subfolder.  Two choices: "Objects" and "Al".
 
 ## Known Issues
 The extension doesn't work well with multi-folder workspaces.  The issue was mentioned [here](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/7).  Working on it!
@@ -100,6 +102,10 @@ The extension doesn't work well with multi-folder workspaces.  The issue was men
 Please report issues hier: https://github.com/CloudReadySoftware/crs-al-language-extension/issues 
 
 ## Release Notes
+
+### latest
+Reorganize Files - Variable subfolder
+
 ### 0.1.8
 New snippets to create a permission- & Webservice-metadata file.
 
