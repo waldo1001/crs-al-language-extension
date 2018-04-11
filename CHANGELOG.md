@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension will be documented in this file.
 
+## [0.1.12] - 2018-04-11
+Bugfix - Reorganizing/Renaming Files - [Issue On Github](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/10)
+
 ## [0.1.11] - 2018-04-05
 Changelog activated like it should!
 

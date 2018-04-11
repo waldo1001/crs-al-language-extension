@@ -15,11 +15,10 @@ export class WorkspaceFiles {
         //TODO: Current Workspace with "RelativePattern" (which doesn't work yet)
 
         return vscode.workspace.findFiles('**/*.al');
-        
     }
 
     static RenameAllFiles() {
-        vscode.commands.executeCommand('vscode.SaveAll');
+        vscode.workspace.saveAll();
 
         this.getAlFilesFromCurrentWorkspace().then(Files => {
             Files.forEach(file => {
@@ -87,8 +86,7 @@ export class WorkspaceFiles {
             }
             case 'pageextension':
             case 'tableextension': {
-
-                var patternObject = new RegExp('(\\w+)( +[0-9]+)( +"?[ a-zA-Z0-9._/&-]+"?) +extends( +"?[ a-zA-Z0-9._/&-]+"?) (//+ *)?([0-9]+)?');
+                var patternObject = new RegExp('(\\w+)( +[0-9]+)( +"?[ a-zA-Z0-9._&-]+\\/?[ a-zA-Z0-9._&-]+"?) +extends( +"?[ a-zA-Z0-9._&-]+\\/?[ a-zA-Z0-9._&-]+"?) ?(\\/\\/+ *)?([0-9]+)?');
                 let currObject = ObjectText.match(patternObject);
 
                 objectType = currObject[1];
@@ -119,7 +117,7 @@ export class WorkspaceFiles {
             }
             case 'pagecustomization': {
 
-                var patternObject = new RegExp('(\\w+)( +"?[ a-zA-Z0-9._/&-]+"?) +customizes( +"?[ a-zA-Z0-9._/&-]+"?) (//+ *)?([0-9]+)?');
+                var patternObject = new RegExp('(\\w+)( +"?[ a-zA-Z0-9._/&-]+"?) +customizes( +"?[ a-zA-Z0-9._&-]+\\/?[ a-zA-Z0-9._&-]+" ?) (\\/\\/+ *)?([0-9]+)?');
                 let currObject = ObjectText.match(patternObject);
 
                 objectType = currObject[1];
@@ -167,7 +165,7 @@ export class WorkspaceFiles {
     }
 
     static ReorganizeAllFiles() {
-        vscode.commands.executeCommand('vscode.SaveAll');
+        vscode.workspace.saveAll();
 
         this.getAlFilesFromCurrentWorkspace().then(Files => {
             Files.forEach(file => {
@@ -181,9 +179,9 @@ export class WorkspaceFiles {
         this.throwErrorIfReorgFilesNotAllowed(mySettings);
 
         let data = fs.readFileSync(fileName.fsPath, null);
-        
+
         let objectProperties = this.getFilePropertiesFromObjectText(data.toString(), fileName);
-        
+
         if (objectProperties.objectFileName != '') {
             if (path.join(vscode.workspace.getWorkspaceFolder(fileName).uri.fsPath, objectProperties.objectType, objectProperties.objectFileName) == fileName.fsPath) {
                 console.log('paths are the same.');
@@ -192,25 +190,25 @@ export class WorkspaceFiles {
                 let objectFolder = path.join(vscode.workspace.getWorkspaceFolder(fileName).uri.fsPath, mySettings[Settings.AlSubFolderName]);
                 let objectTypeFolder = path.join(objectFolder, objectProperties.objectType);
                 let destinationFileName = path.join(objectTypeFolder, objectProperties.objectFileName);
-                
+
                 (!fs.existsSync(objectFolder)) ? fs.mkdirSync(objectFolder) : '';
                 (!fs.existsSync(objectTypeFolder)) ? fs.mkdirSync(objectTypeFolder) : '';
-                
+
                 fs.renameSync(fileName.fsPath, destinationFileName);
-                
+
                 console.log('renamed', fileName.fsPath, '-->', destinationFileName);
-                
+
                 return destinationFileName;
             }
         }
-        
+
         return fileName.fsPath;
     }
-    
-    static throwErrorIfReorgFilesNotAllowed(mySettings: any){        
-        if (mySettings[Settings.AlSubFolderName] == 'None') {    
+
+    static throwErrorIfReorgFilesNotAllowed(mySettings: any) {
+        if (mySettings[Settings.AlSubFolderName] == 'None') {
             let errorMessage = "Configuration " + Settings.AlSubFolderName + " is set to 'None'.  Please choose another value for this function to work.";
-            
+
             vscode.window.showErrorMessage(errorMessage);
             throw new error(errorMessage);
         }
