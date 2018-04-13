@@ -12,25 +12,25 @@ export function activate(context: vscode.ExtensionContext) { //is called when yo
     // provide the implementation of the command with  registerCommand
     // The commandId parameter must match the command field in package.json    
     let commandlist = [
-        vscode.commands.registerCommand('extension.InstallWaldosModules', CRSFunctions.InstallWaldosModules),
+        vscode.commands.registerCommand('crs.InstallWaldosModules', CRSFunctions.InstallWaldosModules),
 
-        vscode.commands.registerCommand('extension.RunCurrentObjectWeb', CRSFunctions.RunCurrentObjectWeb),
-        vscode.commands.registerCommand('extension.RunObjectWeb', CRSFunctions.RunObjectWeb),
-        vscode.commands.registerCommand('extension.RunObjectTablet', CRSFunctions.RunObjectTablet),
-        vscode.commands.registerCommand('extension.RunObjectPhone', CRSFunctions.RunObjectPhone),
-        vscode.commands.registerCommand('extension.RunObjectWindows', CRSFunctions.RunObjectWindows),
+        vscode.commands.registerCommand('crs.RunCurrentObjectWeb', CRSFunctions.RunCurrentObjectWeb),
+        vscode.commands.registerCommand('crs.RunObjectWeb', CRSFunctions.RunObjectWeb),
+        vscode.commands.registerCommand('crs.RunObjectTablet', CRSFunctions.RunObjectTablet),
+        vscode.commands.registerCommand('crs.RunObjectPhone', CRSFunctions.RunObjectPhone),
+        vscode.commands.registerCommand('crs.RunObjectWindows', CRSFunctions.RunObjectWindows),
 
-        vscode.commands.registerCommand('extension.RenameCurrentFile', CRSFunctions.RenameCurrentFile),
-        vscode.commands.registerCommand('extension.RenameAllFiles', CRSFunctions.RenameAllFiles),
-        vscode.commands.registerCommand('extension.ReorganizeCurrentFile', CRSFunctions.ReorganizeCurrentFile),
-        vscode.commands.registerCommand('extension.ReorganizeAllFiles', CRSFunctions.ReorganizeAllFiles),
+        vscode.commands.registerCommand('crs.RenameCurrentFile', CRSFunctions.RenameCurrentFile),
+        vscode.commands.registerCommand('crs.RenameAllFiles', CRSFunctions.RenameAllFiles),
+        vscode.commands.registerCommand('crs.ReorganizeCurrentFile', CRSFunctions.ReorganizeCurrentFile),
+        vscode.commands.registerCommand('crs.ReorganizeAllFiles', CRSFunctions.ReorganizeAllFiles),
 
-        vscode.commands.registerCommand('extension.SetupSnippets', CRSFunctions.SetupSnippets),
+        vscode.commands.registerCommand('crs.SetupSnippets', CRSFunctions.SetupSnippets),
     ];
 
     context.subscriptions.concat(commandlist);
 
-    vscode.commands.executeCommand('extension.SetupSnippets');
+    vscode.commands.executeCommand('crs.SetupSnippets');
 }
 
 // this method is called when your extension is deactivated

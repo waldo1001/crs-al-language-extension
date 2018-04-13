@@ -27,7 +27,9 @@
         "url": "https://github.com/CloudReadySoftware/crs-al-language-extension.git"
     },
     "activationEvents": [
-        "*"
+        "onLanguage:al",
+        "workspaceContains:app.json",
+        "onCommand:al.go"
     ],
     "main": "./out/src/extension",
     "contributes": {
@@ -103,48 +105,48 @@
         ],
         "commands": [
             {
-                "command": "extension.InstallWaldosModules",
+                "command": "crs.InstallWaldosModules",
                 "title": "CRS: Install Waldo's Modules"
             },
             {
-                "command": "extension.RunCurrentObjectWeb",
+                "command": "crs.RunCurrentObjectWeb",
                 "title": "CRS: Run Current Object (Web Client)"
             },
             {
-                "command": "extension.RunObjectWeb",
+                "command": "crs.RunObjectWeb",
                 "title": "CRS: Run Object (Web Client)"
             },
             {
-                "command": "extension.RunObjectTablet",
+                "command": "crs.RunObjectTablet",
                 "title": "CRS: Run Object (Tablet Client)"
             },
             {
-                "command": "extension.RunObjectPhone",
+                "command": "crs.RunObjectPhone",
                 "title": "CRS: Run Object (Phone Client)"
             },
             {
-                "command": "extension.RunObjectWindows",
+                "command": "crs.RunObjectWindows",
                 "title": "CRS: Run Object (Windows Client)"
             },
             {
-                "command": "extension.RenameCurrentFile",
+                "command": "crs.RenameCurrentFile",
                 "title": "CRS: Rename - Current File"
             },
             {
-                "command": "extension.RenameAllFiles",
+                "command": "crs.RenameAllFiles",
                 "title": "CRS: Rename - All Files"
             },
             {
-                "command": "extension.ReorganizeCurrentFile",
+                "command": "crs.ReorganizeCurrentFile",
                 "title": "CRS: Reorganize - Current File"
             },
             {
-                "command": "extension.ReorganizeAllFiles",
+                "command": "crs.ReorganizeAllFiles",
                 "title": "CRS: Reorganize - All Files"
             }
         ],
         "keybindings": {
-            "command": "extension.RunCurrentObjectWeb",
+            "command": "crs.RunCurrentObjectWeb",
             "key": "CTRL+SHIFT+r"
         },
         "configuration": {
