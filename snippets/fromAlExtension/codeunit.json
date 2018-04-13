@@ -1,0 +1,12 @@
+{
+    "Snippet: Codeunit": {
+        "prefix": "tcodeunit (CRS)",
+        "body": [
+            "codeunit ${1:Id} ${2:MyCodeunit}",
+            "{",
+            "\t$0",
+            "}"
+        ],
+        "description": "Snippet: Codeunit"
+    }
+}

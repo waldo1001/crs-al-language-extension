@@ -1,0 +1,32 @@
+{
+    "Snippet: Query": {
+        "prefix": "tquery",
+        "body": [
+            "query ${1:Id} ${2:MyQuery}",
+            "{",
+            "\tQueryType = ${3|Normal,API|};",
+            "\t",
+            "\telements",
+            "\t{",
+            "\t\tdataitem(${5:DataItemName}; ${4:SourceTableName})",
+            "\t\t{",
+            "\t\t\tcolumn(${7:ColumnName}; ${6:SourceFieldName})",
+            "\t\t\t{",
+            "\t\t\t\t${8}",
+            "\t\t\t}",
+            "\t\t\tfilter(${10:FilterName}; ${9:SourceFieldName})",
+            "\t\t\t{",
+            "\t\t\t\t${11}",
+            "\t\t\t}",
+            "\t\t}",
+            "\t}",
+            "\t",
+            "\ttrigger ${14:OnBeforeOpen}()",
+            "\tbegin",
+            "\t\t$0",
+            "\tend;",
+            "}"
+        ],
+        "description": "Snippet: Query"
+    }
+}

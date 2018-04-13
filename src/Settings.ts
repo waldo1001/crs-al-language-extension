@@ -24,6 +24,9 @@ export class Settings {
     static readonly FileNamePatternExtensions = 'FileNamePatternExtensions';
     static readonly FileNamePatternPageCustomizations = 'FileNamePatternPageCustomizations';
 
+    static readonly DisableDefaultAlSnippets = 'DisableDefaultAlSnippets';
+    static readonly DisableCRSSnippets = 'DisableCRSSnippets';
+
     static readonly AlSubFolderName = 'AlSubFolderName';
 
     private static config: vscode.WorkspaceConfiguration;
@@ -46,7 +49,7 @@ export class Settings {
     private static getConfigSettings(ResourceUri: vscode.Uri) {
         this.config = ResourceUri ?
             vscode.workspace.getConfiguration(this.WORKSPACEKEY, ResourceUri) :
-            vscode.window.activeTextEditor ? 
+            vscode.window.activeTextEditor ?
                 vscode.workspace.getConfiguration(this.WORKSPACEKEY, vscode.window.activeTextEditor.document.uri) :
                 vscode.workspace.getConfiguration(this.WORKSPACEKEY, vscode.workspace.workspaceFolders[0].uri);
 
@@ -60,12 +63,14 @@ export class Settings {
         this.SettingCollection[this.FileNamePatternExtensions] = this.getSetting(this.FileNamePatternExtensions);
         this.SettingCollection[this.FileNamePatternPageCustomizations] = this.getSetting(this.FileNamePatternPageCustomizations);
         this.SettingCollection[this.AlSubFolderName] = this.getSetting(this.AlSubFolderName);
+        this.SettingCollection[this.DisableDefaultAlSnippets] = this.getSetting(this.DisableDefaultAlSnippets);
+        this.SettingCollection[this.DisableCRSSnippets] = this.getSetting(this.DisableCRSSnippets);
     }
 
     private static getAppSettings(ResourceUri: vscode.Uri) {
-        let appSettings = ResourceUri ? 
+        let appSettings = ResourceUri ?
             require(join(vscode.workspace.getWorkspaceFolder(ResourceUri).uri.fsPath, "app.json")) :
-            vscode.window.activeTextEditor ? 
+            vscode.window.activeTextEditor ?
                 require(join(vscode.workspace.getWorkspaceFolder(vscode.window.activeTextEditor.document.uri).uri.fsPath, "app.json")) :
                 require(join(vscode.workspace.workspaceFolders[0].uri.fsPath, "app.json"));
 

@@ -1,0 +1,15 @@
+{
+    "Snippet: DotNet": {
+        "prefix": "tdotnet (CRS)",
+        "body": [
+            "dotnet",
+            "{",
+            "\tassembly(${1:AssemblyName})",
+            "\t{",
+            "\t\ttype(${0:TypeName}){}",
+            "\t}",
+            "}"
+        ],
+        "description": "Snippet: DotNet"
+    }
+}

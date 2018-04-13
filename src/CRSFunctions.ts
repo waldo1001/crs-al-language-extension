@@ -1,85 +1,86 @@
 import * as vscode from 'vscode';
-import {Powershell} from './PowerShell';
-import * as PSScripts  from './PSScripts';
+import { Powershell } from './PowerShell';
+import * as PSScripts from './PSScripts';
 import * as PSModules from './PSModules';
 import { ConsoleLogger, OutputLogger } from './logging';
-import {Settings} from './Settings';
-import {DynamicsNAV} from './DynamicsNAV';
-import {join} from 'path';
-import {WorkspaceFiles} from './WorkspaceFiles';
-    
+import { Settings } from './Settings';
+import { DynamicsNAV } from './DynamicsNAV';
+import { join } from 'path';
+import { WorkspaceFiles } from './WorkspaceFiles';
+import { SnippetFunctions } from './SnippetFunctions';
+
 
 let observers = [
-    ConsoleLogger.getInstance(), 
+    ConsoleLogger.getInstance(),
     OutputLogger.getInstance()
-    ];
+];
 
-export function InstallWaldosModules(){
+export function InstallWaldosModules() {
     console.log('Running: InstallWaldosModules');
-    
+
     let ps = new Powershell(PSScripts.INSTALLWALDOSMODULES);
-    
+
     ps.observers = observers;
-    
+
     ps.invoke();
 
     console.log('Done: InstallWaldosModules');
 }
 
-export function RunObjectWeb(){
+export function RunObjectWeb() {
     console.log('Running: RunObjectWeb');
 
-    vscode.window.showQuickPick(DynamicsNAV.GetRunWebObjectTypesAsQuickPickItem()).then(objecttype => 
-        vscode.window.showInputBox({prompt: 'ObjectID:'}).then(objectid => 
-            DynamicsNAV.RunObjectInWebClient(objecttype,objectid, 'WebClient')));            
+    vscode.window.showQuickPick(DynamicsNAV.GetRunWebObjectTypesAsQuickPickItem()).then(objecttype =>
+        vscode.window.showInputBox({ prompt: 'ObjectID:' }).then(objectid =>
+            DynamicsNAV.RunObjectInWebClient(objecttype, objectid, 'WebClient')));
 
     console.log('Done: RunObjectWeb')
 }
 
-export function RunObjectTablet(){
+export function RunObjectTablet() {
     console.log('Running: RunObjectTablet');
 
-    vscode.window.showQuickPick(DynamicsNAV.GetRunWebObjectTypesAsQuickPickItem()).then(objecttype => 
-        vscode.window.showInputBox({prompt: 'ObjectID:'}).then(objectid => 
-            DynamicsNAV.RunObjectInWebClient(objecttype,objectid, 'Tablet')));   
+    vscode.window.showQuickPick(DynamicsNAV.GetRunWebObjectTypesAsQuickPickItem()).then(objecttype =>
+        vscode.window.showInputBox({ prompt: 'ObjectID:' }).then(objectid =>
+            DynamicsNAV.RunObjectInWebClient(objecttype, objectid, 'Tablet')));
 
     console.log('Done: RunObjectTablet')
 }
 
-export function RunObjectPhone(){
+export function RunObjectPhone() {
     console.log('Running: RunObjectPhone');
 
-    vscode.window.showQuickPick(DynamicsNAV.GetRunWebObjectTypesAsQuickPickItem()).then(objecttype => 
-        vscode.window.showInputBox({prompt: 'ObjectID:'}).then(objectid => 
-            DynamicsNAV.RunObjectInWebClient(objecttype,objectid, 'Phone'))); 
+    vscode.window.showQuickPick(DynamicsNAV.GetRunWebObjectTypesAsQuickPickItem()).then(objecttype =>
+        vscode.window.showInputBox({ prompt: 'ObjectID:' }).then(objectid =>
+            DynamicsNAV.RunObjectInWebClient(objecttype, objectid, 'Phone')));
 
     console.log('Done: RunObjectPhone')
 }
 
-export function RunObjectWindows(){
+export function RunObjectWindows() {
     console.log('Running: RunObjectWindows');
 
-    vscode.window.showQuickPick(DynamicsNAV.GetRunRTCObjectTypesAsQuickPickItem()).then(objecttype => 
-        vscode.window.showInputBox({prompt: 'ObjectID:'}).then(objectid => 
-            DynamicsNAV.RunObjectInWindowsClient(objecttype,objectid))); 
+    vscode.window.showQuickPick(DynamicsNAV.GetRunRTCObjectTypesAsQuickPickItem()).then(objecttype =>
+        vscode.window.showInputBox({ prompt: 'ObjectID:' }).then(objectid =>
+            DynamicsNAV.RunObjectInWindowsClient(objecttype, objectid)));
 
     console.log('Done: RunObjectWindows')
 }
 
-export function RenameCurrentFile(){
+export function RenameCurrentFile() {
     console.log('Running: RenameCurrentFile');
 
     let newFileName = WorkspaceFiles.RenameFile(vscode.window.activeTextEditor.document.uri);
     vscode.workspace.openTextDocument(newFileName).then(doc => vscode.window.showTextDocument(doc));
-    
+
     console.log('Done: RenameCurrentFile')
 }
 
-export function RenameAllFiles(){
+export function RenameAllFiles() {
     console.log('Running: RenameAllFiles');
-    
-    vscode.window.showWarningMessage('Are you sure to rename all files from all opened workspaces?','Yes','No').then((action: String) => {
-        if (action === 'Yes'){
+
+    vscode.window.showWarningMessage('Are you sure to rename all files from all opened workspaces?', 'Yes', 'No').then((action: String) => {
+        if (action === 'Yes') {
             WorkspaceFiles.RenameAllFiles();
         }
     });
@@ -87,23 +88,32 @@ export function RenameAllFiles(){
     console.log('Done: RenameAllFiles')
 }
 
-export function ReorganizeCurrentFile(){
+export function ReorganizeCurrentFile() {
     console.log('Running: ReorganizeCurrentFile');
-    
+
     let newFileName = WorkspaceFiles.ReorganizeFile(vscode.window.activeTextEditor.document.uri);
     vscode.workspace.openTextDocument(newFileName).then(doc => vscode.window.showTextDocument(doc));
-    
+
     console.log('Done: ReorganizeCurrentFile')
 }
 
-export function ReorganizeAllFiles(){
+export function ReorganizeAllFiles() {
     console.log('Running: ReorganizeAllFiles');
-    
-    vscode.window.showWarningMessage('Are you sure to reorganize all files from all opened workspaces?','Yes','No').then((action: String) => {
-        if (action === 'Yes'){
+
+    vscode.window.showWarningMessage('Are you sure to reorganize all files from all opened workspaces?', 'Yes', 'No').then((action: String) => {
+        if (action === 'Yes') {
             WorkspaceFiles.ReorganizeAllFiles();
         }
     });
-    
+
     console.log('Done: ReorganizeAllFiles')
+}
+
+export function SetupSnippets() {
+    console.log('Running: SetupSnippets');
+
+    SnippetFunctions.SetupDefaultAlSnippets();
+    SnippetFunctions.SetupCRSAlSnippets();
+
+    console.log('Done: SetupSnippets');
 }
