@@ -1,31 +1,31 @@
-import {Powershell} from './PowerShell'
+import { Powershell } from './PowerShell'
 import * as PSScripts from './PSScripts'
 import { ConsoleLogger, OutputLogger } from './logging';
-import {QuickPickItem} from 'vscode';
-import {Settings} from './Settings';
+import { QuickPickItem } from 'vscode';
+import { Settings } from './Settings';
 
 const open = require('opn');
 
 let observers = [
-    ConsoleLogger.getInstance(), 
+    ConsoleLogger.getInstance(),
     OutputLogger.getInstance()
-    ];
+];
 
 export class DynamicsNAV {
-    static GetAllObjectTypesAsQuickPickItem() : QuickPickItem[] {
+    static GetAllObjectTypesAsQuickPickItem(): QuickPickItem[] {
         let items: QuickPickItem[] = [];
-        
-        items.push({label:'Table',description: 'Table'});
-        items.push({label:'Page',description: 'Page'});     
-        items.push({label:'Report',description: 'Report'});
-        items.push({label:'Codeunit',description: 'Codeunit'});
-        items.push({label:'Query',description: 'Query'});
-        items.push({label:'XMLPort',description: 'XMLPort'});
-        items.push({label:'MenuSuite',description: 'MenuSuite'});
-                                                
+
+        items.push({ label: 'Table', description: 'Table' });
+        items.push({ label: 'Page', description: 'Page' });
+        items.push({ label: 'Report', description: 'Report' });
+        items.push({ label: 'Codeunit', description: 'Codeunit' });
+        items.push({ label: 'Query', description: 'Query' });
+        items.push({ label: 'XMLPort', description: 'XMLPort' });
+        items.push({ label: 'MenuSuite', description: 'MenuSuite' });
+
         return items
     }
-    static GetAllObjectTypes() : String[] {
+    static GetAllObjectTypes(): String[] {
         let items: String[] = [];
 
         items.push('Table');
@@ -39,43 +39,43 @@ export class DynamicsNAV {
         return items
     }
 
-    static GetRunRTCObjectTypesAsQuickPickItem() : QuickPickItem[] {
+    static GetRunRTCObjectTypesAsQuickPickItem(): QuickPickItem[] {
         let items: QuickPickItem[] = [];
-        
-        items.push({label:'Table',description: 'Table'})
-        items.push({label:'Page',description: 'Page'})        
-        items.push({label:'Report',description: 'Report'})
-        items.push({label:'Codeunit',description: 'Codeunit'})
-        items.push({label:'Query',description: 'Query'})
-        items.push({label:'XMLPort',description: 'XMLPort'})
-                                                
+
+        items.push({ label: 'Table', description: 'Table' })
+        items.push({ label: 'Page', description: 'Page' })
+        items.push({ label: 'Report', description: 'Report' })
+        items.push({ label: 'Codeunit', description: 'Codeunit' })
+        items.push({ label: 'Query', description: 'Query' })
+        items.push({ label: 'XMLPort', description: 'XMLPort' })
+
         return items
     }
 
-    static GetRunRTCObjectTypes() : String[] {
+    static GetRunRTCObjectTypes(): String[] {
         let items: String[] = [];
-        
+
         items.push('Table');
         items.push('Page');
         items.push('Report');
         items.push('Codeunit');
         items.push('Query');
         items.push('XMLPort');
-                                                
+
         return items
     }
 
-    static GetRunWebObjectTypesAsQuickPickItem() : QuickPickItem[] {
+    static GetRunWebObjectTypesAsQuickPickItem(): QuickPickItem[] {
         let items: QuickPickItem[] = [];
-        
-        items.push({label:'Page',description: 'Page'})        
-        items.push({label:'Report',description: 'Report'})
-        items.push({label:'Table',description: 'Table'})
+
+        items.push({ label: 'Page', description: 'Page' })
+        items.push({ label: 'Report', description: 'Report' })
+        items.push({ label: 'Table', description: 'Table' })
 
         return items
     }
 
-    static GetRunWebObjectTypes() : String[] {
+    static GetRunWebObjectTypes(): String[] {
         let items: String[] = [];
 
         items.push('Page');
@@ -85,65 +85,66 @@ export class DynamicsNAV {
         return items
     }
 
-    static RunObjectInWebClient(objecttype: QuickPickItem, objectid: any, clienttype: string){
-        let workspacesettings = Settings.GetAllSettings(null);  
+    static RunObjectInWebClient(objecttype: QuickPickItem, objectid: any, clienttype: string) {
+        let workspacesettings = Settings.GetAllSettings(null);
 
-        if (clienttype != 'WebClient'){
+        if (clienttype != 'WebClient') {
             clienttype = clienttype + '.aspx'
         }
 
-        let runURL = this.ComposeRunObjectInWebClientURL(workspacesettings[Settings.WebServer], 
-                                        workspacesettings[Settings.WebServerInstancePort],
-                                        workspacesettings[Settings.WebServerInstance],
-                                        clienttype,
-                                        workspacesettings[Settings.Tenant],
-                                        objecttype.label,
-                                        objectid);
-        
+        let objectType = (!objecttype.label) ? objecttype : objecttype.label
+        let runURL = this.ComposeRunObjectInWebClientURL(workspacesettings[Settings.WebServer],
+            workspacesettings[Settings.WebServerInstancePort],
+            workspacesettings[Settings.WebServerInstance],
+            clienttype,
+            workspacesettings[Settings.Tenant],
+            objectType.toString(),
+            objectid);
+
         console.log('url: ' + runURL);
         open(runURL);
     }
 
-    private static ComposeRunObjectInWebClientURL(server: String, Port: string, NAVInstance: string, ClientType: string, Tenant: string,runObjectType:String,runObjectid:number): String {
-       let returnUrl =  server;
-       if (Port != ""){
-           returnUrl += ':' + Port
-       }
+    private static ComposeRunObjectInWebClientURL(server: String, Port: string, NAVInstance: string, ClientType: string, Tenant: string, runObjectType: String, runObjectid: number): String {
+        let returnUrl = server;
+        if (Port != "") {
+            returnUrl += ':' + Port
+        }
 
-       returnUrl += '/' + NAVInstance + '/' + ClientType;
+        returnUrl += '/' + NAVInstance + '/' + ClientType;
 
-       if (Tenant != ''){
-           returnUrl += '?tenant=' + Tenant + '&';
-       } else {
-           returnUrl += '?'
-       }
-       
-       returnUrl += runObjectType + '=' + runObjectid;
+        if (Tenant != '') {
+            returnUrl += '?tenant=' + Tenant + '&';
+        } else {
+            returnUrl += '?'
+        }
 
-       return returnUrl
+        returnUrl += runObjectType + '=' + runObjectid;
+
+        return returnUrl
     }
 
 
-    static RunObjectInWindowsClient(objecttype: QuickPickItem, objectid: any){
-        let workspacesettings = Settings.GetAllSettings(null);  
-        
-        let runURL = this.ComposeRunObjectInWindowsClientURL(workspacesettings[Settings.WinServer], 
-                                                            workspacesettings[Settings.WinServerInstancePort],
-                                                            workspacesettings[Settings.WinServerInstance],
-                                                            workspacesettings[Settings.Tenant],
-                                                            objecttype.label,
-                                                            objectid);
-                
+    static RunObjectInWindowsClient(objecttype: QuickPickItem, objectid: any) {
+        let workspacesettings = Settings.GetAllSettings(null);
+
+        let runURL = this.ComposeRunObjectInWindowsClientURL(workspacesettings[Settings.WinServer],
+            workspacesettings[Settings.WinServerInstancePort],
+            workspacesettings[Settings.WinServerInstance],
+            workspacesettings[Settings.Tenant],
+            objecttype.label,
+            objectid);
+
         console.log('url: ' + runURL);
         open(runURL);
     }
 
-    private static ComposeRunObjectInWindowsClientURL(server: String, Port: string, NAVInstance: string, Tenant: string,runObjectType:String,runObjectid:number): String {
-        return "DynamicsNAV://" + server  + ':' + Port + '/' + NAVInstance + '//Run' + runObjectType  + '?'+runObjectType + '=' + runObjectid + '&tenant=' + Tenant 
-        
+    private static ComposeRunObjectInWindowsClientURL(server: String, Port: string, NAVInstance: string, Tenant: string, runObjectType: String, runObjectid: number): String {
+        return "DynamicsNAV://" + server + ':' + Port + '/' + NAVInstance + '//Run' + runObjectType + '?' + runObjectType + '=' + runObjectid + '&tenant=' + Tenant
+
     }
 
-    static getBestPracticeAbbreviatedObjectType(ObjectType: String) : string {
+    static getBestPracticeAbbreviatedObjectType(ObjectType: String): string {
         //https://docs.microsoft.com/da-dk/dynamics-nav/compliance/apptest-bestpracticesforalcode
         switch (ObjectType.trim().toLowerCase()) {
             case 'page': return 'Pag';

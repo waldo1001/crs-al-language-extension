@@ -14,6 +14,7 @@ export function activate(context: vscode.ExtensionContext) { //is called when yo
     let commandlist = [
         vscode.commands.registerCommand('extension.InstallWaldosModules', CRSFunctions.InstallWaldosModules),
 
+        vscode.commands.registerCommand('extension.RunCurrentObjectWeb', CRSFunctions.RunCurrentObjectWeb),
         vscode.commands.registerCommand('extension.RunObjectWeb', CRSFunctions.RunObjectWeb),
         vscode.commands.registerCommand('extension.RunObjectTablet', CRSFunctions.RunObjectTablet),
         vscode.commands.registerCommand('extension.RunObjectPhone', CRSFunctions.RunObjectPhone),

@@ -107,6 +107,10 @@
                 "title": "CRS: Install Waldo's Modules"
             },
             {
+                "command": "extension.RunCurrentObjectWeb",
+                "title": "CRS: Run Current Object (Web Client)"
+            },
+            {
                 "command": "extension.RunObjectWeb",
                 "title": "CRS: Run Object (Web Client)"
             },
@@ -139,6 +143,10 @@
                 "title": "CRS: Reorganize - All Files"
             }
         ],
+        "keybindings": {
+            "command": "extension.RunCurrentObjectWeb",
+            "key": "CTRL+SHIFT+r"
+        },
         "configuration": {
             "title": "CRS AL Language Extension Configuration",
             "properties": {
