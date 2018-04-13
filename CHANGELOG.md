@@ -1,6 +1,6 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension will be documented in this file.
-## [0.2.0] - 
+## [0.2.0] - 2018-04-13
 New command:
 - CRS: Run Current Object (Web Client) (CTRL+SHIFT+r)
 New settings:

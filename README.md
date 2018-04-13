@@ -47,8 +47,8 @@ Snippets for building metadata (used in an xml-file):
 * twebservice.. - 2 snippets
 * tpermission.. - 3 snippets
 
-#### Copy of all the default AL snippets
-This extension includes an improved version of all the al snippets.  So it's possible to disable the default al snippets in the settings, and enable the snippets from this extension.  It's also possible to just enable both, or disable the CRS ones.  For this, check the "Extension Settings" section below.
+
+This extension includes an (what I believe) improved version of all the al snippets that come default with the AL Language Extension from Microsoft.  It's possible to disable the default al snippets in the settings, and enable the snippets from this extension.  It's also possible to just enable both, or disable the CRS ones.  For this, check the "Extension Settings" section below.
 
 ## Requirements
 if all is well, these dependencies will be installed automagically:
@@ -102,7 +102,5 @@ tableextension 50100 "Just Some Table Extension" extends Customer //18
 * `DisableDefaultAlSnippets`: Disables the default snippets that come with the Microsoft.al-language extension.  When you change the setting, you need to restart VSCode twice.  Once for disabling the snippets on activation (at that time, the snippets are still loaded).  And the second time to actually not load the snippets anymore.
 * `DisableCRSSnippets`: Disables the CRS snippets that come with this extension.  When you change the setting, you need to restart VSCode twice.  Once for disabling the snippets on activation (at that time, the snippets are still loaded).  And the second time to actually not load the snippets anymore.
 ## Known Issues
-The extension doesn't work well with multi-folder workspaces.  The issue was mentioned [here](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/7).  Working on it!
-
-Please report issues hier: https://github.com/CloudReadySoftware/crs-al-language-extension/issues 
+None .. but if you have any, please report here: https://github.com/CloudReadySoftware/crs-al-language-extension/issues 
 
