@@ -37,21 +37,21 @@ export class SnippetFunctions {
                     if (fs.existsSync(microsoftAlSnippetsDir)) {
                         fs.renameSync(microsoftAlSnippetsDir, microsoftAlSnippetsDirDisabled);
                         console.log('Renamed ' + microsoftAlSnippetsDir + ' -> ' + microsoftAlSnippetsDirDisabled);
-                        vscode.window.showInformationMessage('Snippets successfully disabled. Please restart VSCode.');
+                        vscode.window.showInformationMessage('Snippets from ' + extension + ' successfully disabled. Please restart VSCode.');
                     } else {
-                        fs.existsSync(microsoftAlSnippetsDirDisabled) ?
-                            vscode.window.showInformationMessage('Snippets already disabled.') :
-                            vscode.window.showErrorMessage('Snippet-directory not found.');
+                        (!fs.existsSync(microsoftAlSnippetsDirDisabled)) ?
+                            vscode.window.showErrorMessage('Snippet-directory not found.') :
+                            null;
                     }
                 } else {
                     if (fs.existsSync(microsoftAlSnippetsDirDisabled)) {
                         fs.renameSync(microsoftAlSnippetsDirDisabled, microsoftAlSnippetsDir);
                         console.log('Renamed ' + microsoftAlSnippetsDirDisabled + ' -> ' + microsoftAlSnippetsDir);
-                        vscode.window.showInformationMessage('Snippets successfully enabled. Please restart VSCode.');
+                        vscode.window.showInformationMessage('Snippets from ' + extension + ' successfully enabled. Please restart VSCode.');
                     } else {
-                        fs.existsSync(microsoftAlSnippetsDir) ?
-                            vscode.window.showInformationMessage('Snippets already enabled.') :
-                            vscode.window.showErrorMessage('Disabled snippet-directory not found.');
+                        (!fs.existsSync(microsoftAlSnippetsDir)) ?
+                            vscode.window.showErrorMessage('Disabled snippet-directory not found.') :
+                            null;
                     }
                 }
             });

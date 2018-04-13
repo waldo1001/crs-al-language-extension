@@ -17,6 +17,7 @@ The idea is to be able to run an object straight from the development environmen
 * CRS: Run Object (Tablet Client)
 * CRS: Run Object (Phone Client)
 * CRS: Run Object (Windows Client)
+* CRS: Run Current Object (Web Client) (CTRL+SHIFT+r) - runs the object from the open file (the extension needs to be published first).
 Depending on which client, you will be asked for object type and object id.  The functionality looks at the settings (launch.json and configuration settings).
 
 ### Reorganize Files
@@ -45,6 +46,9 @@ al Snippets:
 Snippets for building metadata (used in an xml-file):
 * twebservice.. - 2 snippets
 * tpermission.. - 3 snippets
+
+#### Copy of all the default AL snippets
+This extension includes an improved version of all the al snippets.  So it's possible to disable the default al snippets in the settings, and enable the snippets from this extension.  It's also possible to just enable both, or disable the CRS ones.  For this, check the "Extension Settings" section below.
 
 ## Requirements
 if all is well, these dependencies will be installed automagically:
@@ -95,7 +99,8 @@ tableextension 50100 "Just Some Table Extension" extends Customer //18
     - \<BaseName\>
     - \<BaseId\> - same remarks as above!
 * `CRS.AlSubFolderName`: Variable subfoldername.  "None" means you want to disable the command to move files to a subfolder.  Two choices: "Objects" and "Al".
-
+* `DisableDefaultAlSnippets`: Disables the default snippets that come with the Microsoft.al-language extension.  When you change the setting, you need to restart VSCode twice.  Once for disabling the snippets on activation (at that time, the snippets are still loaded).  And the second time to actually not load the snippets anymore.
+* `DisableCRSSnippets`: Disables the CRS snippets that come with this extension.  When you change the setting, you need to restart VSCode twice.  Once for disabling the snippets on activation (at that time, the snippets are still loaded).  And the second time to actually not load the snippets anymore.
 ## Known Issues
 The extension doesn't work well with multi-folder workspaces.  The issue was mentioned [here](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/7).  Working on it!
 
