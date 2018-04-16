@@ -15,6 +15,7 @@
             "\t\t\t{",
             "\t\t\t\tfield(${7:Name}; ${6:NameSource})",
             "\t\t\t\t{",
+            "\t\t\t\t\tApplicationArea = All;",
             "\t\t\t\t\t${8}",
             "\t\t\t\t}",
             "\t\t\t}",
@@ -27,6 +28,8 @@
             "\t\t{",
             "\t\t\taction(${10:ActionName})",
             "\t\t\t{",
+            "\t\t\t\tApplicationArea = All;",
+            "\t",
             "\t\t\t\ttrigger OnAction()",
             "\t\t\t\tbegin",
             "\t\t\t\t\t${11}",
@@ -46,6 +49,7 @@
         "body": [
             "field(${1:MyField}; ${2:FieldSource})",
             "{",
+            "\tApplicationArea = All;",
             "}"
         ],
         "description": "Snippet: Page Field"
@@ -55,6 +59,8 @@
         "body": [
             "action(${1:ActionName})",
             "{",
+            "\tApplicationArea = All;",
+            "\t",
             "\ttrigger OnAction()",
             "\tbegin",
             "\t\t$0",
@@ -92,6 +98,7 @@
             "\t\t\t{",
             "\t\t\t\tfield(${6:Name}; ${5:NameSource})",
             "\t\t\t\t{",
+            "\t\t\t\t\tApplicationArea = All;",
             "\t\t\t\t\t${7}",
             "\t\t\t\t}",
             "\t\t\t}",
@@ -108,6 +115,8 @@
             "\t\t{",
             "\t\t\taction(${10:ActionName})",
             "\t\t\t{",
+            "\t\t\t\tApplicationArea = All;",
+            "\t",
             "\t\t\t\ttrigger OnAction();",
             "\t\t\t\tbegin",
             "\t\t\t\t\t$0",

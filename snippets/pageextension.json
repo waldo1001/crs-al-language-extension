@@ -6,12 +6,11 @@
             "{",
             "\tlayout",
             "\t{",
-            "\t\t${5:// Add changes to page layout here}",
+            "\t\t${0}",
             "\t}",
             "\t",
             "\tactions",
             "\t{",
-            "\t\t${6:// Add changes to page actions here}",
             "\t}",
             "}"
         ],

@@ -6,7 +6,7 @@
             "{",
             "\tfields",
             "\t{",
-            "\t\t${5:// Add changes to table fields here}",
+            "\t\t${0}",
             "\t}",
             "\t",
             "}"
