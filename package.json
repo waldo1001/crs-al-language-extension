@@ -211,6 +211,18 @@
                     "description": "Sets the subfoldername of where the objects will be placed.  If 'None', then 'Reorganize'-commands won't work.",
                     "scope": "resource"
                 },
+                "CRS.ObjectNamePrefix": {
+                    "type": "string",
+                    "default": null,
+                    "description": "When using the Reorganize/Rename-commands, this setting will make sure the object name (and filename) will have a Prefix",
+                    "scope": "resource"
+                },
+                "CRS.ObjectNameSuffix": {
+                    "type": "string",
+                    "default": null,
+                    "description": "When using the Reorganize/Rename-commands, this setting will make sure the object name (and filename) will have a Suffix",
+                    "scope": "resource"
+                },
                 "CRS.DisableDefaultAlSnippets": {
                     "type": "boolean",
                     "default": true,

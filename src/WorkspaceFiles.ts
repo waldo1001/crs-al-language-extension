@@ -28,8 +28,9 @@ export class WorkspaceFiles {
     }
 
     static RenameFile(fileName: vscode.Uri): string {
-        let data = fs.readFileSync(fileName.fsPath, null);
+        this.ApplySuffixAndPrefixToObjectName(fileName);
 
+        let data = fs.readFileSync(fileName.fsPath, null);
         let objectProperties = this.getFilePropertiesFromObjectText(data.toString(), fileName);
 
         if (objectProperties.objectFileName != '') {
@@ -46,11 +47,43 @@ export class WorkspaceFiles {
         return '';
     }
 
+    static ApplySuffixAndPrefixToObjectName(fileName: vscode.Uri) {
+        let workspacesettings = Settings.GetConfigSettings(fileName);
+
+        if (!workspacesettings[Settings.ObjectNamePrefix] && !workspacesettings[Settings.ObjectNameSuffix]) { return }
+
+        let data = fs.readFileSync(fileName.fsPath, null);
+        let objectProperties = this.getFilePropertiesFromObjectText(data.toString(), fileName);
+        if (!objectProperties) { return };
+
+        let newObjectData = data.toString();
+        newObjectData = workspacesettings[Settings.ObjectNamePrefix] ? this.GetObjectNamewithPrefix(newObjectData, objectProperties, workspacesettings[Settings.ObjectNamePrefix]) : newObjectData;
+        newObjectData = workspacesettings[Settings.ObjectNameSuffix] ? this.GetObjectNameWithSuffix(newObjectData, objectProperties, workspacesettings[Settings.ObjectNameSuffix]) : newObjectData;
+
+        newObjectData != data.toString() ? fs.writeFileSync(fileName.fsPath, newObjectData) : null;
+    }
+
+    static GetObjectNamewithPrefix(data: string, objectProperties: any, prefix: string): any {
+        if (objectProperties.objectNameUnfixed.startsWith(prefix)) { return data }
+        console.log('Added prefix "' + prefix + '" to ' + objectProperties.objectNameUnfixed);
+        return this.RenameObjectName(data, objectProperties.objectNameUnfixed, prefix + objectProperties.objectNameUnfixed);
+    }
+
+    static GetObjectNameWithSuffix(data: string, objectProperties: any, suffix: string): any {
+        if (objectProperties.objectNameUnfixed.endsWith(suffix)) { return data }
+        console.log('Added suffix "' + suffix + '" to ' + objectProperties.objectNameUnfixed);
+        return this.RenameObjectName(data, objectProperties.objectNameUnfixed, objectProperties.objectNameUnfixed + suffix);
+    }
+
+    static RenameObjectName(ObjectText: string, OldName: string, NewName: string): any {
+        return ObjectText.replace(OldName, NewName);
+    }
+
     static getFilePropertiesFromObjectText(ObjectText: string, file: vscode.Uri): any {
         let workspacesettings = Settings.GetConfigSettings(file);
 
         var patternObjectType = new RegExp('(codeunit |page |pagecustomization |pageextension |profile |query |report |requestpage |table |tableextension |xmlport )')
-        let objectFileName, objectType, objectTypeShort, objectId, objectName, objectNameShort, baseName, baseId: string;
+        let objectFileName, objectType, objectTypeShort, objectId, objectName, objectNameShort, baseName, baseId, objectNameUnfixed: string;
 
         let ObjectTypeArr = ObjectText.match(patternObjectType);
         objectType = '';
@@ -61,6 +94,7 @@ export class WorkspaceFiles {
         objectFileName = '';
         baseName = '';
         baseId = '';
+        objectNameUnfixed = '';
 
         if (!ObjectTypeArr) { return null }
 
@@ -80,6 +114,7 @@ export class WorkspaceFiles {
                     objectType = currObject[1];
                     objectId = currObject[2];
                     objectName = currObject[3].replace(/"/g, '').replace(/[^ 0-9a-zA-Z._&-]/g, '_');
+                    objectNameUnfixed = currObject[3];
                     objectNameShort = StringFunctions.removeAllButAlfaNumeric(currObject[3].trim());
 
                     objectFileName = workspacesettings[Settings.FileNamePattern];
@@ -94,6 +129,7 @@ export class WorkspaceFiles {
                     objectType = currObject[1];
                     objectId = currObject[2];
                     objectName = currObject[3];
+                    objectNameUnfixed = currObject[3];
                     baseName = currObject[4];
                     baseId = currObject[6] ? currObject[6] : '';
                     objectNameShort = StringFunctions.removeAllButAlfaNumeric(currObject[3].trim());
@@ -111,6 +147,7 @@ export class WorkspaceFiles {
                     objectType = currObject[1];
                     objectId = '';
                     objectName = currObject[2];
+                    objectNameUnfixed = currObject[2];
                     objectNameShort = StringFunctions.removeAllButAlfaNumeric(currObject[2].trim());
 
                     objectFileName = workspacesettings[Settings.FileNamePattern];
@@ -125,6 +162,7 @@ export class WorkspaceFiles {
                     objectType = currObject[1];
                     objectId = '';
                     objectName = currObject[2];
+                    objectNameUnfixed = currObject[2];
                     baseName = currObject[3];
                     baseId = currObject[5] ? currObject[5] : '';
                     objectNameShort = StringFunctions.removeAllButAlfaNumeric(currObject[2].trim());
@@ -142,6 +180,7 @@ export class WorkspaceFiles {
             objectTypeShort = DynamicsNAV.getBestPracticeAbbreviatedObjectType(objectType);
             objectId = objectId.trim().toString();
             objectName = objectName.trim().toString().replace(/"/g, '').replace(/[^ 0-9a-zA-Z._&-]/g, '_');
+            objectNameUnfixed = objectNameUnfixed.trim().toString().replace(/"/g, '');
             baseName = baseName.trim().toString().replace(/"/g, '');
             baseId = baseId.trim().toString();
             objectNameShort = StringFunctions.removeAllButAlfaNumeric(objectNameShort);
@@ -159,6 +198,7 @@ export class WorkspaceFiles {
             objectTypeShort: objectTypeShort,
             objectId: objectId,
             objectName: objectName,
+            objectNameUnfixed: objectNameUnfixed,
             baseName: baseName,
             baseId: baseId,
             objectNameShort: objectNameShort,
@@ -177,6 +217,8 @@ export class WorkspaceFiles {
     }
 
     static ReorganizeFile(fileName: vscode.Uri): string {
+        this.ApplySuffixAndPrefixToObjectName(fileName);
+
         let mySettings = Settings.GetConfigSettings(fileName);
         this.throwErrorIfReorgFilesNotAllowed(mySettings);
 

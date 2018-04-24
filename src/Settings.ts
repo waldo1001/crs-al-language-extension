@@ -23,6 +23,8 @@ export class Settings {
     static readonly FileNamePattern = 'FileNamePattern';
     static readonly FileNamePatternExtensions = 'FileNamePatternExtensions';
     static readonly FileNamePatternPageCustomizations = 'FileNamePatternPageCustomizations';
+    static readonly ObjectNamePrefix = 'ObjectNamePrefix';
+    static readonly ObjectNameSuffix = 'ObjectNameSuffix';
 
     static readonly DisableDefaultAlSnippets = 'DisableDefaultAlSnippets';
     static readonly DisableCRSSnippets = 'DisableCRSSnippets';
@@ -62,6 +64,8 @@ export class Settings {
         this.SettingCollection[this.FileNamePattern] = this.getSetting(this.FileNamePattern);
         this.SettingCollection[this.FileNamePatternExtensions] = this.getSetting(this.FileNamePatternExtensions);
         this.SettingCollection[this.FileNamePatternPageCustomizations] = this.getSetting(this.FileNamePatternPageCustomizations);
+        this.SettingCollection[this.ObjectNamePrefix] = this.getSetting(this.ObjectNamePrefix);
+        this.SettingCollection[this.ObjectNameSuffix] = this.getSetting(this.ObjectNameSuffix);
         this.SettingCollection[this.AlSubFolderName] = this.getSetting(this.AlSubFolderName);
         this.SettingCollection[this.DisableDefaultAlSnippets] = this.getSetting(this.DisableDefaultAlSnippets);
         this.SettingCollection[this.DisableCRSSnippets] = this.getSetting(this.DisableCRSSnippets);
