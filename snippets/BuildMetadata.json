@@ -14,7 +14,7 @@
             "\t\t</TenantWebService>",
             "\t</TenantWebServiceCollection>",
             "</ExportedData>"
-        ]        
+        ]
     },
     "Snippet (CRS): Web Service": {
         "description": "Snippet (CRS): Web Service",
@@ -26,7 +26,7 @@
             "\t<ServiceName>${3:Name}</ServiceName>",
             "\t<Published>${4:true}</Published>",
             "</TenantWebService>"
-        ]        
+        ]
     },
     "Snippet (CRS): Permission Set Collection": {
         "description": "Snippet (CRS): Permission Set Collection",
@@ -36,7 +36,7 @@
             "\t<PermissionSet RoleID=\"${1:PermissionSetId}\" RoleName=\"${2:PermissionSetName}\">",
             "\t\t<Permission>",
             "\t\t\t<ObjectType>${3:ObjectType}</ObjectType>",
-            "\t\t\t<ObjectID>${4:ObjectId}</ObjectID>",
+            "\t\t\t<ObjectID>${4:ObjectId}</ObjectID> <!-- ${10:ObjectName} -->",
             "\t\t\t<ReadPermission>${5:0}</ReadPermission>",
             "\t\t\t<InsertPermission>${6:0}</InsertPermission>",
             "\t\t\t<ModifyPermission>${7:0}</ModifyPermission>",
@@ -55,7 +55,7 @@
             "<PermissionSet RoleID=\"${1:PermissionSetId}\" RoleName=\"${2:PermissionSetName}\">",
             "\t<Permission>",
             "\t\t<ObjectType>${3:ObjectType}</ObjectType>",
-            "\t\t<ObjectID>${4:ObjectId}</ObjectID>",
+            "\t\t<ObjectID>${4:ObjectId}</ObjectID> <!-- ${10:ObjectName} -->",
             "\t\t<ReadPermission>${5:0}</ReadPermission>",
             "\t\t<InsertPermission>${6:0}</InsertPermission>",
             "\t\t<ModifyPermission>${7:0}</ModifyPermission>",
@@ -63,23 +63,23 @@
             "\t\t<ExecutePermission>${9:0}</ExecutePermission>",
             "\t\t<SecurityFilter />",
             "\t</Permission>",
-            "</PermissionSet>"  
+            "</PermissionSet>"
         ]
     },
     "Snippet (CRS): Permission": {
         "description": "Snippet (CRS): Permission",
         "prefix": "tpermission (CRS)",
         "body": [
-            "\t<Permission>",
-            "\t\t<ObjectType>${1:ObjectType}</ObjectType>",
-            "\t\t<ObjectID>${2:ObjectId}</ObjectID>",
-            "\t\t<ReadPermission>${3:0}</ReadPermission>",
-            "\t\t<InsertPermission>${4:0}</InsertPermission>",
-            "\t\t<ModifyPermission>${5:0}</ModifyPermission>",
-            "\t\t<DeletePermission>${6:0}</DeletePermission>",
-            "\t\t<ExecutePermission>${7:0}</ExecutePermission>",
-            "\t\t<SecurityFilter />",
-            "\t</Permission>"        ]
+            "<Permission>",
+            "\t<ObjectType>${1:ObjectType}</ObjectType>",
+            "\t<ObjectID>${2:ObjectId}</ObjectID> <!-- ${8:ObjectName} -->",
+            "\t<ReadPermission>${3:0}</ReadPermission>",
+            "\t<InsertPermission>${4:0}</InsertPermission>",
+            "\t<ModifyPermission>${5:0}</ModifyPermission>",
+            "\t<DeletePermission>${6:0}</DeletePermission>",
+            "\t<ExecutePermission>${7:0}</ExecutePermission>",
+            "\t<SecurityFilter />",
+            "</Permission>"
+        ]
     }
-
 }

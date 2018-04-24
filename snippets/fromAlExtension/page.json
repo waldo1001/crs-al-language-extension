@@ -47,7 +47,7 @@
     "Snippet: Page Field": {
         "prefix": "tpagefield (CRS)",
         "body": [
-            "field(${1:MyField}; ${2:FieldSource})",
+            "field(${1:MyField; FieldSource})",
             "{",
             "\tApplicationArea = All;",
             "}"
