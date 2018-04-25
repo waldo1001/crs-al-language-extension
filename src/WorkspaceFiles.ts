@@ -76,7 +76,12 @@ export class WorkspaceFiles {
     }
 
     static RenameObjectName(ObjectText: string, OldName: string, NewName: string): any {
-        return ObjectText.replace(OldName, NewName);
+        if (ObjectText.indexOf("\"" + OldName + "\"") >= 0) {
+            return ObjectText.replace(OldName, NewName);
+        } else {
+            return ObjectText.replace(OldName, "\"" + NewName + "\"");
+        }
+
     }
 
     static getFilePropertiesFromObjectText(ObjectText: string, file: vscode.Uri): any {
@@ -255,6 +260,27 @@ export class WorkspaceFiles {
 
             vscode.window.showErrorMessage(errorMessage);
             throw new error(errorMessage);
+        }
+    }
+
+    static handleOnSaveTextDocument() {
+        let currentfile = vscode.window.activeTextEditor.document.uri;
+        if (!currentfile.fsPath.endsWith('.al')) { return }
+
+        let mySettings = Settings.GetConfigSettings(currentfile);
+
+        let newFilePath: string;
+        switch (mySettings[Settings.OnSaveAlFileAction].toLowerCase()) {
+            case "rename":
+                newFilePath = this.RenameFile(currentfile);
+                break;
+            case "reorganize":
+                newFilePath = this.ReorganizeFile(currentfile);
+                break;
+        }
+
+        if (newFilePath != currentfile.fsPath) {
+            vscode.workspace.openTextDocument(newFilePath).then(doc => vscode.window.showTextDocument(doc));
         }
     }
 }

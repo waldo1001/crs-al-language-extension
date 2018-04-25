@@ -130,3 +130,11 @@ export function SetupSnippets() {
 
     console.log('Done: SetupSnippets');
 }
+
+export function HandleOnSaveTextDocument() {
+    console.log('Running: HandleOnSaveTextDocument');
+
+    WorkspaceFiles.handleOnSaveTextDocument();
+
+    console.log('Done: HandleOnSaveTextDocument');
+}

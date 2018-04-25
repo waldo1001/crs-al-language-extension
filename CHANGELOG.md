@@ -6,6 +6,9 @@ Added 2 new settings to control "prefix" and "suffix" of object names and filena
 * `CRS.ObjectNamePrefix`: When using the Reorganize/Rename-commands, this setting will make sure the object name (and filename) will have a Prefix.
 * `CRS.ObjectNameSuffix`: When using the Reorganize/Rename-commands, this setting will make sure the object name (and filename) will have a Suffix.
 
+Added an ability to rename/reorganize when you save a document.  This way, your commit to SCM will always to be correct:
+* `CRS.OnSaveAlFileAction`: Automatically will Rename/Reorganize the file you are editing.  Takes into account the prefix/suffix as well.
+
 ## [0.2.1] - 2018-04-16
 Improved snippets
 
@@ -17,6 +20,7 @@ New settings:
 - DisableCRSSnippets
 Snippets:
 - improved snippets from the al language extension
+
 ## [0.1.12] - 2018-04-11
 Bugfix - Reorganizing/Renaming Files - [Issue On Github](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/10)
 

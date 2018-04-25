@@ -211,6 +211,17 @@
                     "description": "Sets the subfoldername of where the objects will be placed.  If 'None', then 'Reorganize'-commands won't work.",
                     "scope": "resource"
                 },
+                "CRS.OnSaveAlFileAction": {
+                    "enum": [
+                        "DoNothing",
+                        "Rename",
+                        "Reorganize"
+                    ],
+                    "type": "string",
+                    "default": "DoNothing",
+                    "description": "Automatically will Rename/Reorganize the file you are editing.  Takes into account the prefix/suffix as well.",
+                    "scope": "resource"
+                },
                 "CRS.ObjectNamePrefix": {
                     "type": "string",
                     "default": null,
