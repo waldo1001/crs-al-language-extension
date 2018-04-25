@@ -12,16 +12,23 @@ import { error } from 'util';
 
 export class WorkspaceFiles {
     static getAlFilesFromCurrentWorkspace() {
-        //TODO: Current Workspace with "RelativePattern" (which doesn't work yet)
+        if (vscode.window.activeTextEditor) {
+            let currentWorkspaceFolder = vscode.workspace.getWorkspaceFolder(vscode.window.activeTextEditor.document.uri) //Active File
+            return vscode.workspace.findFiles(new vscode.RelativePattern(currentWorkspaceFolder, '**/*.al'))
+        } else {
+            return vscode.workspace.findFiles('**/*.al');
+        }
 
-        return vscode.workspace.findFiles('**/*.al');
     }
 
     static RenameAllFiles() {
         vscode.workspace.saveAll();
 
         this.getAlFilesFromCurrentWorkspace().then(Files => {
+
             Files.forEach(file => {
+                console.log(file.fsPath);
+
                 this.RenameFile(file);
             })
         });

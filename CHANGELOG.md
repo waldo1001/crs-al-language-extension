@@ -4,6 +4,7 @@ All notable changes to the "crs-al-language-extension" extension will be documen
 Small bugfix - [Github](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/21)
 ## [0.2.2] - 2018-04-25
 Improved some snippets.
+
 Added 2 new settings to control "prefix" and "suffix" of object names and filenames:
 * `CRS.ObjectNamePrefix`: When using the Reorganize/Rename-commands, this setting will make sure the object name (and filename) will have a Prefix.
 * `CRS.ObjectNameSuffix`: When using the Reorganize/Rename-commands, this setting will make sure the object name (and filename) will have a Suffix.

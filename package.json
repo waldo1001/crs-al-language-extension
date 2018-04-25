@@ -5,7 +5,7 @@
     "version": "0.2.3",
     "publisher": "waldo",
     "engines": {
-        "vscode": "^1.15.0"
+        "vscode": "^1.21.0"
     },
     "license": "UNLICENSED",
     "author": {
