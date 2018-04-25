@@ -5,10 +5,10 @@
 
 // The module 'assert' provides assertion methods from node
 import * as assert from 'assert';
-import {suite,test} from 'mocha';
-import {FileFunctions} from '../src/FileFunctions'
-import {WorkspaceFiles} from '../src/WorkspaceFiles'
-import {StringFunctions} from '../src/StringFunctions'
+import { suite, test } from 'mocha';
+import { FileFunctions } from '../src/FileFunctions'
+import { WorkspaceFiles } from '../src/WorkspaceFiles'
+import { StringFunctions } from '../src/StringFunctions'
 
 // You can import and use all API from the 'vscode' module
 // as well as import your extension to test it
@@ -20,26 +20,27 @@ suite("Extension Tests", () => {
 
     // Defines a Mocha unit test
     test("FileFunctions", () => {
-        assert.equal(FileFunctions.getDirectory('c:\\program files\\somefolder\\myFolder\\myfile.al'),'c:\\program files\\somefolder\\myFolder\\');
-        assert.equal(FileFunctions.getFileName('c:\\program files\\somefolder\\myFolder\\myfile.al'),'myfile.al');
+        assert.equal(FileFunctions.getDirectory('c:\\program files\\somefolder\\myFolder\\myfile.al'), 'c:\\program files\\somefolder\\myFolder\\');
+        assert.equal(FileFunctions.getFileName('c:\\program files\\somefolder\\myFolder\\myfile.al'), 'myfile.al');
     });
     test("StringFunctions", () => {
-        assert.equal(StringFunctions.replaceAll('Remove all "double" quotes" from this " text.','"',''), 'Remove all double quotes from this  text.');
+        assert.equal(StringFunctions.replaceAll('Remove all "double" quotes" from this " text.', '"', ''), 'Remove all double quotes from this  text.');
     })
     test("WorkspaceFiles", () => {
         let objectText: any;
         objectText = 'page 50010 "My new page"';
-        assert.equal(WorkspaceFiles.getFilePropertiesFromObjectText(objectText,null).objectType,'page');
-        assert.equal(WorkspaceFiles.getFilePropertiesFromObjectText(objectText,null).objectId,'50010');
-        assert.equal(WorkspaceFiles.getFilePropertiesFromObjectText(objectText,null).objectNameShort,'Mynewpage');
+        assert.equal(WorkspaceFiles.getFilePropertiesFromObjectText(objectText, null).objectType, 'page');
+        assert.equal(WorkspaceFiles.getFilePropertiesFromObjectText(objectText, null).objectId, '50010');
+        assert.equal(WorkspaceFiles.getFilePropertiesFromObjectText(objectText, null).objectNameShort, 'Mynewpage');
 
         objectText = 'pagecustomization "My new pagecustomization" customizes "Some default page"';
-        assert.equal(WorkspaceFiles.getFilePropertiesFromObjectText(objectText,null).objectType,'pagecustomization');
-        assert.equal(WorkspaceFiles.getFilePropertiesFromObjectText(objectText,null).objectNameShort,'Mynewpagecustomization');
-        assert.equal(WorkspaceFiles.getFilePropertiesFromObjectText(objectText,null).objectFileName,'pagecust Mynewpagecustomization.al');
-        
+        assert.equal(WorkspaceFiles.getFilePropertiesFromObjectText(objectText, null).objectType, 'pagecustomization');
+        assert.equal(WorkspaceFiles.getFilePropertiesFromObjectText(objectText, null).objectNameShort, 'Mynewpagecustomization');
+        assert.equal(WorkspaceFiles.getFilePropertiesFromObjectText(objectText, null).objectFileName, 'pagecust Mynewpagecustomization.al');
+        assert.equal(WorkspaceFiles.getFilePropertiesFromObjectText(objectText, null).objectId, '');
+
         objectText = 'profile "My New Rolecenter"';
-        assert.equal(WorkspaceFiles.getFilePropertiesFromObjectText(objectText,null).objectType,'profile');
-        assert.equal(WorkspaceFiles.getFilePropertiesFromObjectText(objectText,null).objectNameShort,'MyNewRolecenter');
+        assert.equal(WorkspaceFiles.getFilePropertiesFromObjectText(objectText, null).objectType, 'profile');
+        assert.equal(WorkspaceFiles.getFilePropertiesFromObjectText(objectText, null).objectNameShort, 'MyNewRolecenter');
     });
 });
