@@ -1,5 +1,7 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension will be documented in this file.
+## [0.2.3] - 2018-04-25
+Small bugfix - [Github](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/21)
 ## [0.2.2] - 2018-04-25
 Improved some snippets.
 Added 2 new settings to control "prefix" and "suffix" of object names and filenames:

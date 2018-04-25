@@ -277,6 +277,9 @@ export class WorkspaceFiles {
             case "reorganize":
                 newFilePath = this.ReorganizeFile(currentfile);
                 break;
+            case "donothing":
+                newFilePath = currentfile.fsPath;
+                break
         }
 
         if (newFilePath != currentfile.fsPath) {
