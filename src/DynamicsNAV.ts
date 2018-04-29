@@ -85,7 +85,7 @@ export class DynamicsNAV {
         return items
     }
 
-    static RunObjectInWebClient(objecttype: QuickPickItem, objectid: any, clienttype: string) {
+    static RunObjectInWebClient(objecttype: any, objectid: any, clienttype: string) {
         let workspacesettings = Settings.GetAllSettings(null);
 
         if (clienttype != 'WebClient') {
