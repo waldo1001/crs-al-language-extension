@@ -18,6 +18,7 @@ The idea is to be able to run an object straight from the development environmen
 * CRS: Run Object (Phone Client)
 * CRS: Run Object (Windows Client)
 * CRS: Run Current Object (Web Client) (CTRL+SHIFT+r) - runs the object from the open file (the extension needs to be published first).
+* CRS: Run CAL Test Tool in Web Client
 Depending on which client, you will be asked for object type and object id.  The functionality looks at the settings (launch.json and configuration settings).
 ![Run Objects](images/RunObject.gif)
 ### Reorganize Files

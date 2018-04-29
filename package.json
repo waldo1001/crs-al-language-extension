@@ -2,7 +2,7 @@
     "name": "crs-al-language-extension",
     "displayName": "CRS AL Language Extension",
     "description": "Make working with the (Dynamics NAV / 365) AL Language easier and more efficient.",
-    "version": "0.2.3",
+    "version": "0.2.4",
     "publisher": "waldo",
     "engines": {
         "vscode": "^1.21.0"
@@ -115,6 +115,10 @@
             {
                 "command": "crs.RunObjectWeb",
                 "title": "CRS: Run Object (Web Client)"
+            },
+            {
+                "command": "crs.RunTestTool",
+                "title": "CRS: Run CAL Test Tool in Web Client"
             },
             {
                 "command": "crs.RunObjectTablet",
