@@ -2,7 +2,6 @@
 
 import * as vscode from 'vscode';  //VS Code extensibility API
 import * as CRSFunctions from './CRSFunctions';  //Our own functions
-import { window } from 'vscode';
 
 export function activate(context: vscode.ExtensionContext) { //is called when your extension is activated (when command is executed)
 
