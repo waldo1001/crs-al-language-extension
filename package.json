@@ -4,28 +4,40 @@
     "description": "Make working with the (Dynamics NAV / 365) AL Language easier and more efficient.",
     "version": "0.2.5",
     "publisher": "waldo",
-    "engines": {
-        "vscode": "^1.21.0"
-    },
-    "license": "UNLICENSED",
-    "author": {
-        "email": "info@cloud-ready-software.com",
-        "name": "Cloud Ready Software GmbH",
-        "url": "http://www.cloud-ready-software.com"
-    },
     "icon": "images/icon.png",
+    "author": {
+        "name": "Cloud Ready Software GmbH",
+        "url": "http://www.cloud-ready-software.com",
+        "email": "info@cloud-ready-software.com"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/CloudReadySoftware/crs-al-language-extension.git"
+    },
+    "preview": true,
+    "keywords": [
+        "multi-root ready",
+        "Dynamics NAV",
+        "Dynamics 365 Business Central",
+        "AL",
+        "ERP"
+    ],
+    "bugs": {
+        "url": "https://github.com/CloudReadySoftware/crs-al-language-extension/issues"
+    },
+    "license": "http://www.cloud-ready-software.com",
+    "galleryBanner": {
+        "color": "#0060A0",
+        "theme": "dark"
+    },
+    "engines": {
+        "vscode": "^1.22.0"
+    },
     "categories": [
         "Other",
         "Extension Packs",
         "Snippets"
     ],
-    "keywords": [
-        "multi-root ready"
-    ],
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/CloudReadySoftware/crs-al-language-extension.git"
-    },
     "activationEvents": [
         "onLanguage:al",
         "workspaceContains:app.json",
@@ -33,76 +45,6 @@
     ],
     "main": "./out/src/extension",
     "contributes": {
-        "snippets": [
-            {
-                "language": "al",
-                "path": "./snippets/al.json"
-            },
-            {
-                "language": "al",
-                "path": "./snippets/designPatterns.json"
-            },
-            {
-                "language": "al",
-                "path": "./snippets/page.json"
-            },
-            {
-                "language": "al",
-                "path": "./snippets/pageextension.json"
-            },
-            {
-                "language": "al",
-                "path": "./snippets/tableextension.json"
-            },
-            {
-                "language": "al",
-                "path": "./snippets/pagecustomization.json"
-            },
-            {
-                "language": "xml",
-                "path": "./snippets/buildMetadata.json"
-            },
-            {
-                "language": "al",
-                "path": "./snippets/fromAlExtension/al.json"
-            },
-            {
-                "language": "al",
-                "path": "./snippets/fromAlExtension/codeunit.json"
-            },
-            {
-                "language": "al",
-                "path": "./snippets/fromAlExtension/controladdin.json"
-            },
-            {
-                "language": "al",
-                "path": "./snippets/fromAlExtension/dotnet.json"
-            },
-            {
-                "language": "al",
-                "path": "./snippets/fromAlExtension/page.json"
-            },
-            {
-                "language": "al",
-                "path": "./snippets/fromAlExtension/profile.json"
-            },
-            {
-                "language": "al",
-                "path": "./snippets/fromAlExtension/query.json"
-            },
-            {
-                "language": "al",
-                "path": "./snippets/fromAlExtension/report.json"
-            },
-            {
-                "language": "al",
-                "path": "./snippets/fromAlExtension/table.json"
-            },
-            {
-                "language": "al",
-                "path": "./snippets/fromAlExtension/xmlport.json"
-            }
-        ],
         "commands": [
             {
                 "command": "crs.InstallWaldosModules",
@@ -149,10 +91,6 @@
                 "title": "CRS: Reorganize - All Files"
             }
         ],
-        "keybindings": {
-            "command": "crs.RunCurrentObjectWeb",
-            "key": "CTRL+SHIFT+r"
-        },
         "configuration": {
             "title": "CRS AL Language Extension Configuration",
             "properties": {
@@ -251,6 +189,80 @@
                     "scope": "resource"
                 }
             }
+        },
+        "snippets": [
+            {
+                "language": "al",
+                "path": "./snippets/al.json"
+            },
+            {
+                "language": "al",
+                "path": "./snippets/designPatterns.json"
+            },
+            {
+                "language": "al",
+                "path": "./snippets/page.json"
+            },
+            {
+                "language": "al",
+                "path": "./snippets/pageextension.json"
+            },
+            {
+                "language": "al",
+                "path": "./snippets/tableextension.json"
+            },
+            {
+                "language": "al",
+                "path": "./snippets/pagecustomization.json"
+            },
+            {
+                "language": "xml",
+                "path": "./snippets/buildMetadata.json"
+            },
+            {
+                "language": "al",
+                "path": "./snippets/fromAlExtension/al.json"
+            },
+            {
+                "language": "al",
+                "path": "./snippets/fromAlExtension/codeunit.json"
+            },
+            {
+                "language": "al",
+                "path": "./snippets/fromAlExtension/controladdin.json"
+            },
+            {
+                "language": "al",
+                "path": "./snippets/fromAlExtension/dotnet.json"
+            },
+            {
+                "language": "al",
+                "path": "./snippets/fromAlExtension/page.json"
+            },
+            {
+                "language": "al",
+                "path": "./snippets/fromAlExtension/profile.json"
+            },
+            {
+                "language": "al",
+                "path": "./snippets/fromAlExtension/query.json"
+            },
+            {
+                "language": "al",
+                "path": "./snippets/fromAlExtension/report.json"
+            },
+            {
+                "language": "al",
+                "path": "./snippets/fromAlExtension/table.json"
+            },
+            {
+                "language": "al",
+                "path": "./snippets/fromAlExtension/xmlport.json"
+            }
+        ],
+        "keybindings": {
+            "command": "crs.RunCurrentObjectWeb",
+            "key": "CTRL+SHIFT+r"
         }
     },
     "scripts": {

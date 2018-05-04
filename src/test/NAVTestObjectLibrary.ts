@@ -4,6 +4,7 @@ class NAVTestObject {
     public ObjectText: string;
 
 }
+
 export function getTemplateObject(): NAVTestObject {
     let object = new NAVTestObject;
 
@@ -12,6 +13,16 @@ export function getTemplateObject(): NAVTestObject {
     `
     return object;
 }
+
+export function getAlFileWithoutCode(): NAVTestObject {
+    let object = new NAVTestObject;
+
+    object.ObjectFileName = 'AlFileWithoutCode.al'
+    object.ObjectText = `//Only some comments
+    `
+    return object;
+}
+
 export function getPageExtensionWrongFileName(): NAVTestObject {
     let object = new NAVTestObject;
 

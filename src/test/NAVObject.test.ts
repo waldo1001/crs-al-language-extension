@@ -158,4 +158,15 @@ suite("NAVObject Tests", () => {
             + navObject.ExtendedObjectName
             + navObject.ExtendedObjectId)
     })
+    test("Al File without real code", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+
+        let navTestObject = NAVTestObjectLibrary.getAlFileWithoutCode();
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
+
+        assert.equal(navObject.NAVObjectText, navObject.NAVObjectTextFixed);
+        assert.equal(navObject.objectFileName, navObject.objectFileNameFixed);
+        assert.equal(navObject.objectName, navObject.objectNameFixed);
+        assert.equal(navObject.objectNameFixedShort, '');
+    });
 });

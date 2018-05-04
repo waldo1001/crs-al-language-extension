@@ -55,7 +55,7 @@ export class NAVObject {
     }
 
     get objectFileNameFixed(): string {
-
+        if (!this._objectFileNamePattern) { return this.objectFileName }
         let objectFileNameFixed = this._objectFileNamePattern
         objectFileNameFixed = StringFunctions.replaceAll(objectFileNameFixed, '<ObjectType>', this.objectType)
         objectFileNameFixed = StringFunctions.replaceAll(objectFileNameFixed, '<ObjectTypeShort>', this.objectTypeShort);
@@ -206,6 +206,8 @@ export class NAVObject {
     }
 
     private updateObjectNameInObjectText(objectText: string): string {
+        if (!this.objectName) { return objectText };
+
         if (objectText.indexOf("\"" + this.objectName + "\"") >= 0) {
             return objectText.replace(this.objectName, this.objectNameFixed);
         } else {
