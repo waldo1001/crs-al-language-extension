@@ -1,5 +1,12 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension will be documented in this file.
+## [0.2.5] - 2018-05-04
+Now it will also apply the prefix to actions (requirement for Business Central)
+
+Behind the scenes:
+- Major redesign of the code
+- Implemented testability
+- Minor bugfixes
 
 ## [0.2.4] - 2018-04-29
 New command - Run CAL Test Tool in Web Client
