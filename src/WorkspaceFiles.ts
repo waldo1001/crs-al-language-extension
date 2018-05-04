@@ -22,9 +22,6 @@ export class WorkspaceFiles {
     }
 
     static RenameFile(fileName: vscode.Uri): string {
-        /*         let navObject = new NAVObject(fileName, Settings.GetConfigSettings(fileName));
-                navObject.SaveAutoFixesToFile();
-                return navObject.RenameFileIfNecessary(); */
         let navObject = new NAVObject(fs.readFileSync(fileName.fsPath).toString(), Settings.GetConfigSettings(fileName), path.basename(fileName.fsPath))
 
         this.SaveAutoFixesToFile(fileName, navObject);
@@ -36,6 +33,7 @@ export class WorkspaceFiles {
             return newFilePath;
         } else {
             console.log('paths are the same.');
+            return fileName.fsPath
         }
     }
 
@@ -47,20 +45,21 @@ export class WorkspaceFiles {
     }
 
     static ReorganizeFile(fileName: vscode.Uri): string {
-        let navObject = new NAVObject(fileName, Settings.GetConfigSettings(fileName));
+        let navObject = new NAVObject(fs.readFileSync(fileName.fsPath).toString(), Settings.GetConfigSettings(fileName), path.basename(fileName.fsPath))
         this.SaveAutoFixesToFile(fileName, navObject);
 
         let mySettings = Settings.GetConfigSettings(fileName);
         this.throwErrorIfReorgFilesNotAllowed(mySettings);
 
-        if (navObject.objectFileName && navObject.objectFileName != '') {
+        let fixedname = navObject.objectFileNameFixed
+        if (navObject.objectFileName && navObject.objectFileName != '' && fixedname && fixedname != '') {
             if (path.join(vscode.workspace.getWorkspaceFolder(fileName).uri.fsPath, navObject.objectType, navObject.objectFileName) == fileName.fsPath) {
                 console.log('paths are the same.');
                 return fileName.fsPath;
             } else {
                 let objectFolder = path.join(vscode.workspace.getWorkspaceFolder(fileName).uri.fsPath, mySettings[Settings.AlSubFolderName]);
                 let objectTypeFolder = path.join(objectFolder, navObject.objectType);
-                let destinationFileName = path.join(objectTypeFolder, navObject.objectFileName);
+                let destinationFileName = path.join(objectTypeFolder, fixedname);
 
                 (!fs.existsSync(objectFolder)) ? fs.mkdirSync(objectFolder) : '';
                 (!fs.existsSync(objectTypeFolder)) ? fs.mkdirSync(objectTypeFolder) : '';

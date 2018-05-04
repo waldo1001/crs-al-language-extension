@@ -15,20 +15,12 @@ export class NAVObject {
     public ExtendedObjectId: string;
     public NAVObjectText: string;
     private _workSpaceSettings: Settings;
-    private _NAVObjectFile: vscode.Uri;
     private _objectFileNamePattern: string;
 
-    constructor(navObject: vscode.Uri, workSpaceSettings: Settings);
     constructor(navObject: string, workSpaceSettings: Settings, navObjectFileBaseName: string);
     constructor(navObject: any, workSpaceSettings: Settings, navObjectFileBaseName?: string) {
-        if (navObject instanceof vscode.Uri) {
-            this.NAVObjectText = fs.readFileSync(navObject.fsPath, null).toString();
-            this.objectFileName = path.basename(this._NAVObjectFile.fsPath);
-
-        } else {
-            this.NAVObjectText = navObject
-            this.objectFileName = navObjectFileBaseName
-        }
+        this.NAVObjectText = navObject
+        this.objectFileName = navObjectFileBaseName
 
         this._workSpaceSettings = workSpaceSettings;
 
@@ -76,27 +68,20 @@ export class NAVObject {
         return objectFileNameFixed
     }
 
-    public SaveAutoFixesToFile() {
-        let FixedCode = this.NAVObjectTextFixed;
-        if (this.NAVObjectText == FixedCode) { return null }
-
-        fs.writeFileSync(this._NAVObjectFile.fsPath, FixedCode);
-    }
-
-    public RenameFileIfNecessary(): string {
-        let fixedObjectFileName = this.objectFileNameFixed;
-
-        if (fixedObjectFileName == '') { return '' }
-
-        if (this.objectFileName != fixedObjectFileName) {
-            let newFilePath = path.join(path.dirname(this._NAVObjectFile.fsPath), fixedObjectFileName);
-            fs.renameSync(this._NAVObjectFile.fsPath, newFilePath);
-            console.log('renamed', this._NAVObjectFile.fsPath, '-->', newFilePath);
-            return newFilePath;
-        } else {
-            console.log('paths are the same.');
-        }
-    }
+    /*     public RenameFileIfNecessary(): string {
+            let fixedObjectFileName = this.objectFileNameFixed;
+    
+            if (fixedObjectFileName == '') { return '' }
+    
+            if (this.objectFileName != fixedObjectFileName) {
+                let newFilePath = path.join(path.dirname(this._NAVObjectFile.fsPath), fixedObjectFileName);
+                fs.renameSync(this._NAVObjectFile.fsPath, newFilePath);
+                console.log('renamed', this._NAVObjectFile.fsPath, '-->', newFilePath);
+                return newFilePath;
+            } else {
+                console.log('paths are the same.');
+            }
+        } */
 
     /*     private loadWorkSpaceSettings() {
             if (this.workSpaceSettings) { return null }
@@ -174,7 +159,7 @@ export class NAVObject {
                 }
                 case 'pagecustomization': {
 
-                    var patternObject = new RegExp('(\\w+)( +"?[ a-zA-Z0-9._/&-]+"?) +customizes( +"?[ a-zA-Z0-9._&-]+\\/?[ a-zA-Z0-9._&-]+" ?) (\\/\\/+ *)?([0-9]+)?');
+                    var patternObject = new RegExp('(\\w+)( +"?[ a-zA-Z0-9._/&-]+"?) +customizes( +"?[ a-zA-Z0-9._&-]+\\/?[ a-zA-Z0-9._&-]+"?) (\\/\\/+ *)?([0-9]+)?');
                     let currObject = this.NAVObjectText.match(patternObject);
 
                     this.objectType = currObject[1];
@@ -199,7 +184,6 @@ export class NAVObject {
         }
 
         let navPageActions: NAVPageAction[] = new Array();
-
         var reg = /.+((action\("?)([ a-zA-Z0-9._/&-]+)"?\))/g;
         var result;
         while ((result = reg.exec(this.NAVObjectText)) !== null) {
@@ -248,6 +232,8 @@ class NAVPageAction {
 
         if (!this.name.startsWith(this._prefix)) {
             return this._prefix + this.name
+        } else {
+            return this.name
         }
     }
 

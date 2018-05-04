@@ -10,6 +10,7 @@ import { WorkspaceFiles } from './WorkspaceFiles';
 import { SnippetFunctions } from './SnippetFunctions';
 import * as fs from 'fs';
 import { NAVObject } from './NAVObject';
+import * as path from 'path'
 
 
 let observers = [
@@ -31,8 +32,8 @@ export function InstallWaldosModules() {
 
 export function RunCurrentObjectWeb() {
     console.log('Running: RunCurrentObjectWeb');
-
-    let navObject = new NAVObject(vscode.window.activeTextEditor.document.uri, Settings.GetConfigSettings(vscode.window.activeTextEditor.document.uri));
+    let currentdocument = vscode.window.activeTextEditor.document
+    let navObject = new NAVObject(fs.readFileSync(currentdocument.uri.fsPath).toString(), Settings.GetConfigSettings(currentdocument.uri), path.basename(currentdocument.uri.fsPath));
     DynamicsNAV.RunObjectInWebClient(navObject.objectType, navObject.objectId, 'WebClient');
 
     console.log('Done: RunCurrentObjectWeb')
