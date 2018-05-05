@@ -2,7 +2,7 @@
     "name": "crs-al-language-extension",
     "displayName": "CRS AL Language Extension",
     "description": "Make working with the (Dynamics NAV / 365) AL Language easier and more efficient.",
-    "version": "0.2.5",
+    "version": "0.2.6",
     "publisher": "waldo",
     "icon": "images/icon.png",
     "author": {
@@ -14,7 +14,7 @@
         "type": "git",
         "url": "https://github.com/CloudReadySoftware/crs-al-language-extension.git"
     },
-    "preview": true,
+    "preview": false,
     "keywords": [
         "multi-root ready",
         "Dynamics NAV",
