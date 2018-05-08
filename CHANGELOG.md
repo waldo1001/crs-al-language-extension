@@ -1,5 +1,9 @@
 # Change Log
-All notable changes to the "crs-al-language-extension" extension will be documented in this file.
+All notable changes to the "crs-al-language-extension" extension.
+
+## [0.2.7] - 2018-05-08
+Also applies prefix to fields on table extensions (not tables)
+
 ## [0.2.6] - 2018-05-04
 Now it will also apply the prefix to actions (requirement for Business Central)
 

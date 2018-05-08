@@ -10,7 +10,8 @@ export class NAVObject {
     public objectType: string;
     public objectId: string;
     public objectName: string;
-    public objectActions: NAVPageAction[] = new Array();
+    public objectActions: NAVObjectAction[] = new Array();
+    public tableFields: NAVTableField[] = new Array()
     public ExtendedObjectName: string;
     public ExtendedObjectId: string;
     public NAVObjectText: string;
@@ -50,6 +51,7 @@ export class NAVObject {
         let NAVObjectTextFixed = this.NAVObjectText;
         NAVObjectTextFixed = this.updateObjectNameInObjectText(NAVObjectTextFixed);
         NAVObjectTextFixed = this.AddPrefixToActions(NAVObjectTextFixed);
+        NAVObjectTextFixed = this.AddPrefixToFields(NAVObjectTextFixed);
 
         return NAVObjectTextFixed;
     }
@@ -67,32 +69,6 @@ export class NAVObject {
 
         return objectFileNameFixed
     }
-
-    /*     public RenameFileIfNecessary(): string {
-            let fixedObjectFileName = this.objectFileNameFixed;
-    
-            if (fixedObjectFileName == '') { return '' }
-    
-            if (this.objectFileName != fixedObjectFileName) {
-                let newFilePath = path.join(path.dirname(this._NAVObjectFile.fsPath), fixedObjectFileName);
-                fs.renameSync(this._NAVObjectFile.fsPath, newFilePath);
-                console.log('renamed', this._NAVObjectFile.fsPath, '-->', newFilePath);
-                return newFilePath;
-            } else {
-                console.log('paths are the same.');
-            }
-        } */
-
-    /*     private loadWorkSpaceSettings() {
-            if (this.workSpaceSettings) { return null }
-    
-            if (this._NAVObjectFile) {
-                this.workSpaceSettings = Settings.GetConfigSettings(this._NAVObjectFile);
-            } else {
-                this.workSpaceSettings = Settings.GetConfigSettings(null);
-            }
-        } */
-
     private loadObjectProperties(): any {
         var patternObjectType = new RegExp('(codeunit |page |pagecustomization |pageextension |profile |query |report |requestpage |table |tableextension |xmlport )')
 
@@ -183,11 +159,16 @@ export class NAVObject {
             this.ExtendedObjectId = this.ExtendedObjectId.trim().toString();
         }
 
-        let navPageActions: NAVPageAction[] = new Array();
-        var reg = /.+((action\("?)([ a-zA-Z0-9._/&-]+)"?\))/g;
+        var reg = NAVObjectAction.actionRegEx();
         var result;
         while ((result = reg.exec(this.NAVObjectText)) !== null) {
-            this.objectActions.push(new NAVPageAction(result[1], result[3], this._workSpaceSettings[Settings.ObjectNamePrefix]))
+            this.objectActions.push(new NAVObjectAction(result[1], this._workSpaceSettings[Settings.ObjectNamePrefix]))
+        }
+
+        var reg = NAVTableField.fieldRegEx();
+        var result;
+        while ((result = reg.exec(this.NAVObjectText)) !== null) {
+            this.tableFields.push(new NAVTableField(result[1], this.objectType, this._workSpaceSettings[Settings.ObjectNamePrefix]))
         }
     }
 
@@ -217,17 +198,29 @@ export class NAVObject {
 
     private AddPrefixToActions(objectText: string): string {
         this.objectActions.forEach(action => {
-            objectText = objectText.replace(action.fullActionText, "action(\"" + action.nameFixed + "\")")
+            objectText = objectText.replace(action.fullActionText, action.fullActionTextFixed);
+        })
+
+        return objectText;
+    }
+
+    private AddPrefixToFields(objectText: string): string {
+        this.tableFields.forEach(field => {
+            objectText = objectText.replace(field.fullFieldText, field.fullFieldTextFixed);
         })
 
         return objectText;
     }
 }
 
-class NAVPageAction {
+class NAVObjectAction {
     public name: string;
     public fullActionText: string;
     private _prefix: string;
+
+    public static actionRegEx(): RegExp {
+        return /.*((action\("?)([ a-zA-Z0-9._/&-]+)"?\))/g
+    }
 
     get nameFixed(): string {
         if (!this._prefix) { return this.name }
@@ -239,9 +232,73 @@ class NAVPageAction {
         }
     }
 
-    constructor(fullActionText: string, actionName: string, prefix?: string) {
-        this.name = actionName;
+    get fullActionTextFixed(): string {
+        if (!this._prefix) { return this.fullActionText };
+
+        return "action(\"" + this.nameFixed + "\")"
+    }
+
+    constructor(fullActionText: string, prefix?: string) {
         this.fullActionText = fullActionText;
         this._prefix = prefix ? prefix : null;
+
+        this.parseActionText();
+    }
+
+    private parseActionText() {
+        var reg = NAVObjectAction.actionRegEx();
+        var result = reg.exec(this.fullActionText)
+        if (result !== null) {
+            this.name = result[3];
+        }
     }
 }
+
+class NAVTableField {
+    public name: string;
+    public fullFieldText: string;
+    public number: string;
+    public type: string;
+    private _objectType: string;
+    private _prefix: string;
+
+    public static fieldRegEx(): RegExp {
+        return /.*(field\((\d+); *"?([ a-zA-Z0-9._/&-]+)"?;(.*)\))/g;
+    }
+
+    get nameFixed(): string {
+        if (!this._prefix) { return this.name }
+        if (this._objectType.toLocaleLowerCase() != "tableextension") { return this.name };
+
+        if (!this.name.startsWith(this._prefix)) {
+            return this._prefix + this.name
+        } else {
+            return this.name
+        }
+    }
+
+    get fullFieldTextFixed(): string {
+        if (!this._prefix) { return this.fullFieldText }
+
+        return "field(" + this.number + ";\"" + this.nameFixed + "\";" + this.type + ")"
+    }
+
+    constructor(fullFieldText: string, objectType: string, prefix?: string) {
+        this.fullFieldText = fullFieldText;
+        this._prefix = prefix ? prefix : null;
+        this._objectType = objectType;
+
+        this.parseFieldText();
+    }
+
+    private parseFieldText() {
+        var reg = NAVTableField.fieldRegEx();
+        var result = reg.exec(this.fullFieldText)
+        if (result !== null) {
+            this.number = result[2];
+            this.name = result[3];
+            this.type = result[4];
+        }
+    }
+}
+

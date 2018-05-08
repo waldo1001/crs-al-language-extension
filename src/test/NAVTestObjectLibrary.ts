@@ -14,6 +14,47 @@ export function getTemplateObject(): NAVTestObject {
     return object;
 }
 
+export function getTableWithWrongFileName(): NAVTestObject {
+    let object = new NAVTestObject;
+
+    object.ObjectFileName = 'JustSomeTable.al'
+    object.ObjectText = `table 50101 JustATestTable
+    {
+        DataClassification = ToBeClassified;
+    
+        fields
+        {
+            field(1; MyField; Integer)
+            {
+    
+                DataClassification = ToBeClassified;
+            }
+            field(10;MyField2; Integer)
+            {
+    
+                DataClassification = ToBeClassified;
+            }
+            field(200;"My Field with a weird / Name"; Integer)
+            {
+    
+                DataClassification = ToBeClassified;
+            }
+    
+        }
+        //TODO: Define Keys
+        keys
+        {
+            key(PK; MyField)
+            {
+                Clustered = true;
+            }
+        }
+    
+    }
+    `
+    return object;
+}
+
 export function getAlFileWithoutCode(): NAVTestObject {
     let object = new NAVTestObject;
 
@@ -33,6 +74,14 @@ export function getPageExtensionWrongFileName(): NAVTestObject {
     {
         addfirst(Content)
         {
+            field("Telex No."; "Telex No.")
+            {
+                ApplicationArea = All;
+            }
+            field("Telex No."; "Telex No.")
+            {
+                ApplicationArea = All;
+            }
             field("Telex No."; "Telex No.")
             {
                 ApplicationArea = All;
@@ -94,6 +143,15 @@ export function getTableExtensionWrongFileName(): NAVTestObject {
         // Add changes to table fields here
         field(50100;"Just Some field";Code[10]){
             TableRelation="Just Some Table"."No.";
+        }
+        field(10;MyField2; Integer)
+        {
+            DataClassification = ToBeClassified;
+        }
+        field(200;"My Field with a weird / Name"; Integer)
+        {
+
+            DataClassification = ToBeClassified;
         }
     }
     
