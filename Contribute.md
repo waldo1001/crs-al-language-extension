@@ -2,6 +2,8 @@
 Just imagine you would like to contribute to this small project .. here is a description on how to get started and make it compile.
 
 # Installation
+Install node.js
+
 when you just cloned the repo
 `npm install` (in the extension folder!)
 `npm install ncp` (in the extension folder!)
