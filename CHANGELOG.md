@@ -1,5 +1,11 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension.
+## [0.2.8] - 2019-05-16
+Added following snippets:
+- tmynotifications - apply "discover event subscriber" for adding a "My Notification"
+- tassistedsetup - apply "discover event subscriber" for adding an assisted setup
+- tserviceconnection - apply "discover event subscriber" for adding a service connection 
+- tvar - a somewhat easier way to create a variable
 
 ## [0.2.7] - 2018-05-08
 Also applies prefix to fields on table extensions (not tables)

@@ -1,5 +1,5 @@
 {
-    "Snippet (CRS): Method Codeunit (No UI)":{
+    "Snippet (CRS): Method Codeunit (No UI)": {
         "description": "Snippet (CRS): Method Codeunit (No UI)",
         "prefix": "tcodeunit (CRS: Method - No UI)",
         "body": [
@@ -33,6 +33,87 @@
             "\tbegin",
             "\tend;",
             "}"
+        ]
+    },
+    "Snippet (CRS): Enable Assisted Setup ": {
+        "description": "Snippet (CRS): Enable Assisted Setup",
+        "prefix": "tassistedsetup (CRS)",
+        "body": [
+            "[EventSubscriber(ObjectType::Table, Database::\"Aggregated Assisted Setup\", 'OnRegisterAssistedSetup', '', false, false)]",
+            "local procedure AddExtensionAssistedSetup_OnRegisterAssistedSetup(var TempAggregatedAssistedSetup: Record \"Aggregated Assisted Setup\" TEMPORARY);",
+            "var",
+            "\tAssistedSetupRecord: Record ${1:\"TableName\"};",
+            "begin",
+            "\tTempAggregatedAssistedSetup.AddExtensionAssistedSetup(Page::${2:\"PageName\"},",
+            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t'${3:Text in Assisted Setup List}',",
+            "\t\t\t\t\t\t\t\t\t\t\t\t\t\tTrue,",
+            "\t\t\t\t\t\t\t\t\t\t\t\t\t\tAssistedSetupRecord.RecordId(),",
+            "\t\t\t\t\t\t\t\t\t\t\t\t\t\tGetAssistedSetupStatus(TempAggregatedAssistedSetup),",
+            "\t\t\t\t\t\t\t\t\t\t\t\t\t\t'');",
+            "end;",
+            "[EventSubscriber(ObjectType::Table, Database::\"Aggregated Assisted Setup\", 'OnUpdateAssistedSetupStatus', '', false, false)]",
+            "local procedure AggregatedAssistedSetup_OnUpdateAssistedSetupStatus(var TempAggregatedAssistedSetup: Record \"Aggregated Assisted Setup\" TEMPORARY);",
+            "begin",
+            "\tTempAggregatedAssistedSetup.SetStatus(TempAggregatedAssistedSetup, PAGE::${2:\"PageName\"}, GetAssistedSetupStatus(TempAggregatedAssistedSetup));",
+            "end;",
+            "local procedure GetAssistedSetupStatus(AggregatedAssistedSetup: Record \"Aggregated Assisted Setup\"): Integer;",
+            "var",
+            "\tAssistedSetupRecord: Record ${1:\"TableName\"};",
+            "begin",
+            "\tWITH AggregatedAssistedSetup DO BEGIN",
+            "\t\tIF AssistedSetupRecord.Get() THEN",
+            "\t\t\tStatus := Status::Completed",
+            "\t\tELSE",
+            "\t\t\tStatus := Status::\"Not Completed\";",
+            "\t\tEXIT(Status);",
+            "\tEND;",
+            "end;"
+        ]
+    },
+    "Snippet (CRS): Enable My Notifications ": {
+        "description": "Snippet (CRS): Enable My Notifications",
+        "prefix": "tmynotifications (CRS)",
+        "body": [
+            "local procedure GetMyNotificationID(): Guid",
+            "begin",
+            "\tEXIT('${1:The guid of the notification}');",
+            "end;",
+            "",
+            "[EventSubscriber(ObjectType::Page, Page:: \"My Notifications\", 'OnInitializingNotificationWithDefaultState', '', false, false)]",
+            "local procedure \"MyNotifications.OnInitializingNotificationWithDefaultState\"()",
+            "var",
+            "\tMyNotifications: Record \"My Notifications\";",
+            "\t${2:NotificationName}: label '${3:Notification Name}', maxlength = 128, locked = true;",
+            "\t${4:DescriptionText}: label '${5:Description Text}', locked = true;",
+            "begin",
+            "\tMyNotifications.InsertDefaultWithTableNum(GetMyNotificationID(),",
+            "\t\t\t\t\t\t\t\t\t\t\t${2:NotificationName},",
+            "\t\t\t\t\t\t\t\t\t\t\t${4:DescriptionText},",
+            "\t\t\t\t\t\t\t\t\t\t\tDatabase::${6:TableName});",
+            "end;",
+            "",
+            "//Do the following to check whether the notification needs to be sent:",
+            "//declare a local variable: \"MyNotifications\" ",
+            "//IF NOT MyNotifications.IsEnabledForRecord(GetMyNotificationID,\"${6:TableName}\") THEN EXIT;"
+        ]
+    },
+    "Snippet (CRS): Enable Service Connection": {
+        "description": "Snippet (CRS): Enable Service Connection",
+        "prefix": "tserviceconnection (CRS)",
+        "body": [
+            "[EventSubscriber(ObjectType::Table, Database:: \"Service Connection\", 'OnRegisterServiceConnection', '',false, false)]",
+            "local procedure AddSetup_OnRegisterServiceConnection(var ServiceConnection: Record \"Service Connection\")",
+            "var",
+            "\tSetupRec: Record ${1:SetupRecord};",
+            "\tServiceName: Label '${2:ServiceName}', locked = true;",
+            "\tHostName: Label '${3:HostName}', locked = true;",
+            "begin",
+            "\tServiceConnection.InsertServiceConnection(ServiceConnection,",
+            "\t\t\t\t\t\t\t\t\t\t\tSetupRec.RecordId(),",
+            "\t\t\t\t\t\t\t\t\t\t\tServiceName,",
+            "\t\t\t\t\t\t\t\t\t\t\tHostName,",
+            "\t\t\t\t\t\t\t\t\t\t\tPage::${4:SetupPage});",
+            "end;"
         ]
     }
 }
