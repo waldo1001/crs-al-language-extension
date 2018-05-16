@@ -33,16 +33,27 @@ al Snippets:
 * tpagewizard (CRS: 3 steps)
     * creates a wizard with 3 steps
     * includes placeholders
-* tcodeunit (CRS: Method - No UI)
-    * creates a codeunit, conform on the "Event Based Software Architecture"
-    * no functions for UI
-    * includes placeholders
 * ttableextension (CRS)
     * Quite the same as the default snippet, but with the comment to include an TargetTableId to be able to properly rename the file (which might need that ID).
 * tpageextension (CRS)
     * Quite the same as the default snippet, but with the comment to include an TargetPageId to be able to properly rename the file (which might need that ID).
 * tpagecustomization (CRS)
     * Quite the same as the default snippet, but with the comment to include an TargetPageId to be able to properly rename the file (which might need that ID).
+* tvar (CRS)
+    * Some easier way to greate a variable
+
+Apply some design patterns:
+* tcodeunit (CRS: Method - No UI)
+    * creates a codeunit, conform on the "Event Based Software Architecture"
+    * no functions for UI
+    * includes placeholders
+* tmynotifications (CRS)
+    * apply "discover event subscriber" for adding a "My Notification"
+* tassistedsetup (CRS)
+    * apply "discover event subscriber" for adding an assisted setup
+* tserviceconnection (CRS)
+    * apply "discover event subscriber" for adding a service connection 
+ 
 
 Snippets for building metadata (used in an xml-file):
 * twebservice.. - 2 snippets

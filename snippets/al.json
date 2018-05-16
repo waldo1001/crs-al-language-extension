@@ -9,5 +9,13 @@
             "end;"
         ],
         "description": "Snippet: if findset repeat until"
+    },
+    "Snippet (CRS): Declare a variable ": {
+        "description": "Snippet (CRS): Declare a variable",
+        "prefix": "tvar",
+        "body": [
+            "${3:VariableName}: ${1:Type} ${2:Subtype};",
+            "${0}"
+        ]
     }
 }
