@@ -2,7 +2,7 @@
     "name": "crs-al-language-extension",
     "displayName": "CRS AL Language Extension",
     "description": "Make working with the (Dynamics NAV / 365) AL Language easier and more efficient.",
-    "version": "0.2.8",
+    "version": "0.2.9",
     "publisher": "waldo",
     "icon": "images/icon.png",
     "author": {
@@ -127,30 +127,32 @@
                 "CRS.FileNamePattern": {
                     "Type": "string",
                     "default": "<ObjectTypeShort><ObjectId>.<ObjectNameShort>.al",
-                    "description": "The pattern of the filename for non-extension objects..  These vars can be used: <ObjectType>,<ObjectTypeShort>,<ObjectId>,<ObjectName>,<ObjectNameShort>",
+                    "description": "The pattern of the filename for non-extension objects..  These vars can be used: <ObjectType>,<ObjectTypeShort>,<ObjectId>,<ObjectName>,<ObjectNameShort>,<ObjectTypeShortUpper>",
                     "scope": "resource"
                 },
                 "CRS.FileNamePatternExtensions": {
                     "Type": "string",
                     "default": "<ObjectTypeShort><BaseId>-Ext<ObjectId>.<ObjectNameShort>.al",
-                    "description": "The pattern of the filename for extension objects.  These vars can be used: <ObjectType>,<ObjectTypeShort>,<ObjectId>,<ObjectName>,<ObjectNameShort>,<BaseName>,<BaseId> (If you want this to work, you need to put the Id in comment after the base name, like //21)",
+                    "description": "The pattern of the filename for extension objects.  These vars can be used: <ObjectType>,<ObjectTypeShort>,<ObjectId>,<ObjectName>,<ObjectNameShort>,<ObjectTypeShortUpper>,<BaseName>,<BaseId> (If you want this to work, you need to put the Id in comment after the base name, like //21)",
                     "scope": "resource"
                 },
                 "CRS.FileNamePatternPageCustomizations": {
                     "Type": "string",
                     "default": "<ObjectTypeShort><BaseId>-PageCust.<ObjectNameShort>.al",
-                    "description": "The pattern of the filename for extension objects.  These vars can be used: <ObjectType>,<ObjectTypeShort>,<ObjectName>,<ObjectNameShort>,<BaseName>,<BaseId> (If you want this to work, you need to put the Id in comment after the base name, like //21)",
+                    "description": "The pattern of the filename for extension objects.  These vars can be used: <ObjectType>,<ObjectTypeShort>,<ObjectName>,<ObjectNameShort>,<ObjectTypeShortUpper>,<BaseName>,<BaseId> (If you want this to work, you need to put the Id in comment after the base name, like //21)",
                     "scope": "resource"
                 },
                 "CRS.AlSubFolderName": {
                     "enum": [
+                        "Src",
+                        "Source",
                         "Objects",
                         "Al",
                         "None"
                     ],
                     "type": "string",
-                    "default": "Al",
-                    "description": "Sets the subfoldername of where the objects will be placed.  If 'None', then 'Reorganize'-commands won't work.",
+                    "default": "Src",
+                    "description": "Sets the subfoldername of where the objects will be placed.  'None' prevents the 'Reorganize' to do anything (if you want to apply your own folder structure).",
                     "scope": "resource"
                 },
                 "CRS.OnSaveAlFileAction": {
@@ -178,7 +180,7 @@
                 },
                 "CRS.DisableDefaultAlSnippets": {
                     "type": "boolean",
-                    "default": true,
+                    "default": false,
                     "description": "Disable the default Al Snippets.  When you change the setting, you need to restart VSCode twice.  Once for disabling the snippets on activation (at that time, the snippets are still loaded).  And the second time to actually not load the snippets anymore",
                     "scope": "resource"
                 },

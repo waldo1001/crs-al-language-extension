@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension.
-## [0.2.8] - 2019-05-16
+## [0.2.9] - 2018-05-23
+Configurations:
+- `CRS.AlSubFolderName`: Added "Src" and "Source" folder (which Microsoft uses internally).  Remember: 'None' prevents the 'Reorganize' to do anything (if you want to apply your own folder structure)
+- `CRS.DisableDefaultAlSnippets` is not by default "true" anymore as I decided that disabling the default AL snippets should be a conscious decision.
+
+## [0.2.8] - 2018-05-16
 Added following snippets:
 - tmynotifications - apply "discover event subscriber" for adding a "My Notification"
 - tassistedsetup - apply "discover event subscriber" for adding an assisted setup

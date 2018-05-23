@@ -165,7 +165,7 @@ suite("NAVObject Tests", () => {
 
     test("FileNamePatterns with prefix", () => {
         let testSettings = Settings.GetConfigSettings(null)
-        testSettings[Settings.FileNamePattern] = '<ObjectType><ObjectTypeShort><ObjectId><ObjectName><ObjectNameShort>';//<ObjectType>,<ObjectTypeShort>,<ObjectId>,<ObjectName>,<ObjectNameShort>
+        testSettings[Settings.FileNamePattern] = '<ObjectType><ObjectTypeShort><ObjectTypeShortUpper><ObjectId><ObjectName><ObjectNameShort>';//<ObjectType>,<ObjectTypeShort>,<ObjectTypeShortUpper>,<ObjectId>,<ObjectName>,<ObjectNameShort>
 
         let navTestObject = NAVTestObjectLibrary.getObjectNoPrefixCorrectNameWithActions()
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
@@ -173,13 +173,14 @@ suite("NAVObject Tests", () => {
         assert.equal(navObject.objectFileNameFixed,
             navObject.objectType
             + navObject.objectTypeShort
+            + navObject.objectTypeShort.toUpperCase()
             + navObject.objectId
             + navObject.objectNameFixed
             + navObject.objectNameFixedShort)
     })
     test("FileNamePatternExtensions with prefix", () => {
         let testSettings = Settings.GetConfigSettings(null)
-        testSettings[Settings.FileNamePatternExtensions] = '<ObjectType><ObjectTypeShort><ObjectId><ObjectName><ObjectNameShort><BaseName><BaseId>';//<ObjectType>,<ObjectTypeShort>,<ObjectId>,<ObjectName>,<ObjectNameShort>,<BaseName>,<BaseId>
+        testSettings[Settings.FileNamePatternExtensions] = '<ObjectType><ObjectTypeShort><ObjectTypeShortUpper><ObjectId><ObjectName><ObjectNameShort><BaseName><BaseId>';//<ObjectType>,<ObjectTypeShort>,<ObjectTypeShortUpper>,<ObjectId>,<ObjectName>,<ObjectNameShort>,<BaseName>,<BaseId>
 
         let navTestObject = NAVTestObjectLibrary.getTableExtensionWrongFileName()
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
@@ -187,6 +188,7 @@ suite("NAVObject Tests", () => {
         assert.equal(navObject.objectFileNameFixed,
             navObject.objectType
             + navObject.objectTypeShort
+            + navObject.objectTypeShort.toUpperCase()
             + navObject.objectId
             + navObject.objectNameFixed
             + navObject.objectNameFixedShort
@@ -195,7 +197,7 @@ suite("NAVObject Tests", () => {
     })
     test("FileNamePatternPageCustomizations with prefix", () => {
         let testSettings = Settings.GetConfigSettings(null)
-        testSettings[Settings.FileNamePatternPageCustomizations] = '<ObjectType><ObjectTypeShort><ObjectName><ObjectNameShort><BaseName><BaseId>'; //<ObjectType>, <ObjectTypeShort>, <ObjectName>, <ObjectNameShort>, <BaseName>, <BaseId>
+        testSettings[Settings.FileNamePatternPageCustomizations] = '<ObjectType><ObjectTypeShort><ObjectTypeShortUpper><ObjectName><ObjectNameShort><BaseName><BaseId>'; //<ObjectType>, <ObjectTypeShort>, <ObjectTypeShortUpper>,<ObjectName>, <ObjectNameShort>, <BaseName>, <BaseId>
 
         let navTestObject = NAVTestObjectLibrary.getPageCustomizationWrongFileName()
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
@@ -203,6 +205,7 @@ suite("NAVObject Tests", () => {
         assert.equal(navObject.objectFileNameFixed,
             navObject.objectType
             + navObject.objectTypeShort
+            + navObject.objectTypeShort.toUpperCase()
             + navObject.objectNameFixed
             + navObject.objectNameFixedShort
             + navObject.ExtendedObjectName
@@ -219,4 +222,15 @@ suite("NAVObject Tests", () => {
         assert.equal(navObject.objectName, navObject.objectNameFixed);
         assert.equal(navObject.objectNameFixedShort, '');
     });
+    test("FileNamePattern <ObjectTypeShortUpper>", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+        testSettings[Settings.FileNamePatternPageCustomizations] = '<ObjectTypeShortUpper>'
+
+        let navTestObject = NAVTestObjectLibrary.getPageCustomizationWrongFileName()
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
+
+        assert.notEqual(navObject.objectType, navObject.objectTypeShort);
+        assert.equal(navObject.objectTypeShort.toUpperCase(), navObject.objectFileNameFixed);
+
+    })
 });
