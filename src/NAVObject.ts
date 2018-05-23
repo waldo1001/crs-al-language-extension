@@ -61,6 +61,7 @@ export class NAVObject {
         let objectFileNameFixed = this._objectFileNamePattern
         objectFileNameFixed = StringFunctions.replaceAll(objectFileNameFixed, '<ObjectType>', this.objectType)
         objectFileNameFixed = StringFunctions.replaceAll(objectFileNameFixed, '<ObjectTypeShort>', this.objectTypeShort);
+        objectFileNameFixed = StringFunctions.replaceAll(objectFileNameFixed, '<ObjectTypeShortUpper>', this.objectTypeShort.toUpperCase());
         objectFileNameFixed = StringFunctions.replaceAll(objectFileNameFixed, '<ObjectId>', this.objectId);
         objectFileNameFixed = StringFunctions.replaceAll(objectFileNameFixed, '<ObjectName>', this.objectNameFixed);
         objectFileNameFixed = StringFunctions.replaceAll(objectFileNameFixed, '<ObjectNameShort>', this.objectNameFixedShort);
