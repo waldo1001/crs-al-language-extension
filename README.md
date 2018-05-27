@@ -53,7 +53,8 @@ Apply some design patterns:
     * apply "discover event subscriber" for adding an assisted setup
 * tserviceconnection (CRS)
     * apply "discover event subscriber" for adding a service connection 
- 
+* ttablesetup & tpagesetup
+    * create setup-table with page
 
 Snippets for building metadata (used in an xml-file):
 * twebservice.. - 2 snippets

@@ -1,5 +1,9 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension.
+## [0.2.10] - 2018-05-27
+- Minor changes to some existing snippets
+- Two snippet-contributions from Dmitry Katson ([More info here](https://github.com/CloudReadySoftware/crs-al-language-extension/pull/36)): ttablesetup & tpagesetup - create setup-table with page
+
 ## [0.2.9] - 2018-05-23
 Configurations:
 - `CRS.AlSubFolderName`: Added "Src" and "Source" folder (which Microsoft uses internally).  Remember: 'None' prevents the 'Reorganize' to do anything (if you want to apply your own folder structure)
