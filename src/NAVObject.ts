@@ -70,6 +70,19 @@ export class NAVObject {
 
         return objectFileNameFixed
     }
+
+    get objectCodeunitSubType(): string {
+        if (this.objectType.toLowerCase() != 'codeunit') { return null }
+
+        var reg = /(Subtype) *= *(.+);/g
+        var result = reg.exec(this.NAVObjectText)
+        if (result !== null) {
+            return result[2]
+        }
+
+        return null
+    }
+
     private loadObjectProperties(): any {
         var patternObjectType = new RegExp('(codeunit |page |pagecustomization |pageextension |profile |query |report |requestpage |table |tableextension |xmlport )')
 
