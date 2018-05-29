@@ -14,6 +14,53 @@ export function getTemplateObject(): NAVTestObject {
     return object;
 }
 
+export function getNormalCodeunit(): NAVTestObject {
+    let object = new NAVTestObject;
+
+    object.ObjectFileName = 'Cod50100.justAName.al'
+    object.ObjectText = `
+        codeunit 50100 "Test Overload"
+        {
+            [EventSubscriber(ObjectType::Codeunit, Codeunit::LogInManagement, 'OnAfterLogInStart', '', false, false)]
+            local procedure TestOverLoad()
+            var
+                Item: Record Item;
+            begin
+                item.CalculateClassification(true, 'waldo');
+            end;
+        }
+    `
+    return object;
+}
+
+export function getTestCodeunit(): NAVTestObject {
+    let object = new NAVTestObject;
+
+    object.ObjectFileName = 'Cod50100.justAName.al'
+    object.ObjectText = `
+        codeunit 50101 TestOverload
+        {
+            Subtype = Test;
+
+            [Test]
+            [HandlerFunctions('HandleMessageFromB')]
+            procedure TestOverloadedCalculateClassification()
+            var
+                Item: Record Item;
+            begin
+                item.CalculateClassification(false, 'waldo');
+            end;
+
+            [MessageHandler]
+            procedure HandleMessageFromB(Message: Text[1024])
+            begin
+                if not Message.Contains('Extension B') then error('wrong message');
+            end;
+        }
+    `
+    return object;
+}
+
 export function getTableWithWrongFileName(): NAVTestObject {
     let object = new NAVTestObject;
 

@@ -9,9 +9,6 @@ import { suite, test } from 'mocha';
 
 import { NAVObject } from '../NAVObject'
 import { WorkspaceFiles } from '../WorkspaceFiles'
-
-// You can import and use all API from the 'vscode' module
-// as well as import your extension to test it
 import * as vscode from 'vscode';
 import * as myExtension from '../extension';
 import * as NAVTestObjectLibrary from './NAVTestObjectLibrary'
@@ -232,5 +229,17 @@ suite("NAVObject Tests", () => {
         assert.notEqual(navObject.objectType, navObject.objectTypeShort);
         assert.equal(navObject.objectTypeShort.toUpperCase(), navObject.objectFileNameFixed);
 
+    })
+    test("Reorganize Test Codeunits to 'test'-folder", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+
+        let navTestObject = NAVTestObjectLibrary.getTestCodeunit()
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
+
+        let navTestObject2 = NAVTestObjectLibrary.getNormalCodeunit()
+        let navObject2 = new NAVObject(navTestObject2.ObjectText, testSettings, navTestObject2.ObjectFileName)
+
+        assert.equal(navObject.objectCodeunitSubType.toLowerCase(), 'test');
+        assert.equal(navObject2.objectCodeunitSubType, null);
     })
 });
