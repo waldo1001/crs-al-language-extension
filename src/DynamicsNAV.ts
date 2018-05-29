@@ -113,10 +113,14 @@ export class DynamicsNAV {
 
         returnUrl += '/' + NAVInstance + '/' + ClientType;
 
-        if (Tenant != '') {
-            returnUrl += '?tenant=' + Tenant + '&';
+        if (!server) {
+            returnUrl = "https://businesscentral.dynamics.com/sandbox?"
         } else {
-            returnUrl += '?'
+            if (Tenant != '') {
+                returnUrl += '?tenant=' + Tenant + '&';
+            } else {
+                returnUrl += '?'
+            }
         }
 
         returnUrl += runObjectType + '=' + runObjectid;
