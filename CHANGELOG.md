@@ -1,5 +1,8 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension.
+## [0.2.11] - 2018-05-29
+"Reorganize" will move a test-codeunit to the test-folder ([github](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/38))
+
 ## [0.2.10] - 2018-05-27
 - Minor changes to some existing snippets
 - Two snippet-contributions from Dmitry Katson ([More info here](https://github.com/CloudReadySoftware/crs-al-language-extension/pull/36)): ttablesetup & tpagesetup - create setup-table with page

@@ -27,7 +27,7 @@ The commands can rename your file, and move the file to the folder, correspondin
 * CRS: Rename - All Files
 * CRS: Reorganize - Current File
 * CRS: CRS: Reorganize - All Files
-
+Note - "Reorganize" will move a test-codeunit to the test-folder
 ### Snippets
 al Snippets:
 * tpagewizard (CRS: 3 steps)
