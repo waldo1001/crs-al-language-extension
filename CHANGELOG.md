@@ -1,5 +1,8 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension.
+## [0.2.13] - 2018-06-13
+- Fix [Issue with slash in base object name](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/45)
+- Some small improvements in snippets
 
 ## [0.2.12] - 2018-05-29
 - Better permission-xml snippet
