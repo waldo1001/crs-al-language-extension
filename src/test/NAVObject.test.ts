@@ -242,4 +242,13 @@ suite("NAVObject Tests", () => {
         assert.equal(navObject.objectCodeunitSubType.toLowerCase(), 'test');
         assert.equal(navObject2.objectCodeunitSubType, null);
     })
+    test("Rename PageExtension with slash", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+        testSettings[Settings.FileNamePatternExtensions] = '<BaseName>.PageExt.al'
+
+        let navTestObject = NAVTestObjectLibrary.getPageExtensionWithSlashInFileName();
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
+
+        assert.equal(navObject.objectFileNameFixed.indexOf('/'), -1); //does not contain slash
+    })
 });
