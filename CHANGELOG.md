@@ -1,9 +1,11 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension.
+
 ## [0.2.12] - 2018-05-29
 - Better permission-xml snippet
 - Run Current Object for Extension-objects
 - Run Object in Cloud Sandbox 
+
 ## [0.2.11] - 2018-05-29
 "Reorganize" will move a test-codeunit to the test-folder ([github](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/38))
 

@@ -37,9 +37,6 @@
             "\t\t\t}",
             "\t\t}",
             "\t}",
-            "\t",
-            "\tvar",
-            "\t\t${12:myInt}: ${0:Integer};",
             "}"
         ],
         "description": "Snippet: Page"
