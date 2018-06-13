@@ -55,7 +55,11 @@ export class NAVObject {
 
         return NAVObjectTextFixed;
     }
+    get ExtendedObjectNameShort(): string {
+        let extendedObjectNameShort = this.ExtendedObjectName;
 
+        return StringFunctions.removeAllButAlfaNumeric(extendedObjectNameShort.replace(/[^ 0-9a-zA-Z._&-]/g, '_'));
+    }
     get objectFileNameFixed(): string {
         if (!this._objectFileNamePattern) { return this.objectFileName }
         let objectFileNameFixed = this._objectFileNamePattern
@@ -65,7 +69,7 @@ export class NAVObject {
         objectFileNameFixed = StringFunctions.replaceAll(objectFileNameFixed, '<ObjectId>', this.objectId);
         objectFileNameFixed = StringFunctions.replaceAll(objectFileNameFixed, '<ObjectName>', this.objectNameFixed);
         objectFileNameFixed = StringFunctions.replaceAll(objectFileNameFixed, '<ObjectNameShort>', this.objectNameFixedShort);
-        objectFileNameFixed = StringFunctions.replaceAll(objectFileNameFixed, '<BaseName>', this.ExtendedObjectName);
+        objectFileNameFixed = StringFunctions.replaceAll(objectFileNameFixed, '<BaseName>', this.ExtendedObjectNameShort);
         objectFileNameFixed = StringFunctions.replaceAll(objectFileNameFixed, '<BaseId>', this.ExtendedObjectId);
 
         return objectFileNameFixed

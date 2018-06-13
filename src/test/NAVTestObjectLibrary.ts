@@ -158,6 +158,24 @@ export function getPageExtensionWrongFileName(): NAVTestObject {
     `
     return object;
 }
+export function getPageExtensionWithSlashInFileName(): NAVTestObject {
+    let object = new NAVTestObject;
+
+    object.ObjectFileName = 'Pag50102.justAName.al'
+    object.ObjectText = `pageextension 50102 "SalespersonExt" extends "Salespersons/Purchasers" //14
+    {
+        layout
+        {
+            ////
+        }
+        
+        actions
+        {
+        }
+    }
+    `
+    return object;
+}
 export function getPageCustomizationWrongFileName(): NAVTestObject {
     let object = new NAVTestObject;
 
