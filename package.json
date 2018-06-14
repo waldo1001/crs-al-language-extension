@@ -260,6 +260,10 @@
             {
                 "language": "al",
                 "path": "./snippets/fromAlExtension/xmlport.json"
+            },
+            {
+                "language": "json",
+                "path": "./snippets/appjson.json"
             }
         ],
         "keybindings": {
