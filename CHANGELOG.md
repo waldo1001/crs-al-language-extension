@@ -1,21 +1,21 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension.
-## [0.2.14] - 2018-06-13
-Solved [Github Issue](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/48) and in the meanwhile, I have been refactoring and extending the "Rename FileName" functionality a bit, resulting in these tags (copy from ReadMe.md):
-- \<Prefix\> - just the prefix separately
-- \<Suffix\> - just the suffix separately
-- \<ObjectType\>
-- \<ObjectTypeShort\> - a short notation of the object type.
-- \<ObjectTypeShortUpper\> - Same as "ObjectTypeShort" but uppercased
-- \<ObjectId\>
-- \<ObjectName\> - weird chars are removed - includes prefix and suffix
-- \<ObjectNameShort\>    
-- \<BaseName\> - weird chars are removed - does NOT include prefix nor suffix
-- \<BaseNameShort\> - does NOT include prefix nor suffix
-- \<BaseId\> - If you want this to work, you need to put the Id in comment after the base name
+## [0.2.15] - 2018-06-13
+- Solved [Github Issue](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/48) and in the meanwhile, I have been refactoring and extending the "Rename FileName" functionality a bit, resulting in these tags (copy from ReadMe.md):
+    - \<Prefix\> - just the prefix separately
+    - \<Suffix\> - just the suffix separately
+    - \<ObjectType\>
+    - \<ObjectTypeShort\> - a short notation of the object type.
+    - \<ObjectTypeShortUpper\> - Same as "ObjectTypeShort" but uppercased
+    - \<ObjectId\>
+    - \<ObjectName\> - weird chars are removed - includes prefix and suffix
+    - \<ObjectNameShort\>    
+    - \<BaseName\> - weird chars are removed - does NOT include prefix nor suffix
+    - \<BaseNameShort\> - does NOT include prefix nor suffix
+    - \<BaseId\> - If you want this to work, you need to put the Id in comment after the base name
 
-Solved [Github Issue](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/47) - renaming with prefix messed up the format of the fields
-Solved [Github Issue](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/44) - ability to override the launch.json with a PublicWebBaseUrl
+- Solved [Github Issue](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/47) - renaming with prefix messed up the format of the fields
+- Solved [Github Issue](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/44) - ability to override the launch.json with a PublicWebBaseUrl
 
 ## [0.2.13] - 2018-06-13
 - Fix [Issue with slash in base object name](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/45)
