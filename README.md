@@ -76,7 +76,8 @@ This extension contributes the following settings:
 * `CRS.WebServerInstancePort`: Port number for the web client
 * `CRS.WinServer`: Server where the windows client is connecting to
 * `CRS.WinServerInstance`: Serverinstance where the windows client is connecting to
-* `CRS.WinServerInstancePort`:Portnumber of the serverinstance where the windows client is connecting to
+* `CRS.WinServerInstancePort`: Portnumber of the serverinstance where the windows client is connecting to
+* `CRS.PublicWebBaseUrl`: Override Launch.json settings with this setting if necessary to run objects from VSCode
 * `CRS.FileNamePattern`: The pattern of the filename for non-extension objects..  These vars can be used: 
     - \<Prefix\> - just the prefix separately
     - \<Suffix\> - just the suffix separately

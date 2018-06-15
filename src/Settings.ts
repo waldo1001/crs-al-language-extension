@@ -13,7 +13,7 @@ export class Settings {
     static readonly WinServer = 'WinServer';
     static readonly WinServerInstance = 'WinServerInstance';
     static readonly WinServerInstancePort = 'WinServerInstancePort';
-
+    static readonly PublicWebBaseUrl = 'PublicWebBaseUrl';
     static readonly Tenant = 'Tenant';
 
     static readonly AppName = 'name';
@@ -71,6 +71,7 @@ export class Settings {
         this.SettingCollection[this.AlSubFolderName] = this.getSetting(this.AlSubFolderName);
         this.SettingCollection[this.DisableDefaultAlSnippets] = this.getSetting(this.DisableDefaultAlSnippets);
         this.SettingCollection[this.DisableCRSSnippets] = this.getSetting(this.DisableCRSSnippets);
+        this.SettingCollection[this.PublicWebBaseUrl] = this.getSetting(this.PublicWebBaseUrl);
     }
 
     private static getAppSettings(ResourceUri: vscode.Uri) {
