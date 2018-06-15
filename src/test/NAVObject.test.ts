@@ -160,7 +160,7 @@ suite("NAVObject Tests", () => {
         assert.notEqual(navObject.objectFileNameFixed.indexOf(testSettings[Settings.ObjectNameSuffix]), -1)
     });
 
-    test("FileNamePatterns with prefix", () => {
+    test("Filename - FileNamePatterns with prefix", () => {
         let testSettings = Settings.GetConfigSettings(null)
         testSettings[Settings.FileNamePattern] = '<ObjectType><ObjectTypeShort><ObjectTypeShortUpper><ObjectId><ObjectName><ObjectNameShort>';//<ObjectType>,<ObjectTypeShort>,<ObjectTypeShortUpper>,<ObjectId>,<ObjectName>,<ObjectNameShort>
 
@@ -175,7 +175,7 @@ suite("NAVObject Tests", () => {
             + navObject.objectNameFixed
             + navObject.objectNameFixedShort)
     })
-    test("FileNamePatternExtensions with prefix", () => {
+    test("Filename - FileNamePatternExtensions with prefix", () => {
         let testSettings = Settings.GetConfigSettings(null)
         testSettings[Settings.FileNamePatternExtensions] = '<ObjectType><ObjectTypeShort><ObjectTypeShortUpper><ObjectId><ObjectName><ObjectNameShort><BaseName><BaseId>';//<ObjectType>,<ObjectTypeShort>,<ObjectTypeShortUpper>,<ObjectId>,<ObjectName>,<ObjectNameShort>,<BaseName>,<BaseId>
 
@@ -189,10 +189,10 @@ suite("NAVObject Tests", () => {
             + navObject.objectId
             + navObject.objectNameFixed
             + navObject.objectNameFixedShort
-            + navObject.ExtendedObjectName
-            + navObject.ExtendedObjectId)
+            + navObject.extendedObjectName
+            + navObject.extendedObjectId)
     })
-    test("FileNamePatternPageCustomizations with prefix", () => {
+    test("Filename - FileNamePatternPageCustomizations with prefix", () => {
         let testSettings = Settings.GetConfigSettings(null)
         testSettings[Settings.FileNamePatternPageCustomizations] = '<ObjectType><ObjectTypeShort><ObjectTypeShortUpper><ObjectName><ObjectNameShort><BaseName><BaseId>'; //<ObjectType>, <ObjectTypeShort>, <ObjectTypeShortUpper>,<ObjectName>, <ObjectNameShort>, <BaseName>, <BaseId>
 
@@ -205,8 +205,8 @@ suite("NAVObject Tests", () => {
             + navObject.objectTypeShort.toUpperCase()
             + navObject.objectNameFixed
             + navObject.objectNameFixedShort
-            + navObject.ExtendedObjectName
-            + navObject.ExtendedObjectId)
+            + navObject.extendedObjectName
+            + navObject.extendedObjectId)
     })
     test("Al File without real code", () => {
         let testSettings = Settings.GetConfigSettings(null)
@@ -219,7 +219,7 @@ suite("NAVObject Tests", () => {
         assert.equal(navObject.objectName, navObject.objectNameFixed);
         assert.equal(navObject.objectNameFixedShort, '');
     });
-    test("FileNamePattern <ObjectTypeShortUpper>", () => {
+    test("FileName - <ObjectTypeShortUpper>", () => {
         let testSettings = Settings.GetConfigSettings(null)
         testSettings[Settings.FileNamePatternPageCustomizations] = '<ObjectTypeShortUpper>'
 
@@ -236,13 +236,13 @@ suite("NAVObject Tests", () => {
         let navTestObject = NAVTestObjectLibrary.getTestCodeunit()
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
 
-        let navTestObject2 = NAVTestObjectLibrary.getNormalCodeunit()
+        let navTestObject2 = NAVTestObjectLibrary.getNormalCodeunitWithLongName()
         let navObject2 = new NAVObject(navTestObject2.ObjectText, testSettings, navTestObject2.ObjectFileName)
 
         assert.equal(navObject.objectCodeunitSubType.toLowerCase(), 'test');
         assert.equal(navObject2.objectCodeunitSubType, null);
     })
-    test("Rename PageExtension with slash", () => {
+    test("Filename - Rename PageExtension with slash", () => {
         let testSettings = Settings.GetConfigSettings(null)
         testSettings[Settings.FileNamePatternExtensions] = '<BaseName>.PageExt.al'
 
@@ -250,5 +250,94 @@ suite("NAVObject Tests", () => {
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
 
         assert.equal(navObject.objectFileNameFixed.indexOf('/'), -1); //does not contain slash
+    })
+    test("Filename - <BaseName> Rename PageExtension with ampersand(&)", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+        testSettings[Settings.FileNamePatternExtensions] = '<BaseName>.PageExt.al'
+
+        let navTestObject = NAVTestObjectLibrary.getPageExtensionWithAmpersandInFileName();
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
+
+        assert.notEqual(navObject.objectFileNameFixed.indexOf('&'), -1); //does contain &
+        assert.notEqual(navObject.extendedObjectName, navObject.objectName);
+    })
+    test("Filename - <ObjectName> Rename PageExtension with ampersand(&)", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+        testSettings[Settings.FileNamePatternExtensions] = '<ObjectName>.PageExt.al'
+
+        let navTestObject = NAVTestObjectLibrary.getPageExtensionWithAmpersandInFileName();
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
+
+        assert.notEqual(navObject.objectFileNameFixed.indexOf('&'), -1); //does contain &
+        assert.notEqual(navObject.extendedObjectName, navObject.objectName);
+    })
+    test("Filename - <BaseNameShort> Rename PageExtension with ampersand(&)", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+        testSettings[Settings.FileNamePatternExtensions] = '<BaseNameShort>.PageExt.al'
+
+        let navTestObject = NAVTestObjectLibrary.getPageExtensionWithAmpersandInFileName();
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
+
+        assert.equal(navObject.objectFileNameFixed.indexOf('&'), -1); //does not contain &
+        assert.notEqual(navObject.extendedObjectName, navObject.objectName);
+    })
+    test("Filename - <ObjectNameShort> Rename PageExtension with ampersand(&)", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+        testSettings[Settings.FileNamePatternExtensions] = '<ObjectNameShort>.PageExt.al'
+
+        let navTestObject = NAVTestObjectLibrary.getPageExtensionWithAmpersandInFileName();
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
+
+        assert.equal(navObject.objectFileNameFixed.indexOf('&'), -1); //does not contain &
+        assert.notEqual(navObject.extendedObjectName, navObject.objectName);
+    })
+    test("Filename - <ObjectName[Short]> Normal object With Spaces", () => {
+        //Long
+        let testSettings = Settings.GetConfigSettings(null)
+        testSettings[Settings.FileNamePattern] = '<ObjectName>.al'
+
+        let navTestObject = NAVTestObjectLibrary.getNormalCodeunitWithLongName()
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
+
+        assert.notEqual(navObject.objectFileNameFixed.indexOf(' '), -1)
+
+        //Short
+        testSettings[Settings.FileNamePattern] = '<ObjectNameShort>.al'
+
+        navTestObject = NAVTestObjectLibrary.getNormalCodeunitWithLongName()
+        navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
+
+        assert.equal(navObject.objectFileNameFixed.indexOf(' '), -1)
+    })
+    test("Filename - <BaseName[Short]> Extension Base object With Spaces", () => {
+        //Long
+        let testSettings = Settings.GetConfigSettings(null)
+        testSettings[Settings.FileNamePatternExtensions] = '<BaseName>.al'
+
+        let navTestObject = NAVTestObjectLibrary.getPageExtensionWrongFileName()
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
+
+        assert.notEqual(navObject.objectFileNameFixed.indexOf(' '), -1)
+
+        //Short
+        testSettings[Settings.FileNamePatternExtensions] = '<BaseNameShort>.al'
+
+        navTestObject = NAVTestObjectLibrary.getPageExtensionWrongFileName()
+        navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
+
+        assert.equal(navObject.objectFileNameFixed.indexOf(' '), -1)
+    })
+    test("Filename - <prefix> and <suffix>", () => {
+        //Long
+        let testSettings = Settings.GetConfigSettings(null)
+        testSettings[Settings.ObjectNamePrefix] = 'MyPrefix';
+        testSettings[Settings.ObjectNameSuffix] = 'MySuffix';
+        testSettings[Settings.FileNamePatternExtensions] = '<Prefix><Suffix>.al'
+
+        let navTestObject = NAVTestObjectLibrary.getPageExtensionWrongFileName()
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
+
+        assert.equal(navObject.objectFileNameFixed, testSettings[Settings.ObjectNamePrefix] + testSettings[Settings.ObjectNameSuffix] + '.al')
+        assert.notEqual(navObject.objectFileName, navObject.objectFileNameFixed)
     })
 });

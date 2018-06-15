@@ -78,18 +78,25 @@ This extension contributes the following settings:
 * `CRS.WinServerInstance`: Serverinstance where the windows client is connecting to
 * `CRS.WinServerInstancePort`:Portnumber of the serverinstance where the windows client is connecting to
 * `CRS.FileNamePattern`: The pattern of the filename for non-extension objects..  These vars can be used: 
+    - \<Prefix\> - just the prefix separately
+    - \<Suffix\> - just the suffix separately
     - \<ObjectType\>
     - \<ObjectTypeShort\> - a short notation of the object type.
+    - \<ObjectTypeShortUpper\> - Same as "ObjectTypeShort" but uppercased
     - \<ObjectId\>
-    - \<ObjectName\> - might result into errors when you have "weird" chars in your name
+    - \<ObjectName\> - weird chars are removed - includes prefix and suffix
     - \<ObjectNameShort\>
 * `CRS.FileNamePatternExtensions`: The pattern of the filename for extension objects.  These vars can be used: 
+    - \<Prefix\> - just the prefix separately
+    - \<Suffix\> - just the suffix separately
     - \<ObjectType\>
     - \<ObjectTypeShort\> - a short notation of the object type.
+    - \<ObjectTypeShortUpper\> - Same as "ObjectTypeShort" but uppercased
     - \<ObjectId\>
-    - \<ObjectName\> - might result into errors when you have "weird" chars in your name
-    - \<ObjectNameShort\>
-    - \<BaseName\>
+    - \<ObjectName\> - weird chars are removed - includes prefix and suffix
+    - \<ObjectNameShort\>    
+    - \<BaseName\> - weird chars are removed - does NOT include prefix nor suffix
+    - \<BaseNameShort\> - does NOT include prefix nor suffix
     - \<BaseId\> - If you want this to work, you need to put the Id in comment after the base name, like this example: 
 ```al
 tableextension 50100 "Just Some Table Extension" extends Customer //18
@@ -105,11 +112,15 @@ tableextension 50100 "Just Some Table Extension" extends Customer //18
 }
 ```
 * `CRS.FileNamePatternPageCustomizations`: The pattern of the filename for page customizations.  These vars can be used:
+    - \<Prefix\> - just the prefix separately
+    - \<Suffix\> - just the suffix separately
     - \<ObjectType\>
     - \<ObjectTypeShort\> - a short notation of the object type.
-    - \<ObjectName\> - might result into errors when you have "weird" chars in your name
-    - \<ObjectNameShort\>
-    - \<BaseName\>
+    - \<ObjectTypeShortUpper\> - Same as "ObjectTypeShort" but uppercased
+    - \<ObjectName\> - weird chars are removed - includes prefix and suffix
+    - \<ObjectNameShort\> - includes prefix and suffix
+    - \<BaseName\> - weird chars are removed - does NOT include prefix nor suffix
+    - \<BaseNameShort\> - does NOT include prefix nor suffix
     - \<BaseId\> - same remarks as above!
 * `CRS.ObjectNamePrefix`: When using the Reorganize/Rename-commands, this setting will make sure the object name (and filename) will have a Prefix.  Tip: use as a workspace-setting.
 * `CRS.ObjectNameSuffix`: When using the Reorganize/Rename-commands, this setting will make sure the object name (and filename) will have a Suffix.  Tip: use as a workspace-setting.

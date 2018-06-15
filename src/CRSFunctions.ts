@@ -35,14 +35,11 @@ export function RunCurrentObjectWeb() {
     let currentdocument = vscode.window.activeTextEditor.document
     let navObject = new NAVObject(fs.readFileSync(currentdocument.uri.fsPath).toString(), Settings.GetConfigSettings(currentdocument.uri), path.basename(currentdocument.uri.fsPath));
 
-    let objectId = navObject.objectType.toLowerCase().endsWith('extension') ? navObject.ExtendedObjectId : navObject.objectId;
+    let objectId = navObject.objectType.toLowerCase().endsWith('extension') ? navObject.extendedObjectId : navObject.objectId;
     let objectType = navObject.objectType.toLowerCase().endsWith('extension') ? navObject.objectType.toLowerCase().replace('extension', '') : navObject.objectType
     if (objectId) {
         DynamicsNAV.RunObjectInWebClient(objectType, objectId, 'WebClient');
     }
-    /* (if (DynamicsNAV.GetRunWebObjectTypes().toString().toLowerCase().indexOf(navObject.objectType.toLowerCase()) > -1) {
-        DynamicsNAV.RunObjectInWebClient(navObject.objectType, navObject.objectId, 'WebClient');
-    }) */
 
     console.log('Done: RunCurrentObjectWeb')
 }

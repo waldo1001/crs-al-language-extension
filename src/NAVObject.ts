@@ -12,8 +12,8 @@ export class NAVObject {
     public objectName: string;
     public objectActions: NAVObjectAction[] = new Array();
     public tableFields: NAVTableField[] = new Array()
-    public ExtendedObjectName: string;
-    public ExtendedObjectId: string;
+    public extendedObjectName: string;
+    public extendedObjectId: string;
     public NAVObjectText: string;
     private _workSpaceSettings: Settings;
     private _objectFileNamePattern: string;
@@ -25,27 +25,28 @@ export class NAVObject {
 
         this._workSpaceSettings = workSpaceSettings;
 
-        /*         this._NAVObjectFile = !NAVObjectFile ? vscode.window.activeTextEditor.document.uri : NAVObjectFile;
-                if (!NAVObjectFile) {
-                    vscode.window.showErrorMessage('No valid file to process... ');
-                } */
-
-        //this.loadWorkSpaceSettings();
         this.loadObjectProperties();
     }
 
     get objectTypeShort(): string {
         return DynamicsNAV.getBestPracticeAbbreviatedObjectType(this.objectType);
     }
-
-    get objectNameFixedShort(): string {
-        return StringFunctions.removeAllButAlfaNumeric(this.objectNameFixed.replace(/[^ 0-9a-zA-Z._&-]/g, '_'));
-    }
     get objectNameFixed(): string {
         let objectNameFixed = this.objectName.trim().toString();
         objectNameFixed = this.AddPrefixAndSuffixToObjectNameFixed(this.objectName);
 
-        return objectNameFixed;
+        return objectNameFixed.replace(/[^ 0-9a-zA-Z._&-]/g, '_');
+    }
+    get objectNameFixedShort(): string {
+        return StringFunctions.removeAllButAlfaNumeric(this.objectNameFixed);
+    }
+    get extendedObjectNameFixed(): string {
+        let extendedObjectName = this.extendedObjectName.trim().toString();
+
+        return extendedObjectName.replace(/[^ 0-9a-zA-Z._&-]/g, '_');
+    }
+    get extendedObjectNameFixedShort(): string {
+        return StringFunctions.removeAllButAlfaNumeric(this.extendedObjectNameFixed);
     }
     get NAVObjectTextFixed(): string {
         let NAVObjectTextFixed = this.NAVObjectText;
@@ -55,22 +56,22 @@ export class NAVObject {
 
         return NAVObjectTextFixed;
     }
-    get ExtendedObjectNameShort(): string {
-        let extendedObjectNameShort = this.ExtendedObjectName;
 
-        return StringFunctions.removeAllButAlfaNumeric(extendedObjectNameShort.replace(/[^ 0-9a-zA-Z._&-]/g, '_'));
-    }
     get objectFileNameFixed(): string {
         if (!this._objectFileNamePattern) { return this.objectFileName }
         let objectFileNameFixed = this._objectFileNamePattern
+
+        objectFileNameFixed = StringFunctions.replaceAll(objectFileNameFixed, '<Prefix>', this._workSpaceSettings[Settings.ObjectNamePrefix]);
+        objectFileNameFixed = StringFunctions.replaceAll(objectFileNameFixed, '<Suffix>', this._workSpaceSettings[Settings.ObjectNameSuffix]);
         objectFileNameFixed = StringFunctions.replaceAll(objectFileNameFixed, '<ObjectType>', this.objectType)
         objectFileNameFixed = StringFunctions.replaceAll(objectFileNameFixed, '<ObjectTypeShort>', this.objectTypeShort);
         objectFileNameFixed = StringFunctions.replaceAll(objectFileNameFixed, '<ObjectTypeShortUpper>', this.objectTypeShort.toUpperCase());
         objectFileNameFixed = StringFunctions.replaceAll(objectFileNameFixed, '<ObjectId>', this.objectId);
         objectFileNameFixed = StringFunctions.replaceAll(objectFileNameFixed, '<ObjectName>', this.objectNameFixed);
         objectFileNameFixed = StringFunctions.replaceAll(objectFileNameFixed, '<ObjectNameShort>', this.objectNameFixedShort);
-        objectFileNameFixed = StringFunctions.replaceAll(objectFileNameFixed, '<BaseName>', this.ExtendedObjectNameShort);
-        objectFileNameFixed = StringFunctions.replaceAll(objectFileNameFixed, '<BaseId>', this.ExtendedObjectId);
+        objectFileNameFixed = StringFunctions.replaceAll(objectFileNameFixed, '<BaseName>', this.extendedObjectNameFixed);
+        objectFileNameFixed = StringFunctions.replaceAll(objectFileNameFixed, '<BaseNameShort>', this.extendedObjectNameFixedShort);
+        objectFileNameFixed = StringFunctions.replaceAll(objectFileNameFixed, '<BaseId>', this.extendedObjectId);
 
         return objectFileNameFixed
     }
@@ -96,8 +97,8 @@ export class NAVObject {
         this.objectType = '';
         this.objectId = '';
         this.objectName = '';
-        this.ExtendedObjectName = '';
-        this.ExtendedObjectId = '';
+        this.extendedObjectName = '';
+        this.extendedObjectId = '';
 
         if (!ObjectTypeArr) { return null }
 
@@ -130,8 +131,8 @@ export class NAVObject {
                     this.objectType = currObject[1];
                     this.objectId = currObject[2];
                     this.objectName = currObject[3];
-                    this.ExtendedObjectName = currObject[4];
-                    this.ExtendedObjectId = currObject[6] ? currObject[6] : '';
+                    this.extendedObjectName = currObject[4];
+                    this.extendedObjectId = currObject[6] ? currObject[6] : '';
 
                     this._objectFileNamePattern = this._workSpaceSettings[Settings.FileNamePatternExtensions];
 
@@ -159,8 +160,8 @@ export class NAVObject {
                     this.objectType = currObject[1];
                     this.objectId = '';
                     this.objectName = currObject[2];
-                    this.ExtendedObjectName = currObject[3];
-                    this.ExtendedObjectId = currObject[5] ? currObject[5] : '';
+                    this.extendedObjectName = currObject[3];
+                    this.extendedObjectId = currObject[5] ? currObject[5] : '';
                     this._objectFileNamePattern = this._workSpaceSettings[Settings.FileNamePatternPageCustomizations];
 
                     break;
@@ -173,8 +174,8 @@ export class NAVObject {
             this.objectType = this.objectType.trim().toString();
             this.objectId = this.objectId.trim().toString();
             this.objectName = this.objectName.trim().toString().replace(/"/g, '');
-            this.ExtendedObjectName = this.ExtendedObjectName.trim().toString().replace(/"/g, '');
-            this.ExtendedObjectId = this.ExtendedObjectId.trim().toString();
+            this.extendedObjectName = this.extendedObjectName.trim().toString().replace(/"/g, '');
+            this.extendedObjectId = this.extendedObjectId.trim().toString();
         }
 
         var reg = NAVObjectAction.actionRegEx();
@@ -298,7 +299,7 @@ class NAVTableField {
     get fullFieldTextFixed(): string {
         if (!this._prefix) { return this.fullFieldText }
 
-        return "field(" + this.number + ";\"" + this.nameFixed + "\";" + this.type + ")"
+        return "field(" + this.number + "; \"" + this.nameFixed + "\"; " + this.type + ")"
     }
 
     constructor(fullFieldText: string, objectType: string, prefix?: string) {
@@ -313,9 +314,9 @@ class NAVTableField {
         var reg = NAVTableField.fieldRegEx();
         var result = reg.exec(this.fullFieldText)
         if (result !== null) {
-            this.number = result[2];
-            this.name = result[3];
-            this.type = result[4];
+            this.number = result[2].trim().toString();
+            this.name = result[3].trim().toString();
+            this.type = result[4].trim().toString();
         }
     }
 }

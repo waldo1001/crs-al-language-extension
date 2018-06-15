@@ -21,7 +21,7 @@ suite("WorkspaceFiles Tests", () => {
     test("getDestinationFolder - no test", () => {
         let testSettings = Settings.GetConfigSettings(null);
 
-        let navTestObject = NAVTestObjectLibrary.getNormalCodeunit();
+        let navTestObject = NAVTestObjectLibrary.getNormalCodeunitWithLongName();
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
 
         let foldersuggestion = WorkspaceFiles.getDestinationFolder(navObject, testSettings);
@@ -41,7 +41,7 @@ suite("WorkspaceFiles Tests", () => {
     test("getObjectTypeFolder - no test", () => {
         let testSettings = Settings.GetConfigSettings(null);
 
-        let navTestObject = NAVTestObjectLibrary.getNormalCodeunit();
+        let navTestObject = NAVTestObjectLibrary.getNormalCodeunitWithLongName();
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
 
         let foldersuggestion = WorkspaceFiles.getObjectTypeFolder(navObject);

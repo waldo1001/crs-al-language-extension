@@ -14,7 +14,7 @@ export function getTemplateObject(): NAVTestObject {
     return object;
 }
 
-export function getNormalCodeunit(): NAVTestObject {
+export function getNormalCodeunitWithLongName(): NAVTestObject {
     let object = new NAVTestObject;
 
     object.ObjectFileName = 'Cod50100.justAName.al'
@@ -115,7 +115,7 @@ export function getPageExtensionWrongFileName(): NAVTestObject {
     let object = new NAVTestObject;
 
     object.ObjectFileName = 'SomeFile.al'
-    object.ObjectText = `pageextension 50100 SomePageExt extends "Customer List" //22
+    object.ObjectText = `pageextension 50100 "Some Page Ext" extends "Customer List" //22
 {
     layout
     {
@@ -162,7 +162,25 @@ export function getPageExtensionWithSlashInFileName(): NAVTestObject {
     let object = new NAVTestObject;
 
     object.ObjectFileName = 'Pag50102.justAName.al'
-    object.ObjectText = `pageextension 50102 "SalespersonExt" extends "Salespersons/Purchasers" //14
+    object.ObjectText = `pageextension 50102 "Salesperson/Ext" extends "Salespersons/Purchasers" //14
+    {
+        layout
+        {
+            ////
+        }
+        
+        actions
+        {
+        }
+    }
+    `
+    return object;
+}
+export function getPageExtensionWithAmpersandInFileName(): NAVTestObject {
+    let object = new NAVTestObject;
+
+    object.ObjectFileName = 'Pag50102.justAName.al'
+    object.ObjectText = `pageextension 50102 "Sales & Purch" extends "Salespersons&Purchasers" //14
     {
         layout
         {
@@ -209,11 +227,11 @@ export function getTableExtensionWrongFileName(): NAVTestObject {
         field(50100;"Just Some field";Code[10]){
             TableRelation="Just Some Table"."No.";
         }
-        field(10;MyField2; Integer)
+        field(10;MyField2;     Integer)
         {
             DataClassification = ToBeClassified;
         }
-        field(200;"My Field with a weird / Name"; Integer)
+        field(200;"My Field with a weird / Name";Integer)
         {
 
             DataClassification = ToBeClassified;
