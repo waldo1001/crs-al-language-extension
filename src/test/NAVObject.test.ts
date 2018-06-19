@@ -343,10 +343,13 @@ suite("NAVObject Tests", () => {
 
     test("Filename - Rename PageExtension with WeirdChars", () => {
         let testSettings = Settings.GetConfigSettings(null)
-        testSettings[Settings.FileNamePatternExtensions] = '<BaseName>.PageExt.al'
+        testSettings[Settings.FileNamePatternExtensions] = '<BaseName>_<ObjectName>.PageExt.al'
 
         let navTestObject = NAVTestObjectLibrary.getPageExtensionWithWeirdChars();
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
+
+        assert.notEqual(navObject.objectFileNameFixed.indexOf('µ'),-1); //does still contain µ
+        assert.notEqual(navObject.objectFileNameFixed.indexOf('åäö'),-1); //does still contain åäö
 
         assert.equal(navObject.objectFileNameFixed.indexOf('<'), -1); //does not contain slash
         assert.equal(navObject.objectFileNameFixed.indexOf('>'), -1); //does not contain slash
