@@ -34,6 +34,7 @@ export class NAVObject {
     constructor(navObject: any, workSpaceSettings: Settings, navObjectFileBaseName?: string) {
         this.NAVObjectText = navObject
         this.objectFileName = navObjectFileBaseName
+        console.log(`Loading file "${this.objectFileName}"`);
 
         this._workSpaceSettings = workSpaceSettings;
 
@@ -117,7 +118,7 @@ export class NAVObject {
         this.objectName = '';
         this.extendedObjectName = '';
         this.extendedObjectId = '';
-        var ObjectNamePattern = '"[\\w\\(\\)\\.-_ /&%]*"';
+        var ObjectNamePattern = '"[\\w\\(\\)\\.\\-_ /&%]*"';
         var ObjectNameNoQuotesPattern = '[\\w]*';
 
         if (!ObjectTypeArr) { return null }
