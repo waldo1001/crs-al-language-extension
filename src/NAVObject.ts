@@ -18,23 +18,10 @@ export class NAVObject {
     private _workSpaceSettings: Settings;
     private _objectFileNamePattern: string;
 
-    // Windows chars not allowed in filenames or paths (includes Linux):
-    // < (less than)
-    // > (greater than)
-    // : (colon - sometimes works, but is actually NTFS Alternate Data Streams)
-    // " (double quote)
-    // / (forward slash)
-    // \ (backslash)
-    // | (vertical bar or pipe)
-    // ? (question mark)
-    // * (asterisk)
-    private prohibitedFilenameCharsPattern :string = '<>:"/\\\\|\\?\\*';
-
     constructor(navObject: string, workSpaceSettings: Settings, navObjectFileBaseName: string);
     constructor(navObject: any, workSpaceSettings: Settings, navObjectFileBaseName?: string) {
         this.NAVObjectText = navObject
         this.objectFileName = navObjectFileBaseName
-        console.log(`Loading file "${this.objectFileName}"`);
 
         this._workSpaceSettings = workSpaceSettings;
 
@@ -47,29 +34,23 @@ export class NAVObject {
     get objectNameFixed(): string {
         let objectNameFixed = this.objectName.trim().toString();
         objectNameFixed = this.AddPrefixAndSuffixToObjectNameFixed(this.objectName);
-        return objectNameFixed;
-    }
-    get objectNameFixedForFileName(): string {
-        let objectNameFixed = this.objectNameFixed;
-        return objectNameFixed.replace(new RegExp(`[${this.prohibitedFilenameCharsPattern}]`,'g'), '_');
+
+        return objectNameFixed.replace(/[^ 0-9a-zA-Z._&-]/g, '_');
     }
     get objectNameFixedShort(): string {
         return StringFunctions.removeAllButAlfaNumeric(this.objectNameFixed);
     }
     get extendedObjectNameFixed(): string {
         let extendedObjectName = this.extendedObjectName.trim().toString();
-        return extendedObjectName;
-    }
-    get extendedObjectNameFixedForFileName(): string {
-        let extendedObjectName = this.extendedObjectNameFixed;
-        return extendedObjectName.replace(new RegExp(`[${this.prohibitedFilenameCharsPattern}]`,'g'), '_');
+
+        return extendedObjectName.replace(/[^ 0-9a-zA-Z._&-]/g, '_');
     }
     get extendedObjectNameFixedShort(): string {
         return StringFunctions.removeAllButAlfaNumeric(this.extendedObjectNameFixed);
     }
     get NAVObjectTextFixed(): string {
         let NAVObjectTextFixed = this.NAVObjectText;
-        NAVObjectTextFixed = this.updateObjectNameInObjectText(NAVObjectTextFixed); 
+        NAVObjectTextFixed = this.updateObjectNameInObjectText(NAVObjectTextFixed);
         NAVObjectTextFixed = this.AddPrefixToActions(NAVObjectTextFixed);
         NAVObjectTextFixed = this.AddPrefixToFields(NAVObjectTextFixed);
 
@@ -86,9 +67,9 @@ export class NAVObject {
         objectFileNameFixed = StringFunctions.replaceAll(objectFileNameFixed, '<ObjectTypeShort>', this.objectTypeShort);
         objectFileNameFixed = StringFunctions.replaceAll(objectFileNameFixed, '<ObjectTypeShortUpper>', this.objectTypeShort.toUpperCase());
         objectFileNameFixed = StringFunctions.replaceAll(objectFileNameFixed, '<ObjectId>', this.objectId);
-        objectFileNameFixed = StringFunctions.replaceAll(objectFileNameFixed, '<ObjectName>', this.objectNameFixedForFileName);
+        objectFileNameFixed = StringFunctions.replaceAll(objectFileNameFixed, '<ObjectName>', this.objectNameFixed);
         objectFileNameFixed = StringFunctions.replaceAll(objectFileNameFixed, '<ObjectNameShort>', this.objectNameFixedShort);
-        objectFileNameFixed = StringFunctions.replaceAll(objectFileNameFixed, '<BaseName>', this.extendedObjectNameFixedForFileName);
+        objectFileNameFixed = StringFunctions.replaceAll(objectFileNameFixed, '<BaseName>', this.extendedObjectNameFixed);
         objectFileNameFixed = StringFunctions.replaceAll(objectFileNameFixed, '<BaseNameShort>', this.extendedObjectNameFixedShort);
         objectFileNameFixed = StringFunctions.replaceAll(objectFileNameFixed, '<BaseId>', this.extendedObjectId);
 
@@ -118,8 +99,6 @@ export class NAVObject {
         this.objectName = '';
         this.extendedObjectName = '';
         this.extendedObjectId = '';
-        var ObjectNamePattern = '"[\\w\\(\\)\\.\\-_ /&%]*"';
-        var ObjectNameNoQuotesPattern = '[\\w]*';
 
         if (!ObjectTypeArr) { return null }
 
@@ -133,7 +112,7 @@ export class NAVObject {
                 case 'table':
                 case 'xmlport': {
 
-                    var patternObject = new RegExp(`(\\w+) +([0-9]+) +(${ObjectNamePattern}|${ObjectNameNoQuotesPattern})`);
+                    var patternObject = new RegExp('(\\w+)( +[0-9]+)( +"?[ a-zA-Z0-9._/&-]+"?)');
                     let currObject = this.NAVObjectText.match(patternObject);
 
                     this.objectType = currObject[1];
@@ -146,8 +125,9 @@ export class NAVObject {
                 }
                 case 'pageextension':
                 case 'tableextension': {
-                    var patternObject = new RegExp(`(\\w+) +([0-9]+) +(${ObjectNamePattern}|${ObjectNameNoQuotesPattern}) +extends +(${ObjectNamePattern}|${ObjectNameNoQuotesPattern})\\s*(\\/\\/\\s*)?([0-9]+)?`);
+                    var patternObject = new RegExp('(\\w+)( +[0-9]+)( +"?[ a-zA-Z0-9._&-]+\\/?[ a-zA-Z0-9._&-]+"?) +extends( +"?[ a-zA-Z0-9._&-]+\\/?[ a-zA-Z0-9._&-]+"?) ?(\\/\\/+ *)?([0-9]+)?');
                     let currObject = this.NAVObjectText.match(patternObject);
+
                     this.objectType = currObject[1];
                     this.objectId = currObject[2];
                     this.objectName = currObject[3];
@@ -227,19 +207,13 @@ export class NAVObject {
 
     private updateObjectNameInObjectText(objectText: string): string {
         if (!this.objectName) { return objectText };
-        var escapedObjectName = this.escapeRegExp(this.objectName);
-        var searchPattern = RegExp(escapedObjectName);
+
         if (objectText.indexOf("\"" + this.objectName + "\"") >= 0) {
-            return objectText.replace(searchPattern, this.objectNameFixed);
+            return objectText.replace(this.objectName, this.objectNameFixed);
         } else {
-            return objectText.replace(searchPattern, "\"" + this.objectNameFixed + "\"");
+            return objectText.replace(this.objectName, "\"" + this.objectNameFixed + "\"");
         }
     }
-
-    private escapeRegExp(str) {
-        // Ref. https://stackoverflow.com/questions/3446170/escape-string-for-use-in-javascript-regex
-        return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
-      }
 
     private AddPrefixToActions(objectText: string): string {
         this.objectActions.forEach(action => {
