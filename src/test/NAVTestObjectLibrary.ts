@@ -180,17 +180,17 @@ export function getPageExtensionWithWeirdChars(): NAVTestObject {
     let object = new NAVTestObject;
 
     object.ObjectFileName = 'Pag50102.justAName.al'
-    object.ObjectText = `pageextension 50102 "S<a>l:e"s/p\e|rµ?s*on/Ext" extends "Salespersons/Purchasers" //14
+    object.ObjectText = `pageextension 50102 "S<a>l:es/p\\e|rµ?s*on/Ext" extends "Salespersons/Purchasers" //14
+{
+    layout
     {
-        layout
-        {
-            ////
-        }
-        
-        actions
-        {
-        }
+        ////
     }
+
+    actions
+    {
+    }
+}
     `
     return object;
 }
