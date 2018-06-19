@@ -340,4 +340,23 @@ suite("NAVObject Tests", () => {
         assert.equal(navObject.objectFileNameFixed, testSettings[Settings.ObjectNamePrefix] + testSettings[Settings.ObjectNameSuffix] + '.al')
         assert.notEqual(navObject.objectFileName, navObject.objectFileNameFixed)
     })
+
+    test("Filename - Rename PageExtension with WeirdChars", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+        testSettings[Settings.FileNamePatternExtensions] = '<BaseName>.PageExt.al'
+
+        let navTestObject = NAVTestObjectLibrary.getPageExtensionWithWeirdChars();
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
+
+        assert.equal(navObject.objectFileNameFixed.indexOf('<'), -1); //does not contain slash
+        assert.equal(navObject.objectFileNameFixed.indexOf('>'), -1); //does not contain slash
+        assert.equal(navObject.objectFileNameFixed.indexOf(':'), -1); //does not contain slash
+        assert.equal(navObject.objectFileNameFixed.indexOf('"'), -1); //does not contain slash
+        assert.equal(navObject.objectFileNameFixed.indexOf('/'), -1); //does not contain slash
+        assert.equal(navObject.objectFileNameFixed.indexOf('\\'), -1); //does not contain slash
+        assert.equal(navObject.objectFileNameFixed.indexOf('|'), -1); //does not contain slash
+        assert.equal(navObject.objectFileNameFixed.indexOf('?'), -1); //does not contain slash
+        assert.equal(navObject.objectFileNameFixed.indexOf('*'), -1); //does not contain slash
+
+    })
 });
