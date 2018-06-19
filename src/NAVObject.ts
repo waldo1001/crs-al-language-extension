@@ -4,6 +4,7 @@ import { StringFunctions } from './StringFunctions'
 import { DynamicsNAV } from './DynamicsNAV';
 import * as fs from 'fs';
 import * as path from 'path'
+import { error } from 'util';
 
 export class NAVObject {
     public objectFileName: string;
@@ -118,7 +119,7 @@ export class NAVObject {
         this.objectName = '';
         this.extendedObjectName = '';
         this.extendedObjectId = '';
-        var ObjectNamePattern = '"[\\x20\\x21\\x23-\\x7E\\x80-\\xFE]*"' // All printable ASCII characters except "
+        var ObjectNamePattern = '"[^"]*"' // All characters except "
         var ObjectNameNoQuotesPattern = '[\\w]*';
 
         if (!ObjectTypeArr) { return null }
@@ -135,6 +136,9 @@ export class NAVObject {
 
                     var patternObject = new RegExp(`(\\w+) +([0-9]+) +(${ObjectNamePattern}|${ObjectNameNoQuotesPattern})`);
                     let currObject = this.NAVObjectText.match(patternObject);
+                    if (currObject == null) {
+                        throw new Error(`File '${this.objectFileName}' does not have valid object name. Maybe it got double quotes (") in the object name?`)
+                    }
 
                     this.objectType = currObject[1];
                     this.objectId = currObject[2];
@@ -148,6 +152,9 @@ export class NAVObject {
                 case 'tableextension': {
                     var patternObject = new RegExp(`(\\w+) +([0-9]+) +(${ObjectNamePattern}|${ObjectNameNoQuotesPattern}) +extends +(${ObjectNamePattern}|${ObjectNameNoQuotesPattern})\\s*(\\/\\/\\s*)?([0-9]+)?`);
                     let currObject = this.NAVObjectText.match(patternObject);
+                    if (currObject == null) {
+                       throw new Error(`File '${this.objectFileName}' does not have valid object names. Maybe it got double quotes (") in the object name?`)
+                    }
                     this.objectType = currObject[1];
                     this.objectId = currObject[2];
                     this.objectName = currObject[3];

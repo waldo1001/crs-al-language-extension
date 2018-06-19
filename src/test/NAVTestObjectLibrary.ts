@@ -194,6 +194,26 @@ export function getPageExtensionWithWeirdChars(): NAVTestObject {
     `
     return object;
 }
+
+
+export function getPageExtensionWithQuotesInObjectName(): NAVTestObject {
+    let object = new NAVTestObject;
+
+    object.ObjectFileName = 'Pag50102.justANameWithQuotes.al'
+    object.ObjectText = `pageextension 50102 "S<a>l:es/p\\e"|rµ?s"*oåäön/Ext" extends "Salespersons/Purchasers" //14
+{
+    layout
+    {
+        ////
+    }
+
+    actions
+    {
+    }
+}
+    `
+    return object;
+}
 export function getPageExtensionWithAmpersandInFileName(): NAVTestObject {
     let object = new NAVTestObject;
 
