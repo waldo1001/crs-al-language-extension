@@ -53,15 +53,15 @@ export class WorkspaceFiles {
 
         let fixedname = navObject.objectFileNameFixed
         if (navObject.objectFileName && navObject.objectFileName != '' && fixedname && fixedname != '') {
-            if (path.join(vscode.workspace.getWorkspaceFolder(fileName).uri.fsPath, navObject.objectType, navObject.objectFileName) == fileName.fsPath) {
+
+            let objectFolder = path.join(vscode.workspace.getWorkspaceFolder(fileName).uri.fsPath, this.getDestinationFolder(navObject, mySettings));
+            let objectTypeFolder = path.join(objectFolder, this.getObjectTypeFolder(navObject));
+            let destinationFileName = path.join(objectTypeFolder, fixedname);
+
+            if (destinationFileName == fileName.fsPath) {
                 console.log('paths are the same.');
                 return fileName.fsPath;
             } else {
-                let destionationFileName = path.join(vscode.workspace.getWorkspaceFolder(fileName).uri.fsPath, this.getDestinationFolder(navObject, mySettings));
-
-                let objectFolder = path.join(vscode.workspace.getWorkspaceFolder(fileName).uri.fsPath, this.getDestinationFolder(navObject, mySettings));
-                let objectTypeFolder = path.join(objectFolder, this.getObjectTypeFolder(navObject));
-                let destinationFileName = path.join(objectTypeFolder, fixedname);
 
                 (!fs.existsSync(objectFolder)) ? fs.mkdirSync(objectFolder) : '';
                 (!fs.existsSync(objectTypeFolder)) ? fs.mkdirSync(objectTypeFolder) : '';
