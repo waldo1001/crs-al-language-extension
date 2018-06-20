@@ -214,6 +214,24 @@ export function getPageExtensionWithQuotesInObjectName(): NAVTestObject {
     `
     return object;
 }
+export function getPageWithQuotesInObjectName(): NAVTestObject {
+    let object = new NAVTestObject;
+
+    object.ObjectFileName = 'Pag50103.justANameWithQuotes.al'
+    object.ObjectText = `page 50103 "S<a>l:es/p\\e"|rµ?s"*oåäön/"
+{
+    layout
+    {
+        ////
+    }
+
+    actions
+    {
+    }
+}
+    `
+    return object;
+}
 export function getPageExtensionWithAmpersandInFileName(): NAVTestObject {
     let object = new NAVTestObject;
 

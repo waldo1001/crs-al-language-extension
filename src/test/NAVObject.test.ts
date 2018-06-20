@@ -380,4 +380,20 @@ suite("NAVObject Tests", () => {
 
     })
 
+
+    test("Filename - Rename Page with double qoutes in object name", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+        testSettings[Settings.FileNamePatternExtensions] = '<BaseName>_<ObjectName>.al'
+
+        let navTestObject = NAVTestObjectLibrary.getPageWithQuotesInObjectName();
+        try {
+            let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);    
+            throw new Error('Object Name parsing accepted double quotes in name.');
+        } catch (error) {
+            assert.equal(error.message,`File '${navTestObject.ObjectFileName}' does not have valid object name, it has too many double quotes (")`)
+            
+        }
+        
+
+    })
 });

@@ -133,10 +133,13 @@ export class NAVObject {
                 case 'table':
                 case 'xmlport': {
 
-                    var patternObject = new RegExp(`(\\w+) +([0-9]+) +(${ObjectNamePattern}|${ObjectNameNoQuotesPattern})`);
+                    var patternObject = new RegExp(`(\\w+) +([0-9]+) +(${ObjectNamePattern}|${ObjectNameNoQuotesPattern})([^"\n]*"[^"\n]*)?`);
                     let currObject = this.NAVObjectText.match(patternObject);
                     if (currObject == null) {
                         throw new Error(`File '${this.objectFileName}' does not have valid object name. Maybe it got double quotes (") in the object name?`)
+                    }
+                    if (currObject[4] != null) {
+                        throw new Error(`File '${this.objectFileName}' does not have valid object name, it has too many double quotes (")`)
                     }
 
                     this.objectType = currObject[1];
