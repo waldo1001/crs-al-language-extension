@@ -4,7 +4,6 @@ import { StringFunctions } from './StringFunctions'
 import { DynamicsNAV } from './DynamicsNAV';
 import * as fs from 'fs';
 import * as path from 'path'
-import { error } from 'util';
 
 export class NAVObject {
     public objectFileName: string;
