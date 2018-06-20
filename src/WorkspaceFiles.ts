@@ -81,12 +81,22 @@ export class WorkspaceFiles {
         vscode.workspace.saveAll();
 
         this.getAlFilesFromCurrentWorkspace().then(Files => {
+            let totalFileCount = 0;
+            let renamedFileCount = 0;
+            try {
+                Files.forEach(file => {
+                    console.log(file.fsPath);
+                    totalFileCount++;
+                    let newFilename = this.RenameFile(file);
+                    if (file.fsPath != newFilename) {
+                        renamedFileCount++;
+                    }
 
-            Files.forEach(file => {
-                console.log(file.fsPath);
-
-                this.RenameFile(file);
-            })
+                })
+                vscode.window.showInformationMessage(`${renamedFileCount} files out of ${totalFileCount} was renamed`)
+            } catch (error) {
+                vscode.window.showErrorMessage(error.message);
+            }
         });
     }
 
@@ -94,12 +104,24 @@ export class WorkspaceFiles {
 
     static ReorganizeAllFiles() {
         vscode.workspace.saveAll();
-
         this.getAlFilesFromCurrentWorkspace().then(Files => {
-            Files.forEach(file => {
-                this.ReorganizeFile(file);
-            })
-        });
+            try {
+                let totalFileCount = 0;
+                let renamedFileCount = 0;
+                Files.forEach(file => {
+                    totalFileCount++;
+                    let newFilename = this.ReorganizeFile(file);
+                    if (file.fsPath != newFilename) {
+                        renamedFileCount++;
+                    }
+
+                })
+                vscode.window.showInformationMessage(`${renamedFileCount} files out of ${totalFileCount} was reorganized`)
+            } catch (error) {
+                vscode.window.showErrorMessage(error.message);
+            }
+        }
+        );
     }
 
 
