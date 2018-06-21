@@ -28,13 +28,12 @@ export class NAVObject {
     // | (vertical bar or pipe)
     // ? (question mark)
     // * (asterisk)
-    private prohibitedFilenameCharsPattern :string = '<>:"/\\\\|\\?\\*';
+    private prohibitedFilenameCharsPattern: string = '<>:"/\\\\|\\?\\*';
 
     constructor(navObject: string, workSpaceSettings: Settings, navObjectFileBaseName: string);
     constructor(navObject: any, workSpaceSettings: Settings, navObjectFileBaseName?: string) {
         this.NAVObjectText = navObject
         this.objectFileName = navObjectFileBaseName
-        console.log(`Loading file "${this.objectFileName}"`);
 
         this._workSpaceSettings = workSpaceSettings;
 
@@ -51,7 +50,7 @@ export class NAVObject {
     }
     get objectNameFixedForFileName(): string {
         let objectNameFixed = this.objectNameFixed;
-        return objectNameFixed.replace(new RegExp(`[${this.prohibitedFilenameCharsPattern}]`,'g'), '_');
+        return objectNameFixed.replace(new RegExp(`[${this.prohibitedFilenameCharsPattern}]`, 'g'), '_');
     }
     get objectNameFixedShort(): string {
         return StringFunctions.removeAllButAlfaNumeric(this.objectNameFixed);
@@ -62,14 +61,14 @@ export class NAVObject {
     }
     get extendedObjectNameFixedForFileName(): string {
         let extendedObjectName = this.extendedObjectNameFixed;
-        return extendedObjectName.replace(new RegExp(`[${this.prohibitedFilenameCharsPattern}]`,'g'), '_');
+        return extendedObjectName.replace(new RegExp(`[${this.prohibitedFilenameCharsPattern}]`, 'g'), '_');
     }
     get extendedObjectNameFixedShort(): string {
         return StringFunctions.removeAllButAlfaNumeric(this.extendedObjectNameFixed);
     }
     get NAVObjectTextFixed(): string {
         let NAVObjectTextFixed = this.NAVObjectText;
-        NAVObjectTextFixed = this.updateObjectNameInObjectText(NAVObjectTextFixed); 
+        NAVObjectTextFixed = this.updateObjectNameInObjectText(NAVObjectTextFixed);
         NAVObjectTextFixed = this.AddPrefixToActions(NAVObjectTextFixed);
         NAVObjectTextFixed = this.AddPrefixToFields(NAVObjectTextFixed);
 
@@ -155,7 +154,7 @@ export class NAVObject {
                     var patternObject = new RegExp(`(\\w+) +([0-9]+) +(${ObjectNamePattern}|${ObjectNameNoQuotesPattern}) +extends +(${ObjectNamePattern}|${ObjectNameNoQuotesPattern})\\s*(\\/\\/\\s*)?([0-9]+)?`);
                     let currObject = this.NAVObjectText.match(patternObject);
                     if (currObject == null) {
-                       throw new Error(`File '${this.objectFileName}' does not have valid object names. Maybe it got double quotes (") in the object name?`)
+                        throw new Error(`File '${this.objectFileName}' does not have valid object names. Maybe it got double quotes (") in the object name?`)
                     }
                     this.objectType = currObject[1];
                     this.objectId = currObject[2];
@@ -248,7 +247,7 @@ export class NAVObject {
     private escapeRegExp(str) {
         // Ref. https://stackoverflow.com/questions/3446170/escape-string-for-use-in-javascript-regex
         return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
-      }
+    }
 
     private AddPrefixToActions(objectText: string): string {
         this.objectActions.forEach(action => {
