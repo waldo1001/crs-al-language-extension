@@ -1,5 +1,10 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension.
+
+## [0.2.16] - 2018-06-21
+- This [pullrequest](https://github.com/CloudReadySoftware/crs-al-language-extension/pull/53) that was created by [Johannes Wikman](https://github.com/jwikman) solved a problem with weird characters in the objects names.
+- The pullrequest above also also solved this [GitHub Issue](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/54), by [Mohana Yadav](https://github.com/pmohanakrishna).
+
 ## [0.2.15] - 2018-06-13
 - Solved [Github Issue](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/48) and in the meanwhile, I have been refactoring and extending the "Rename FileName" functionality a bit, resulting in these tags (copy from ReadMe.md):
     - \<Prefix\> - just the prefix separately
