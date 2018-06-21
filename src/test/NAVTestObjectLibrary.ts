@@ -427,3 +427,16 @@ export function getObjectNoPrefixCorrectNameWithActions(): NAVTestObject {
     }`
     return object;
 }
+export function getObjectWithBracketsInName(): NAVTestObject {
+    let object = new NAVTestObject;
+
+    object.ObjectFileName = 'Cod50177.SomeNameWithBrackets.al'
+    object.ObjectText = `codeunit 50117 "Some Name (with brackets)"
+{
+    
+}
+    `
+    return object;
+}
+
+
