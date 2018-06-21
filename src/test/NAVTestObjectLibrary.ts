@@ -180,7 +180,45 @@ export function getPageExtensionWithWeirdChars(): NAVTestObject {
     let object = new NAVTestObject;
 
     object.ObjectFileName = 'Pag50102.justAName.al'
-    object.ObjectText = `pageextension 50102 "S<a>l:es/p\\e|rµ?s*on/Ext" extends "Salespersons/Purchasers" //14
+    object.ObjectText = `pageextension 50102 "S<a>l:es/p\\e|rµ?s*oåäön/Ext" extends "Salespersons/Purchasers" //14
+{
+    layout
+    {
+        ////
+    }
+
+    actions
+    {
+    }
+}
+    `
+    return object;
+}
+
+
+export function getPageExtensionWithQuotesInObjectName(): NAVTestObject {
+    let object = new NAVTestObject;
+
+    object.ObjectFileName = 'Pag50102.justANameWithQuotes.al'
+    object.ObjectText = `pageextension 50102 "S<a>l:es/p\\e"|rµ?s"*oåäön/Ext" extends "Salespersons/Purchasers" //14
+{
+    layout
+    {
+        ////
+    }
+
+    actions
+    {
+    }
+}
+    `
+    return object;
+}
+export function getPageWithQuotesInObjectName(): NAVTestObject {
+    let object = new NAVTestObject;
+
+    object.ObjectFileName = 'Pag50103.justANameWithQuotes.al'
+    object.ObjectText = `page 50103 "S<a>l:es/p\\e"|rµ?s"*oåäön/"
 {
     layout
     {
