@@ -184,6 +184,12 @@
                     "description": "When using the Reorganize/Rename-commands, this setting will make sure the object name (and filename) will have a Suffix.  Tip: use as a workspace-setting",
                     "scope": "resource"
                 },
+                "CRS.RemovePrefixFromFilename": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "When using the Reorganize/Rename-commands, this setting will remove any prefix from the filename (but keep it in object name).  Tip: use as a workspace-setting",
+                    "scope": "resource"
+                },
                 "CRS.DisableDefaultAlSnippets": {
                     "type": "boolean",
                     "default": false,

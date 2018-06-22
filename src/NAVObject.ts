@@ -48,12 +48,13 @@ export class NAVObject {
         objectNameFixed = this.AddPrefixAndSuffixToObjectNameFixed(this.objectName);
         return objectNameFixed;
     }
+
     get objectNameFixedForFileName(): string {
-        let objectNameFixed = this.objectNameFixed;
+        let objectNameFixed = this.RemovePrefixFromObjectNameFixed(this.objectNameFixed);
         return objectNameFixed.replace(new RegExp(`[${this.prohibitedFilenameCharsPattern}]`, 'g'), '_');
     }
     get objectNameFixedShort(): string {
-        return StringFunctions.removeAllButAlfaNumeric(this.objectNameFixed);
+        return StringFunctions.removeAllButAlfaNumeric(this.RemovePrefixFromObjectNameFixed(this.objectNameFixed));
     }
     get extendedObjectNameFixed(): string {
         let extendedObjectName = this.extendedObjectName.trim().toString();
@@ -229,6 +230,20 @@ export class NAVObject {
         }
         if (suffix && !objectName.endsWith(suffix)) {
             objectName = objectName + suffix;
+        }
+        return objectName
+    }
+    private RemovePrefixFromObjectNameFixed(objectName: string): string {
+        if (!this._workSpaceSettings[Settings.RemovePrefixFromFilename]) {
+            return objectName;
+        }
+        
+        let prefix: string = this._workSpaceSettings[Settings.ObjectNamePrefix];
+
+        if (!prefix) { return objectName }
+
+        if (objectName.startsWith(prefix)) {
+            objectName = objectName.substr(prefix.length);
         }
         return objectName
     }

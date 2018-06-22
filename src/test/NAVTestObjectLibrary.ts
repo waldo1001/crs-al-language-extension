@@ -439,4 +439,22 @@ export function getObjectWithBracketsInName(): NAVTestObject {
     return object;
 }
 
+export function getPageExtensionWithPrefix(): NAVTestObject {
+    let object = new NAVTestObject;
+
+    object.ObjectFileName = 'Pag50102.CRSSalesperson.al'
+    object.ObjectText = `pageextension 50102 "CRS Salespersons/Purchasers" extends "Salespersons/Purchasers" //14
+{
+    layout
+    {
+        ////
+    }
+
+    actions
+    {
+    }
+}
+    `
+    return object;
+}
 

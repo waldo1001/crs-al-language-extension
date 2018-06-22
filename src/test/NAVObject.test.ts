@@ -407,4 +407,21 @@ suite("NAVObject Tests", () => {
 
     })
 
+    test("Filename - Rename PageExtension with Prefix in object name, and remove prefix in filename", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+
+        testSettings[Settings.FileNamePatternExtensions] = '<ObjectNameShort>__<ObjectName>.al';
+        testSettings[Settings.ObjectNamePrefix] = 'CRS ';
+        testSettings[Settings.RemovePrefixFromFilename] = true;
+
+        let navTestObject = NAVTestObjectLibrary.getPageExtensionWithPrefix();
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
+        assert.equal(navObject.objectFileNameFixed, 'SalespersonsPurchasers__Salespersons_Purchasers.al')
+        assert.equal(navObject.objectNameFixed,'CRS Salespersons/Purchasers')
+
+
+
+    })
+
+
 });
