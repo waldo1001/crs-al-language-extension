@@ -50,11 +50,11 @@ export class NAVObject {
     }
 
     get objectNameFixedForFileName(): string {
-        let objectNameFixed = this.RemovePrefixFromObjectNameFixed(this.objectNameFixed);
+        let objectNameFixed = this.RemovePrefixAndSuffixFromObjectNameFixed(this.objectNameFixed);
         return objectNameFixed.replace(new RegExp(`[${this.prohibitedFilenameCharsPattern}]`, 'g'), '_');
     }
     get objectNameFixedShort(): string {
-        return StringFunctions.removeAllButAlfaNumeric(this.RemovePrefixFromObjectNameFixed(this.objectNameFixed));
+        return StringFunctions.removeAllButAlfaNumeric(this.RemovePrefixAndSuffixFromObjectNameFixed(this.objectNameFixed));
     }
     get extendedObjectNameFixed(): string {
         let extendedObjectName = this.extendedObjectName.trim().toString();
@@ -233,18 +233,23 @@ export class NAVObject {
         }
         return objectName
     }
-    private RemovePrefixFromObjectNameFixed(objectName: string): string {
-        if (!this._workSpaceSettings[Settings.RemovePrefixFromFilename]) {
-            return objectName;
-        }
-        
+    private RemovePrefixAndSuffixFromObjectNameFixed(objectName: string): string {
+        let removePrefix = this._workSpaceSettings[Settings.RemovePrefixFromFilename];
+        let removeSuffix = this._workSpaceSettings[Settings.RemoveSuffixFromFilename];
+        if (!removePrefix && !removeSuffix) { return objectName }
+
         let prefix: string = this._workSpaceSettings[Settings.ObjectNamePrefix];
+        let suffix: string = this._workSpaceSettings[Settings.ObjectNameSuffix];
+        if (!prefix && !suffix) { return objectName }
 
-        if (!prefix) { return objectName }
-
-        if (objectName.startsWith(prefix)) {
+        if (prefix && removePrefix && objectName.startsWith(prefix)) {
             objectName = objectName.substr(prefix.length);
         }
+
+        if (suffix && removeSuffix && objectName.endsWith(suffix)) {
+            objectName = objectName.substr(0, objectName.length - suffix.length);
+        }
+
         return objectName
     }
 

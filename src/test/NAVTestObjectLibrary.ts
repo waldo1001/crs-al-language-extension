@@ -458,3 +458,40 @@ export function getPageExtensionWithPrefix(): NAVTestObject {
     return object;
 }
 
+export function getPageExtensionWithSuffix(): NAVTestObject {
+    let object = new NAVTestObject;
+
+    object.ObjectFileName = 'Pag50102.CRSSalesperson.al'
+    object.ObjectText = `pageextension 50102 "Salespersons/Purchasers CRS" extends "Salespersons/Purchasers" //14
+{
+    layout
+    {
+        ////
+    }
+
+    actions
+    {
+    }
+}
+    `
+    return object;
+}
+
+export function getPageExtensionWithPrefixAndSuffix(): NAVTestObject {
+    let object = new NAVTestObject;
+
+    object.ObjectFileName = 'Pag50102.CRSSalesperson.al'
+    object.ObjectText = `pageextension 50102 "PCRS Salespersons/Purchasers SCRS" extends "Salespersons/Purchasers" //14
+{
+    layout
+    {
+        ////
+    }
+
+    actions
+    {
+    }
+}
+    `
+    return object;
+}

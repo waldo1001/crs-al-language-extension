@@ -27,7 +27,7 @@ export class Settings {
     static readonly ObjectNamePrefix = 'ObjectNamePrefix';
     static readonly ObjectNameSuffix = 'ObjectNameSuffix';
     static readonly RemovePrefixFromFilename = 'RemovePrefixFromFilename';
-
+    static readonly RemoveSuffixFromFilename = 'RemoveSuffixFromFilename';
     static readonly DisableDefaultAlSnippets = 'DisableDefaultAlSnippets';
     static readonly DisableCRSSnippets = 'DisableCRSSnippets';
 
@@ -69,6 +69,7 @@ export class Settings {
         this.SettingCollection[this.ObjectNamePrefix] = this.getSetting(this.ObjectNamePrefix);
         this.SettingCollection[this.ObjectNameSuffix] = this.getSetting(this.ObjectNameSuffix);
         this.SettingCollection[this.RemovePrefixFromFilename] = this.getSetting(this.RemovePrefixFromFilename);
+        this.SettingCollection[this.RemoveSuffixFromFilename] = this.getSetting(this.RemoveSuffixFromFilename);
         this.SettingCollection[this.OnSaveAlFileAction] = this.getSetting(this.OnSaveAlFileAction);
         this.SettingCollection[this.AlSubFolderName] = this.getSetting(this.AlSubFolderName);
         this.SettingCollection[this.DisableDefaultAlSnippets] = this.getSetting(this.DisableDefaultAlSnippets);
