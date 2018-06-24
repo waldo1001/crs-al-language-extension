@@ -407,4 +407,58 @@ suite("NAVObject Tests", () => {
 
     })
 
+    test("Filename - Rename PageExtension with Prefix in object name, and remove prefix in filename", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+
+        testSettings[Settings.FileNamePatternExtensions] = '<ObjectNameShort>__<ObjectName>.al';
+        testSettings[Settings.ObjectNamePrefix] = 'CRS ';
+        testSettings[Settings.RemovePrefixFromFilename] = true;
+
+        let navTestObject = NAVTestObjectLibrary.getPageExtensionWithPrefix();
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
+        assert.equal(navObject.objectFileNameFixed, 'SalespersonsPurchasers__Salespersons_Purchasers.al')
+        assert.equal(navObject.objectNameFixed,'CRS Salespersons/Purchasers')
+
+
+
+    })
+
+    
+    test("Filename - Rename PageExtension with Suffix in object name, and remove suffix in filename", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+
+        testSettings[Settings.FileNamePatternExtensions] = '<ObjectNameShort>__<ObjectName>.al';
+        testSettings[Settings.ObjectNameSuffix] = ' CRS';
+        testSettings[Settings.RemoveSuffixFromFilename] = true;
+
+        let navTestObject = NAVTestObjectLibrary.getPageExtensionWithSuffix();
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
+        assert.equal(navObject.objectFileNameFixed, 'SalespersonsPurchasers__Salespersons_Purchasers.al')
+        assert.equal(navObject.objectNameFixed,'Salespersons/Purchasers CRS')
+
+
+
+    })
+
+    
+    test("Filename - Rename PageExtension with both Prefix and Suffix in object name, and remove Prefix and Suffix in filename", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+
+        testSettings[Settings.FileNamePatternExtensions] = '<ObjectNameShort>__<ObjectName>.al';
+        testSettings[Settings.ObjectNamePrefix] = 'PCRS ';
+        testSettings[Settings.RemovePrefixFromFilename] = true;
+
+        testSettings[Settings.ObjectNameSuffix] = ' SCRS';
+        testSettings[Settings.RemoveSuffixFromFilename] = true;
+
+        let navTestObject = NAVTestObjectLibrary.getPageExtensionWithPrefixAndSuffix();
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
+        assert.equal(navObject.objectFileNameFixed, 'SalespersonsPurchasers__Salespersons_Purchasers.al')
+        assert.equal(navObject.objectNameFixed,'PCRS Salespersons/Purchasers SCRS')
+
+
+
+    })
+
+
 });
