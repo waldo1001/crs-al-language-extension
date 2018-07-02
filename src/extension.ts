@@ -26,6 +26,9 @@ export function activate(context: vscode.ExtensionContext) { //is called when yo
         vscode.commands.registerCommand('crs.ReorganizeCurrentFile', CRSFunctions.ReorganizeCurrentFile),
         vscode.commands.registerCommand('crs.ReorganizeAllFiles', CRSFunctions.ReorganizeAllFiles),
 
+        vscode.commands.registerCommand('crs.SearchMicrosoftDocs', CRSFunctions.SearchMicrosoftDocs),
+        vscode.commands.registerCommand('crs.SearchGoogle', CRSFunctions.SearchGoogle),
+
         vscode.commands.registerCommand('crs.SetupSnippets', CRSFunctions.SetupSnippets),
     ];
 

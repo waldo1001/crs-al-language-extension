@@ -28,6 +28,11 @@ The commands can rename your file, and move the file to the folder, correspondin
 * CRS: Reorganize - Current File
 * CRS: CRS: Reorganize - All Files
 Note - "Reorganize" will move a test-codeunit to the test-folder
+### Search on Google / Microsoft Docs
+Two commands have been added to search for any given search string on Google or Microsoft Docs.  The search string "Business Central" will automatically be added.
+* CRS: Search Microsoft Docs
+* CRS: Search Google
+The selected word in the editor will be added by default as a search string.
 ### Snippets
 al Snippets:
 * tpagewizard (CRS: 3 steps)

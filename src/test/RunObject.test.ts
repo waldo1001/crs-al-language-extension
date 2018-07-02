@@ -3,7 +3,6 @@ import { suite, test } from 'mocha';
 
 import { Settings } from '../Settings';
 import { DynamicsNAV } from '../DynamicsNAV';
-import { settings } from 'cluster';
 
 suite("RunObject Tests", () => {
 
