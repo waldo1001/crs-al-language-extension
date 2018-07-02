@@ -4,22 +4,23 @@
         "body": [
             "table ${1:id} ${2:MyTable}",
             "{",
-            "\tDataClassification = ToBeClassified;",
+            "\tDataClassification = ${3|ToBeClassified,CustomerContent,EndUserIdentifiableInformation,AccountData,EndUserPseudonymousIdentifiers,OrganizationIdentifiableInformation,SystemMetadata|};",
             "\t",
             "\tfields",
             "\t{",
-            "\t\tfield(1;\"${3:MyField}\"; ${4:Integer})",
+            "\t\tfield(1;${4:MyField}; ${5:Integer})",
             "\t\t{",
-            "\t\t\t$5",
-            "\t\t\tDataClassification = ToBeClassified;",
+            "\t\t\tCaption = '${4:MyField}';",
+            "\t\t\tDataClassification = ${6|ToBeClassified,CustomerContent,EndUserIdentifiableInformation,AccountData,EndUserPseudonymousIdentifiers,OrganizationIdentifiableInformation,SystemMetadata|};",
             "\t\t}",
+            "\t\t$7",
             "\t}",
             "\t",
             "\tkeys",
             "\t{",
-            "\t\tkey(${6:PK}; \"${3:MyField}\")",
+            "\t\tkey(${8:PK}; ${4:MyField})",
             "\t\t{",
-            "\t\t\tClustered = ${7|true,false|};",
+            "\t\t\tClustered = ${9|true,false|};",
             "\t\t}",
             "\t}",
             "\t",
@@ -33,9 +34,9 @@
             "field(${1:id}; \"${2:MyField}\"; ${3|Blob,BigInteger,Boolean,Code[50],Date,DateFormula,Decimal,Duration,Integer,Guid,Media,MediaSet,Option,RecordID,TableFilter,Text[50],Time|})",
             "{",
             "\tCaption = '${2:MyField}';",
-            "\t$0",
-            "\tDataClassification = ToBeClassified;",
-            "}"
+            "\tDataClassification = ${4|ToBeClassified,CustomerContent,EndUserIdentifiableInformation,AccountData,EndUserPseudonymousIdentifiers,OrganizationIdentifiableInformation,SystemMetadata|};",
+            "}",
+            "$0"
         ],
         "description": "Snippet: Table Field"
     },
@@ -45,9 +46,10 @@
             "field(${1:id}; \"${2:MyField}\"; Option)",
             "{",
             "\tCaption = '${2:MyField}';",
+            "\tDataClassification = ${3|ToBeClassified,CustomerContent,EndUserIdentifiableInformation,AccountData,EndUserPseudonymousIdentifiers,OrganizationIdentifiableInformation,SystemMetadata|};",
             "\tOptionMembers = ${0:Default};",
-            "\tDataClassification = ToBeClassified;",
-            "}"
+            "}",
+            "$0"
         ],
         "description": "Snippet: Table Field Option"
     },
@@ -57,9 +59,9 @@
             "field(${1:id}; \"${2:MyField}\"; Code[${3:Length}])",
             "{",
             "\tCaption = '${2:MyField}';",
-            "\t$0",
-            "\tDataClassification = ToBeClassified;",
-            "}"
+            "\tDataClassification = ${4|ToBeClassified,CustomerContent,EndUserIdentifiableInformation,AccountData,EndUserPseudonymousIdentifiers,OrganizationIdentifiableInformation,SystemMetadata|};",
+            "}",
+            "$0"
         ],
         "description": "Snippet: Table Field Code"
     },
@@ -69,9 +71,9 @@
             "field(${1:id}; \"${2:MyField}\"; Text[${3:Length}])",
             "{",
             "\tCaption = '${2:MyField}';",
-            "\t$0",
-            "\tDataClassification = ToBeClassified;",
-            "}"
+            "\tDataClassification = ${4|ToBeClassified,CustomerContent,EndUserIdentifiableInformation,AccountData,EndUserPseudonymousIdentifiers,OrganizationIdentifiableInformation,SystemMetadata|};",
+            "}",
+            "$0"
         ],
         "description": "Snippet: Table Field Text"
     },
