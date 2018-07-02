@@ -123,8 +123,12 @@ tableextension 50100 "Just Some Table Extension" extends Customer //18
     - \<BaseName\> - weird chars are removed - does NOT include prefix nor suffix
     - \<BaseNameShort\> - does NOT include prefix nor suffix
     - \<BaseId\> - same remarks as above!
-* `CRS.ObjectNamePrefix`: When using the Reorganize/Rename-commands, this setting will make sure the object name (and filename) will have a Prefix.  Tip: use as a workspace-setting.
-* `CRS.ObjectNameSuffix`: When using the Reorganize/Rename-commands, this setting will make sure the object name (and filename) will have a Suffix.  Tip: use as a workspace-setting.
+* `CRS.ObjectNamePrefix`: When using the Reorganize/Rename-commands, this setting will make sure the object name (and filename) will have a Prefix.  
+    - Tip 1: use as a workspace-setting.
+    - Tip 2: use an ending-space if you want the prefix to be separated with a space.
+* `CRS.ObjectNameSuffix`: When using the Reorganize/Rename-commands, this setting will make sure the object name (and filename) will have a Suffix.  
+    - Tip 1: use as a workspace-setting.
+    - Tip 2: use an start-space if you want the suffix to be separated with a space.
 * `CRS.RemovePrefixFromFilename`: When using the Reorganize/Rename-commands, this setting will remove any prefix from the filename (but keep it in object name).  Tip: use as a workspace-setting
 * `CRS.RemoveSuffixFromFilename`: When using the Reorganize/Rename-commands, this setting will remove any suffix from the filename (but keep it in object name).  Tip: use as a workspace-setting
 * `CRS.AlSubFolderName`: Variable subfoldername.  "None" means you want to disable the command to move files to a subfolder.  
