@@ -41,7 +41,8 @@ al Snippets:
     * Quite the same as the default snippet, but with the comment to include an TargetPageId to be able to properly rename the file (which might need that ID).
 * tvar (CRS)
     * Some easier way to greate a variable
-
+* tfieldgroup(s) (CRS)
+    * To work with fieldgroups (Like "Brick" & "DropDown")
 Apply some design patterns:
 * tcodeunit (CRS: Method - No UI)
     * creates a codeunit, conform on the "Event Based Software Architecture"
@@ -59,7 +60,6 @@ Apply some design patterns:
 Snippets for building metadata (used in an xml-file):
 * twebservice.. - 2 snippets
 * tpermission.. - 3 snippets
-
 
 This extension includes an (what I believe) improved version of all the al snippets that come default with the AL Language Extension from Microsoft.  It's possible to disable the default al snippets in the settings, and enable the snippets from this extension.  It's also possible to just enable both, or disable the CRS ones.  For this, check the "Extension Settings" section below.
 
