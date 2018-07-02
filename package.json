@@ -175,13 +175,13 @@
                 "CRS.ObjectNamePrefix": {
                     "type": "string",
                     "default": null,
-                    "description": "When using the Reorganize/Rename-commands, this setting will make sure the object name (and filename) will have a Prefix.  Tip: use as a workspace-setting",
+                    "description": "When using the Reorganize/Rename-commands, this setting will make sure the object name (and filename) will have a Prefix.  Tips: use as a workspace-setting. Use an ending-space if you want the prefix to be separated with a space.",
                     "scope": "resource"
                 },
                 "CRS.ObjectNameSuffix": {
                     "type": "string",
                     "default": null,
-                    "description": "When using the Reorganize/Rename-commands, this setting will make sure the object name (and filename) will have a Suffix.  Tip: use as a workspace-setting",
+                    "description": "When using the Reorganize/Rename-commands, this setting will make sure the object name (and filename) will have a Suffix.  Tips: use as a workspace-setting. Use an ending-space if you want the prefix to be separated with a space.",
                     "scope": "resource"
                 },
                 "CRS.RemovePrefixFromFilename": {
