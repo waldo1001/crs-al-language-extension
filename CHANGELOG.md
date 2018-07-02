@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension.
 
+## [0.2.17] - 2018-06-24
+Two new settings by [pullrequest](https://github.com/CloudReadySoftware/crs-al-language-extension/pull/56) from [Johannes Wikman](https://github.com/jwikman):
+* `CRS.RemovePrefixFromFilename`: When using the Reorganize/Rename-commands, this setting will remove any prefix from the filename (but keep it in object name).  Tip: use as a workspace-setting
+* `CRS.RemoveSuffixFromFilename`: When using the Reorganize/Rename-commands, this setting will remove any suffix from the filename (but keep it in object name).  Tip: use as a workspace-setting
+
 ## [0.2.16] - 2018-06-21
 - This [pullrequest](https://github.com/CloudReadySoftware/crs-al-language-extension/pull/53) that was created by [Johannes Wikman](https://github.com/jwikman) solved a problem with weird characters in the objects names.
 - The pullrequest above also also solved this [GitHub Issue](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/54), by [Mohana Yadav](https://github.com/pmohanakrishna).

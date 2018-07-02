@@ -407,7 +407,7 @@ suite("NAVObject Tests", () => {
 
     })
 
-    test("Filename - Rename PageExtension with Prefix in object name, and remove prefix in filename", () => {
+    test("Filename - Rename PageExtension with Prefix in object name, and remove prefix in filename (not data-agnostic)", () => {
         let testSettings = Settings.GetConfigSettings(null)
 
         testSettings[Settings.FileNamePatternExtensions] = '<ObjectNameShort>__<ObjectName>.al';
@@ -417,14 +417,24 @@ suite("NAVObject Tests", () => {
         let navTestObject = NAVTestObjectLibrary.getPageExtensionWithPrefix();
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
         assert.equal(navObject.objectFileNameFixed, 'SalespersonsPurchasers__Salespersons_Purchasers.al')
-        assert.equal(navObject.objectNameFixed,'CRS Salespersons/Purchasers')
-
-
-
+        assert.equal(navObject.objectNameFixed, 'CRS Salespersons/Purchasers')
     })
 
-    
-    test("Filename - Rename PageExtension with Suffix in object name, and remove suffix in filename", () => {
+    test("Filename - Rename PageExtension with Prefix in object name, and remove prefix in filename (data-agnostic)", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+
+        testSettings[Settings.FileNamePatternExtensions] = '<ObjectNameShort>__<ObjectName>.al';
+        testSettings[Settings.ObjectNamePrefix] = 'CRS ';
+        testSettings[Settings.RemovePrefixFromFilename] = true;
+
+        let navTestObject = NAVTestObjectLibrary.getPageExtensionWithPrefix();
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
+        assert.equal(navObject.objectFileNameFixed.startsWith(testSettings[Settings.ObjectNamePrefix]), false);
+        assert.equal(navObject.objectNameFixed.startsWith(testSettings[Settings.ObjectNamePrefix]), true);
+    })
+
+
+    test("Filename - Rename PageExtension with Suffix in object name, and remove suffix in filename (not data-agnostic)", () => {
         let testSettings = Settings.GetConfigSettings(null)
 
         testSettings[Settings.FileNamePatternExtensions] = '<ObjectNameShort>__<ObjectName>.al';
@@ -434,14 +444,24 @@ suite("NAVObject Tests", () => {
         let navTestObject = NAVTestObjectLibrary.getPageExtensionWithSuffix();
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
         assert.equal(navObject.objectFileNameFixed, 'SalespersonsPurchasers__Salespersons_Purchasers.al')
-        assert.equal(navObject.objectNameFixed,'Salespersons/Purchasers CRS')
-
-
-
+        assert.equal(navObject.objectNameFixed, 'Salespersons/Purchasers CRS')
     })
 
-    
-    test("Filename - Rename PageExtension with both Prefix and Suffix in object name, and remove Prefix and Suffix in filename", () => {
+    test("Filename - Rename PageExtension with Suffix in object name, and remove suffix in filename (data-agnostic)", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+
+        testSettings[Settings.FileNamePatternExtensions] = '<ObjectNameShort>__<ObjectName>.al';
+        testSettings[Settings.ObjectNameSuffix] = ' CRS';
+        testSettings[Settings.RemoveSuffixFromFilename] = true;
+
+        let navTestObject = NAVTestObjectLibrary.getPageExtensionWithSuffix();
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
+        assert.equal(navObject.objectFileNameFixed.endsWith(testSettings[Settings.ObjectNameSuffix]), false)
+        assert.equal(navObject.objectNameFixed.endsWith(testSettings[Settings.ObjectNameSuffix]), true)
+    })
+
+
+    test("Filename - Rename PageExtension with both Prefix and Suffix in object name, and remove Prefix and Suffix in filename (not data-agnostic)", () => {
         let testSettings = Settings.GetConfigSettings(null)
 
         testSettings[Settings.FileNamePatternExtensions] = '<ObjectNameShort>__<ObjectName>.al';
@@ -454,10 +474,25 @@ suite("NAVObject Tests", () => {
         let navTestObject = NAVTestObjectLibrary.getPageExtensionWithPrefixAndSuffix();
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
         assert.equal(navObject.objectFileNameFixed, 'SalespersonsPurchasers__Salespersons_Purchasers.al')
-        assert.equal(navObject.objectNameFixed,'PCRS Salespersons/Purchasers SCRS')
+        assert.equal(navObject.objectNameFixed, 'PCRS Salespersons/Purchasers SCRS')
+    })
 
+    test("Filename - Rename PageExtension with both Prefix and Suffix in object name, and remove Prefix and Suffix in filename (data-agnostic)", () => {
+        let testSettings = Settings.GetConfigSettings(null)
 
+        testSettings[Settings.FileNamePatternExtensions] = '<ObjectNameShort>__<ObjectName>.al';
+        testSettings[Settings.ObjectNamePrefix] = 'PCRS ';
+        testSettings[Settings.RemovePrefixFromFilename] = true;
 
+        testSettings[Settings.ObjectNameSuffix] = ' SCRS';
+        testSettings[Settings.RemoveSuffixFromFilename] = true;
+
+        let navTestObject = NAVTestObjectLibrary.getPageExtensionWithPrefixAndSuffix();
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
+        assert.equal(navObject.objectFileNameFixed.startsWith(testSettings[Settings.ObjectNamePrefix]), false)
+        assert.equal(navObject.objectFileNameFixed.endsWith(testSettings[Settings.ObjectNameSuffix]), false)
+        assert.equal(navObject.objectNameFixed.startsWith(testSettings[Settings.ObjectNamePrefix]), true)
+        assert.equal(navObject.objectNameFixed.endsWith(testSettings[Settings.ObjectNameSuffix]), true)
     })
 
 
