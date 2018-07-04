@@ -140,7 +140,7 @@ export function ReorganizeAllFiles() {
 export function SearchMicrosoftDocs() {
     console.log('Running: SearchMicrosoftDocs');
 
-    let currentword = getWord(vscode.window.activeTextEditor);
+    let currentword = vscode.window.activeTextEditor ? getWord(vscode.window.activeTextEditor) : "";
     vscode.window.showInputBox({ value: currentword, prompt: "Search String:" }).then(SearchString =>
         MSDocs.OpenSearchUrl(SearchString));
 
@@ -150,7 +150,7 @@ export function SearchMicrosoftDocs() {
 export function SearchGoogle() {
     console.log('Running: SearchGoogle');
 
-    let currentword = getWord(vscode.window.activeTextEditor);
+    let currentword = vscode.window.activeTextEditor ? getWord(vscode.window.activeTextEditor) : "";
     vscode.window.showInputBox({ value: currentword, prompt: "Search String:" }).then(SearchString =>
         Google.OpenSearchUrl(SearchString));
 

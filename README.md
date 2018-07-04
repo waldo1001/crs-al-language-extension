@@ -32,6 +32,7 @@ Note - "Reorganize" will move a test-codeunit to the test-folder
 Two commands have been added to search for any given search string on Google or Microsoft Docs.  The search string "Business Central" will automatically be added.
 * CRS: Search Microsoft Docs
 * CRS: Search Google
+
 The selected word in the editor will be added by default as a search string.
 ### Snippets
 al Snippets:
