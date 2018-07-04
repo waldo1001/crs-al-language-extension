@@ -2,6 +2,9 @@
 All notable changes to the "crs-al-language-extension" extension.
 
 ## [0.2.19] - 2018-07-03
+- Fixed prefix and suffix behaviour:
+    * Now also suffixes on fields and actions
+    * No suffix/prefix anymore on action of new pages
 - Fixed setting "CRS.AlSubFolderName" - changed "Src" to "src", as that is Microsoft's recommendation ([pullrequest](https://github.com/CloudReadySoftware/crs-al-language-extension/pull/63) from [spookymattress](https://github.com/spookymattress) :-)).
 - Added functionality: **Search on Google / Microsoft Docs** - these two commands have been added to search for any given search string on Google or Microsoft Docs: 
     * CRS: Search Microsoft Docs
