@@ -5,7 +5,7 @@ import { MSDocs } from '../MSDocs'
 
 suite("MSDocs Tests", () => {
 
-    test("CRS.PublicWebBaseUrl - RunObject in WebClient - NoSetting", () => {
+    test("GetSearchUrl", () => {
         let SearchString = 'Option Types';
         let Result = MSDocs.GetSearchUrl(SearchString);
 

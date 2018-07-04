@@ -5,7 +5,7 @@ import { Google } from '../Google'
 
 suite("Google Tests", () => {
 
-    test("CRS.PublicWebBaseUrl - RunObject in WebClient - NoSetting", () => {
+    test("GetSearchUrl", () => {
         let SearchString = 'Option Types';
         let Result = Google.GetSearchUrl(SearchString);
 

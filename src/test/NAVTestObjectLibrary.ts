@@ -111,7 +111,7 @@ export function getAlFileWithoutCode(): NAVTestObject {
     return object;
 }
 
-export function getPageExtensionWrongFileName(): NAVTestObject {
+export function getPageExtensionWrongFileNameWithActions(): NAVTestObject {
     let object = new NAVTestObject;
 
     object.ObjectFileName = 'SomeFile.al'
@@ -158,6 +158,55 @@ export function getPageExtensionWrongFileName(): NAVTestObject {
     `
     return object;
 }
+
+export function getPageExtensionWithWaldoPrefixWithActions(): NAVTestObject {
+    let object = new NAVTestObject;
+
+    object.ObjectFileName = 'SomeFile.al'
+    object.ObjectText = `pageextension 50100 "waldoSome Page Ext" extends "Customer List" //22
+{
+    layout
+    {
+        addfirst(Content)
+        {
+            field("Telex No."; "Telex No.")
+            {
+                ApplicationArea = All;
+            }
+            field("Telex No."; "Telex No.")
+            {
+                ApplicationArea = All;
+            }
+            field("Telex No."; "Telex No.")
+            {
+                ApplicationArea = All;
+            }
+        }
+    }
+
+    actions
+    {
+        addfirst("&Customer")
+        {
+            action(waldoSomeAction)
+            {
+                RunObject = page "_Empl. Absences by Cat. Matrix";
+            }
+            action(waldoSomeAction2)
+            {
+                RunObject = page "_Empl. Absences by Cat. Matrix";
+            }
+            action("waldoSome Action 3")
+            {
+                RunObject = page "_Empl. Absences by Cat. Matrix";
+            }
+        }
+    }
+}
+    `
+    return object;
+}
+
 export function getPageExtensionWithSlashInFileName(): NAVTestObject {
     let object = new NAVTestObject;
 
@@ -299,7 +348,7 @@ export function getTableExtensionWrongFileName(): NAVTestObject {
     return object;
 }
 
-export function getObjectWithPrefixWrongName(): NAVTestObject {
+export function getPageWithWaldoPrefixWrongName(): NAVTestObject {
     let object = new NAVTestObject;
 
     object.ObjectFileName = 'SomeName.al'
@@ -364,7 +413,7 @@ export function getObjectWithPrefixWrongName(): NAVTestObject {
     return object;
 }
 
-export function getObjectNoPrefixCorrectNameWithActions(): NAVTestObject {
+export function getPageNoPrefixCorrectNameWithActions(): NAVTestObject {
     let object = new NAVTestObject;
 
     object.ObjectFileName = 'Pag50100.justAName.al'
@@ -427,6 +476,7 @@ export function getObjectNoPrefixCorrectNameWithActions(): NAVTestObject {
     }`
     return object;
 }
+
 export function getObjectWithBracketsInName(): NAVTestObject {
     let object = new NAVTestObject;
 
