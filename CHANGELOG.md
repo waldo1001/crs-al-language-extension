@@ -2,11 +2,12 @@
 All notable changes to the "crs-al-language-extension" extension.
 
 ## [0.2.19] - 2018-07-03
-Added functionality: **Search on Google / Microsoft Docs** - these two commands have been added to search for any given search string on Google or Microsoft Docs: 
-* CRS: Search Microsoft Docs
-* CRS: Search Google
+- Fixed setting "CRS.AlSubFolderName" - changed "Src" to "src", as that is Microsoft's recommendation ([pullrequest](https://github.com/CloudReadySoftware/crs-al-language-extension/pull/63) from [spookymattress](https://github.com/spookymattress) :-)).
+- Added functionality: **Search on Google / Microsoft Docs** - these two commands have been added to search for any given search string on Google or Microsoft Docs: 
+    * CRS: Search Microsoft Docs
+    * CRS: Search Google
 
-The selected word in the editor will be added by default as a search string and the search string "Business Central" will automatically be added.
+    The selected word in the editor will be added by default as a search string and the search string "Business Central" will automatically be added.
 
 ## [0.2.18] - 2018-07-02
 - No bugfixes (none reported)
