@@ -158,14 +158,14 @@
                 },
                 "CRS.AlSubFolderName": {
                     "enum": [
-                        "Src",
+                        "src",
                         "Source",
                         "Objects",
                         "Al",
                         "None"
                     ],
                     "type": "string",
-                    "default": "Src",
+                    "default": "src",
                     "description": "Sets the subfoldername of where the objects will be placed.  'None' prevents the 'Reorganize' to do anything (if you want to apply your own folder structure).",
                     "scope": "resource"
                 },
