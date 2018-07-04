@@ -20,7 +20,6 @@ The idea is to be able to run an object straight from the development environmen
 * CRS: Run Current Object (Web Client) (CTRL+SHIFT+r) - runs the object from the open file (the extension needs to be published first).
 * CRS: Run CAL Test Tool in Web Client
 Depending on which client, you will be asked for object type and object id.  The functionality looks at the settings (launch.json and configuration settings).
-![Run Objects](images/RunObject.gif)
 ### Reorganize Files
 The commands can rename your file, and move the file to the folder, corresponding to the object type. There are four functions in the Command Palette:
 * CRS: Rename - Current File
@@ -34,6 +33,7 @@ Two commands have been added to search for any given search string on Google or 
 * CRS: Search Google
 
 The selected word in the editor will be added by default as a search string.
+![Search on Google / Microsoft Docs](images/SearchGoogleDocs.gif)
 ### Snippets
 al Snippets:
 * tpagewizard (CRS: 3 steps)
