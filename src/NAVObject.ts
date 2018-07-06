@@ -44,8 +44,11 @@ export class NAVObject {
         return DynamicsNAV.getBestPracticeAbbreviatedObjectType(this.objectType);
     }
     get objectNameFixed(): string {
-        let objectNameFixed = this.objectName.trim().toString();
-        objectNameFixed = this.AddPrefixAndSuffixToObjectNameFixed(this.objectName);
+        let objectNameFixed = this.ApplyExtensionObjectNamePattern(this.objectName.trim().toString());
+        if (objectNameFixed == this.objectName.trim().toString()) {
+            objectNameFixed = this.AddPrefixAndSuffixToObjectNameFixed(objectNameFixed);
+        }
+
         return objectNameFixed;
     }
 
@@ -80,17 +83,7 @@ export class NAVObject {
         if (!this._objectFileNamePattern) { return this.objectFileName }
         let objectFileNameFixed = this._objectFileNamePattern
 
-        objectFileNameFixed = StringFunctions.replaceAll(objectFileNameFixed, '<Prefix>', this._workSpaceSettings[Settings.ObjectNamePrefix]);
-        objectFileNameFixed = StringFunctions.replaceAll(objectFileNameFixed, '<Suffix>', this._workSpaceSettings[Settings.ObjectNameSuffix]);
-        objectFileNameFixed = StringFunctions.replaceAll(objectFileNameFixed, '<ObjectType>', this.objectType)
-        objectFileNameFixed = StringFunctions.replaceAll(objectFileNameFixed, '<ObjectTypeShort>', this.objectTypeShort);
-        objectFileNameFixed = StringFunctions.replaceAll(objectFileNameFixed, '<ObjectTypeShortUpper>', this.objectTypeShort.toUpperCase());
-        objectFileNameFixed = StringFunctions.replaceAll(objectFileNameFixed, '<ObjectId>', this.objectId);
-        objectFileNameFixed = StringFunctions.replaceAll(objectFileNameFixed, '<ObjectName>', this.objectNameFixedForFileName);
-        objectFileNameFixed = StringFunctions.replaceAll(objectFileNameFixed, '<ObjectNameShort>', this.objectNameFixedShort);
-        objectFileNameFixed = StringFunctions.replaceAll(objectFileNameFixed, '<BaseName>', this.extendedObjectNameFixedForFileName);
-        objectFileNameFixed = StringFunctions.replaceAll(objectFileNameFixed, '<BaseNameShort>', this.extendedObjectNameFixedShort);
-        objectFileNameFixed = StringFunctions.replaceAll(objectFileNameFixed, '<BaseId>', this.extendedObjectId);
+        objectFileNameFixed = this.ApplyPatternToFileName(objectFileNameFixed);
 
         return objectFileNameFixed
     }
@@ -219,7 +212,46 @@ export class NAVObject {
             this.tableFields.push(new NAVTableField(result[1], this.objectType, this._workSpaceSettings[Settings.ObjectNamePrefix], this._workSpaceSettings[Settings.ObjectNameSuffix]))
         }
     }
+    private ApplyExtensionObjectNamePattern(objectName: string): string {
+        if (!this._workSpaceSettings[Settings.ExtensionObjectNamePattern] || !this.objectType.toLocaleLowerCase().endsWith('extension')) { return objectName }
 
+        let result = this._workSpaceSettings[Settings.ExtensionObjectNamePattern];
+        result = this.ApplyPatternToObjectName(result);
+
+        return result
+    }
+    private ApplyPatternToObjectName(pattern: string): string {
+        let result = pattern;
+
+        result = StringFunctions.replaceAll(result, '<Prefix>', this._workSpaceSettings[Settings.ObjectNamePrefix]);
+        result = StringFunctions.replaceAll(result, '<Suffix>', this._workSpaceSettings[Settings.ObjectNameSuffix]);
+        result = StringFunctions.replaceAll(result, '<ObjectType>', this.objectType)
+        result = StringFunctions.replaceAll(result, '<ObjectTypeShort>', this.objectTypeShort);
+        result = StringFunctions.replaceAll(result, '<ObjectTypeShortUpper>', this.objectTypeShort.toUpperCase());
+        result = StringFunctions.replaceAll(result, '<ObjectId>', this.objectId);
+        result = StringFunctions.replaceAll(result, '<BaseName>', this.extendedObjectNameFixedForFileName);
+        result = StringFunctions.replaceAll(result, '<BaseNameShort>', this.extendedObjectNameFixedShort);
+        result = StringFunctions.replaceAll(result, '<BaseId>', this.extendedObjectId);
+
+        return result;
+    }
+    private ApplyPatternToFileName(pattern: string): string {
+        let result = pattern;
+
+        result = StringFunctions.replaceAll(result, '<Prefix>', this._workSpaceSettings[Settings.ObjectNamePrefix]);
+        result = StringFunctions.replaceAll(result, '<Suffix>', this._workSpaceSettings[Settings.ObjectNameSuffix]);
+        result = StringFunctions.replaceAll(result, '<ObjectType>', this.objectType)
+        result = StringFunctions.replaceAll(result, '<ObjectTypeShort>', this.objectTypeShort);
+        result = StringFunctions.replaceAll(result, '<ObjectTypeShortUpper>', this.objectTypeShort.toUpperCase());
+        result = StringFunctions.replaceAll(result, '<ObjectId>', this.objectId);
+        result = StringFunctions.replaceAll(result, '<ObjectName>', this.objectNameFixedForFileName);
+        result = StringFunctions.replaceAll(result, '<ObjectNameShort>', this.objectNameFixedShort);
+        result = StringFunctions.replaceAll(result, '<BaseName>', this.extendedObjectNameFixedForFileName);
+        result = StringFunctions.replaceAll(result, '<BaseNameShort>', this.extendedObjectNameFixedShort);
+        result = StringFunctions.replaceAll(result, '<BaseId>', this.extendedObjectId);
+
+        return result;
+    }
     private AddPrefixAndSuffixToObjectNameFixed(objectName: string): string {
         let prefix = this._workSpaceSettings[Settings.ObjectNamePrefix];
         let suffix = this._workSpaceSettings[Settings.ObjectNameSuffix];

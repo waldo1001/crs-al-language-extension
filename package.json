@@ -2,7 +2,7 @@
     "name": "crs-al-language-extension",
     "displayName": "CRS AL Language Extension",
     "description": "Make working with the (Dynamics NAV / 365) AL Language easier and more efficient.",
-    "version": "0.2.19",
+    "version": "0.2.20",
     "publisher": "waldo",
     "icon": "images/icon.png",
     "author": {
@@ -136,6 +136,12 @@
                     "type": "string",
                     "default": "",
                     "description": "Public Web Url that overrules the setting in launch.json (empty setting will just take the settings in launch.json)",
+                    "scope": "resource"
+                },
+                "CRS.ExtensionObjectNamePattern": {
+                    "Type": "string",
+                    "default": "",
+                    "description": "The pattern of the objectname for extension objects (PageExtension or TableExtension).  These vars can be used: <Prefix>,<Suffix>,<ObjectType>,<ObjectTypeShort>,<ObjectTypeShortUpper>,<ObjectId>,<BaseName>,<BaseNameShort>,<BaseId>",
                     "scope": "resource"
                 },
                 "CRS.FileNamePattern": {

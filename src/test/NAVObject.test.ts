@@ -14,6 +14,7 @@ import * as myExtension from '../extension';
 import * as NAVTestObjectLibrary from './NAVTestObjectLibrary'
 import { ConfigurationTarget } from 'vscode';
 import { Settings } from '../Settings';
+import { settings } from 'cluster';
 
 
 // Defines a Mocha test suite to group tests of similar kind together
@@ -565,5 +566,63 @@ suite("NAVObject Tests", () => {
         assert.equal(navObject.objectNameFixed.endsWith(testSettings[Settings.ObjectNameSuffix]), true)
     })
 
+    test("PageExtension - Automatic Naming with settings", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+        testSettings[Settings.ObjectNamePrefix] = 'waldo';
+        testSettings[Settings.ObjectNameSuffix] = 'waldo';
+        testSettings[Settings.ExtensionObjectNamePattern] = '<Prefix><Suffix><ObjectType><ObjectTypeShort><ObjectTypeShortUpper><ObjectId><BaseName><BaseNameShort><BaseId>';
 
+        let navTestObject = NAVTestObjectLibrary.getPageExtensionWithAmpersandInFileName()
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
+
+        assert.equal(navObject.objectNameFixed,
+            testSettings[Settings.ObjectNamePrefix]
+            + testSettings[Settings.ObjectNameSuffix]
+            + navObject.objectType
+            + navObject.objectTypeShort
+            + navObject.objectTypeShort.toUpperCase()
+            + navObject.objectId
+            + navObject.extendedObjectName
+            + navObject.extendedObjectNameFixedShort
+            + navObject.extendedObjectId)
+    })
+
+    test("PageExtension - Automatic Naming without settings", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+
+        let navTestObject = NAVTestObjectLibrary.getPageExtensionWithAmpersandInFileName()
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
+
+        assert.equal(navObject.objectNameFixed, navObject.objectName)
+    })
+
+    test("TableExtension - Automatic Naming with settings", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+        testSettings[Settings.ObjectNamePrefix] = 'waldo';
+        testSettings[Settings.ObjectNameSuffix] = 'waldo';
+        testSettings[Settings.ExtensionObjectNamePattern] = '<Prefix><Suffix><ObjectType><ObjectTypeShort><ObjectTypeShortUpper><ObjectId><BaseName><BaseNameShort><BaseId>';
+
+        let navTestObject = NAVTestObjectLibrary.getTableExtensionWrongFileName()
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
+
+        assert.equal(navObject.objectNameFixed,
+            testSettings[Settings.ObjectNamePrefix]
+            + testSettings[Settings.ObjectNameSuffix]
+            + navObject.objectType
+            + navObject.objectTypeShort
+            + navObject.objectTypeShort.toUpperCase()
+            + navObject.objectId
+            + navObject.extendedObjectName
+            + navObject.extendedObjectNameFixedShort
+            + navObject.extendedObjectId)
+    })
+
+    test("TableExtension - Automatic Naming without settings", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+
+        let navTestObject = NAVTestObjectLibrary.getTableExtensionWrongFileName()
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
+
+        assert.equal(navObject.objectNameFixed, navObject.objectName)
+    })
 });

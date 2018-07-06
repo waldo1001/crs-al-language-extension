@@ -19,7 +19,7 @@ export class Settings {
     static readonly AppName = 'name';
     static readonly NstFolder = 'nstfolder';
     static readonly ManagementModule = 'managementmodule';
-
+    static readonly ExtensionObjectNamePattern = 'ExtensionObjectNamePattern';
     static readonly FileNamePattern = 'FileNamePattern';
     static readonly FileNamePatternExtensions = 'FileNamePatternExtensions';
     static readonly FileNamePatternPageCustomizations = 'FileNamePatternPageCustomizations';
@@ -63,6 +63,7 @@ export class Settings {
         this.SettingCollection[this.WinServer] = this.getSetting(this.WinServer);
         this.SettingCollection[this.WinServerInstance] = this.getSetting(this.WinServerInstance);
         this.SettingCollection[this.WinServerInstancePort] = this.getSetting(this.WinServerInstancePort);
+        this.SettingCollection[this.ExtensionObjectNamePattern] = this.getSetting(this.ExtensionObjectNamePattern);
         this.SettingCollection[this.FileNamePattern] = this.getSetting(this.FileNamePattern);
         this.SettingCollection[this.FileNamePatternExtensions] = this.getSetting(this.FileNamePatternExtensions);
         this.SettingCollection[this.FileNamePatternPageCustomizations] = this.getSetting(this.FileNamePatternPageCustomizations);
