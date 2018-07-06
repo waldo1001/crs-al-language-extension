@@ -1,21 +1,21 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension.
 
-## [0.2.21] - 2018-07-06
+## [0.2.22] - 2018-07-06
 Fixed unreadable documentation - basically nothing changed
 
 ## [0.2.20] - 2018-07-06
 - New Feature: automatic object name for Extension Objects with a new setting:
     * `CRS.ExtensionObjectNamePattern`: The pattern for the object name. If set (it's not set by default), it will perform an automatic object name for extension objects
-        - \<Prefix\>
-        - \<Suffix\>
-        - \<ObjectType\>
-        - \<ObjectTypeShort\> - a short notation of the object type.
-        - \<ObjectTypeShortUpper\> - Same as "ObjectTypeShort" but uppercased
-        - \<ObjectId\>
-        - \<BaseName\> - weird chars are removed - does NOT include prefix nor suffix
-        - \<BaseNameShort\> - does NOT include prefix nor suffix
-        - \<BaseId\> - If you want this to work, you need to put the Id in comment after the base name (see below)
+        - `<Prefix>`
+        - `<Suffix>`
+        - `<ObjectType>`
+        - `<ObjectTypeShort>` - a short notation of the object type.
+        - `<ObjectTypeShortUpper>` - Same as "ObjectTypeShort" but uppercased
+        - `<ObjectId>`
+        - `<BaseName>` - weird chars are removed - does NOT include prefix nor suffix
+        - `<BaseNameShort>` - does NOT include prefix nor suffix
+        - `<BaseId>` - If you want this to work, you need to put the Id in comment after the base name (see below)
 
 ## [0.2.19] - 2018-07-03
 - Fixed prefix and suffix behaviour:
@@ -44,17 +44,17 @@ Two new settings by [pullrequest](https://github.com/CloudReadySoftware/crs-al-l
 
 ## [0.2.15] - 2018-06-13
 - Solved [Github Issue](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/48) and in the meanwhile, I have been refactoring and extending the "Rename FileName" functionality a bit, resulting in these tags (copy from ReadMe.md):
-    - \<Prefix\> - just the prefix separately
-    - \<Suffix\> - just the suffix separately
-    - \<ObjectType\>
-    - \<ObjectTypeShort\> - a short notation of the object type.
-    - \<ObjectTypeShortUpper\> - Same as "ObjectTypeShort" but uppercased
-    - \<ObjectId\>
-    - \<ObjectName\> - weird chars are removed - includes prefix and suffix
-    - \<ObjectNameShort\>    
-    - \<BaseName\> - weird chars are removed - does NOT include prefix nor suffix
-    - \<BaseNameShort\> - does NOT include prefix nor suffix
-    - \<BaseId\> - If you want this to work, you need to put the Id in comment after the base name
+    - `<Prefix>` - just the prefix separately
+    - `<Suffix>` - just the suffix separately
+    - `<ObjectType>`
+    - `<ObjectTypeShort>` - a short notation of the object type.
+    - `<ObjectTypeShortUpper>` - Same as "ObjectTypeShort" but uppercased
+    - `<ObjectId>`
+    - `<ObjectName>` - weird chars are removed - includes prefix and suffix
+    - `<ObjectNameShort>`    
+    - `<BaseName>` - weird chars are removed - does NOT include prefix nor suffix
+    - `<BaseNameShort>` - does NOT include prefix nor suffix
+    - `<BaseId>` - If you want this to work, you need to put the Id in comment after the base name
 
 - Solved [Github Issue](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/47) - renaming with prefix messed up the format of the fields
 - Solved [Github Issue](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/44) - ability to override the launch.json with a PublicWebBaseUrl

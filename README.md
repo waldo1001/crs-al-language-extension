@@ -87,36 +87,36 @@ This extension contributes the following settings:
 * `CRS.WinServerInstancePort`: Portnumber of the serverinstance where the windows client is connecting to
 * `CRS.PublicWebBaseUrl`: Override Launch.json settings with this setting if necessary to run objects from VSCode
 * `CRS.ExtensionObjectNamePattern`: The pattern for the object name. If set (it's not set by default), it will perform an automatic object name for extension objects
-    - \<Prefix\>
-    - \<Suffix\>
-    - \<ObjectType\>
-    - \<ObjectTypeShort\> - a short notation of the object type.
-    - \<ObjectTypeShortUpper\> - Same as "ObjectTypeShort" but uppercased
-    - \<ObjectId\>
-    - \<BaseName\> - weird chars are removed - does NOT include prefix nor suffix
-    - \<BaseNameShort\> - does NOT include prefix nor suffix
-    - \<BaseId\> - If you want this to work, you need to put the Id in comment after the base name (see below)
+    - `<Prefix>`
+    - `<Suffix>`
+    - `<ObjectType>`
+    - `<ObjectTypeShort>` - a short notation of the object type.
+    - `<ObjectTypeShortUpper>` - Same as "ObjectTypeShort" but uppercased
+    - `<ObjectId>`
+    - `<BaseName>` - weird chars are removed - does NOT include prefix nor suffix
+    - `<BaseNameShort>` - does NOT include prefix nor suffix
+    - `<BaseId>` - If you want this to work, you need to put the Id in comment after the base name (see below)
 * `CRS.FileNamePattern`: The pattern of the filename for non-extension objects..  These vars can be used: 
-    - \<Prefix\> - just the prefix separately
-    - \<Suffix\> - just the suffix separately
-    - \<ObjectType\>
-    - \<ObjectTypeShort\> - a short notation of the object type.
-    - \<ObjectTypeShortUpper\> - Same as "ObjectTypeShort" but uppercased
-    - \<ObjectId\>
-    - \<ObjectName\> - weird chars are removed - includes prefix and suffix
-    - \<ObjectNameShort\>
+    - `<Prefix>` - just the prefix separately
+    - `<Suffix>` - just the suffix separately
+    - `<ObjectType>`
+    - `<ObjectTypeShort>` - a short notation of the object type.
+    - `<ObjectTypeShortUpper>` - Same as "ObjectTypeShort" but uppercased
+    - `<ObjectId>`
+    - `<ObjectName>` - weird chars are removed - includes prefix and suffix
+    - `<ObjectNameShort>`
 * `CRS.FileNamePatternExtensions`: The pattern of the filename for extension objects.  These vars can be used: 
-    - \<Prefix\> - just the prefix separately
-    - \<Suffix\> - just the suffix separately
-    - \<ObjectType\>
-    - \<ObjectTypeShort\> - a short notation of the object type.
-    - \<ObjectTypeShortUpper\> - Same as "ObjectTypeShort" but uppercased
-    - \<ObjectId\>
-    - \<ObjectName\> - weird chars are removed - includes prefix and suffix
-    - \<ObjectNameShort\>    
-    - \<BaseName\> - weird chars are removed - does NOT include prefix nor suffix
-    - \<BaseNameShort\> - does NOT include prefix nor suffix
-    - \<BaseId\> - If you want this to work, you need to put the Id in comment after the base name, like this example: 
+    - `<Prefix>` - just the prefix separately
+    - `<Suffix>` - just the suffix separately
+    - `<ObjectType>`
+    - `<ObjectTypeShort>` - a short notation of the object type.
+    - `<ObjectTypeShortUpper>` - Same as "ObjectTypeShort" but uppercased
+    - `<ObjectId>`
+    - `<ObjectName>` - weird chars are removed - includes prefix and suffix
+    - `<ObjectNameShort>`    
+    - `<BaseName>` - weird chars are removed - does NOT include prefix nor suffix
+    - `<BaseNameShort>` - does NOT include prefix nor suffix
+    - `<BaseId>` - If you want this to work, you need to put the Id in comment after the base name, like this example: 
 ```al
 tableextension 50100 "Just Some Table Extension" extends Customer //18
 {
@@ -131,16 +131,16 @@ tableextension 50100 "Just Some Table Extension" extends Customer //18
 }
 ```
 * `CRS.FileNamePatternPageCustomizations`: The pattern of the filename for page customizations.  These vars can be used:
-    - \<Prefix\> - just the prefix separately
-    - \<Suffix\> - just the suffix separately
-    - \<ObjectType\>
-    - \<ObjectTypeShort\> - a short notation of the object type.
-    - \<ObjectTypeShortUpper\> - Same as "ObjectTypeShort" but uppercased
-    - \<ObjectName\> - weird chars are removed - includes prefix and suffix
-    - \<ObjectNameShort\> - includes prefix and suffix
-    - \<BaseName\> - weird chars are removed - does NOT include prefix nor suffix
-    - \<BaseNameShort\> - does NOT include prefix nor suffix
-    - \<BaseId\> - same remarks as above!
+    - `<Prefix>` - just the prefix separately
+    - `<Suffix>` - just the suffix separately
+    - `<ObjectType>`
+    - `<ObjectTypeShort>` - a short notation of the object type.
+    - `<ObjectTypeShortUpper>` - Same as "ObjectTypeShort" but uppercased
+    - `<ObjectName>` - weird chars are removed - includes prefix and suffix
+    - `<ObjectNameShort>` - includes prefix and suffix
+    - `<BaseName>` - weird chars are removed - does NOT include prefix nor suffix
+    - `<BaseNameShort>` - does NOT include prefix nor suffix
+    - `<BaseId>` - same remarks as above!
 * `CRS.ObjectNamePrefix`: When using the Reorganize/Rename-commands, this setting will make sure the object name (and filename) will have a Prefix.  
     - Tip 1: use as a workspace-setting.
     - Tip 2: use an ending-space if you want the prefix to be separated with a space.
