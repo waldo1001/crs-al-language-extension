@@ -33,7 +33,9 @@ Two commands have been added to search for any given search string on Google or 
 * CRS: Search Google
 
 The selected word in the editor will be added by default as a search string.
+
 ![Search on Google / Microsoft Docs](images/SearchGoogleDocs.gif)
+
 ### Snippets
 al Snippets:
 * tpagewizard (CRS: 3 steps)
@@ -85,15 +87,15 @@ This extension contributes the following settings:
 * `CRS.WinServerInstancePort`: Portnumber of the serverinstance where the windows client is connecting to
 * `CRS.PublicWebBaseUrl`: Override Launch.json settings with this setting if necessary to run objects from VSCode
 * `CRS.ExtensionObjectNamePattern`: The pattern for the object name. If set (it's not set by default), it will perform an automatic object name for extension objects
-    - <Prefix>
-    - <Suffix>
-    - <ObjectType>
-    - <ObjectTypeShort> - a short notation of the object type.
-    - <ObjectTypeShortUpper> - Same as "ObjectTypeShort" but uppercased
-    - <ObjectId>
-    - <BaseName> - weird chars are removed - does NOT include prefix nor suffix
-    - <BaseNameShort> - does NOT include prefix nor suffix
-    - <BaseId> - If you want this to work, you need to put the Id in comment after the base name (see below)
+    - \<Prefix\>
+    - \<Suffix\>
+    - \<ObjectType\>
+    - \<ObjectTypeShort\> - a short notation of the object type.
+    - \<ObjectTypeShortUpper\> - Same as "ObjectTypeShort" but uppercased
+    - \<ObjectId\>
+    - \<BaseName\> - weird chars are removed - does NOT include prefix nor suffix
+    - \<BaseNameShort\> - does NOT include prefix nor suffix
+    - \<BaseId\> - If you want this to work, you need to put the Id in comment after the base name (see below)
 * `CRS.FileNamePattern`: The pattern of the filename for non-extension objects..  These vars can be used: 
     - \<Prefix\> - just the prefix separately
     - \<Suffix\> - just the suffix separately

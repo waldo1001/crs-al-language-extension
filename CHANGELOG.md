@@ -1,17 +1,21 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension.
+
+## [0.2.21] - 2018-07-06
+Fixed unreadable documentation - basically nothing changed
+
 ## [0.2.20] - 2018-07-06
 - New Feature: automatic object name for Extension Objects with a new setting:
     * `CRS.ExtensionObjectNamePattern`: The pattern for the object name. If set (it's not set by default), it will perform an automatic object name for extension objects
-        - <Prefix>
-        - <Suffix>
-        - <ObjectType>
-        - <ObjectTypeShort> - a short notation of the object type.
-        - <ObjectTypeShortUpper> - Same as "ObjectTypeShort" but uppercased
-        - <ObjectId>
-        - <BaseName> - weird chars are removed - does NOT include prefix nor suffix
-        - <BaseNameShort> - does NOT include prefix nor suffix
-        - <BaseId> - If you want this to work, you need to put the Id in comment after the base name (see below)
+        - \<Prefix\>
+        - \<Suffix\>
+        - \<ObjectType\>
+        - \<ObjectTypeShort\> - a short notation of the object type.
+        - \<ObjectTypeShortUpper\> - Same as "ObjectTypeShort" but uppercased
+        - \<ObjectId\>
+        - \<BaseName\> - weird chars are removed - does NOT include prefix nor suffix
+        - \<BaseNameShort\> - does NOT include prefix nor suffix
+        - \<BaseId\> - If you want this to work, you need to put the Id in comment after the base name (see below)
 
 ## [0.2.19] - 2018-07-03
 - Fixed prefix and suffix behaviour:
