@@ -26,7 +26,7 @@ export class WorkspaceFiles {
 
         this.SaveAutoFixesToFile(fileName, navObject);
 
-        if (navObject.objectFileName != navObject.objectFileNameFixed) {
+        if (navObject.objectFileName.toLowerCase() != navObject.objectFileNameFixed.toLowerCase()) {
             let newFilePath = path.join(path.dirname(fileName.fsPath), navObject.objectFileNameFixed);
             fs.renameSync(fileName.fsPath, newFilePath);
             console.log('renamed', fileName.fsPath, '-->', newFilePath);
@@ -58,7 +58,7 @@ export class WorkspaceFiles {
             let objectTypeFolder = path.join(objectFolder, this.getObjectTypeFolder(navObject));
             let destinationFileName = path.join(objectTypeFolder, fixedname);
 
-            if (destinationFileName == fileName.fsPath) {
+            if (destinationFileName.toLocaleLowerCase() == fileName.fsPath.toLocaleLowerCase()) {
                 console.log('paths are the same.');
                 return fileName.fsPath;
             } else {
