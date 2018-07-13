@@ -17,7 +17,8 @@ export class SnippetFunctions {
         let mySettings = Settings.GetConfigSettings(null);
         let setDisabled = mySettings[Settings.DisableDefaultAlSnippets];
 
-        this.SetupSnippets('Microsoft.al', setDisabled);
+        this.SetupSnippets('microsoft.al', setDisabled);
+        this.SetupSnippets('ms-dynamics-smb.al', setDisabled);
     }
 
     static SetupSnippets(extension: string, setDisabled: boolean) {
