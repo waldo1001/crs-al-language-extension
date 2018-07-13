@@ -1,5 +1,9 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension.
+## [0.2.24] - 2018-07-13
+- Fixed - [ttrigger within field](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/66)
+- Fixed - [Default AL Snippets won't disable](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/65)
+- Fixed - [issue with Reorganize files (case sensitivity)](https://github.com/CloudReadySoftware/crs-al-language-extension/commit/9adaa8988eec3dd4cde317f5e5e9e117568ee570)
 
 ## [0.2.22] - 2018-07-06
 Fixed unreadable documentation - basically nothing changed
@@ -8,7 +12,7 @@ Fixed unreadable documentation - basically nothing changed
 - New Feature: automatic object name for Extension Objects with a new setting:
     * `CRS.ExtensionObjectNamePattern`: The pattern for the object name. If set (it's not set by default), it will perform an automatic object name for extension objects
         - `<Prefix>`
-        - `<Suffix>`
+        - `<Suffix>`µ
         - `<ObjectType>`
         - `<ObjectTypeShort>` - a short notation of the object type.
         - `<ObjectTypeShortUpper>` - Same as "ObjectTypeShort" but uppercased
