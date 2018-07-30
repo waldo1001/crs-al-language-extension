@@ -532,9 +532,9 @@
             "\r",
             "\t\t\t\tfield(\"Normal field\"; \"Normal field\")\r",
             "\t\t\t\t{\r",
-            "\t\t\t\t    Caption = 'Normal field Caption';\r",
-            "\t\t\t\t    ApplicationArea = Basic, Suite;\r",
-            "\t\t\t\t    ToolTip = 'Some tooltip';\r",
+            "\t\t\t\t\tCaption = 'Normal field Caption';\r",
+            "\t\t\t\t\tApplicationArea = Basic, Suite;\r",
+            "\t\t\t\t\tToolTip = 'Some tooltip';\r",
             "\t\t\t\t}\r",
             "\r",
             "\t\t\t}\r",
@@ -566,4 +566,4 @@
         ],
         "description": "Snippet (CRS): Create Role Center Activities Page"
     }
-} 
+}
