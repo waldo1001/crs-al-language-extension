@@ -93,35 +93,41 @@ export class DynamicsNAV {
         }
 
         let objectType = (!objecttype.label) ? objecttype : objecttype.label
-        let runURL = this.ComposeRunObjectInWebClientURL(workspacesettings[Settings.WebServer],
-            workspacesettings[Settings.WebServerInstancePort],
-            workspacesettings[Settings.WebServerInstance],
+        let runURL = this.ComposeRunObjectInWebClientURL(
+            workspacesettings,
             clienttype,
-            workspacesettings[Settings.Tenant],
             objectType.toString(),
             objectid);
 
         console.log('url: ' + runURL);
         open(runURL);
     }
+    public static ComposeRunObjectInWebClientURL(workspacesettings: any, ClientType: string, runObjectType: String, runObjectid: number): String {
 
-    private static ComposeRunObjectInWebClientURL(server: String, Port: string, NAVInstance: string, ClientType: string, Tenant: string, runObjectType: String, runObjectid: number): String {
-        let returnUrl = server;
-        if (Port != "") {
-            returnUrl += ':' + Port
-        }
+        let returnUrl = "https://businesscentral.dynamics.com/sandbox?"
 
-        returnUrl += '/' + NAVInstance + '/' + ClientType;
+        if (workspacesettings[Settings.WebServer]) {
+            if (workspacesettings[Settings.PublicWebBaseUrl]) {
+                returnUrl = workspacesettings[Settings.PublicWebBaseUrl]
+            } else {
+                returnUrl = workspacesettings[Settings.WebServer];
+                if (workspacesettings[Settings.WebServerInstancePort] != "") {
+                    returnUrl += ':' + workspacesettings[Settings.WebServerInstancePort]
+                }
+                returnUrl += '/' + workspacesettings[Settings.WebServerInstance];
+            }
+            returnUrl += '/' + ClientType
 
-        if (Tenant != '') {
-            returnUrl += '?tenant=' + Tenant + '&';
-        } else {
-            returnUrl += '?'
+            if (workspacesettings[Settings.Tenant] != '') {
+                returnUrl += '?tenant=' + workspacesettings[Settings.Tenant] + '&';
+            } else {
+                returnUrl += '?'
+            }
         }
 
         returnUrl += runObjectType + '=' + runObjectid;
 
-        return returnUrl
+        return returnUrl;
     }
 
 

@@ -1,0 +1,14 @@
+{
+    "Snippet: Repeat Until": {
+        "prefix": "tdependency (CRS)",
+        "body": [
+            "{",
+            "\t\"appId\": \"${1:The AppId}\",",
+            "\t\"name\": \"${2:The AppName}\",",
+            "\t\"publisher\": \"${3:The AppPublisher}\",",
+            "\t\"version\": \"${4:1}.${5:0}.${6:0}.${7:0}\"",
+            "}"
+        ],
+        "description": "Snippet: Add a dependency in the app.json"
+    }
+}

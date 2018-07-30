@@ -2,7 +2,7 @@
     "name": "crs-al-language-extension",
     "displayName": "CRS AL Language Extension",
     "description": "Make working with the (Dynamics NAV / 365) AL Language easier and more efficient.",
-    "version": "0.2.9",
+    "version": "0.2.22",
     "publisher": "waldo",
     "icon": "images/icon.png",
     "author": {
@@ -89,6 +89,14 @@
             {
                 "command": "crs.ReorganizeAllFiles",
                 "title": "CRS: Reorganize - All Files"
+            },
+            {
+                "command": "crs.SearchMicrosoftDocs",
+                "title": "CRS: Search Microsoft Docs"
+            },
+            {
+                "command": "crs.SearchGoogle",
+                "title": "CRS: Search Google"
             }
         ],
         "configuration": {
@@ -124,34 +132,46 @@
                     "description ": "Portnumber of the serverinstance where the windows client is connecting to",
                     "scope": "resource"
                 },
+                "CRS.PublicWebBaseUrl": {
+                    "type": "string",
+                    "default": "",
+                    "description": "Public Web Url that overrules the setting in launch.json (empty setting will just take the settings in launch.json)",
+                    "scope": "resource"
+                },
+                "CRS.ExtensionObjectNamePattern": {
+                    "Type": "string",
+                    "default": "",
+                    "description": "The pattern of the objectname for extension objects (PageExtension or TableExtension).  These vars can be used: <Prefix>,<Suffix>,<ObjectType>,<ObjectTypeShort>,<ObjectTypeShortUpper>,<ObjectId>,<BaseName>,<BaseNameShort>,<BaseId>",
+                    "scope": "resource"
+                },
                 "CRS.FileNamePattern": {
                     "Type": "string",
                     "default": "<ObjectTypeShort><ObjectId>.<ObjectNameShort>.al",
-                    "description": "The pattern of the filename for non-extension objects..  These vars can be used: <ObjectType>,<ObjectTypeShort>,<ObjectId>,<ObjectName>,<ObjectNameShort>,<ObjectTypeShortUpper>",
+                    "description": "The pattern of the filename for non-extension objects..  These vars can be used: <Prefix>,<Suffix>,<ObjectType>,<ObjectTypeShort>,<ObjectId>,<ObjectName>,<ObjectNameShort>,<ObjectTypeShortUpper>",
                     "scope": "resource"
                 },
                 "CRS.FileNamePatternExtensions": {
                     "Type": "string",
                     "default": "<ObjectTypeShort><BaseId>-Ext<ObjectId>.<ObjectNameShort>.al",
-                    "description": "The pattern of the filename for extension objects.  These vars can be used: <ObjectType>,<ObjectTypeShort>,<ObjectId>,<ObjectName>,<ObjectNameShort>,<ObjectTypeShortUpper>,<BaseName>,<BaseId> (If you want this to work, you need to put the Id in comment after the base name, like //21)",
+                    "description": "The pattern of the filename for extension objects.  These vars can be used: <Prefix>,<Suffix>,<ObjectType>,<ObjectTypeShort>,<ObjectId>,<ObjectName>,<ObjectNameShort>,<ObjectTypeShortUpper>,<BaseName>,<BaseNameShort>,<BaseId> (If you want this to work, you need to put the Id in comment after the base name, like //21)",
                     "scope": "resource"
                 },
                 "CRS.FileNamePatternPageCustomizations": {
                     "Type": "string",
                     "default": "<ObjectTypeShort><BaseId>-PageCust.<ObjectNameShort>.al",
-                    "description": "The pattern of the filename for extension objects.  These vars can be used: <ObjectType>,<ObjectTypeShort>,<ObjectName>,<ObjectNameShort>,<ObjectTypeShortUpper>,<BaseName>,<BaseId> (If you want this to work, you need to put the Id in comment after the base name, like //21)",
+                    "description": "The pattern of the filename for extension objects.  These vars can be used: <Prefix>,<Suffix>,<ObjectType>,<ObjectTypeShort>,<ObjectName>,<ObjectNameShort>,<ObjectTypeShortUpper>,<BaseName>,<BaseNameShort>,<BaseId> (If you want this to work, you need to put the Id in comment after the base name, like //21)",
                     "scope": "resource"
                 },
                 "CRS.AlSubFolderName": {
                     "enum": [
-                        "Src",
+                        "src",
                         "Source",
                         "Objects",
                         "Al",
                         "None"
                     ],
                     "type": "string",
-                    "default": "Src",
+                    "default": "src",
                     "description": "Sets the subfoldername of where the objects will be placed.  'None' prevents the 'Reorganize' to do anything (if you want to apply your own folder structure).",
                     "scope": "resource"
                 },
@@ -169,13 +189,25 @@
                 "CRS.ObjectNamePrefix": {
                     "type": "string",
                     "default": null,
-                    "description": "When using the Reorganize/Rename-commands, this setting will make sure the object name (and filename) will have a Prefix.  Tip: use as a workspace-setting",
+                    "description": "When using the Reorganize/Rename-commands, this setting will make sure the object name (and filename) will have a Prefix.  Tips: use as a workspace-setting. Use an ending-space if you want the prefix to be separated with a space.",
                     "scope": "resource"
                 },
                 "CRS.ObjectNameSuffix": {
                     "type": "string",
                     "default": null,
-                    "description": "When using the Reorganize/Rename-commands, this setting will make sure the object name (and filename) will have a Suffix.  Tip: use as a workspace-setting",
+                    "description": "When using the Reorganize/Rename-commands, this setting will make sure the object name (and filename) will have a Suffix.  Tips: use as a workspace-setting. Use an ending-space if you want the prefix to be separated with a space.",
+                    "scope": "resource"
+                },
+                "CRS.RemovePrefixFromFilename": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "When using the Reorganize/Rename-commands, this setting will remove any prefix from the filename (but keep it in object name).  Tip: use as a workspace-setting",
+                    "scope": "resource"
+                },
+                "CRS.RemoveSuffixFromFilename": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "When using the Reorganize/Rename-commands, this setting will remove any suffix from the filename (but keep it in object name).  Tip: use as a workspace-setting",
                     "scope": "resource"
                 },
                 "CRS.DisableDefaultAlSnippets": {
@@ -260,6 +292,10 @@
             {
                 "language": "al",
                 "path": "./snippets/fromAlExtension/xmlport.json"
+            },
+            {
+                "language": "json",
+                "path": "./snippets/appjson.json"
             }
         ],
         "keybindings": {

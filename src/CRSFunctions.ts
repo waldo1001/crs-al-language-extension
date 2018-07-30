@@ -1,16 +1,16 @@
 import * as vscode from 'vscode';
 import { Powershell } from './PowerShell';
 import * as PSScripts from './PSScripts';
-import * as PSModules from './PSModules';
 import { ConsoleLogger, OutputLogger } from './logging';
 import { Settings } from './Settings';
 import { DynamicsNAV } from './DynamicsNAV';
-import { join } from 'path';
 import { WorkspaceFiles } from './WorkspaceFiles';
 import { SnippetFunctions } from './SnippetFunctions';
 import * as fs from 'fs';
 import { NAVObject } from './NAVObject';
 import * as path from 'path'
+import { MSDocs } from './MSDocs';
+import { Google } from './Google';
 
 
 let observers = [
@@ -35,8 +35,10 @@ export function RunCurrentObjectWeb() {
     let currentdocument = vscode.window.activeTextEditor.document
     let navObject = new NAVObject(fs.readFileSync(currentdocument.uri.fsPath).toString(), Settings.GetConfigSettings(currentdocument.uri), path.basename(currentdocument.uri.fsPath));
 
-    if (DynamicsNAV.GetRunWebObjectTypes().toString().toLowerCase().indexOf(navObject.objectType.toLowerCase()) > -1) {
-        DynamicsNAV.RunObjectInWebClient(navObject.objectType, navObject.objectId, 'WebClient');
+    let objectId = navObject.objectType.toLowerCase().endsWith('extension') ? navObject.extendedObjectId : navObject.objectId;
+    let objectType = navObject.objectType.toLowerCase().endsWith('extension') ? navObject.objectType.toLowerCase().replace('extension', '') : navObject.objectType
+    if (objectId) {
+        DynamicsNAV.RunObjectInWebClient(objectType, objectId, 'WebClient');
     }
 
     console.log('Done: RunCurrentObjectWeb')
@@ -135,6 +137,26 @@ export function ReorganizeAllFiles() {
     console.log('Done: ReorganizeAllFiles')
 }
 
+export function SearchMicrosoftDocs() {
+    console.log('Running: SearchMicrosoftDocs');
+
+    let currentword = vscode.window.activeTextEditor ? getWord(vscode.window.activeTextEditor) : "";
+    vscode.window.showInputBox({ value: currentword, prompt: "Search String:" }).then(SearchString =>
+        MSDocs.OpenSearchUrl(SearchString));
+
+    console.log('Done: SearchMicrosoftDocs');
+}
+
+export function SearchGoogle() {
+    console.log('Running: SearchGoogle');
+
+    let currentword = vscode.window.activeTextEditor ? getWord(vscode.window.activeTextEditor) : "";
+    vscode.window.showInputBox({ value: currentword, prompt: "Search String:" }).then(SearchString =>
+        Google.OpenSearchUrl(SearchString));
+
+    console.log('Done: SearchGoogle');
+}
+
 export function SetupSnippets() {
     console.log('Running: SetupSnippets');
 
@@ -150,4 +172,23 @@ export function HandleOnSaveTextDocument() {
     WorkspaceFiles.handleOnSaveTextDocument();
 
     console.log('Done: HandleOnSaveTextDocument');
+}
+
+function getWord(editor: vscode.TextEditor): string {
+    const selection = editor.selection;
+    const doc = editor.document;
+    if (selection.isEmpty) {
+        const cursorWordRange = doc.getWordRangeAtPosition(selection.active);
+
+        if (cursorWordRange) {
+            let newSe = new vscode.Selection(cursorWordRange.start.line, cursorWordRange.start.character, cursorWordRange.end.line, cursorWordRange.end.character);
+            editor.selection = newSe;
+            return editor.document.getText(editor.selection);
+
+        } else {
+            return '';
+        }
+    } else {
+        return editor.document.getText(editor.selection);
+    }
 }
