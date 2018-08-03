@@ -1,5 +1,15 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension.
+## [1.0.0] - 2018-08-03
+After 10k downloads, I guess we can speak of a version 1.0 ;-).
+
+Changes:
+- Added Snippets:
+  - flowfields: tflowfield, tflowfieldcount, tflowfieldexist, tflowfieldsum, tflowfieldlookup ([Idea from "GreatScott000"](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/67))
+  - Headline: tpageheadline (Pullrequest from [Dmitry](https://github.com/CloudReadySoftware/crs-al-language-extension/commits?author=dkatson). Thanks!)
+  - RoleCenter: tpagerolecenter, ttableactivities, tpageactivities (Pullrequest from [Dmitry](https://github.com/CloudReadySoftware/crs-al-language-extension/commits?author=dkatson). Thanks!) 
+- Fixed - [Unnecessary error message while disabling snippets](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/65)
+
 ## [0.2.24] - 2018-07-13
 - Fixed - [ttrigger within field](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/66)
 - Fixed - [Default AL Snippets won't disable](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/65)
