@@ -1,0 +1,72 @@
+{
+    "Snippet: Table FlowField": {
+        "prefix": "tflowfield (CRS)",
+        "body": [
+            "field(${1:id}; \"${2:MyField}\"; ${3|Blob,BigInteger,Boolean,Code[50],Date,DateFormula,Decimal,Duration,Integer,Guid,Media,MediaSet,Option,RecordID,TableFilter,Text[50],Time|})",
+            "{",
+            "\tCaption = '${2:MyField}';",
+            "\tEditable = false;",
+            "\tFieldClass = FlowField;",
+            "\tCalcFormula = ${4|average,count,exist,lookup,max,min,sum|}(${5:YourCalcFormula});",
+            "}",
+            "$0"
+        ],
+        "description": "Snippet: Table FlowField"
+    },
+    "Snippet: Table FlowField (LookUp)": {
+        "prefix": "tflowfieldlookup (CRS)",
+        "body": [
+            "field(${1:id}; \"${2:MyField}\"; ${3|Blob,BigInteger,Boolean,Code[50],Date,DateFormula,Decimal,Duration,Integer,Guid,Media,MediaSet,Option,RecordID,TableFilter,Text[50],Time|})",
+            "{",
+            "\tCaption = '${2:MyField}';",
+            "\tEditable = false;",
+            "\tFieldClass = FlowField;",
+            "\tCalcFormula = lookup (${4:LookUpTable.Field} where (${5:FieldToBeFiltered} = ${6|const,field,filter|} (${7:Filter})));",
+            "}",
+            "$0"
+        ],
+        "description": "Snippet: Table FlowField (LookUp)"
+    },
+    "Snippet: Table FlowField (Count)": {
+        "prefix": "tflowfieldcount (CRS)",
+        "body": [
+            "field(${1:id}; \"${2:MyField}\"; Integer)",
+            "{",
+            "\tCaption = '${2:MyField}';",
+            "\tEditable = false;",
+            "\tFieldClass = FlowField;",
+            "\tCalcFormula = Count (${4:LookUpTable} where (${5:FieldToBeFiltered} = ${6|const,field,filter|} (${7:Filter})));",
+            "}",
+            "$0"
+        ],
+        "description": "Snippet: Table FlowField (Count)"
+    },
+    "Snippet: Table FlowField (Exist)": {
+        "prefix": "tflowfieldexist (CRS)",
+        "body": [
+            "field(${1:id}; \"${2:MyField}\"; Boolean)",
+            "{",
+            "\tCaption = '${2:MyField}';",
+            "\tEditable = false;",
+            "\tFieldClass = FlowField;",
+            "\tCalcFormula = exist (${4:LookUpTable} where (${5:FieldToBeFiltered} = ${6|const,field,filter|} (${7:Filter})));",
+            "}",
+            "$0"
+        ],
+        "description": "Snippet: Table FlowField (Exist)"
+    },
+    "Snippet: Table FlowField (Sum)": {
+        "prefix": "tflowfieldsum (CRS)",
+        "body": [
+            "field(${1:id}; \"${2:MyField}\"; ${3|BigInteger,Decimal,Integer|})",
+            "{",
+            "\tCaption = '${2:MyField}';",
+            "\tEditable = false;",
+            "\tFieldClass = FlowField;",
+            "\tCalcFormula = sum (${4:LookUpTable.Field} where (${5:FieldToBeFiltered} = ${6|const,field,filter|} (${7:Filter})));",
+            "}",
+            "$0"
+        ],
+        "description": "Snippet: Table FlowField (Sum)"
+    }
+}
