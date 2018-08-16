@@ -1,15 +1,32 @@
 {
-    "Snippet: DotNet": {
+    "Snippet: DotNetPackage": {
         "prefix": "tdotnet (CRS)",
         "body": [
             "dotnet",
             "{",
             "\tassembly(${1:AssemblyName})",
             "\t{",
-            "\t\ttype(${0:TypeName}){}",
+            "\t\ttype(\"${2:TypeName}\"; ${0:AliasName}) { }",
             "\t}",
             "}"
         ],
-        "description": "Snippet: DotNet"
+        "description": "Snippet: DotNet Package"
+    },
+    "Snippet: DotNetAssembly": {
+        "prefix": "tdotnetassembly (CRS)",
+        "body": [
+            "assembly(${1:AssemblyName})",
+            "{",
+            "\ttype(\"${2:TypeName}\"; ${0:AliasName}) { }",
+            "}"
+        ],
+        "description": "Snippet: DotNet Assembly"
+    },
+    "Snippet: DotNetType": {
+        "prefix": "tdotnettype (CRS)",
+        "body": [
+            "type(\"${1:TypeName}\"; ${0:AliasName}) { }"
+        ],
+        "description": "Snippet: DotNet Type"
     }
 }

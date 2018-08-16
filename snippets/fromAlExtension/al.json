@@ -2,7 +2,7 @@
     "Snippet: Trigger": {
         "prefix": "ttrigger (CRS)",
         "body": [
-            "trigger ${1:OnWhat}(${2})",
+            "trigger ${1:OnWhat()}",
             "begin",
             "\t$0",
             "end;"

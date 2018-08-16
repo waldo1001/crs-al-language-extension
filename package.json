@@ -2,7 +2,7 @@
     "name": "crs-al-language-extension",
     "displayName": "CRS AL Language Extension",
     "description": "Make working with the (Dynamics NAV / 365) AL Language easier and more efficient.",
-    "version": "0.2.16",
+    "version": "1.0.0",
     "publisher": "waldo",
     "icon": "images/icon.png",
     "author": {
@@ -89,6 +89,14 @@
             {
                 "command": "crs.ReorganizeAllFiles",
                 "title": "CRS: Reorganize - All Files"
+            },
+            {
+                "command": "crs.SearchMicrosoftDocs",
+                "title": "CRS: Search Microsoft Docs"
+            },
+            {
+                "command": "crs.SearchGoogle",
+                "title": "CRS: Search Google"
             }
         ],
         "configuration": {
@@ -130,6 +138,12 @@
                     "description": "Public Web Url that overrules the setting in launch.json (empty setting will just take the settings in launch.json)",
                     "scope": "resource"
                 },
+                "CRS.ExtensionObjectNamePattern": {
+                    "Type": "string",
+                    "default": "",
+                    "description": "The pattern of the objectname for extension objects (PageExtension or TableExtension).  These vars can be used: <Prefix>,<Suffix>,<ObjectType>,<ObjectTypeShort>,<ObjectTypeShortUpper>,<ObjectId>,<BaseName>,<BaseNameShort>,<BaseId>",
+                    "scope": "resource"
+                },
                 "CRS.FileNamePattern": {
                     "Type": "string",
                     "default": "<ObjectTypeShort><ObjectId>.<ObjectNameShort>.al",
@@ -150,14 +164,14 @@
                 },
                 "CRS.AlSubFolderName": {
                     "enum": [
-                        "Src",
+                        "src",
                         "Source",
                         "Objects",
                         "Al",
                         "None"
                     ],
                     "type": "string",
-                    "default": "Src",
+                    "default": "src",
                     "description": "Sets the subfoldername of where the objects will be placed.  'None' prevents the 'Reorganize' to do anything (if you want to apply your own folder structure).",
                     "scope": "resource"
                 },
@@ -175,13 +189,13 @@
                 "CRS.ObjectNamePrefix": {
                     "type": "string",
                     "default": null,
-                    "description": "When using the Reorganize/Rename-commands, this setting will make sure the object name (and filename) will have a Prefix.  Tip: use as a workspace-setting",
+                    "description": "When using the Reorganize/Rename-commands, this setting will make sure the object name (and filename) will have a Prefix.  Tips: use as a workspace-setting. Use an ending-space if you want the prefix to be separated with a space.",
                     "scope": "resource"
                 },
                 "CRS.ObjectNameSuffix": {
                     "type": "string",
                     "default": null,
-                    "description": "When using the Reorganize/Rename-commands, this setting will make sure the object name (and filename) will have a Suffix.  Tip: use as a workspace-setting",
+                    "description": "When using the Reorganize/Rename-commands, this setting will make sure the object name (and filename) will have a Suffix.  Tips: use as a workspace-setting. Use an ending-space if you want the prefix to be separated with a space.",
                     "scope": "resource"
                 },
                 "CRS.RemovePrefixFromFilename": {
@@ -222,6 +236,10 @@
             {
                 "language": "al",
                 "path": "./snippets/page.json"
+            },
+            {
+                "language": "al",
+                "path": "./snippets/table.json"
             },
             {
                 "language": "al",

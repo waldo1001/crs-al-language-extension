@@ -44,8 +44,11 @@ export class NAVObject {
         return DynamicsNAV.getBestPracticeAbbreviatedObjectType(this.objectType);
     }
     get objectNameFixed(): string {
-        let objectNameFixed = this.objectName.trim().toString();
-        objectNameFixed = this.AddPrefixAndSuffixToObjectNameFixed(this.objectName);
+        let objectNameFixed = this.ApplyExtensionObjectNamePattern(this.objectName.trim().toString());
+        if (objectNameFixed == this.objectName.trim().toString()) {
+            objectNameFixed = this.AddPrefixAndSuffixToObjectNameFixed(objectNameFixed);
+        }
+
         return objectNameFixed;
     }
 
@@ -70,8 +73,8 @@ export class NAVObject {
     get NAVObjectTextFixed(): string {
         let NAVObjectTextFixed = this.NAVObjectText;
         NAVObjectTextFixed = this.updateObjectNameInObjectText(NAVObjectTextFixed);
-        NAVObjectTextFixed = this.AddPrefixToActions(NAVObjectTextFixed);
-        NAVObjectTextFixed = this.AddPrefixToFields(NAVObjectTextFixed);
+        NAVObjectTextFixed = this.AddPrefixAndSuffixToActions(NAVObjectTextFixed);
+        NAVObjectTextFixed = this.AddPrefixAndSuffixToFields(NAVObjectTextFixed);
 
         return NAVObjectTextFixed;
     }
@@ -80,17 +83,7 @@ export class NAVObject {
         if (!this._objectFileNamePattern) { return this.objectFileName }
         let objectFileNameFixed = this._objectFileNamePattern
 
-        objectFileNameFixed = StringFunctions.replaceAll(objectFileNameFixed, '<Prefix>', this._workSpaceSettings[Settings.ObjectNamePrefix]);
-        objectFileNameFixed = StringFunctions.replaceAll(objectFileNameFixed, '<Suffix>', this._workSpaceSettings[Settings.ObjectNameSuffix]);
-        objectFileNameFixed = StringFunctions.replaceAll(objectFileNameFixed, '<ObjectType>', this.objectType)
-        objectFileNameFixed = StringFunctions.replaceAll(objectFileNameFixed, '<ObjectTypeShort>', this.objectTypeShort);
-        objectFileNameFixed = StringFunctions.replaceAll(objectFileNameFixed, '<ObjectTypeShortUpper>', this.objectTypeShort.toUpperCase());
-        objectFileNameFixed = StringFunctions.replaceAll(objectFileNameFixed, '<ObjectId>', this.objectId);
-        objectFileNameFixed = StringFunctions.replaceAll(objectFileNameFixed, '<ObjectName>', this.objectNameFixedForFileName);
-        objectFileNameFixed = StringFunctions.replaceAll(objectFileNameFixed, '<ObjectNameShort>', this.objectNameFixedShort);
-        objectFileNameFixed = StringFunctions.replaceAll(objectFileNameFixed, '<BaseName>', this.extendedObjectNameFixedForFileName);
-        objectFileNameFixed = StringFunctions.replaceAll(objectFileNameFixed, '<BaseNameShort>', this.extendedObjectNameFixedShort);
-        objectFileNameFixed = StringFunctions.replaceAll(objectFileNameFixed, '<BaseId>', this.extendedObjectId);
+        objectFileNameFixed = this.ApplyPatternToFileName(objectFileNameFixed);
 
         return objectFileNameFixed
     }
@@ -210,16 +203,55 @@ export class NAVObject {
         var reg = NAVObjectAction.actionRegEx();
         var result;
         while ((result = reg.exec(this.NAVObjectText)) !== null) {
-            this.objectActions.push(new NAVObjectAction(result[1], this._workSpaceSettings[Settings.ObjectNamePrefix]))
+            this.objectActions.push(new NAVObjectAction(result[1], this.objectType, this._workSpaceSettings[Settings.ObjectNamePrefix], this._workSpaceSettings[Settings.ObjectNameSuffix]))
         }
 
         var reg = NAVTableField.fieldRegEx();
         var result;
         while ((result = reg.exec(this.NAVObjectText)) !== null) {
-            this.tableFields.push(new NAVTableField(result[1], this.objectType, this._workSpaceSettings[Settings.ObjectNamePrefix]))
+            this.tableFields.push(new NAVTableField(result[1], this.objectType, this._workSpaceSettings[Settings.ObjectNamePrefix], this._workSpaceSettings[Settings.ObjectNameSuffix]))
         }
     }
+    private ApplyExtensionObjectNamePattern(objectName: string): string {
+        if (!this._workSpaceSettings[Settings.ExtensionObjectNamePattern] || !this.objectType.toLocaleLowerCase().endsWith('extension')) { return objectName }
 
+        let result = this._workSpaceSettings[Settings.ExtensionObjectNamePattern];
+        result = this.ApplyPatternToObjectName(result);
+
+        return result
+    }
+    private ApplyPatternToObjectName(pattern: string): string {
+        let result = pattern;
+
+        result = StringFunctions.replaceAll(result, '<Prefix>', this._workSpaceSettings[Settings.ObjectNamePrefix]);
+        result = StringFunctions.replaceAll(result, '<Suffix>', this._workSpaceSettings[Settings.ObjectNameSuffix]);
+        result = StringFunctions.replaceAll(result, '<ObjectType>', this.objectType)
+        result = StringFunctions.replaceAll(result, '<ObjectTypeShort>', this.objectTypeShort);
+        result = StringFunctions.replaceAll(result, '<ObjectTypeShortUpper>', this.objectTypeShort.toUpperCase());
+        result = StringFunctions.replaceAll(result, '<ObjectId>', this.objectId);
+        result = StringFunctions.replaceAll(result, '<BaseName>', this.extendedObjectNameFixedForFileName);
+        result = StringFunctions.replaceAll(result, '<BaseNameShort>', this.extendedObjectNameFixedShort);
+        result = StringFunctions.replaceAll(result, '<BaseId>', this.extendedObjectId);
+
+        return result;
+    }
+    private ApplyPatternToFileName(pattern: string): string {
+        let result = pattern;
+
+        result = StringFunctions.replaceAll(result, '<Prefix>', this._workSpaceSettings[Settings.ObjectNamePrefix]);
+        result = StringFunctions.replaceAll(result, '<Suffix>', this._workSpaceSettings[Settings.ObjectNameSuffix]);
+        result = StringFunctions.replaceAll(result, '<ObjectType>', this.objectType)
+        result = StringFunctions.replaceAll(result, '<ObjectTypeShort>', this.objectTypeShort);
+        result = StringFunctions.replaceAll(result, '<ObjectTypeShortUpper>', this.objectTypeShort.toUpperCase());
+        result = StringFunctions.replaceAll(result, '<ObjectId>', this.objectId);
+        result = StringFunctions.replaceAll(result, '<ObjectName>', this.objectNameFixedForFileName);
+        result = StringFunctions.replaceAll(result, '<ObjectNameShort>', this.objectNameFixedShort);
+        result = StringFunctions.replaceAll(result, '<BaseName>', this.extendedObjectNameFixedForFileName);
+        result = StringFunctions.replaceAll(result, '<BaseNameShort>', this.extendedObjectNameFixedShort);
+        result = StringFunctions.replaceAll(result, '<BaseId>', this.extendedObjectId);
+
+        return result;
+    }
     private AddPrefixAndSuffixToObjectNameFixed(objectName: string): string {
         let prefix = this._workSpaceSettings[Settings.ObjectNamePrefix];
         let suffix = this._workSpaceSettings[Settings.ObjectNameSuffix];
@@ -269,7 +301,7 @@ export class NAVObject {
         return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
     }
 
-    private AddPrefixToActions(objectText: string): string {
+    private AddPrefixAndSuffixToActions(objectText: string): string {
         this.objectActions.forEach(action => {
             objectText = objectText.replace(action.fullActionText, action.fullActionTextFixed);
         })
@@ -277,7 +309,7 @@ export class NAVObject {
         return objectText;
     }
 
-    private AddPrefixToFields(objectText: string): string {
+    private AddPrefixAndSuffixToFields(objectText: string): string {
         this.tableFields.forEach(field => {
             objectText = objectText.replace(field.fullFieldText, field.fullFieldTextFixed);
         })
@@ -290,30 +322,38 @@ class NAVObjectAction {
     public name: string;
     public fullActionText: string;
     private _prefix: string;
+    private _suffix: string;
+    private _objectType: string;
 
     public static actionRegEx(): RegExp {
         return /.*((action\("?)([ a-zA-Z0-9._/&-]+)"?\))/g
     }
 
     get nameFixed(): string {
-        if (!this._prefix) { return this.name }
+        if (!this._prefix && !this._suffix) { return this.name }
+        if (this._objectType.toLocaleLowerCase() != "pageextension") { return this.name }; //avoid on pages
 
-        if (!this.name.startsWith(this._prefix)) {
-            return this._prefix + this.name
-        } else {
-            return this.name
+        let result = this.name
+        if (this._prefix && !this.name.startsWith(this._prefix)) {
+            result = this._prefix + result
         }
+        if (this._suffix && !this.name.endsWith(this._suffix)) {
+            result = result + this._suffix
+        }
+        return result
     }
 
     get fullActionTextFixed(): string {
-        if (!this._prefix) { return this.fullActionText };
+        if (!this._prefix && !this._suffix) { return this.fullActionText };
 
         return "action(\"" + this.nameFixed + "\")"
     }
 
-    constructor(fullActionText: string, prefix?: string) {
+    constructor(fullActionText: string, objectType: string, prefix?: string, suffix?: string) {
         this.fullActionText = fullActionText;
         this._prefix = prefix ? prefix : null;
+        this._suffix = suffix ? suffix : null;
+        this._objectType = objectType;
 
         this.parseActionText();
     }
@@ -334,31 +374,36 @@ class NAVTableField {
     public type: string;
     private _objectType: string;
     private _prefix: string;
+    private _suffix: string;
 
     public static fieldRegEx(): RegExp {
         return /.*(field\((\d+); *"?([ a-zA-Z0-9._/&-]+)"?;(.*)\))/g;
     }
 
     get nameFixed(): string {
-        if (!this._prefix) { return this.name }
-        if (this._objectType.toLocaleLowerCase() != "tableextension") { return this.name };
+        if (!this._prefix && !this._suffix) { return this.name }
+        if (this._objectType.toLocaleLowerCase() != "tableextension") { return this.name }; //avoid on tables
 
-        if (!this.name.startsWith(this._prefix)) {
-            return this._prefix + this.name
-        } else {
-            return this.name
+        let result = this.name
+        if (this._prefix && !this.name.startsWith(this._prefix)) {
+            result = this._prefix + result
         }
+        if (this._suffix && !this.name.endsWith(this._suffix)) {
+            result = result + this._suffix
+        }
+        return result
     }
 
     get fullFieldTextFixed(): string {
-        if (!this._prefix) { return this.fullFieldText }
+        if (!this._prefix && !this._suffix) { return this.fullFieldText }
 
         return "field(" + this.number + "; \"" + this.nameFixed + "\"; " + this.type + ")"
     }
 
-    constructor(fullFieldText: string, objectType: string, prefix?: string) {
+    constructor(fullFieldText: string, objectType: string, prefix?: string, suffix?: string) {
         this.fullFieldText = fullFieldText;
         this._prefix = prefix ? prefix : null;
+        this._suffix = suffix ? suffix : null;
         this._objectType = objectType;
 
         this.parseFieldText();

@@ -17,7 +17,8 @@ export class SnippetFunctions {
         let mySettings = Settings.GetConfigSettings(null);
         let setDisabled = mySettings[Settings.DisableDefaultAlSnippets];
 
-        this.SetupSnippets('Microsoft.al', setDisabled);
+        this.SetupSnippets('microsoft.al', setDisabled);
+        this.SetupSnippets('ms-dynamics-smb.al', setDisabled);
     }
 
     static SetupSnippets(extension: string, setDisabled: boolean) {
@@ -40,7 +41,7 @@ export class SnippetFunctions {
                         vscode.window.showInformationMessage('Snippets from ' + extension + ' successfully disabled. Please restart VSCode.');
                     } else {
                         (!fs.existsSync(microsoftAlSnippetsDirDisabled)) ?
-                            vscode.window.showErrorMessage('Snippet-directory not found.') :
+                            console.log('Snippet-directory not found - nothing to disable.') :
                             null;
                     }
                 } else {
@@ -50,7 +51,7 @@ export class SnippetFunctions {
                         vscode.window.showInformationMessage('Snippets from ' + extension + ' successfully enabled. Please restart VSCode.');
                     } else {
                         (!fs.existsSync(microsoftAlSnippetsDir)) ?
-                            vscode.window.showErrorMessage('Disabled snippet-directory not found.') :
+                            console.log('Disabled snippet-directory not found - nothing to enable.') :
                             null;
                     }
                 }
