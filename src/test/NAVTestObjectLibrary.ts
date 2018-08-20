@@ -14,6 +14,19 @@ export function getTemplateObject(): NAVTestObject {
     return object;
 }
 
+export function getPascalCasedObjectType_Report(): NAVTestObject {
+    let object = new NAVTestObject;
+
+    object.ObjectFileName = 'Pag50100.justAName.al'
+    object.ObjectText = `
+        Report 5319465 "SUP Supplier Rating Batch"
+        {
+
+        }
+    `
+    return object;
+}
+
 export function getNormalCodeunitWithLongName(): NAVTestObject {
     let object = new NAVTestObject;
 

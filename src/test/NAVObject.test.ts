@@ -625,4 +625,13 @@ suite("NAVObject Tests", () => {
 
         assert.equal(navObject.objectNameFixed, navObject.objectName)
     })
+
+    test("Case Sensitive Object Types", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+
+        let navTestObject = NAVTestObjectLibrary.getPascalCasedObjectType_Report()
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
+
+        assert.equal(navObject.objectType.toLocaleLowerCase(), 'report')
+    })
 });
