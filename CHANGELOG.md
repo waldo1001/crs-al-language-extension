@@ -1,5 +1,9 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension.
+
+## [1.0.2] - 2018-09-07
+Synched and improved snippets from the 2.0-version of the Microsoft-al extension.
+
 ## [1.0.1] - 2018-08-20
 - Fixed - [Bug with not-lowercased object types](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/74)
 - Fixed - [Using Rename/organize on file with unsaved changes creates duplicate files](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/72) - by [PR](https://github.com/CloudReadySoftware/crs-al-language-extension/pull/73) from [Johannes Wikman](https://github.com/jwikman).  Thank you!

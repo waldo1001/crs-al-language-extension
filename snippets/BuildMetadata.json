@@ -21,7 +21,7 @@
         "prefix": "twebservice (CRS)",
         "body": [
             "<TenantWebService>",
-            "\t<ObjectType>${1|Codeunit,Page,Query|}</ObjectType>",
+            "\t<ObjectType>${1|CodeUnit,Page,Query|}</ObjectType>",
             "\t<ObjectID>${2:ObjectID}</ObjectID>",
             "\t<ServiceName>${3:Name}</ServiceName>",
             "\t<Published>${4:true}</Published>",
