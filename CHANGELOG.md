@@ -1,8 +1,9 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension.
 
-## [1.0.2] - 2018-09-07
-Synched and improved snippets from the 2.0-version of the Microsoft-al extension.
+## [1.0.3] - 2018-09-19
+- Fixed - [Reorganize doesn't work for enums](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/78)
+- Synched and improved snippets from the 2.0-version of the Microsoft-al extension.
 
 ## [1.0.1] - 2018-08-20
 - Fixed - [Bug with not-lowercased object types](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/74)
