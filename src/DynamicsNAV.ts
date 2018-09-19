@@ -163,6 +163,8 @@ export class DynamicsNAV {
             case 'query': return 'Que';
             case 'profile': return 'Prof';
             case 'pagecustomization': return 'Pag';
+            case 'enum': return 'Enum';
+            case 'enumextension': return 'Enum';
         }
     }
 }
