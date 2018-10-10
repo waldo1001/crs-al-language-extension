@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension.
 
+## [1.0.5] - 2018-10-10
+- Fixed - [When auto renaming file, previous file stays open](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/82)
+- Fixed - other minor issues
+- Added - When renaming a file, the cursor is positioned on the same place as it was before the rename
+
 ## [1.0.4] - 2018-09-25
 Fixed snippets
 
