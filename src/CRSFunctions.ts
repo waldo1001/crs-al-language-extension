@@ -95,8 +95,12 @@ export function RenameCurrentFile() {
     console.log('Running: RenameCurrentFile');
 
     vscode.window.activeTextEditor.document.save().then(saved => {
-        let newFileName = WorkspaceFiles.RenameFile(vscode.window.activeTextEditor.document.uri);
-        vscode.workspace.openTextDocument(newFileName).then(doc => vscode.window.showTextDocument(doc));
+        let oldFilename = vscode.window.activeTextEditor.document
+        let newFileName = WorkspaceFiles.RenameFile(oldFilename.uri);
+
+        if (oldFilename.uri.fsPath != newFileName) {
+            WorkspaceFiles.doRenameCurrentFile(newFileName);
+        }
     })
     console.log('Done: RenameCurrentFile')
 }

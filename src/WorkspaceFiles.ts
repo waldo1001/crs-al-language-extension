@@ -157,8 +157,29 @@ export class WorkspaceFiles {
         }
 
         if (newFilePath != currentfile.fsPath) {
-            vscode.workspace.openTextDocument(newFilePath).then(doc => vscode.window.showTextDocument(doc));
+            this.doRenameCurrentFile(newFilePath);
         }
+    }
+
+    static doRenameCurrentFile(newFilePath: string) {
+        let currentEditor = vscode.window.activeTextEditor;
+
+        vscode.commands.executeCommand('workbench.action.closeActiveEditor');
+        vscode.workspace.openTextDocument(newFilePath).then(doc =>
+            vscode.window.showTextDocument(doc).then(doc =>
+                this.setSelectionOnTextEditor(doc, currentEditor)
+            ));
+    }
+
+    static setSelectionOnTextEditor(doc: vscode.TextEditor, editor: vscode.TextEditor) {
+        console.log('setSelectionOnTextEditor2');
+
+        let currentSelection = editor.selection;
+        let linecount = editor.document.lineCount - 1;
+        let currentRange = editor.document.lineAt(currentSelection.active.line == linecount ? linecount : currentSelection.active.line + 1).range;
+
+        doc.selection = currentSelection;
+        doc.revealRange(currentRange);
     }
 
     static getDestinationFolder(navObject: NAVObject, mySettings: any): string {
