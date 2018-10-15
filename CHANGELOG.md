@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension.
 
+## [1.0.6] - 2018-10-15
+- Added - [Run page "Event Subscribers" from the command palette](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/83)
+- Added - [Run page "Database Locks" from the command palette](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/83)
+- Improved - [Close all files first when renaming / reorganizing all files](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/84)
+
 ## [1.0.5] - 2018-10-10
 - Fixed - [When auto renaming file, previous file stays open](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/82)
 - Fixed - other minor issues
