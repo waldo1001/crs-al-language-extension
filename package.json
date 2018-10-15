@@ -63,6 +63,14 @@
                 "title": "CRS: Run CAL Test Tool in Web Client"
             },
             {
+                "command": "crs.RunEventSubscribers",
+                "title": "CRS: Run Event Subscribers Page in Web Client"
+            },
+            {
+                "command": "crs.RunDatabaseLocks",
+                "title": "CRS: Run Database Locks Page in Web Client"
+            },
+            {
                 "command": "crs.RunObjectTablet",
                 "title": "CRS: Run Object (Tablet Client)"
             },

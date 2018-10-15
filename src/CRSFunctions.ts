@@ -61,6 +61,22 @@ export function RunTestTool() {
     console.log('Done: RunTestTool')
 }
 
+export function RunEventSubscribers() {
+    console.log('Running: RunEventSubscribers');
+
+    DynamicsNAV.RunObjectInWebClient('Page', 9510, 'WebClient');
+
+    console.log('Done: RunEventSubscribers')
+}
+
+export function RunDatabaseLocks() {
+    console.log('Running: RunDatabaseLocks');
+
+    DynamicsNAV.RunObjectInWebClient('Page', 9511, 'WebClient');
+
+    console.log('Done: RunDatabaseLocks')
+}
+
 export function RunObjectTablet() {
     console.log('Running: RunObjectTablet');
 

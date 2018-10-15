@@ -20,6 +20,8 @@ export function activate(context: vscode.ExtensionContext) { //is called when yo
         vscode.commands.registerCommand('crs.RunObjectPhone', CRSFunctions.RunObjectPhone),
         vscode.commands.registerCommand('crs.RunObjectWindows', CRSFunctions.RunObjectWindows),
         vscode.commands.registerCommand('crs.RunTestTool', CRSFunctions.RunTestTool),
+        vscode.commands.registerCommand('crs.RunEventSubscribers', CRSFunctions.RunEventSubscribers),
+        vscode.commands.registerCommand('crs.RunDatabaseLocks', CRSFunctions.RunDatabaseLocks),
 
         vscode.commands.registerCommand('crs.RenameCurrentFile', CRSFunctions.RenameCurrentFile),
         vscode.commands.registerCommand('crs.RenameAllFiles', CRSFunctions.RenameAllFiles),
