@@ -79,6 +79,7 @@ export class WorkspaceFiles {
 
     static RenameAllFiles() {
         vscode.workspace.saveAll();
+        vscode.commands.executeCommand('workbench.action.closeAllEditors');
 
         this.getAlFilesFromCurrentWorkspace().then(Files => {
             let totalFileCount = 0;
@@ -104,6 +105,8 @@ export class WorkspaceFiles {
 
     static ReorganizeAllFiles() {
         vscode.workspace.saveAll();
+        vscode.commands.executeCommand('workbench.action.closeAllEditors');
+
         this.getAlFilesFromCurrentWorkspace().then(Files => {
             try {
                 let totalFileCount = 0;
