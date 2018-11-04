@@ -1,7 +1,5 @@
 import * as vscode from 'vscode';
-import { Powershell } from './PowerShell';
 import * as PSScripts from './PSScripts';
-import { ConsoleLogger, OutputLogger } from './logging';
 import { Settings } from './Settings';
 import { DynamicsNAV } from './DynamicsNAV';
 import { WorkspaceFiles } from './WorkspaceFiles';
@@ -12,20 +10,10 @@ import * as path from 'path'
 import { MSDocs } from './MSDocs';
 import { Google } from './Google';
 
-
-let observers = [
-    ConsoleLogger.getInstance(),
-    OutputLogger.getInstance()
-];
-
 export function InstallWaldosModules() {
     console.log('Running: InstallWaldosModules');
 
-    let ps = new Powershell(PSScripts.INSTALLWALDOSMODULES);
-
-    ps.observers = observers;
-
-    ps.invoke();
+    vscode.window.showErrorMessage('This function has been temporarily disabled');
 
     console.log('Done: InstallWaldosModules');
 }
