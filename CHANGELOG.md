@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension.
 
+## [1.0.7] - 2018-11-04
+- Improved - [Reopen files when renaming, reorganizing all files](https://github.com/CloudReadySoftware/crs-al-language-extension/pull/89 )
+- Updated dependent modules & Changed/Reset compile-tasks to default behaviour
+- Disabled command "Install Waldo's Modules" as this was never used, and not working like I would like it to.  There is a better way to run powershell, and I'll implement that first.
+
 ## [1.0.6] - 2018-10-15
 - Added - [Run page "Event Subscribers" from the command palette](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/83)
 - Added - [Run page "Database Locks" from the command palette](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/83)

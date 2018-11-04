@@ -2,7 +2,7 @@
     "name": "crs-al-language-extension",
     "displayName": "CRS AL Language Extension",
     "description": "Make working with the (Dynamics NAV / 365) AL Language easier and more efficient.",
-    "version": "1.0.6",
+    "version": "1.0.7",
     "publisher": "waldo",
     "icon": "images/icon.png",
     "author": {
@@ -25,13 +25,13 @@
     "bugs": {
         "url": "https://github.com/CloudReadySoftware/crs-al-language-extension/issues"
     },
-    "license": "http://www.cloud-ready-software.com",
+    "license": "MIT",
     "galleryBanner": {
         "color": "#0060A0",
         "theme": "dark"
     },
     "engines": {
-        "vscode": "^1.22.0"
+        "vscode": "^1.28.0"
     },
     "categories": [
         "Other",
@@ -43,7 +43,7 @@
         "workspaceContains:app.json",
         "onCommand:al.go"
     ],
-    "main": "./out/src/extension",
+    "main": "./out/extension",
     "contributes": {
         "commands": [
             {
@@ -328,31 +328,20 @@
         }
     },
     "scripts": {
-        "vscode:prepublish": "tsc -p ./",
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
         "postinstall": "node ./node_modules/vscode/bin/install",
-        "tslint": "tslint src/*.ts",
-        "build": "npm run build:powershell && npm run compile:typescript",
-        "build:powershell": "mkdirp out/src && ncp src/powershell out/src/powershell",
-        "compile:typescript": "tsc -watch -p ./"
+        "test": "npm run compile && node ./node_modules/vscode/bin/test"
     },
     "dependencies": {
-        "@types/node": "^9.6.12",
-        "format-duration": "^1.0.0",
-        "ncp": "^2.0.0",
-        "opn": "^5.1.0",
-        "path": "^0.12.7",
-        "powershell": "^2.3.0",
-        "time-stamp": "^1.0.1",
-        "vscode": "^1.1.17"
+        "opn": "^5.4.0"
     },
-    "devDependencgies": {
-        "powershell": "^2.2.0",
-        "typescript": "^2.0.3",
-        "vscode": "^1.0.0",
-        "mocha": "^2.3.3",
-        "@types/node": "^6.0.40",
-        "@types/mocha": "^2.2.32",
-        "opn": "^5.1.0",
-        "ncp": "^1.0.0"
+    "devDependencies": {
+        "@types/mocha": "^5.2.5",
+        "@types/node": "^7.10.1",
+        "opn": "^5.4.0",
+        "typescript": "^2.6.1",
+        "vscode": "^1.1.6"
     }
 }
