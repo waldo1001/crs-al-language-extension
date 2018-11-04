@@ -1,8 +1,8 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension.
 
-## [1.0.7] - 2018-11-04
-- Improved - [Reopen files when renaming, reorganizing all files](https://github.com/CloudReadySoftware/crs-al-language-extension/pull/89 )
+## [1.0.8] - 2018-11-04
+- Improved - [Reopen files when renaming, reorganizing all files](https://github.com/CloudReadySoftware/crs-al-language-extension/pull/89 ) - by PR from [Martin Kuhn](https://github.com/makuhn). Thank you!
 - Updated dependent modules & Changed/Reset compile-tasks to default behaviour
 - Disabled command "Install Waldo's Modules" as this was never used, and not working like I would like it to.  There is a better way to run powershell, and I'll implement that first.
 
