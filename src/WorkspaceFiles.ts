@@ -135,6 +135,7 @@ export class WorkspaceFiles {
 
     private static ReopenFilesInEditor(renamedfiles: Dictionary<string>) {
         let openfiles = new Array<string>();
+
         vscode.workspace.textDocuments.forEach(doc => {
             if (renamedfiles.ContainsKey(doc.fileName)) {
                 openfiles.push(renamedfiles.Item(doc.fileName));

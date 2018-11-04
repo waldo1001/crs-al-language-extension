@@ -4,7 +4,7 @@ A bunch of useful commands, settings and snippets to improve your life as an al 
 ## Features
 These features are concluded at this moment:
 
-### Install waldo's modules: 
+### Install waldo's modules (Temporarily disabled): 
 Download all PowerShell modules of author "waldo" from the PowerShellGallery.  Basically resulting in:
 * Cloud.Ready.Software.NAV
 * Cloud.Ready.Software.SQL

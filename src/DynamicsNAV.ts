@@ -1,15 +1,8 @@
-import { Powershell } from './PowerShell'
 import * as PSScripts from './PSScripts'
-import { ConsoleLogger, OutputLogger } from './logging';
 import { QuickPickItem } from 'vscode';
 import { Settings } from './Settings';
 
 const open = require('opn');
-
-let observers = [
-    ConsoleLogger.getInstance(),
-    OutputLogger.getInstance()
-];
 
 export class DynamicsNAV {
     static GetAllObjectTypesAsQuickPickItem(): QuickPickItem[] {
