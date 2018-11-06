@@ -2,7 +2,7 @@
     "name": "crs-al-language-extension",
     "displayName": "CRS AL Language Extension",
     "description": "Make working with the (Dynamics NAV / 365) AL Language easier and more efficient.",
-    "version": "1.0.8",
+    "version": "1.0.9",
     "publisher": "waldo",
     "icon": "images/icon.png",
     "author": {
@@ -117,7 +117,7 @@
                     "scope": "resource"
                 },
                 "CRS.WebServerInstancePort": {
-                    "type": "String",
+                    "type": "string",
                     "default": "",
                     "description": "Port number for the web client",
                     "scope": "resource"
@@ -129,7 +129,7 @@
                     "scope": "resource"
                 },
                 "CRS.WinServerInstance": {
-                    "type": "String",
+                    "type": "string",
                     "default": "NAV",
                     "description": "Serverinstance where the windows client is connecting to",
                     "scope": "resource"
