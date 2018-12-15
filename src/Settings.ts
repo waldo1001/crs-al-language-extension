@@ -17,6 +17,8 @@ export class Settings {
     static readonly Tenant = 'Tenant';
 
     static readonly AppName = 'name';
+    static readonly AppIdRangeFrom = 'AppIdRangeFrom';
+    static readonly AppIdRangeTo = 'AppIdRangeTo';
     static readonly NstFolder = 'nstfolder';
     static readonly ManagementModule = 'managementmodule';
     static readonly ExtensionObjectNamePattern = 'ExtensionObjectNamePattern';
@@ -85,7 +87,9 @@ export class Settings {
                 require(join(vscode.workspace.getWorkspaceFolder(vscode.window.activeTextEditor.document.uri).uri.fsPath, "app.json")) :
                 require(join(vscode.workspace.workspaceFolders[0].uri.fsPath, "app.json"));
 
-        this.SettingCollection[this.AppName] = appSettings.name
+        this.SettingCollection[this.AppName] = appSettings.name;
+        this.SettingCollection[this.AppIdRangeFrom] = appSettings.idRange.from;
+        this.SettingCollection[this.AppIdRangeTo] = appSettings.idRange.to;
     }
 
     private static getLaunchSettings(ResourceUri: vscode.Uri) {

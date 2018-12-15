@@ -8,7 +8,7 @@ import { WorkspaceFiles } from './WorkspaceFiles';
 import { SnippetFunctions } from './SnippetFunctions';
 import * as fs from 'fs';
 import { NAVObject } from './NAVObject';
-import * as path from 'path'
+import * as path from 'path';
 import { MSDocs } from './MSDocs';
 import { Google } from './Google';
 
@@ -153,6 +153,25 @@ export function SearchGoogle() {
         Google.OpenSearchUrl(SearchString));
 
     console.log('Done: SearchGoogle');
+}
+
+export function InsertNextObjectID() {
+    console.log('Running: InsertNextObjectID');
+
+    let currentDocument = vscode.window.activeTextEditor.document
+    let newId = WorkspaceFiles.GetNextObjectId(currentDocument);
+    let textEditor = vscode.window.activeTextEditor;
+    textEditor.edit(edit => {
+        for (const selection of textEditor.selections) {
+            if (selection.isEmpty) {
+                edit.insert(selection.start, newId.toString());
+            } else {
+                edit.replace(selection, newId.toString());
+            }
+        }
+    })
+
+    console.log('Done: InsertNextObjectID');
 }
 
 export function SetupSnippets() {
