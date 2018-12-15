@@ -1,5 +1,35 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension.
+
+## [1.0.9] - 2018-11-06
+- Fixed - [CRS.WinServerInstance Expected String](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/90)
+
+## [1.0.8] - 2018-11-04
+- Improved - [Reopen files when renaming, reorganizing all files](https://github.com/CloudReadySoftware/crs-al-language-extension/pull/89 ) - by PR from [Martin Kuhn](https://github.com/makuhn). Thank you!
+- Updated dependent modules & Changed/Reset compile-tasks to default behaviour
+- Disabled command "Install Waldo's Modules" as this was never used, and not working like I would like it to.  There is a better way to run powershell, and I'll implement that first.
+
+## [1.0.6] - 2018-10-15
+- Added - [Run page "Event Subscribers" from the command palette](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/83)
+- Added - [Run page "Database Locks" from the command palette](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/83)
+- Improved - [Close all files first when renaming / reorganizing all files](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/84)
+
+## [1.0.5] - 2018-10-10
+- Fixed - [When auto renaming file, previous file stays open](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/82)
+- Fixed - other minor issues
+- Added - When renaming a file, the cursor is positioned on the same place as it was before the rename
+
+## [1.0.4] - 2018-09-25
+Fixed snippets
+
+## [1.0.3] - 2018-09-19
+- Fixed - [Reorganize doesn't work for enums](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/78)
+- Synched and improved snippets from the 2.0-version of the Microsoft-al extension.
+
+## [1.0.1] - 2018-08-20
+- Fixed - [Bug with not-lowercased object types](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/74)
+- Fixed - [Using Rename/organize on file with unsaved changes creates duplicate files](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/72) - by [PR](https://github.com/CloudReadySoftware/crs-al-language-extension/pull/73) from [Johannes Wikman](https://github.com/jwikman).  Thank you!
+
 ## [1.0.0] - 2018-08-03
 After 10k downloads, I guess we can speak of a version 1.0 ;-).
 

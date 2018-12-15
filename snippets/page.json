@@ -189,7 +189,6 @@
             "",
             "\t${4:RecordVar}.TRANSFERFIELDS(Rec,FALSE);",
             "\t${4:RecordVar}.MODIFY(TRUE);",
-            "\tCOMMIT;",
             "end;",
             "",
             "",

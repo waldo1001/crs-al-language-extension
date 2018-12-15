@@ -14,7 +14,7 @@ import * as myExtension from '../extension';
 
 // Defines a Mocha test suite to group tests of similar kind together
 
-suite("Sample Tests", () => {
+//suite("Sample Tests", () => {
 
     // Defines a Mocha unit test
 
@@ -40,4 +40,4 @@ suite("Sample Tests", () => {
             assert.equal(WorkspaceFiles.getFilePropertiesFromObjectText(objectText, null).objectType, 'profile');
             assert.equal(WorkspaceFiles.getFilePropertiesFromObjectText(objectText, null).objectNameShort, 'MyNewRolecenter');
         }); */
-});
+//});

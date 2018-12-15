@@ -8,6 +8,7 @@ import { Settings } from './Settings';
 import { DynamicsNAV } from './DynamicsNAV';
 import { error } from 'util';
 import { NAVObject } from './NAVObject';
+import { Dictionary } from './Dictionary';
 
 export class WorkspaceFiles {
 
@@ -81,6 +82,7 @@ export class WorkspaceFiles {
         vscode.workspace.saveAll();
 
         this.getAlFilesFromCurrentWorkspace().then(Files => {
+            let renamedfiles = new Dictionary<string>();
             let totalFileCount = 0;
             let renamedFileCount = 0;
             try {
@@ -90,6 +92,7 @@ export class WorkspaceFiles {
                     let newFilename = this.RenameFile(file);
                     if (file.fsPath != newFilename) {
                         renamedFileCount++;
+                        renamedfiles.Add(file.fsPath, newFilename);
                     }
 
                 })
@@ -97,6 +100,8 @@ export class WorkspaceFiles {
             } catch (error) {
                 vscode.window.showErrorMessage(error.message);
             }
+
+            WorkspaceFiles.ReopenFilesInEditor(renamedfiles);
         });
     }
 
@@ -104,7 +109,9 @@ export class WorkspaceFiles {
 
     static ReorganizeAllFiles() {
         vscode.workspace.saveAll();
+
         this.getAlFilesFromCurrentWorkspace().then(Files => {
+            let renamedfiles = new Dictionary<string>();
             try {
                 let totalFileCount = 0;
                 let renamedFileCount = 0;
@@ -113,6 +120,7 @@ export class WorkspaceFiles {
                     let newFilename = this.ReorganizeFile(file);
                     if (file.fsPath != newFilename) {
                         renamedFileCount++;
+                        renamedfiles.Add(file.fsPath, newFilename);
                     }
 
                 })
@@ -120,8 +128,26 @@ export class WorkspaceFiles {
             } catch (error) {
                 vscode.window.showErrorMessage(error.message);
             }
-        }
-        );
+
+            WorkspaceFiles.ReopenFilesInEditor(renamedfiles);
+        });
+    }
+
+    private static ReopenFilesInEditor(renamedfiles: Dictionary<string>) {
+        let openfiles = new Array<string>();
+
+        vscode.workspace.textDocuments.forEach(doc => {
+            if (renamedfiles.ContainsKey(doc.fileName)) {
+                openfiles.push(renamedfiles.Item(doc.fileName));
+            }
+            else {
+                openfiles.push(doc.fileName);
+            }
+        });
+        vscode.commands.executeCommand('workbench.action.closeAllEditors');
+        openfiles.forEach(f => {
+            vscode.workspace.openTextDocument(f).then(newdoc => vscode.window.showTextDocument(newdoc, { preserveFocus: true, viewColumn: vscode.ViewColumn.Active, preview: false }));
+        });
     }
 
 
@@ -157,8 +183,29 @@ export class WorkspaceFiles {
         }
 
         if (newFilePath != currentfile.fsPath) {
-            vscode.workspace.openTextDocument(newFilePath).then(doc => vscode.window.showTextDocument(doc));
+            this.doRenameCurrentFile(newFilePath);
         }
+    }
+
+    static doRenameCurrentFile(newFilePath: string) {
+        let currentEditor = vscode.window.activeTextEditor;
+
+        vscode.commands.executeCommand('workbench.action.closeActiveEditor');
+        vscode.workspace.openTextDocument(newFilePath).then(doc =>
+            vscode.window.showTextDocument(doc).then(doc =>
+                this.setSelectionOnTextEditor(doc, currentEditor)
+            ));
+    }
+
+    static setSelectionOnTextEditor(doc: vscode.TextEditor, editor: vscode.TextEditor) {
+        console.log('setSelectionOnTextEditor2');
+
+        let currentSelection = editor.selection;
+        let linecount = editor.document.lineCount - 1;
+        let currentRange = editor.document.lineAt(currentSelection.active.line == linecount ? linecount : currentSelection.active.line + 1).range;
+
+        doc.selection = currentSelection;
+        doc.revealRange(currentRange);
     }
 
     static getDestinationFolder(navObject: NAVObject, mySettings: any): string {

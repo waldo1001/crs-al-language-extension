@@ -1,6 +1,6 @@
 {
     "Snippet: Query": {
-        "prefix": "tquery",
+        "prefix": "tquery (CRS)",
         "body": [
             "query ${1:Id} ${2:MyQuery}",
             "{",
@@ -28,5 +28,40 @@
             "}"
         ],
         "description": "Snippet: Query"
+    },
+    "Query of type API": {
+        "prefix": "tqueryapi (CRS)",
+        "body": [
+            "query ${1:Id} ${2:MyQuery}",
+            "{",
+            "\tQueryType = API;",
+            "\tAPIPublisher = '${3:PublisherName}';",
+            "\tAPIGroup = '${4:GroupName}';",
+            "\tAPIVersion = '${5:VersionList}';",
+            "\tEntityName = '${6:EntityName}';",
+            "\tEntitySetName = '${7:EntitySetName}';",
+            "\t",
+            "\telements",
+            "\t{",
+            "\t\tdataitem(${10:DataItemName}; ${9:SourceTableName})",
+            "\t\t{",
+            "\t\t\tcolumn(${12:ColumnName}; ${11:SourceFieldName})",
+            "\t\t\t{",
+            "\t\t\t\t${13}",
+            "\t\t\t}",
+            "\t\t\tfilter(${15:FilterName}; ${14:SourceFieldName})",
+            "\t\t\t{",
+            "\t\t\t\t${16}",
+            "\t\t\t}",
+            "\t\t}",
+            "\t}",
+            "\t",
+            "\ttrigger ${19:OnBeforeOpen}()",
+            "\tbegin",
+            "\t\t$0",
+            "\tend;",
+            "}"
+        ],
+        "description": "Snippet: Query of type API"
     }
 }

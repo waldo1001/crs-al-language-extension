@@ -8,8 +8,42 @@ class NAVTestObject {
 export function getTemplateObject(): NAVTestObject {
     let object = new NAVTestObject;
 
+    object.ObjectFileName = 'al.al'
+    object.ObjectText = `
+    `
+    return object;
+}
+export function getEnumObject(): NAVTestObject {
+    let object = new NAVTestObject;
+
+    object.ObjectFileName = 'al.al'
+    object.ObjectText = `enum 50100 MyEnum
+{
+    Extensible = true;
+    
+}`
+    return object;
+}
+export function getEnumExtensionObject(): NAVTestObject {
+    let object = new NAVTestObject;
+
+    object.ObjectFileName = 'al.al'
+    object.ObjectText = `enumextension 50100 MyEnumextension extends MyEnum
+{
+
+}`
+    return object;
+}
+
+export function getPascalCasedObjectType_Report(): NAVTestObject {
+    let object = new NAVTestObject;
+
     object.ObjectFileName = 'Pag50100.justAName.al'
     object.ObjectText = `
+        Report 5319465 "SUP Supplier Rating Batch"
+        {
+
+        }
     `
     return object;
 }

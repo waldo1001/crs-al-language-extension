@@ -9,10 +9,8 @@ import { suite, test } from 'mocha';
 
 import { NAVObject } from '../NAVObject'
 import { WorkspaceFiles } from '../WorkspaceFiles'
-import * as vscode from 'vscode';
 import * as myExtension from '../extension';
 import * as NAVTestObjectLibrary from './NAVTestObjectLibrary'
-import { ConfigurationTarget } from 'vscode';
 import { Settings } from '../Settings';
 import { settings } from 'cluster';
 
@@ -624,5 +622,32 @@ suite("NAVObject Tests", () => {
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
 
         assert.equal(navObject.objectNameFixed, navObject.objectName)
+    })
+
+    test("Case Sensitive Object Types", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+
+        let navTestObject = NAVTestObjectLibrary.getPascalCasedObjectType_Report()
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
+
+        assert.equal(navObject.objectType.toLocaleLowerCase(), 'report')
+    })
+    test("Filename - Rename enum", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+
+        let navTestObject = NAVTestObjectLibrary.getEnumObject();
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
+
+        assert.notEqual(navObject.extendedObjectName, navObject.objectName);
+        assert.equal(navObject.objectFileNameFixed.toLowerCase().startsWith('enum'), true);
+    })
+    test("Filename - Rename enumExtension", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+
+        let navTestObject = NAVTestObjectLibrary.getEnumExtensionObject();
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
+
+        assert.notEqual(navObject.extendedObjectName, navObject.objectName);
+        assert.equal(navObject.objectFileNameFixed.toLowerCase().startsWith('enum'), true);
     })
 });

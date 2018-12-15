@@ -1,7 +1,5 @@
 import * as vscode from 'vscode';
-import { Powershell } from './PowerShell';
 import * as PSScripts from './PSScripts';
-import { ConsoleLogger, OutputLogger } from './logging';
 import { Settings } from './Settings';
 import { DynamicsNAV } from './DynamicsNAV';
 import { WorkspaceFiles } from './WorkspaceFiles';
@@ -12,20 +10,10 @@ import * as path from 'path';
 import { MSDocs } from './MSDocs';
 import { Google } from './Google';
 
-
-let observers = [
-    ConsoleLogger.getInstance(),
-    OutputLogger.getInstance()
-];
-
 export function InstallWaldosModules() {
     console.log('Running: InstallWaldosModules');
 
-    let ps = new Powershell(PSScripts.INSTALLWALDOSMODULES);
-
-    ps.observers = observers;
-
-    ps.invoke();
+    vscode.window.showErrorMessage('This function has been temporarily disabled');
 
     console.log('Done: InstallWaldosModules');
 }
@@ -59,6 +47,22 @@ export function RunTestTool() {
     DynamicsNAV.RunObjectInWebClient('Page', 130401, 'WebClient');
 
     console.log('Done: RunTestTool')
+}
+
+export function RunEventSubscribers() {
+    console.log('Running: RunEventSubscribers');
+
+    DynamicsNAV.RunObjectInWebClient('Page', 9510, 'WebClient');
+
+    console.log('Done: RunEventSubscribers')
+}
+
+export function RunDatabaseLocks() {
+    console.log('Running: RunDatabaseLocks');
+
+    DynamicsNAV.RunObjectInWebClient('Page', 9511, 'WebClient');
+
+    console.log('Done: RunDatabaseLocks')
 }
 
 export function RunObjectTablet() {
@@ -95,8 +99,12 @@ export function RenameCurrentFile() {
     console.log('Running: RenameCurrentFile');
 
     vscode.window.activeTextEditor.document.save().then(saved => {
-        let newFileName = WorkspaceFiles.RenameFile(vscode.window.activeTextEditor.document.uri);
-        vscode.workspace.openTextDocument(newFileName).then(doc => vscode.window.showTextDocument(doc));
+        let oldFilename = vscode.window.activeTextEditor.document
+        let newFileName = WorkspaceFiles.RenameFile(oldFilename.uri);
+
+        if (oldFilename.uri.fsPath != newFileName) {
+            WorkspaceFiles.doRenameCurrentFile(newFileName);
+        }
     })
     console.log('Done: RenameCurrentFile')
 }
