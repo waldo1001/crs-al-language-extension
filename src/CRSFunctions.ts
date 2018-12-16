@@ -165,20 +165,20 @@ export function SearchGoogle() {
 
 export function InsertNextObjectID() {
     console.log('Running: InsertNextObjectID');
-
-    let currentDocument = vscode.window.activeTextEditor.document
-    let newId = WorkspaceFiles.GetNextObjectId(currentDocument);
-    let textEditor = vscode.window.activeTextEditor;
-    textEditor.edit(edit => {
-        for (const selection of textEditor.selections) {
-            if (selection.isEmpty) {
-                edit.insert(selection.start, newId.toString());
-            } else {
-                edit.replace(selection, newId.toString());
+    vscode.window.activeTextEditor.document.save().then(async saved => {
+        let currentDocument = vscode.window.activeTextEditor.document
+        let newId = await WorkspaceFiles.GetNextObjectId(currentDocument);
+        let textEditor = vscode.window.activeTextEditor;
+        textEditor.edit(edit => {
+            for (const selection of textEditor.selections) {
+                if (selection.isEmpty) {
+                    edit.insert(selection.start, newId.toString());
+                } else {
+                    edit.replace(selection, newId.toString());
+                }
             }
-        }
-    })
-
+        })
+    });
     console.log('Done: InsertNextObjectID');
 }
 

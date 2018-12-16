@@ -229,9 +229,10 @@ export class WorkspaceFiles {
     }
 
 
-    static LoadAllNavObjects(): NAVObject[] {
+    static async LoadAllNavObjects(): Promise<NAVObject[]> {
         let navObjects = new Array();
-        this.getAlFilesFromCurrentWorkspace().then(Files => {
+
+        await this.getAlFilesFromCurrentWorkspace().then(Files => {
             try {
                 Files.forEach(file => {
                     console.log(file.fsPath);
@@ -239,7 +240,7 @@ export class WorkspaceFiles {
                         let navObject = new NAVObject(fs.readFileSync(file.fsPath).toString(), Settings.GetConfigSettings(file), path.basename(file.fsPath))
                         navObjects.push(navObject);
                     } catch (error) {
-                        
+
                     }
                 })
             } catch (error) {
@@ -247,29 +248,29 @@ export class WorkspaceFiles {
             }
         });
         return navObjects;
+
     }
-    static GetNextObjectId(currentDocument):number{
+    static async GetNextObjectId(currentDocument): Promise<number> {
         let settingsCollection = Settings.GetAppSettings(null);
-        let currNavObject = new NAVObject(fs.readFileSync(currentDocument.uri.fsPath).toString(), Settings.GetConfigSettings(currentDocument.uri), path.basename(currentDocument.uri.fsPath));
-    
-        let objectId = currNavObject.objectType.toLowerCase().endsWith('extension') ? currNavObject.extendedObjectId : currNavObject.objectId;
-        let objectType = currNavObject.objectType.toLowerCase().endsWith('extension') ? currNavObject.objectType.toLowerCase().replace('extension', '') : currNavObject.objectType
-    
-    
-        let navObjects = WorkspaceFiles.LoadAllNavObjects();
+        let objectType = NAVObject.getObjectType(fs.readFileSync(currentDocument.uri.fsPath).toString());
+
+        let navObjects = await WorkspaceFiles.LoadAllNavObjects();
         let objectsOfSameType = navObjects.filter(x => x.objectType == objectType &&
             x.objectId >= settingsCollection[Settings.AppIdRangeFrom] &&
             x.objectId <= settingsCollection[Settings.AppIdRangeTo])
-            .sort((a, b) => Number.parseInt(a.objectId) > Number.parseInt(a.objectId) ? 1 : Number.parseInt(b.objectId) > Number.parseInt(a.objectId) ? -1 : 0);
+            .sort((a, b) => Number.parseInt(a.objectId) > Number.parseInt(b.objectId) ? 1 : Number.parseInt(b.objectId) > Number.parseInt(a.objectId) ? -1 : 0);
         let lastUsedId: number = Number.parseInt(settingsCollection[Settings.AppIdRangeFrom]) - 1;
-        objectsOfSameType.forEach(x => {
-            if (Number.parseInt(x.objectId) > lastUsedId + 1) {
+        for (var obj of objectsOfSameType){
+            if (Number.parseInt(obj.objectId) > lastUsedId + 1) {
                 return lastUsedId + 1;
+                break;
             }
-        });
+            lastUsedId = Number.parseInt(obj.objectId);
+
+        }
         return Number.parseInt(settingsCollection[Settings.AppIdRangeFrom]);
     }
-    
+
 }
 
 

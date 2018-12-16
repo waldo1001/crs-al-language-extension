@@ -99,10 +99,19 @@ export class NAVObject {
         return null
     }
 
-    private loadObjectProperties(): any {
+    private static getObjectTypeArr(objectText:string){
         var patternObjectType = new RegExp('(codeunit |page |pagecustomization |pageextension |profile |query |report |requestpage |table |tableextension |xmlport |enum |enumextension )', "i")
 
-        let ObjectTypeArr = this.NAVObjectText.match(patternObjectType);
+        return objectText.match(patternObjectType);
+    }
+    public static getObjectType(objectText:string){
+        let objTypeArr = NAVObject.getObjectTypeArr(objectText);
+        return objTypeArr[0].trim().toLowerCase();
+    }
+
+    private loadObjectProperties(): any {
+
+        let ObjectTypeArr = NAVObject.getObjectTypeArr(this.NAVObjectText);
 
         this._objectFileNamePattern = '';
         this.objectType = '';
