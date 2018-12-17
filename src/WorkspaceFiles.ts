@@ -259,6 +259,9 @@ export class WorkspaceFiles {
             x.objectId >= settingsCollection[Settings.AppIdRangeFrom] &&
             x.objectId <= settingsCollection[Settings.AppIdRangeTo])
             .sort((a, b) => Number.parseInt(a.objectId) > Number.parseInt(b.objectId) ? 1 : Number.parseInt(b.objectId) > Number.parseInt(a.objectId) ? -1 : 0);
+        if (objectsOfSameType.length==0) {
+            return Number.parseInt(settingsCollection[Settings.AppIdRangeFrom]);    
+        }
         let lastUsedId: number = Number.parseInt(settingsCollection[Settings.AppIdRangeFrom]) - 1;
         for (var obj of objectsOfSameType){
             if (Number.parseInt(obj.objectId) > lastUsedId + 1) {
@@ -266,9 +269,12 @@ export class WorkspaceFiles {
                 break;
             }
             lastUsedId = Number.parseInt(obj.objectId);
-
         }
-        return Number.parseInt(settingsCollection[Settings.AppIdRangeFrom]);
+        if (lastUsedId < Number.parseInt(settingsCollection[Settings.AppIdRangeTo])) {
+            return lastUsedId + 1;
+        }
+        throw "There are no available Object IDs for this Object Type.";
+        
     }
 
 }
