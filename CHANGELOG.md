@@ -1,8 +1,10 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension.
 
-## [1.0.9] - 2018-11-06
+## [1.0.10] - 2019-01-13
 - Fixed - [CRS.WinServerInstance Expected String](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/90)
+- Fixed - Removed vulnerable dependencies "flatmap-stream" and "event-stream"
+- Improved tooltips for settings
 
 ## [1.0.8] - 2018-11-04
 - Improved - [Reopen files when renaming, reorganizing all files](https://github.com/CloudReadySoftware/crs-al-language-extension/pull/89 ) - by PR from [Martin Kuhn](https://github.com/makuhn). Thank you!
