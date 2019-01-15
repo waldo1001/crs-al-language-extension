@@ -2,7 +2,7 @@
     "name": "crs-al-language-extension",
     "displayName": "CRS AL Language Extension",
     "description": "Make working with the (Dynamics NAV / 365) AL Language easier and more efficient.",
-    "version": "1.0.9",
+    "version": "1.0.10",
     "publisher": "waldo",
     "icon": "images/icon.png",
     "author": {
@@ -227,7 +227,7 @@
                 "CRS.DisableCRSSnippets": {
                     "type": "boolean",
                     "default": false,
-                    "description": "Disable the default Al Snippets.  When you change the setting, you need to restart VSCode twice.  Once for disabling the snippets on activation (at that time, the snippets are still loaded).  And the second time to actually not load the snippets anymore",
+                    "description": "Disable the Al Snippets that come with this extension.  When you change the setting, you need to restart VSCode twice.  Once for disabling the snippets on activation (at that time, the snippets are still loaded).  And the second time to actually not load the snippets anymore",
                     "scope": "resource"
                 }
             }
@@ -339,9 +339,9 @@
     },
     "devDependencies": {
         "@types/mocha": "^5.2.5",
-        "@types/node": "^7.10.1",
+        "@types/node": "^7.10.2",
         "opn": "^5.4.0",
         "typescript": "^2.6.1",
-        "vscode": "^1.1.6"
+        "vscode": "^1.1.26"
     }
 }
