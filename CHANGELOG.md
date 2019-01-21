@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension.
 
+## [1.0.11] - 2019-01-21
+- Fixed - Snippet "tFieldOption" by [this Pull Request](https://github.com/CloudReadySoftware/crs-al-language-extension/pull/96).  Thanks [ThePsionic](https://github.com/ThePsionic)!
+
 ## [1.0.10] - 2019-01-13
 - Fixed - [CRS.WinServerInstance Expected String](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/90)
 - Fixed - Removed vulnerable dependencies "flatmap-stream" and "event-stream"
