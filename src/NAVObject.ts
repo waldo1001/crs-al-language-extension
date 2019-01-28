@@ -201,6 +201,18 @@ export class NAVObject {
             this.extendedObjectId = this.extendedObjectId.trim().toString();
         }
 
+        if (!(this.IsValidObjectType(this.objectType))) {
+            //reset variables
+            this._objectFileNamePattern = '';
+            this.objectType = '';
+            this.objectId = '';
+            this.objectName = '';
+            this.extendedObjectName = '';
+            this.extendedObjectId = '';
+                
+            return null;
+        }
+
         var reg = NAVObjectAction.actionRegEx();
         var result;
         while ((result = reg.exec(this.NAVObjectText)) !== null) {
@@ -213,6 +225,27 @@ export class NAVObject {
             this.tableFields.push(new NAVTableField(result[1], this.objectType, this._workSpaceSettings[Settings.ObjectNamePrefix], this._workSpaceSettings[Settings.ObjectNameSuffix]))
         }
     }
+
+    private IsValidObjectType(objectType: string): boolean {
+        switch (objectType.toLowerCase()) {
+            case 'codeunit':
+            case 'page':
+            case 'pagecustomization':
+            case 'pageextension':
+            case 'profile':
+            case 'query':
+            case 'report':
+            case 'requestpage':
+            case 'table':
+            case 'tableextension':
+            case 'xmlport':
+            case 'enum':
+            case 'enumextension':
+                return true;
+            default: return false;
+        }         
+    }
+
     private ApplyExtensionObjectNamePattern(objectName: string): string {
         if (!this._workSpaceSettings[Settings.ExtensionObjectNamePattern] || !this.objectType.toLocaleLowerCase().endsWith('extension')) { return objectName }
 
