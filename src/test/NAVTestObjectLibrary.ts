@@ -13,6 +13,38 @@ export function getTemplateObject(): NAVTestObject {
     `
     return object;
 }
+export function getTableWithComments(): NAVTestObject {
+    let object = new NAVTestObject;
+
+    object.ObjectFileName = 'al.al'
+    object.ObjectText = `
+    /*
+D81 001 00000000B81 AAA 2017.12.26 Some text
+*/
+table 50901 "Customer Risk"
+{
+    DataClassification = ToBeClassified;
+
+    fields
+    {
+        field(1; MyField; Integer)
+        {
+            DataClassification = ToBeClassified;
+
+        }
+    }
+
+    keys
+    {
+        key(PK; MyField)
+        {
+            Clustered = true;
+        }
+    }
+}
+    `
+    return object;
+}
 export function getEnumObject(): NAVTestObject {
     let object = new NAVTestObject;
 

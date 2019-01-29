@@ -1,6 +1,7 @@
 import { Settings } from './Settings';
 import { StringFunctions } from './StringFunctions'
 import { DynamicsNAV } from './DynamicsNAV';
+import * as vscode from 'vscode';
 import * as fs from 'fs';
 import * as path from 'path'
 
@@ -126,13 +127,17 @@ export class NAVObject {
                 case 'xmlport':
                 case 'enum': {
 
-                    var patternObject = new RegExp(`(\\w+) +([0-9]+) +(${ObjectNamePattern}|${ObjectNameNoQuotesPattern})([^"\n]*"[^"\n]*)?`);
+                    var patternObject = new RegExp(`(${ObjectTypeArr[0].trim().toLowerCase()}) +([0-9]+) +(${ObjectNamePattern}|${ObjectNameNoQuotesPattern})([^"\n]*"[^"\n]*)?`, "i");
                     let currObject = this.NAVObjectText.match(patternObject);
                     if (currObject == null) {
-                        throw new Error(`File '${this.objectFileName}' does not have valid object name. Maybe it got double quotes (") in the object name?`)
+                        //throw new Error(`File '${this.objectFileName}' does not have valid object name. Maybe it got double quotes (") in the object name?`)
+                        vscode.window.showErrorMessage(`File '${this.objectFileName}' does not have valid object name. Maybe it got double quotes (") in the object name?`)
+                        return null
                     }
                     if (currObject[4] != null) {
-                        throw new Error(`File '${this.objectFileName}' does not have valid object name, it has too many double quotes (")`)
+                        //throw new Error(`File '${this.objectFileName}' does not have valid object name, it has too many double quotes (")`)
+                        vscode.window.showErrorMessage(`File '${this.objectFileName}' does not have valid object name, it has too many double quotes (")`)
+                        return null
                     }
 
                     this.objectType = currObject[1];
@@ -146,10 +151,13 @@ export class NAVObject {
                 case 'pageextension':
                 case 'tableextension':
                 case 'enumextension': {
-                    var patternObject = new RegExp(`(\\w+) +([0-9]+) +(${ObjectNamePattern}|${ObjectNameNoQuotesPattern}) +extends +(${ObjectNamePattern}|${ObjectNameNoQuotesPattern})\\s*(\\/\\/\\s*)?([0-9]+)?`);
+                    var patternObject = new RegExp(`(${ObjectTypeArr[0].trim().toLowerCase()}) +([0-9]+) +(${ObjectNamePattern}|${ObjectNameNoQuotesPattern}) +extends +(${ObjectNamePattern}|${ObjectNameNoQuotesPattern})\\s*(\\/\\/\\s*)?([0-9]+)?`, "i");
                     let currObject = this.NAVObjectText.match(patternObject);
                     if (currObject == null) {
-                        throw new Error(`File '${this.objectFileName}' does not have valid object names. Maybe it got double quotes (") in the object name?`)
+                        //throw new Error(`File '${this.objectFileName}' does not have valid object names. Maybe it got double quotes (") in the object name?`)
+                        vscode.window.showErrorMessage(`File '${this.objectFileName}' does not have valid object name. Maybe it got double quotes (") in the object name?`)
+                        return null
+
                     }
                     this.objectType = currObject[1];
                     this.objectId = currObject[2];
@@ -164,7 +172,7 @@ export class NAVObject {
 
                 case 'profile': {
 
-                    var patternObject = new RegExp('(profile)( +"?[ a-zA-Z0-9._/&-]+"?)');
+                    var patternObject = new RegExp('(profile)( +"?[ a-zA-Z0-9._/&-]+"?)', "i");
                     let currObject = this.NAVObjectText.match(patternObject);
 
                     this.objectType = currObject[1];
@@ -177,7 +185,7 @@ export class NAVObject {
                 }
                 case 'pagecustomization': {
 
-                    var patternObject = new RegExp('(\\w+)( +"?[ a-zA-Z0-9._/&-]+"?) +customizes( +"?[ a-zA-Z0-9._&-]+\\/?[ a-zA-Z0-9._&-]+"?) (\\/\\/+ *)?([0-9]+)?');
+                    var patternObject = new RegExp(`(${ObjectTypeArr[0].trim().toLowerCase()})( +"?[ a-zA-Z0-9._/&-]+"?) +customizes( +"?[ a-zA-Z0-9._&-]+\\/?[ a-zA-Z0-9._&-]+"?) (\\/\\/+ *)?([0-9]+)?`, "i");
                     let currObject = this.NAVObjectText.match(patternObject);
 
                     this.objectType = currObject[1];
@@ -190,7 +198,10 @@ export class NAVObject {
                     break;
                 }
                 default: {
-                    Error('Not able to parse this file: ' + this.NAVObjectText);
+                    //Error('Not able to parse this file: ' + this.NAVObjectText);
+                    vscode.window.showErrorMessage('Not able to parse this file: ' + this.NAVObjectText);
+                    
+                    return null
                 }
             }
 

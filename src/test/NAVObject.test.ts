@@ -650,4 +650,22 @@ suite("NAVObject Tests", () => {
         assert.notEqual(navObject.extendedObjectName, navObject.objectName);
         assert.equal(navObject.objectFileNameFixed.toLowerCase().startsWith('enum'), true);
     })
+    test("Comments in table", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+        testSettings[Settings.ObjectNamePrefix] = 'waldo';
+        testSettings[Settings.ObjectNameSuffix] = 'waldo';
+        testSettings[Settings.FileNamePattern] = '<Prefix><Suffix><ObjectType><ObjectTypeShort><ObjectTypeShortUpper><ObjectId>';
+        
+        let navTestObject = NAVTestObjectLibrary.getTableWithComments();
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
+
+        assert.equal(navObject.objectType.toLowerCase().startsWith('table'), true);
+        assert.equal(navObject.objectFileNameFixed,
+            testSettings[Settings.ObjectNamePrefix]
+            + testSettings[Settings.ObjectNameSuffix]
+            + navObject.objectType
+            + navObject.objectTypeShort
+            + navObject.objectTypeShort.toUpperCase()
+            + navObject.objectId)
+    })
 });
