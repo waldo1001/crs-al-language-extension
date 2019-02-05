@@ -2,6 +2,7 @@
 
 import * as vscode from 'vscode';  //VS Code extensibility API
 import * as CRSFunctions from './CRSFunctions';  //Our own functions
+import { CRSExtensionPublicApi } from './api/CRSExtensionPublicApi';
 
 export function activate(context: vscode.ExtensionContext) { //is called when your extension is activated (when command is executed)
 
@@ -39,6 +40,10 @@ export function activate(context: vscode.ExtensionContext) { //is called when yo
     context.subscriptions.push(vscode.workspace.onDidSaveTextDocument(CRSFunctions.HandleOnSaveTextDocument));
 
     vscode.commands.executeCommand('crs.SetupSnippets');
+
+    //return extension api
+    let extensionApi : CRSExtensionPublicApi = new CRSExtensionPublicApi();
+    return extensionApi;
 }
 
 // this method is called when your extension is deactivated
