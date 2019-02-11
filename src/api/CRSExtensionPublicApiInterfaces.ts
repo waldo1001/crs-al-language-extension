@@ -11,6 +11,7 @@ declare module 'crs-al-language-extension-api' {
         GetObjectFileName(objectType: string, objectId : string, objectName: string) : string;
         GetObjectExtensionFileName(objectType: string, objectId : string, objectName: string, extendedObjectId : string, extendedObjectName : string) : string;
         GetObjectExtensionName(objectType: string, objectId : string, objectName: string, extendedObjectId : string, extendedObjectName : string) : string;
+        GetBestPracticeAbbreviatedObjectType(ObjectType: String): string;
     }
 
     export interface IRunObjectApi {

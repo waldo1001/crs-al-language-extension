@@ -28,4 +28,9 @@ export class ObjectNamesApi implements CRSApi.IObjectNamesApi {
         return navObject.objectNameFixed;
     }
 
+    public GetBestPracticeAbbreviatedObjectType(ObjectType: String): string {
+        return DynamicsNAV.getBestPracticeAbbreviatedObjectType(ObjectType);
+    }
+
+
 }
