@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension.
 
+## [1.0.13] - 2019-02-19
+- Fixed small security issues
+- slightly improved the table-snippet
+- Merged Pull Request of [Rasmus Aaen](https://github.com/RasmusTidselbak) - [Fixed casing and parenthesis](https://github.com/CloudReadySoftware/crs-al-language-extension/pull/101)
+
 ## [1.0.12] - 2019-01-29
 - Fixed - Issue with situations when many comments are in a file, which could cause (by exception) taking the wrong text for determining the object properties.  Filed by [Luc van Vugt](https://github.com/lvanvugt) in [this issue](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/99).
 - Fixed - Issue with leading comments in a file, which could cause the regex to end up taking wrong conclusions.  [Issue](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/94) by [Laura Nicolas](https://github.com/LauraNicolas).
