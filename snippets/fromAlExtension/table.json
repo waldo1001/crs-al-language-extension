@@ -8,7 +8,7 @@
             "\t",
             "\tfields",
             "\t{",
-            "\t\tfield(1;${4:MyField}; ${5:Integer})",
+            "\t\tfield(1;\"${4:MyField}\"; ${5:Integer})",
             "\t\t{",
             "\t\t\tCaption = '${4:MyField}';",
             "\t\t\tDataClassification = ${6|ToBeClassified,CustomerContent,EndUserIdentifiableInformation,AccountData,EndUserPseudonymousIdentifiers,OrganizationIdentifiableInformation,SystemMetadata|};",
