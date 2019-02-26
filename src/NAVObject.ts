@@ -37,7 +37,26 @@ export class NAVObject {
 
         this._workSpaceSettings = workSpaceSettings;
 
-        this.loadObjectProperties();
+        if (this.NAVObjectText)
+            this.loadObjectProperties();
+    }
+
+    setObjectProperies(objectType: string, objectId : string, objectName : string) {
+        this._objectFileNamePattern = this._workSpaceSettings[Settings.FileNamePattern];
+        this.objectType = objectType;
+        this.objectId = objectId;
+        this.objectName = objectName;
+        this.extendedObjectName = '';
+        this.extendedObjectId = '';
+    }
+
+    setObjectExtensionProperies(objectType: string, objectId : string, objectName : string, extendedObjectId : string, extendedObjectName : string) {
+        this._objectFileNamePattern = this._workSpaceSettings[Settings.FileNamePatternExtensions];
+        this.objectType = objectType;
+        this.objectId = objectId;
+        this.objectName = objectName;
+        this.extendedObjectName = extendedObjectName;
+        this.extendedObjectId = extendedObjectId;
     }
 
     get objectTypeShort(): string {
