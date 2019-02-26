@@ -438,15 +438,9 @@ suite("NAVObject Tests", () => {
         testSettings[Settings.FileNamePatternExtensions] = '<BaseName>_<ObjectName>.PageExt.al'
 
         let navTestObject = NAVTestObjectLibrary.getPageExtensionWithQuotesInObjectName();
-        try {
-            let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
-            throw new Error('Object Name parsing accepted double quotes in name.');
-        } catch (error) {
-            assert.equal(error.message, `File '${navTestObject.ObjectFileName}' does not have valid object names. Maybe it got double quotes (") in the object name?`)
-
-        }
-
-
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
+        
+        assert.equal(navObject.objectId,'')
     })
 
 
@@ -455,14 +449,10 @@ suite("NAVObject Tests", () => {
         testSettings[Settings.FileNamePatternExtensions] = '<BaseName>_<ObjectName>.al'
 
         let navTestObject = NAVTestObjectLibrary.getPageWithQuotesInObjectName();
-        try {
-            let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
-            throw new Error('Object Name parsing accepted double quotes in name.');
-        } catch (error) {
-            assert.equal(error.message, `File '${navTestObject.ObjectFileName}' does not have valid object name, it has too many double quotes (")`)
-
-        }
-    })
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
+        
+        assert.equal(navObject.objectId,'')
+       })
 
     test("Filename - Rename Page with Brackets in the object name", () => {
         let testSettings = Settings.GetConfigSettings(null)

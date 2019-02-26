@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension.
 
+## [1.0.15] - 2019-02-25
+- Added Extension API.  By [Pullrequest](https://github.com/CloudReadySoftware/crs-al-language-extension/pull/104) of [Andrzej Zwierzchowski](https://github.com/anzwdev). Thanks so much! :-)
+
 ## [1.0.13] - 2019-02-19
 - Fixed small security issues
 - slightly improved the table-snippet
