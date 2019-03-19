@@ -15,19 +15,21 @@ export class WorkspaceFiles {
     static getAlFilesFromCurrentWorkspace() {
         if (vscode.window.activeTextEditor) {
             let currentWorkspaceFolder = vscode.workspace.getWorkspaceFolder(vscode.window.activeTextEditor.document.uri) //Active File
-            return vscode.workspace.findFiles(new vscode.RelativePattern(currentWorkspaceFolder, '**/*.al'))
+            return vscode.workspace.findFiles(new vscode.RelativePattern(currentWorkspaceFolder, '**/*.*'))
         } else {
-            return vscode.workspace.findFiles('**/*.al',"{nocase:true}");
+            return vscode.workspace.findFiles('**/*.*');
         }
 
     }
 
     static RenameFile(fileName: vscode.Uri): string {
+        if (!fileName.toString().toLowerCase().endsWith('.al')){return fileName.fsPath};
+
         let navObject = new NAVObject(fs.readFileSync(fileName.fsPath).toString(), Settings.GetConfigSettings(fileName), path.basename(fileName.fsPath))
 
         this.SaveAutoFixesToFile(fileName, navObject);
 
-        if (navObject.objectFileName.toLowerCase() != navObject.objectFileNameFixed.toLowerCase()) {
+        if (navObject.objectFileName != navObject.objectFileNameFixed) {
             let newFilePath = path.join(path.dirname(fileName.fsPath), navObject.objectFileNameFixed);
             fs.renameSync(fileName.fsPath, newFilePath);
             //console.log('renamed', fileName.fsPath, '-->', newFilePath);
@@ -46,6 +48,8 @@ export class WorkspaceFiles {
     }
 
     static ReorganizeFile(fileName: vscode.Uri): string {
+        if (!fileName.toString().toLowerCase().endsWith('.al')){return fileName.fsPath};
+        
         let navObject = new NAVObject(fs.readFileSync(fileName.fsPath).toString(), Settings.GetConfigSettings(fileName), path.basename(fileName.fsPath))
         this.SaveAutoFixesToFile(fileName, navObject);
 
