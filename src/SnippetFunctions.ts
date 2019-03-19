@@ -23,7 +23,7 @@ export class SnippetFunctions {
 
     static SetupSnippets(extension: string, setDisabled: boolean) {
 
-        console.log(process.env.USERPROFILE);
+        //console.log(process.env.USERPROFILE);
 
         function MicrosftAl(element) {
             return element.startsWith(extension);
@@ -37,7 +37,7 @@ export class SnippetFunctions {
                 if (setDisabled) {
                     if (fs.existsSync(microsoftAlSnippetsDir)) {
                         fs.renameSync(microsoftAlSnippetsDir, microsoftAlSnippetsDirDisabled);
-                        console.log('Renamed ' + microsoftAlSnippetsDir + ' -> ' + microsoftAlSnippetsDirDisabled);
+                        //console.log('Renamed ' + microsoftAlSnippetsDir + ' -> ' + microsoftAlSnippetsDirDisabled);
                         vscode.window.showInformationMessage('Snippets from ' + extension + ' successfully disabled. Please restart VSCode.');
                     } else {
                         (!fs.existsSync(microsoftAlSnippetsDirDisabled)) ?
@@ -47,7 +47,7 @@ export class SnippetFunctions {
                 } else {
                     if (fs.existsSync(microsoftAlSnippetsDirDisabled)) {
                         fs.renameSync(microsoftAlSnippetsDirDisabled, microsoftAlSnippetsDir);
-                        console.log('Renamed ' + microsoftAlSnippetsDirDisabled + ' -> ' + microsoftAlSnippetsDir);
+                        //console.log('Renamed ' + microsoftAlSnippetsDirDisabled + ' -> ' + microsoftAlSnippetsDir);
                         vscode.window.showInformationMessage('Snippets from ' + extension + ' successfully enabled. Please restart VSCode.');
                     } else {
                         (!fs.existsSync(microsoftAlSnippetsDir)) ?

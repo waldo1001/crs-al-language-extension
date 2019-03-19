@@ -554,6 +554,16 @@ suite("NAVObject Tests", () => {
         assert.equal(navObject.objectNameFixed.endsWith(testSettings[Settings.ObjectNameSuffix]), true)
     })
 
+    test("Filename - Wrong Extension Casing", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+        
+        let navTestObject = NAVTestObjectLibrary.GetFileNameWithWrongCasing();
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);     
+
+        assert.equal(navObject.objectFileNameFixed.toLocaleLowerCase().endsWith('.al'),true);
+    })
+
+
     test("PageExtension - Automatic Naming with settings", () => {
         let testSettings = Settings.GetConfigSettings(null)
         testSettings[Settings.ObjectNamePrefix] = 'waldo';

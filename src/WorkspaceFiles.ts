@@ -17,7 +17,7 @@ export class WorkspaceFiles {
             let currentWorkspaceFolder = vscode.workspace.getWorkspaceFolder(vscode.window.activeTextEditor.document.uri) //Active File
             return vscode.workspace.findFiles(new vscode.RelativePattern(currentWorkspaceFolder, '**/*.al'))
         } else {
-            return vscode.workspace.findFiles('**/*.al');
+            return vscode.workspace.findFiles('**/*.al',"{nocase:true}");
         }
 
     }
@@ -30,10 +30,10 @@ export class WorkspaceFiles {
         if (navObject.objectFileName.toLowerCase() != navObject.objectFileNameFixed.toLowerCase()) {
             let newFilePath = path.join(path.dirname(fileName.fsPath), navObject.objectFileNameFixed);
             fs.renameSync(fileName.fsPath, newFilePath);
-            console.log('renamed', fileName.fsPath, '-->', newFilePath);
+            //console.log('renamed', fileName.fsPath, '-->', newFilePath);
             return newFilePath;
         } else {
-            console.log('paths are the same.');
+            //console.log('paths are the same.');
             return fileName.fsPath
         }
     }
@@ -60,7 +60,7 @@ export class WorkspaceFiles {
             let destinationFileName = path.join(objectTypeFolder, fixedname);
 
             if (destinationFileName.toLocaleLowerCase() == fileName.fsPath.toLocaleLowerCase()) {
-                console.log('paths are the same.');
+                //console.log('paths are the same.');
                 return fileName.fsPath;
             } else {
 
@@ -69,7 +69,7 @@ export class WorkspaceFiles {
 
                 fs.renameSync(fileName.fsPath, destinationFileName);
 
-                console.log('renamed', fileName.fsPath, '-->', destinationFileName);
+                //console.log('renamed', fileName.fsPath, '-->', destinationFileName);
 
                 return destinationFileName;
             }
@@ -87,7 +87,7 @@ export class WorkspaceFiles {
             let renamedFileCount = 0;
             try {
                 Files.forEach(file => {
-                    console.log(file.fsPath);
+                    //console.log(file.fsPath);
                     totalFileCount++;
                     let newFilename = this.RenameFile(file);
                     if (file.fsPath != newFilename) {
@@ -165,7 +165,7 @@ export class WorkspaceFiles {
 
     static handleOnSaveTextDocument() {
         let currentfile = vscode.window.activeTextEditor.document.uri;
-        if (!currentfile.fsPath.endsWith('.al')) { return }
+        if (!currentfile.fsPath.toLowerCase().endsWith('.al')) { return }
 
         let mySettings = Settings.GetConfigSettings(currentfile);
 
@@ -198,7 +198,7 @@ export class WorkspaceFiles {
     }
 
     static setSelectionOnTextEditor(doc: vscode.TextEditor, editor: vscode.TextEditor) {
-        console.log('setSelectionOnTextEditor2');
+        //console.log('setSelectionOnTextEditor2');
 
         let currentSelection = editor.selection;
         let linecount = editor.document.lineCount - 1;

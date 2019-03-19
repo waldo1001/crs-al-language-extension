@@ -13,6 +13,20 @@ export function getTemplateObject(): NAVTestObject {
     `
     return object;
 }
+
+export function GetFileNameWithWrongCasing(): NAVTestObject {
+    let object = new NAVTestObject;
+
+    object.ObjectFileName = 'al.Al'
+    object.ObjectText = `
+    Report 5319465 "SUP Supplier Rating Batch"
+    {
+
+    }
+    `
+    return object;
+}
+
 export function getTableWithComments(): NAVTestObject {
     let object = new NAVTestObject;
 
