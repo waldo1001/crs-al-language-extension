@@ -2,8 +2,6 @@ import { Settings } from './Settings';
 import { StringFunctions } from './StringFunctions'
 import { DynamicsNAV } from './DynamicsNAV';
 import * as vscode from 'vscode';
-import * as fs from 'fs';
-import * as path from 'path'
 
 export class NAVObject {
     public objectFileName: string;
@@ -11,7 +9,9 @@ export class NAVObject {
     public objectId: string;
     public objectName: string;
     public objectActions: NAVObjectAction[] = new Array();
-    public tableFields: NAVTableField[] = new Array()
+    public tableFields: NAVTableField[] = new Array();
+    public pageFields: NAVPageField[] = new Array();
+    public pageGroups: NAVPageGroup[] = new Array();
     public extendedObjectName: string;
     public extendedObjectId: string;
     public NAVObjectText: string;
@@ -254,6 +254,18 @@ export class NAVObject {
         while ((result = reg.exec(this.NAVObjectText)) !== null) {
             this.tableFields.push(new NAVTableField(result[1], this.objectType, this._workSpaceSettings[Settings.ObjectNamePrefix], this._workSpaceSettings[Settings.ObjectNameSuffix]))
         }
+
+        var reg = NAVPageField.fieldRegEx();
+        var result;
+        while ((result = reg.exec(this.NAVObjectText)) !== null) {
+            this.pageFields.push(new NAVPageField(result[1], this.objectType, this._workSpaceSettings[Settings.ObjectNamePrefix], this._workSpaceSettings[Settings.ObjectNameSuffix]))
+        }
+
+        var reg = NAVPageGroup.fieldRegEx();
+        var result;
+        while ((result = reg.exec(this.NAVObjectText)) !== null) {
+            this.pageGroups.push(new NAVPageGroup(result[1], this.objectType, this._workSpaceSettings[Settings.ObjectNamePrefix], this._workSpaceSettings[Settings.ObjectNameSuffix]))
+        }
     }
 
     private IsValidObjectType(objectType: string): boolean {
@@ -484,3 +496,104 @@ class NAVTableField {
     }
 }
 
+class NAVPageField {
+    public name: string;
+    public fullFieldText: string;
+    public expression: string;
+    private _objectType: string;
+    private _prefix: string;
+    private _suffix: string;
+
+    public static fieldRegEx(): RegExp {
+        return /.*(field\( *"?([ a-zA-Z0-9._/&-]+)"? *; *"?([ a-zA-Z0-9._/&-]+)"? *\))/g;
+    }
+
+    get nameFixed(): string {
+        if (!this._prefix && !this._suffix) { return this.name }
+        if (this._objectType.toLocaleLowerCase() != "pageextension") { return this.name }; //avoid on pages
+
+        let result = this.name
+        if (this._prefix && !this.name.startsWith(this._prefix)) {
+            result = this._prefix + result
+        }
+        if (this._suffix && !this.name.endsWith(this._suffix)) {
+            result = result + this._suffix
+        }
+        return result
+    }
+
+    get fullFieldTextFixed(): string {
+        if (!this._prefix && !this._suffix) { return this.fullFieldText }
+
+        return "field(\"" + this.name + "\"; \"" + this.expression + "\")"
+    }
+
+    constructor(fullFieldText: string, objectType: string, prefix?: string, suffix?: string) {
+        this.fullFieldText = fullFieldText;
+        this._prefix = prefix ? prefix : null;
+        this._suffix = suffix ? suffix : null;
+        this._objectType = objectType;
+
+        this.parseFieldText();
+    }
+
+    private parseFieldText() {
+        var reg = NAVPageField.fieldRegEx();
+        var result = reg.exec(this.fullFieldText)
+        if (result !== null) {
+            this.name = result[2].trim().toString();
+            this.expression = result[3].trim().toString();
+        }
+    }
+
+}
+
+class NAVPageGroup {
+    public name: string;
+    public fullGroupText: string;
+    private _objectType: string;
+    private _prefix: string;
+    private _suffix: string;
+
+    public static fieldRegEx(): RegExp {
+        return /.*(group\( *"?([ a-zA-Z0-9._/&-]+)"? *\))/g;
+    }
+
+    get nameFixed(): string {
+        if (!this._prefix && !this._suffix) { return this.name }
+        if (this._objectType.toLocaleLowerCase() != "pageextension") { return this.name }; //avoid on pages
+
+        let result = this.name
+        if (this._prefix && !this.name.startsWith(this._prefix)) {
+            result = this._prefix + result
+        }
+        if (this._suffix && !this.name.endsWith(this._suffix)) {
+            result = result + this._suffix
+        }
+        return result
+    }
+
+    get fullGroupTextFixed(): string {
+        if (!this._prefix && !this._suffix) { return this.fullGroupText }
+
+        return "field(\"" + this.name + "\")"
+    }
+
+    constructor(fullGroupText: string, objectType: string, prefix?: string, suffix?: string) {
+        this.fullGroupText = fullGroupText;
+        this._prefix = prefix ? prefix : null;
+        this._suffix = suffix ? suffix : null;
+        this._objectType = objectType;
+
+        this.parseFieldText();
+    }
+
+    private parseFieldText() {
+        var reg = NAVPageGroup.fieldRegEx();
+        var result = reg.exec(this.fullGroupText)
+        if (result !== null) {
+            this.name = result[2].trim().toString();
+        }
+    }
+
+}

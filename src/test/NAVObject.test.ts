@@ -104,6 +104,58 @@ suite("NAVObject Tests", () => {
         })
 
     });
+    test("Pageextension - set prefix to fields and groups", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+        testSettings[Settings.ObjectNamePrefix] = 'waldo';
+
+        let navTestObject = NAVTestObjectLibrary.getPageExtensionWrongFileNameWithActions()
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
+
+        assert.equal(navObject.pageGroups.length, 2);
+        assert.equal(navObject.pageFields.length, 3);
+        navObject.pageFields.forEach(field => {
+            assert.equal(field.nameFixed.startsWith(testSettings[Settings.ObjectNamePrefix]), true)
+        })
+        navObject.pageGroups.forEach(group => {
+            assert.equal(group.nameFixed.startsWith(testSettings[Settings.ObjectNamePrefix]), true)
+        })
+
+        //check result text that would be saved to file
+        let navObject2 = new NAVObject(navObject.NAVObjectTextFixed, testSettings, navTestObject.ObjectFileName)
+        navObject2.pageFields.forEach(field => {
+            assert.equal(field.nameFixed.startsWith(testSettings[Settings.ObjectNamePrefix]), true)
+        })
+        navObject2.pageGroups.forEach(group => {
+            assert.equal(group.nameFixed.startsWith(testSettings[Settings.ObjectNamePrefix]), true)
+        })
+
+    });
+    test("Pageextension - set suffix to fields and groups", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+        testSettings[Settings.ObjectNameSuffix] = 'waldo';
+
+        let navTestObject = NAVTestObjectLibrary.getPageExtensionWrongFileNameWithActions()
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
+
+        assert.equal(navObject.pageGroups.length, 2);
+        assert.equal(navObject.pageFields.length, 3);
+        navObject.pageFields.forEach(field => {
+            assert.equal(field.nameFixed.endsWith(testSettings[Settings.ObjectNameSuffix]), true)
+        })
+        navObject.pageGroups.forEach(groups => {
+            assert.equal(groups.nameFixed.endsWith(testSettings[Settings.ObjectNameSuffix]), true)
+        })
+
+        //check result text that would be saved to file
+        let navObject2 = new NAVObject(navObject.NAVObjectTextFixed, testSettings, navTestObject.ObjectFileName)
+        navObject2.pageFields.forEach(field => {
+            assert.equal(field.nameFixed.endsWith(testSettings[Settings.ObjectNameSuffix]), true)
+        })
+        navObject2.pageGroups.forEach(groups => {
+            assert.equal(groups.nameFixed.endsWith(testSettings[Settings.ObjectNameSuffix]), true)
+        })
+    });
+
     test("Tableextension - set prefix to fields", () => {
         let testSettings = Settings.GetConfigSettings(null)
         testSettings[Settings.ObjectNamePrefix] = 'waldo';
@@ -439,8 +491,8 @@ suite("NAVObject Tests", () => {
 
         let navTestObject = NAVTestObjectLibrary.getPageExtensionWithQuotesInObjectName();
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
-        
-        assert.equal(navObject.objectId,'')
+
+        assert.equal(navObject.objectId, '')
     })
 
 
@@ -450,9 +502,9 @@ suite("NAVObject Tests", () => {
 
         let navTestObject = NAVTestObjectLibrary.getPageWithQuotesInObjectName();
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
-        
-        assert.equal(navObject.objectId,'')
-       })
+
+        assert.equal(navObject.objectId, '')
+    })
 
     test("Filename - Rename Page with Brackets in the object name", () => {
         let testSettings = Settings.GetConfigSettings(null)
@@ -556,11 +608,11 @@ suite("NAVObject Tests", () => {
 
     test("Filename - Wrong Extension Casing", () => {
         let testSettings = Settings.GetConfigSettings(null)
-        
-        let navTestObject = NAVTestObjectLibrary.GetFileNameWithWrongCasing();
-        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);     
 
-        assert.equal(navObject.objectFileNameFixed.toLocaleLowerCase().endsWith('.al'),true);
+        let navTestObject = NAVTestObjectLibrary.GetFileNameWithWrongCasing();
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
+
+        assert.equal(navObject.objectFileNameFixed.toLocaleLowerCase().endsWith('.al'), true);
     })
 
 
@@ -655,7 +707,7 @@ suite("NAVObject Tests", () => {
         testSettings[Settings.ObjectNamePrefix] = 'waldo';
         testSettings[Settings.ObjectNameSuffix] = 'waldo';
         testSettings[Settings.FileNamePattern] = '<Prefix><Suffix><ObjectType><ObjectTypeShort><ObjectTypeShortUpper><ObjectId>';
-        
+
         let navTestObject = NAVTestObjectLibrary.getTableWithComments();
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
 

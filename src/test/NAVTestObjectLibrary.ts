@@ -168,7 +168,6 @@ export function getTableWithWrongFileName(): NAVTestObject {
             }
     
         }
-        //TODO: Define Keys
         keys
         {
             key(PK; MyField)
@@ -196,45 +195,51 @@ export function getPageExtensionWrongFileNameWithActions(): NAVTestObject {
 
     object.ObjectFileName = 'SomeFile.al'
     object.ObjectText = `pageextension 50100 "Some Page Ext" extends "Customer List" //22
-{
-    layout
     {
-        addfirst(Content)
+        layout
         {
-            field("Telex No."; "Telex No.")
+            addfirst(Content)
             {
-                ApplicationArea = All;
+                group(bleh)
+                {
+                    field("Telex No."; "Telex No.")
+                    {
+                        ApplicationArea = All;
+                    }
+                }
+                group(two){
+                    field("Telex No."; "Telex No.")
+                    {
+                        ApplicationArea = All;
+                    }
+                    field("Telex No."; "Telex No.")
+                    {
+                        ApplicationArea = All;
+                    }
+                }
             }
-            field("Telex No."; "Telex No.")
+        }
+    
+        actions
+        {
+            addfirst("&Customer")
             {
-                ApplicationArea = All;
-            }
-            field("Telex No."; "Telex No.")
-            {
-                ApplicationArea = All;
+                action(SomeAction)
+                {
+                    RunObject = page "_Empl. Absences by Cat. Matrix";
+                }
+                action(SomeAction2)
+                {
+                    RunObject = page "_Empl. Absences by Cat. Matrix";
+                }
+                action("Some Action 3")
+                {
+                    RunObject = page "_Empl. Absences by Cat. Matrix";
+                }
             }
         }
     }
-
-    actions
-    {
-        addfirst("&Customer")
-        {
-            action(SomeAction)
-            {
-                RunObject = page "_Empl. Absences by Cat. Matrix";
-            }
-            action(SomeAction2)
-            {
-                RunObject = page "_Empl. Absences by Cat. Matrix";
-            }
-            action("Some Action 3")
-            {
-                RunObject = page "_Empl. Absences by Cat. Matrix";
-            }
-        }
     }
-}
     `
     return object;
 }
