@@ -30,6 +30,7 @@ export class Settings {
     static readonly RemoveSuffixFromFilename = 'RemoveSuffixFromFilename';
     static readonly DisableDefaultAlSnippets = 'DisableDefaultAlSnippets';
     static readonly DisableCRSSnippets = 'DisableCRSSnippets';
+    static readonly RenameWithGit = 'RenameWithGit';
 
     static readonly AlSubFolderName = 'AlSubFolderName';
 
@@ -76,6 +77,8 @@ export class Settings {
         this.SettingCollection[this.DisableDefaultAlSnippets] = this.getSetting(this.DisableDefaultAlSnippets);
         this.SettingCollection[this.DisableCRSSnippets] = this.getSetting(this.DisableCRSSnippets);
         this.SettingCollection[this.PublicWebBaseUrl] = this.getSetting(this.PublicWebBaseUrl);
+        this.SettingCollection[this.RenameWithGit] = this.getSetting(this.RenameWithGit);
+
     }
 
     private static getAppSettings(ResourceUri: vscode.Uri) {

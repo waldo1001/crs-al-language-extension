@@ -25,14 +25,15 @@ export class WorkspaceFiles {
 
     static RenameFile(fileName: vscode.Uri): string {
         if (!fileName.toString().toLowerCase().endsWith('.al')) { return fileName.fsPath };
+        let settings = Settings.GetConfigSettings(fileName);
 
-        let navObject = new NAVObject(fs.readFileSync(fileName.fsPath).toString(), Settings.GetConfigSettings(fileName), path.basename(fileName.fsPath))
+        let navObject = new NAVObject(fs.readFileSync(fileName.fsPath).toString(), settings, path.basename(fileName.fsPath))
 
         this.SaveAutoFixesToFile(fileName, navObject);
 
         if (navObject.objectFileName != navObject.objectFileNameFixed) {
             let newFilePath = path.join(path.dirname(fileName.fsPath), navObject.objectFileNameFixed);
-            if (git.isGitRepositorySync()) {
+            if (git.isGitRepositorySync() && settings[Settings.RenameWithGit]) {
                 CRSTerminal.GitMove(fileName.fsPath, newFilePath);
             } else {
                 fs.renameSync(fileName.fsPath, newFilePath);
@@ -58,13 +59,13 @@ export class WorkspaceFiles {
         let navObject = new NAVObject(fs.readFileSync(fileName.fsPath).toString(), Settings.GetConfigSettings(fileName), path.basename(fileName.fsPath))
         this.SaveAutoFixesToFile(fileName, navObject);
 
-        let mySettings = Settings.GetConfigSettings(fileName);
-        this.throwErrorIfReorgFilesNotAllowed(mySettings);
+        let settings = Settings.GetConfigSettings(fileName);
+        this.throwErrorIfReorgFilesNotAllowed(settings);
 
         let fixedname = navObject.objectFileNameFixed
         if (navObject.objectFileName && navObject.objectFileName != '' && fixedname && fixedname != '') {
 
-            let objectFolder = path.join(vscode.workspace.getWorkspaceFolder(fileName).uri.fsPath, this.getDestinationFolder(navObject, mySettings));
+            let objectFolder = path.join(vscode.workspace.getWorkspaceFolder(fileName).uri.fsPath, this.getDestinationFolder(navObject, settings));
             let objectTypeFolder = path.join(objectFolder, this.getObjectTypeFolder(navObject));
             let destinationFileName = path.join(objectTypeFolder, fixedname);
 
@@ -76,7 +77,7 @@ export class WorkspaceFiles {
                 (!fs.existsSync(objectFolder)) ? fs.mkdirSync(objectFolder) : '';
                 (!fs.existsSync(objectTypeFolder)) ? fs.mkdirSync(objectTypeFolder) : '';
 
-                if (git.isGitRepositorySync()) {
+                if (git.isGitRepositorySync() && settings[Settings.RenameWithGit]) {
                     CRSTerminal.GitMove(fileName.fsPath, destinationFileName);
                 } else {
                     fs.renameSync(fileName.fsPath, destinationFileName);
@@ -203,9 +204,11 @@ export class WorkspaceFiles {
     static openRenamedFile(newFilePath: string) {
         let currentEditor = vscode.window.activeTextEditor;
         
+        let settings = Settings.GetConfigSettings(vscode.Uri.parse(newFilePath));
+        
         vscode.commands.executeCommand('workbench.action.closeActiveEditor');
         
-        if (git.isGitRepositorySync) {
+        if (git.isGitRepositorySync && settings[Settings.RenameWithGit]) {
             CRSTerminal.OpenFileFromTerminal(newFilePath);
         } else {
             vscode.workspace.openTextDocument(newFilePath).then(doc =>

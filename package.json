@@ -229,6 +229,12 @@
                     "default": false,
                     "description": "Disable the Al Snippets that come with this extension.  When you change the setting, you need to restart VSCode twice.  Once for disabling the snippets on activation (at that time, the snippets are still loaded).  And the second time to actually not load the snippets anymore",
                     "scope": "resource"
+                },
+                "CRS.RenameWithGit": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Use 'git mv' to rename a file.  This keeps history of the file, but stages the rename, which you should commit separately.  The feature is still in preview-mode, therefore the default value is 'false'", 
+                    "scope": "resource"
                 }
             }
         },
