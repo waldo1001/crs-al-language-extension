@@ -21,7 +21,7 @@ The idea is to be able to run an object straight from the development environmen
 Depending on which client, you will be asked for object type and object id.  The functionality looks at the settings (launch.json and configuration settings).
 
 Furthermore, there are ways to open certain object directly:
-* CRS: Run Current Object (Web Client) (CTRL+SHIFT+r) - runs the object from the open file (the extension needs to be published first).
+* CRS: Run Current Object (Web Client) (CTRL+SHIFT+r) - runs the object from the open file (the extension needs to be published first).  You can also run this command from the status bar ('Run In Web Client') and the context menu from the explorer.
 * CRS: Run CAL Test Tool in Web Client
 * CRS: Run Event Subscribers Page in Web Client
 * CRS: Run Database Locks Page in Web Client
