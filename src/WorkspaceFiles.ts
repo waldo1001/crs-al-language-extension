@@ -9,6 +9,8 @@ import { DynamicsNAV } from './DynamicsNAV';
 import { error } from 'util';
 import { NAVObject } from './NAVObject';
 import { Dictionary } from './Dictionary';
+import * as git from './Git';
+import * as CRSTerminal from './CRSTerminal';
 
 export class WorkspaceFiles {
 
@@ -19,11 +21,10 @@ export class WorkspaceFiles {
         } else {
             return vscode.workspace.findFiles('**/*.*');
         }
-
     }
 
     static RenameFile(fileName: vscode.Uri): string {
-        if (!fileName.toString().toLowerCase().endsWith('.al')){return fileName.fsPath};
+        if (!fileName.toString().toLowerCase().endsWith('.al')) { return fileName.fsPath };
 
         let navObject = new NAVObject(fs.readFileSync(fileName.fsPath).toString(), Settings.GetConfigSettings(fileName), path.basename(fileName.fsPath))
 
@@ -31,9 +32,13 @@ export class WorkspaceFiles {
 
         if (navObject.objectFileName != navObject.objectFileNameFixed) {
             let newFilePath = path.join(path.dirname(fileName.fsPath), navObject.objectFileNameFixed);
-            fs.renameSync(fileName.fsPath, newFilePath);
-            //console.log('renamed', fileName.fsPath, '-->', newFilePath);
+            if (git.isGitRepositorySync()) {
+                CRSTerminal.GitMove(fileName.fsPath, newFilePath);
+            } else {
+                fs.renameSync(fileName.fsPath, newFilePath);
+            }
             return newFilePath;
+            //console.log('renamed', fileName.fsPath, '-->', newFilePath);
         } else {
             //console.log('paths are the same.');
             return fileName.fsPath
@@ -48,8 +53,8 @@ export class WorkspaceFiles {
     }
 
     static ReorganizeFile(fileName: vscode.Uri): string {
-        if (!fileName.toString().toLowerCase().endsWith('.al')){return fileName.fsPath};
-        
+        if (!fileName.toString().toLowerCase().endsWith('.al')) { return fileName.fsPath };
+
         let navObject = new NAVObject(fs.readFileSync(fileName.fsPath).toString(), Settings.GetConfigSettings(fileName), path.basename(fileName.fsPath))
         this.SaveAutoFixesToFile(fileName, navObject);
 
@@ -71,7 +76,11 @@ export class WorkspaceFiles {
                 (!fs.existsSync(objectFolder)) ? fs.mkdirSync(objectFolder) : '';
                 (!fs.existsSync(objectTypeFolder)) ? fs.mkdirSync(objectTypeFolder) : '';
 
-                fs.renameSync(fileName.fsPath, destinationFileName);
+                if (git.isGitRepositorySync()) {
+                    CRSTerminal.GitMove(fileName.fsPath, destinationFileName);
+                } else {
+                    fs.renameSync(fileName.fsPath, destinationFileName);
+                }
 
                 //console.log('renamed', fileName.fsPath, '-->', destinationFileName);
 
@@ -187,18 +196,23 @@ export class WorkspaceFiles {
         }
 
         if (newFilePath != currentfile.fsPath) {
-            this.doRenameCurrentFile(newFilePath);
+            this.openRenamedFile(newFilePath);
         }
     }
 
-    static doRenameCurrentFile(newFilePath: string) {
+    static openRenamedFile(newFilePath: string) {
         let currentEditor = vscode.window.activeTextEditor;
-
+        
         vscode.commands.executeCommand('workbench.action.closeActiveEditor');
-        vscode.workspace.openTextDocument(newFilePath).then(doc =>
-            vscode.window.showTextDocument(doc).then(doc =>
-                this.setSelectionOnTextEditor(doc, currentEditor)
-            ));
+        
+        if (git.isGitRepositorySync) {
+            CRSTerminal.OpenFileFromTerminal(newFilePath);
+        } else {
+            vscode.workspace.openTextDocument(newFilePath).then(doc =>
+                vscode.window.showTextDocument(doc).then(doc =>
+                    this.setSelectionOnTextEditor(doc, currentEditor)
+                ));
+        }
     }
 
     static setSelectionOnTextEditor(doc: vscode.TextEditor, editor: vscode.TextEditor) {

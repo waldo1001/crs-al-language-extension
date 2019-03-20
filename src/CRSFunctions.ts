@@ -1,5 +1,4 @@
 import * as vscode from 'vscode';
-import * as PSScripts from './PSScripts';
 import { Settings } from './Settings';
 import { DynamicsNAV } from './DynamicsNAV';
 import { WorkspaceFiles } from './WorkspaceFiles';
@@ -9,6 +8,7 @@ import { NAVObject } from './NAVObject';
 import * as path from 'path'
 import { MSDocs } from './MSDocs';
 import { Google } from './Google';
+import * as git from './Git';
 
 export function InstallWaldosModules() {
     console.log('Running: InstallWaldosModules');
@@ -103,7 +103,7 @@ export function RenameCurrentFile() {
         let newFileName = WorkspaceFiles.RenameFile(oldFilename.uri);
 
         if (oldFilename.uri.fsPath != newFileName) {
-            WorkspaceFiles.doRenameCurrentFile(newFileName);
+            WorkspaceFiles.openRenamedFile(newFileName);
         }
     })
     console.log('Done: RenameCurrentFile')
