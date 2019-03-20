@@ -177,7 +177,7 @@ export class WorkspaceFiles {
         }
     }
 
-    static handleOnSaveTextDocument() {
+    static renameFileOnSave() {
         let currentfile = vscode.window.activeTextEditor.document.uri;
         if (!currentfile.fsPath.toLowerCase().endsWith('.al')) { return }
 

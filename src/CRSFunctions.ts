@@ -8,7 +8,7 @@ import { NAVObject } from './NAVObject';
 import * as path from 'path'
 import { MSDocs } from './MSDocs';
 import { Google } from './Google';
-import * as git from './Git';
+import * as CRSStatusBar from './UI/CRSStatusBar';
 
 export function InstallWaldosModules() {
     console.log('Running: InstallWaldosModules');
@@ -18,10 +18,14 @@ export function InstallWaldosModules() {
     console.log('Done: InstallWaldosModules');
 }
 
-export function RunCurrentObjectWeb() {
+export function RunCurrentObjectWeb(currFile: vscode.Uri) {
     console.log('Running: RunCurrentObjectWeb');
-    let currentdocument = vscode.window.activeTextEditor.document
-    let navObject = new NAVObject(fs.readFileSync(currentdocument.uri.fsPath).toString(), Settings.GetConfigSettings(currentdocument.uri), path.basename(currentdocument.uri.fsPath));
+    let currentdocument = currFile;
+
+    if (! currentdocument){
+        currentdocument = vscode.window.activeTextEditor.document.uri
+    }
+    let navObject = new NAVObject(fs.readFileSync(currentdocument.fsPath).toString(), Settings.GetConfigSettings(currentdocument), path.basename(currentdocument.fsPath));
 
     let objectId = navObject.objectType.toLowerCase().endsWith('extension') ? navObject.extendedObjectId : navObject.objectId;
     let objectType = navObject.objectType.toLowerCase().endsWith('extension') ? navObject.objectType.toLowerCase().replace('extension', '') : navObject.objectType
@@ -175,9 +179,17 @@ export function SetupSnippets() {
 export function HandleOnSaveTextDocument() {
     console.log('Running: HandleOnSaveTextDocument');
 
-    WorkspaceFiles.handleOnSaveTextDocument();
+    WorkspaceFiles.renameFileOnSave();
 
     console.log('Done: HandleOnSaveTextDocument');
+}
+
+export function HandleOnOpenTextDocument() {
+    console.log('Running: HandleOnOpenTextDocument');
+
+    CRSStatusBar.toggleRunObjectFromStatusBar();
+
+    console.log('Done: HandleOnOpenTextDocument')
 }
 
 function getWord(editor: vscode.TextEditor): string {

@@ -328,6 +328,15 @@
                 "path": "./snippets/appjson.json"
             }
         ],
+        "menus": {
+            "explorer/context": [
+                {
+                    "when": "resourceLangId == al",
+                    "command": "crs.RunCurrentObjectWeb",
+                    "group": "CRS"
+                }
+            ]
+        },
         "keybindings": {
             "command": "crs.RunCurrentObjectWeb",
             "key": "CTRL+SHIFT+r"

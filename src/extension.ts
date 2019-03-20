@@ -3,6 +3,7 @@
 import * as vscode from 'vscode';  //VS Code extensibility API
 import * as CRSFunctions from './CRSFunctions';  //Our own functions
 import { CRSExtensionPublicApi } from './api/CRSExtensionPublicApi';
+import * as CRSStatusBar from './UI/CRSStatusBar';
 
 export function activate(context: vscode.ExtensionContext) { //is called when your extension is activated (when command is executed)
 
@@ -15,9 +16,9 @@ export function activate(context: vscode.ExtensionContext) { //is called when yo
     let commandlist = [
         vscode.commands.registerCommand('crs.InstallWaldosModules', CRSFunctions.InstallWaldosModules),
 
-        vscode.commands.registerCommand('crs.RunCurrentObjectWeb', CRSFunctions.RunCurrentObjectWeb),
+        vscode.commands.registerCommand('crs.RunCurrentObjectWeb', (currFile: vscode.Uri) => CRSFunctions.RunCurrentObjectWeb(currFile)),
         vscode.commands.registerCommand('crs.RunObjectWeb', CRSFunctions.RunObjectWeb),
-        vscode.commands.registerCommand('crs.RunObjectTablet', CRSFunctions.RunObjectTablet),
+        vscode.commands.registerCommand('crs.RunObjectTablet', CRSFunctions.RunObjectTablet),   
         vscode.commands.registerCommand('crs.RunObjectPhone', CRSFunctions.RunObjectPhone),
         vscode.commands.registerCommand('crs.RunObjectWindows', CRSFunctions.RunObjectWindows),
         vscode.commands.registerCommand('crs.RunTestTool', CRSFunctions.RunTestTool),
@@ -35,9 +36,14 @@ export function activate(context: vscode.ExtensionContext) { //is called when yo
         vscode.commands.registerCommand('crs.SetupSnippets', CRSFunctions.SetupSnippets),
     ];
 
-    context.subscriptions.concat(commandlist);
+    let componentlist = [
+        CRSStatusBar.RunObjectFromStatusBar
+    ] 
+
+    context.subscriptions.concat(commandlist, componentlist);
 
     context.subscriptions.push(vscode.workspace.onDidSaveTextDocument(CRSFunctions.HandleOnSaveTextDocument));
+    context.subscriptions.push(vscode.workspace.onDidOpenTextDocument(CRSFunctions.HandleOnOpenTextDocument));
 
     vscode.commands.executeCommand('crs.SetupSnippets');
 
