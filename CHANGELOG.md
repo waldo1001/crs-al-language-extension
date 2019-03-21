@@ -2,10 +2,14 @@
 All notable changes to the "crs-al-language-extension" extension.
 
 ## [1.1.0] - ????-??-??
+New: [Run Current object from Status Bar / Right click](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/107)
+
+Improved:
 - [Use "git mv" when renaming and moving files](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/100) to maintain the git history
-- Significanly less [Debug Console Messages](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/106)
-- Fixed "case insensitivity" for file extensions - [Rename/Reorganize AL File in extension of file is in caps](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/105)
-- New - [Run Current object from Status Bar / Right click](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/107)
+- [Add Prefix/Suffix to pageextension Groups and Fields](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/93)
+- Significantly less [Debug Console Messages](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/106)
+
+Fixed: "case insensitivity" for file extensions - [Rename/Reorganize AL File in extension of file is in caps](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/105)
 
 ## [1.0.15] - 2019-02-25
 - Added Extension API.  By [Pullrequest](https://github.com/CloudReadySoftware/crs-al-language-extension/pull/104) of [Andrzej Zwierzchowski](https://github.com/anzwdev). Thanks so much! :-)
