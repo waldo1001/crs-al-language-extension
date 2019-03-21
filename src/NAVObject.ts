@@ -525,7 +525,7 @@ class NAVPageField {
     get fullFieldTextFixed(): string {
         if (!this._prefix && !this._suffix) { return this.fullFieldText }
 
-        return "field(\"" + this.name + "\"; \"" + this.expression + "\")"
+        return "field(\"" + this.nameFixed + "\"; \"" + this.expression + "\")"
     }
 
     constructor(fullFieldText: string, objectType: string, prefix?: string, suffix?: string) {
@@ -576,7 +576,7 @@ class NAVPageGroup {
     get fullGroupTextFixed(): string {
         if (!this._prefix && !this._suffix) { return this.fullGroupText }
 
-        return "field(\"" + this.name + "\")"
+        return "field(\"" + this.nameFixed + "\")"
     }
 
     constructor(fullGroupText: string, objectType: string, prefix?: string, suffix?: string) {

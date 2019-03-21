@@ -123,10 +123,10 @@ suite("NAVObject Tests", () => {
         //check result text that would be saved to file
         let navObject2 = new NAVObject(navObject.NAVObjectTextFixed, testSettings, navTestObject.ObjectFileName)
         navObject2.pageFields.forEach(field => {
-            assert.equal(field.nameFixed.startsWith(testSettings[Settings.ObjectNamePrefix]), true)
+            assert.equal(field.name.startsWith(testSettings[Settings.ObjectNamePrefix]), true)
         })
         navObject2.pageGroups.forEach(group => {
-            assert.equal(group.nameFixed.startsWith(testSettings[Settings.ObjectNamePrefix]), true)
+            assert.equal(group.name.startsWith(testSettings[Settings.ObjectNamePrefix]), true)
         })
 
     });
@@ -149,10 +149,10 @@ suite("NAVObject Tests", () => {
         //check result text that would be saved to file
         let navObject2 = new NAVObject(navObject.NAVObjectTextFixed, testSettings, navTestObject.ObjectFileName)
         navObject2.pageFields.forEach(field => {
-            assert.equal(field.nameFixed.endsWith(testSettings[Settings.ObjectNameSuffix]), true)
+            assert.equal(field.name.endsWith(testSettings[Settings.ObjectNameSuffix]), true)
         })
         navObject2.pageGroups.forEach(groups => {
-            assert.equal(groups.nameFixed.endsWith(testSettings[Settings.ObjectNameSuffix]), true)
+            assert.equal(groups.name.endsWith(testSettings[Settings.ObjectNameSuffix]), true)
         })
     });
 
