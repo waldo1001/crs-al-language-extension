@@ -94,6 +94,9 @@ export class NAVObject {
         NAVObjectTextFixed = this.updateObjectNameInObjectText(NAVObjectTextFixed);
         NAVObjectTextFixed = this.AddPrefixAndSuffixToActions(NAVObjectTextFixed);
         NAVObjectTextFixed = this.AddPrefixAndSuffixToFields(NAVObjectTextFixed);
+        NAVObjectTextFixed = this.AddPrefixAndSuffixToPageFields(NAVObjectTextFixed);
+        NAVObjectTextFixed = this.AddPrefixAndSuffixToPageGroups(NAVObjectTextFixed);
+
 
         return NAVObjectTextFixed;
     }
@@ -392,6 +395,20 @@ export class NAVObject {
 
         return objectText;
     }
+    private AddPrefixAndSuffixToPageFields(objectText: string): string {
+        this.pageFields.forEach(field => {
+            objectText = objectText.replace(field.fullFieldText, field.fullFieldTextFixed);
+        })
+
+        return objectText;
+    }
+    private AddPrefixAndSuffixToPageGroups(objectText: string): string {
+        this.pageGroups.forEach(group => {
+            objectText = objectText.replace(group.fullGroupText, group.fullGroupTextFixed);
+        })
+
+        return objectText;
+    }
 }
 
 class NAVObjectAction {
@@ -576,7 +593,7 @@ class NAVPageGroup {
     get fullGroupTextFixed(): string {
         if (!this._prefix && !this._suffix) { return this.fullGroupText }
 
-        return "field(\"" + this.nameFixed + "\")"
+        return "group(\"" + this.nameFixed + "\")"
     }
 
     constructor(fullGroupText: string, objectType: string, prefix?: string, suffix?: string) {
