@@ -20,6 +20,8 @@ export async function isGitRepository(folder: vscode.WorkspaceFolder): Promise<b
 }
 
 export function isGitRepositorySync(): boolean {
+	return false; //TODO: temporary disabling this function as I'm not happy with it.
+
 	let folder = vscode.workspace.workspaceFolders[0];
 
 	if (vscode.window.activeTextEditor) {

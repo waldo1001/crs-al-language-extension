@@ -5,7 +5,6 @@ All notable changes to the "crs-al-language-extension" extension.
 New: [Run Current object from Status Bar / Right click](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/107)
 
 Improved:
-- [Use "git mv" when renaming and moving files](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/100) to maintain the git history
 - [Add Prefix/Suffix to pageextension Groups and Fields](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/93)
 - Significantly less [Debug Console Messages](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/106)
 

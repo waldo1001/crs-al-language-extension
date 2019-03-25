@@ -180,6 +180,8 @@ export class WorkspaceFiles {
     static renameFileOnSave() {
         let currentfile = vscode.window.activeTextEditor.document.uri;
         if (!currentfile.fsPath.toLowerCase().endsWith('.al')) { return }
+        
+        //vscode.window.activeTextEditor.document.save();
 
         let mySettings = Settings.GetConfigSettings(currentfile);
 
