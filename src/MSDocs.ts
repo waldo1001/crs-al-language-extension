@@ -1,5 +1,6 @@
 import open = require('opn');
-import { StringFunctions } from './StringFunctions'
+import { StringFunctions } from './StringFunctions';
+import * as crsOutput from './CRSOutput';
 
 export class MSDocs {
     static readonly BusinessCentralSearchUrl = 'https://docs.microsoft.com/en-us/search/index?search=<SearchString>&scope=BusinessCentral'
@@ -11,5 +12,6 @@ export class MSDocs {
     public static OpenSearchUrl(SearchString: string) {
         let Url = this.GetSearchUrl(SearchString);
         open(Url);
+        crsOutput.showOutput(`OpenSearchUrl ${Url}`);
     }
 }

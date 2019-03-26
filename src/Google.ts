@@ -1,5 +1,6 @@
 import open = require('opn');
 import { StringFunctions } from './StringFunctions'
+import * as crsOutput from './CRSOutput';
 
 export class Google {
     static readonly BusinessCentralSearchUrl = 'http://www.google.com/search?q=<SearchString>+Business+Central'
@@ -11,5 +12,6 @@ export class Google {
     public static OpenSearchUrl(SearchString: string) {
         let Url = this.GetSearchUrl(SearchString);
         open(Url);
+        crsOutput.showOutput(`OpenSearchUrl ${Url}`);
     }
 }

@@ -1,6 +1,6 @@
-import * as PSScripts from './PSScripts'
 import { QuickPickItem } from 'vscode';
 import { Settings } from './Settings';
+import * as crsOutput from './CRSOutput';
 
 const open = require('opn');
 
@@ -94,6 +94,7 @@ export class DynamicsNAV {
 
         console.log('url: ' + runURL);
         open(runURL);
+        crsOutput.showOutput(`RunObjectInWebClient - ${runURL}`);
     }
     public static ComposeRunObjectInWebClientURL(workspacesettings: any, ClientType: string, runObjectType: String, runObjectid: number): String {
 

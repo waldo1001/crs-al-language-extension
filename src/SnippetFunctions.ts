@@ -1,9 +1,8 @@
 import * as fs from 'fs';
-import { PassThrough } from 'stream';
 import { join } from 'path';
-import { error } from 'util';
 import * as vscode from 'vscode';
 import { Settings } from './Settings';
+import * as crsOutput from './CRSOutput';
 
 export class SnippetFunctions {
     static SetupCRSAlSnippets() {
@@ -39,6 +38,7 @@ export class SnippetFunctions {
                         fs.renameSync(microsoftAlSnippetsDir, microsoftAlSnippetsDirDisabled);
                         //console.log('Renamed ' + microsoftAlSnippetsDir + ' -> ' + microsoftAlSnippetsDirDisabled);
                         vscode.window.showInformationMessage('Snippets from ' + extension + ' successfully disabled. Please restart VSCode.');
+                        crsOutput.showOutput('Snippets from ' + extension + ' successfully disabled. Please restart VSCode.');
                     } else {
                         (!fs.existsSync(microsoftAlSnippetsDirDisabled)) ?
                             console.log('Snippet-directory not found - nothing to disable.') :
@@ -49,6 +49,7 @@ export class SnippetFunctions {
                         fs.renameSync(microsoftAlSnippetsDirDisabled, microsoftAlSnippetsDir);
                         //console.log('Renamed ' + microsoftAlSnippetsDirDisabled + ' -> ' + microsoftAlSnippetsDir);
                         vscode.window.showInformationMessage('Snippets from ' + extension + ' successfully enabled. Please restart VSCode.');
+                        crsOutput.showOutput('Snippets from ' + extension + ' successfully enabled. Please restart VSCode.');
                     } else {
                         (!fs.existsSync(microsoftAlSnippetsDir)) ?
                             console.log('Disabled snippet-directory not found - nothing to enable.') :

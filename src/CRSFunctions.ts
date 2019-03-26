@@ -9,6 +9,7 @@ import * as path from 'path'
 import { MSDocs } from './MSDocs';
 import { Google } from './Google';
 import * as CRSStatusBar from './UI/CRSStatusBar';
+import * as crsOutput from './CRSOutput';
 
 export function InstallWaldosModules() {
     console.log('Running: InstallWaldosModules');
@@ -22,7 +23,7 @@ export function RunCurrentObjectWeb(currFile: vscode.Uri) {
     console.log('Running: RunCurrentObjectWeb');
     let currentdocument = currFile;
 
-    if (! currentdocument){
+    if (!currentdocument) {
         currentdocument = vscode.window.activeTextEditor.document.uri
     }
     let navObject = new NAVObject(fs.readFileSync(currentdocument.fsPath).toString(), Settings.GetConfigSettings(currentdocument), path.basename(currentdocument.fsPath));

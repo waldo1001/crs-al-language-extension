@@ -2,9 +2,13 @@
 All notable changes to the "crs-al-language-extension" extension.
 
 ## [1.1.0] - ????-??-??
-New: [Run Current object from Status Bar / Right click](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/107)
+New: 
+- [Run Current object from Status Bar / Right click](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/107)
+- New Output channel for this extension: all actions are logged there!
 
 Improved:
+- Renaming/Reorganizing using `git mv`, as requested by [Chris Blank](https://github.com/ChrisBlankDe) [here](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/100).  Enable by setting this setting:
+    * `RenameWithGit`: Use 'git mv' to rename a file.  This keeps history of the file, but stages the rename, which you should commit separately.  **The feature is still in preview-mode, therefore the default value is 'false'**
 - [Add Prefix/Suffix to pageextension Groups and Fields](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/93)
 - Significantly less [Debug Console Messages](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/106)
 - Snippets thanks to [Chris Blank](https://github.com/ChrisBlankDe)!

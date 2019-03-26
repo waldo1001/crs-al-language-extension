@@ -1,8 +1,10 @@
 import * as vscode from 'vscode';
 import * as path from 'path'
 import * as fs from 'fs';
-import { error } from 'util';
+import * as crsOutput from './CRSOutput';
 
+var projectRoot = vscode.workspace.rootPath;
+var simpleGit = require('simple-git')((projectRoot) ? projectRoot : '.');
 
 export async function isGitRepository(folder: vscode.WorkspaceFolder): Promise<boolean> {
 	if (folder.uri.scheme !== 'file') {
@@ -20,14 +22,12 @@ export async function isGitRepository(folder: vscode.WorkspaceFolder): Promise<b
 }
 
 export function isGitRepositorySync(): boolean {
-	return false; //TODO: temporary disabling this function as I'm not happy with it.
-
 	let folder = vscode.workspace.workspaceFolders[0];
 
 	if (vscode.window.activeTextEditor) {
 		folder = vscode.workspace.getWorkspaceFolder(vscode.window.activeTextEditor.document.uri) //Active File
 	}
-	
+
 	if (folder.uri.scheme !== 'file') {
 		return false;
 	}
@@ -41,3 +41,43 @@ export function isGitRepositorySync(): boolean {
 	}
 }
 
+export function gitMove(from: string, to: string) {
+	simpleGit.mv(from, to, function (error) {
+		if (error) {
+			crsOutput.showOutput(error);
+			fs.renameSync(from, to);
+			crsOutput.showOutput(`fallback: renaming without git from ${from.substr(from.lastIndexOf('\\') + 1)} to ${to.substr(to.lastIndexOf('\\') + 1)}`);
+		} else {
+			crsOutput.showOutput(`success: git mv ${from.substr(from.lastIndexOf('\\') + 1)} ${to.substr(to.lastIndexOf('\\') + 1)}`);
+		}
+	})
+}
+
+function fillFileList(status, fileList, is_gitadd = false) {
+	console.log(status);
+	status.modified.forEach(function (element) {
+		var item = {
+			'label': element,
+			'description': "Modified"
+		};
+		fileList.push(item);
+	}, this);
+	status.not_added.forEach(function (element) {
+		var item = {
+			'label': element,
+			'description': "Untracked"
+		};
+		fileList.push(item)
+	}, this);
+
+	if (!is_gitadd) {
+		status.created.forEach(function (element) {
+			var item = {
+				'label': element,
+				'description': "New"
+			};
+			fileList.push(item)
+		}, this);
+	}
+	return fileList;
+}
