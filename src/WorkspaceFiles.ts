@@ -100,6 +100,8 @@ export class WorkspaceFiles {
     static RenameAllFiles() {
         vscode.workspace.saveAll();
 
+        crsOutput.showOutput('Rename all files', true);
+
         let settings = Settings.GetConfigSettings(null);
         let withGit = (git.isGitRepositorySync() && settings[Settings.RenameWithGit])
 
@@ -116,8 +118,8 @@ export class WorkspaceFiles {
                         renamedFileCount++;
                         renamedfiles.Add(file.fsPath, newFilename);
                     }
-
                 })
+
                 vscode.window.showInformationMessage(`${renamedFileCount} files out of ${totalFileCount} was renamed`)
             } catch (error) {
                 vscode.window.showErrorMessage(error.message);
@@ -129,6 +131,8 @@ export class WorkspaceFiles {
 
     static ReorganizeAllFiles() {
         vscode.workspace.saveAll();
+
+        crsOutput.showOutput('Reorganize all files', true);
 
         let settings = Settings.GetConfigSettings(null);
         let withGit = (git.isGitRepositorySync() && settings[Settings.RenameWithGit])
