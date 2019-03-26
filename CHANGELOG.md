@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension.
 
-## [1.1.0] - ????-??-??
+## [1.1.0] - 2019-03-26
 New: 
 - [Run Current object from Status Bar / Right click](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/107)
 - New Output channel for this extension: all actions are logged there!
