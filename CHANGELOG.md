@@ -7,6 +7,7 @@ New: [Run Current object from Status Bar / Right click](https://github.com/Cloud
 Improved:
 - [Add Prefix/Suffix to pageextension Groups and Fields](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/93)
 - Significantly less [Debug Console Messages](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/106)
+- Snippets thanks to [Chris Blank](https://github.com/ChrisBlankDe)!
 
 Fixed: "case insensitivity" for file extensions - [Rename/Reorganize AL File in extension of file is in caps](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/105)
 
