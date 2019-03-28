@@ -13,10 +13,26 @@ import * as crsOutput from './CRSOutput';
 
 export class WorkspaceFiles {
 
+    static getCurrentWorkspaceFolder(): vscode.WorkspaceFolder {
+        let workspaceFolder = vscode.workspace.getWorkspaceFolder(vscode.workspace.workspaceFolders[0].uri);
+
+        let activeTextEditorDocumentUri = null
+        try {
+            activeTextEditorDocumentUri = vscode.workspace.getWorkspaceFolder(vscode.window.activeTextEditor.document.uri);
+        } catch (error) {
+            activeTextEditorDocumentUri = null
+        }
+
+        if (activeTextEditorDocumentUri) { workspaceFolder = activeTextEditorDocumentUri }
+
+        return workspaceFolder;
+    }
+
     static getAlFilesFromCurrentWorkspace() {
-        if (vscode.window.activeTextEditor) {
-            let currentWorkspaceFolder = vscode.workspace.getWorkspaceFolder(vscode.window.activeTextEditor.document.uri) //Active File
-            return vscode.workspace.findFiles(new vscode.RelativePattern(currentWorkspaceFolder, '**/*.*'))
+        let activeTextEditorDocumentUri = this.getCurrentWorkspaceFolder();
+
+        if (activeTextEditorDocumentUri) {
+            return vscode.workspace.findFiles(new vscode.RelativePattern(activeTextEditorDocumentUri, '**/*.*'))
         } else {
             return vscode.workspace.findFiles('**/*.*');
         }
@@ -161,14 +177,19 @@ export class WorkspaceFiles {
     }
 
     private static ReopenFilesInEditor(renamedfiles: Dictionary<string>) {
+        vscode.commands.executeCommand('workbench.action.closeAllEditors');
+        return; //disabled this function
+
         let openfiles = new Array<string>();
 
         vscode.workspace.textDocuments.forEach(doc => {
-            if (renamedfiles.ContainsKey(doc.fileName)) {
-                openfiles.push(renamedfiles.Item(doc.fileName));
-            }
-            else {
-                openfiles.push(doc.fileName);
+            if (doc.languageId != 'log') {
+                if (renamedfiles.ContainsKey(doc.fileName)) {
+                    openfiles.push(renamedfiles.Item(doc.fileName));
+                }
+                else {
+                    openfiles.push(doc.fileName);
+                }
             }
         });
         vscode.commands.executeCommand('workbench.action.closeAllEditors');

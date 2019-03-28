@@ -2,6 +2,7 @@ import * as vscode from 'vscode';
 import * as path from 'path'
 import * as fs from 'fs';
 import * as crsOutput from './CRSOutput';
+import { WorkspaceFiles } from './WorkspaceFiles'
 
 var projectRoot = vscode.workspace.rootPath;
 var simpleGit = require('simple-git')((projectRoot) ? projectRoot : '.');
@@ -22,11 +23,7 @@ export async function isGitRepository(folder: vscode.WorkspaceFolder): Promise<b
 }
 
 export function isGitRepositorySync(): boolean {
-	let folder = vscode.workspace.workspaceFolders[0];
-
-	if (vscode.window.activeTextEditor) {
-		folder = vscode.workspace.getWorkspaceFolder(vscode.window.activeTextEditor.document.uri) //Active File
-	}
+	let folder = WorkspaceFiles.getCurrentWorkspaceFolder();
 
 	if (folder.uri.scheme !== 'file') {
 		return false;
