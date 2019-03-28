@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension.
 
-## [1.1.1] - 2019-03-??
+## [1.1.2] - 2019-03-28
 Fixed:
 - [CRS: Reorganize - All Files error](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/110)
 
