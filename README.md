@@ -162,5 +162,5 @@ tableextension 50100 "Just Some Table Extension" extends Customer //18
 * `RenameWithGit`: Use 'git mv' to rename a file.  This keeps history of the file, but stages the rename, which you should commit separately.  **The feature is still in preview-mode, therefore the default value is 'false'**
 
 ## Known Issues
-None .. but if you have any, please report here: https://github.com/CloudReadySoftware/crs-al-language-extension/issues 
+I try to keep a list with issues here: https://github.com/CloudReadySoftware/crs-al-language-extension/issues 
 
