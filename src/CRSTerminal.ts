@@ -14,5 +14,5 @@ export function GitCommit(filepath: string) {
 
 export function OpenFileFromTerminal(path: string) {
     //Terminal.show();
-    Terminal.sendText(`code ${path}`);
+    Terminal.sendText(`code "${path}"`);
 }

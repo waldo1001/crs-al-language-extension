@@ -141,7 +141,7 @@ export class WorkspaceFiles {
                 vscode.window.showErrorMessage(error.message);
             }
 
-            WorkspaceFiles.ReopenFilesInEditor(renamedfiles);
+            //WorkspaceFiles.ReopenFilesInEditor(renamedfiles);
         });
     }
 
@@ -172,14 +172,11 @@ export class WorkspaceFiles {
                 vscode.window.showErrorMessage(error.message);
             }
 
-            WorkspaceFiles.ReopenFilesInEditor(renamedfiles);
+            //WorkspaceFiles.ReopenFilesInEditor(renamedfiles);
         });
     }
 
     private static ReopenFilesInEditor(renamedfiles: Dictionary<string>) {
-        vscode.commands.executeCommand('workbench.action.closeAllEditors');
-        return; //disabled this function
-
         let openfiles = new Array<string>();
 
         vscode.workspace.textDocuments.forEach(doc => {
