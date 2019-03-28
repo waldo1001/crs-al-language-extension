@@ -8,6 +8,8 @@ var projectRoot = vscode.workspace.rootPath;
 var simpleGit = require('simple-git')((projectRoot) ? projectRoot : '.');
 
 export async function isGitRepository(folder: vscode.WorkspaceFolder): Promise<boolean> {
+	return true;  //TODO: Doesn't work in multiple workspaces
+	
 	if (folder.uri.scheme !== 'file') {
 		return false;
 	}
@@ -23,6 +25,8 @@ export async function isGitRepository(folder: vscode.WorkspaceFolder): Promise<b
 }
 
 export function isGitRepositorySync(): boolean {
+	return true;  //TODO: Doesn't work in multiple workspaces
+	
 	let folder = WorkspaceFiles.getCurrentWorkspaceFolder();
 
 	if (folder.uri.scheme !== 'file') {
