@@ -5,7 +5,7 @@
     "version": "1.1.2",
     "publisher": "waldo",
     "icon": "images/icon.png",
-    "author": {"author": {
+    "author": {
         "name": "waldo",
         "url": "http://www.waldo.be",
         "email": "crs-al-language-extension@waldo.be"
