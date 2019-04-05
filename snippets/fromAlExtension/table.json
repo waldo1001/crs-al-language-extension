@@ -18,7 +18,7 @@
             "\t",
             "\tkeys",
             "\t{",
-            "\t\tkey(${8:PK}; ${4:MyField})",
+            "\t\tkey(${8:PK}; \"${4:MyField}\")",
             "\t\t{",
             "\t\t\tClustered = ${9|true,false|};",
             "\t\t}",
