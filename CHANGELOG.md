@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension.
 
+## [1.1.3] - 2019-04-12
+Improved snippets, including a contribution of [Rasmus Aaen](https://github.com/RasmusTidselbak) with a snippet for test cases by [this pullrequest](https://github.com/CloudReadySoftware/crs-al-language-extension/pull/113).
+
 ## [1.1.2] - 2019-03-28
 Fixed:
 - [CRS: Reorganize - All Files error](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/110)
