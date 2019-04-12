@@ -84,6 +84,21 @@
         ],
         "description": "Snippet: Page User Control"
     },
+    "Snippet: View": {
+        "prefix": "tview (CRS)",
+        "body": [
+            "view(${1:ViewName})",
+            "{",
+            "\tCaption = ${2:ViewCaption};",
+            "\t",
+            "\tlayout",
+            "\t{",
+            "\t\t$0",
+            "\t}",
+            "}"
+        ],
+        "description": "Snippet: Page View"
+    },
     "Page of type list": {
         "prefix": "tpagelist (CRS)",
         "body": [
@@ -131,5 +146,38 @@
             "}"
         ],
         "description": "Snippet: Page of type list"
+    },
+    "Page of type API": {
+        "prefix": "tpageapi (CRS)",
+        "body": [
+            "page ${1:Id} ${2:ApiPageName}",
+            "{",
+            "\tPageType = API;",
+            "\tCaption = '${3:apiPageName}';",
+            "\tAPIPublisher = '${4:publisherName}';",
+            "\tAPIGroup = '${5:groupName}';",
+            "\tAPIVersion = '${6:VersionList}';",
+            "\tEntityName = '${7:entityName}';",
+            "\tEntitySetName = '${8:entitySetName}';",
+            "\tSourceTable = ${9:TableName};",
+            "\tDelayedInsert = true;",
+            "\t",
+            "\tlayout",
+            "\t{",
+            "\t\tarea(Content)",
+            "\t\t{",
+            "\t\t\trepeater(${10:GroupName})",
+            "\t\t\t{",
+            "\t\t\t\tfield(${11:fieldName; NameSource})",
+            "\t\t\t\t{",
+            "\t\t\t\t\tCaption = '${12:fieldCaption}';",
+            "\t\t\t\t\t${0}",
+            "\t\t\t\t}",
+            "\t\t\t}",
+            "\t\t}",
+            "\t}",
+            "}"
+        ],
+        "description": "Snippet: Page of type API"
     }
 }
