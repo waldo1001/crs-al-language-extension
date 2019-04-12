@@ -4,7 +4,7 @@
         "prefix": "ttestcase",
         "body": [
             "[Test]",
-            "procedure \"${1}.${2}.${3}\"()",
+            "procedure \"${1:Given Some State}.${2:When Some Action}.${3:Then Expected Output}\"()",
             "begin",
             "\t// [GIVEN] ${1} ${4}",
             "\t// [WHEN] ${2} ${5}",
