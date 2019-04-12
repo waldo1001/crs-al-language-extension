@@ -1,0 +1,16 @@
+{
+    "Snippet (CRS): Test Case": {
+        "description": "Snippet (CRS): Test Case",
+        "prefix": "ttestcase",
+        "body": [
+            "[Test]",
+            "procedure \"${1:Given Some State}.${2:When Some Action}.${3:Then Expected Output}\"()",
+            "begin",
+            "\t// [GIVEN] ${1} ${4}",
+            "\t// [WHEN] ${2} ${5}",
+            "\t// [THEN] ${3} ${0}",
+            "end;"
+        ]
+    }
+
+}
