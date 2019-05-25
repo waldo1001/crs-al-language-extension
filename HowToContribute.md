@@ -1,7 +1,7 @@
 # Introduction
 Just imagine you would like to contribute to this small project .. here is a description on how to get started and make it compile.
 
-# Installation
+# Installation - with npm
 Install node.js
 
 when you just cloned the repo:
@@ -18,3 +18,12 @@ You might want to do this as well...
 when you have errors concerning the test, install mocha
 - `npm install mocha` (in the extension folder!)
 - `npm install -g mocha` (If you want to install it globally)
+
+# Installation - with yarn
+Install node.js
+
+Install yarn:
+- `npm install -g yarn`
+
+Install all dependencies with:
+- `yarn install` (in the extension folder)
