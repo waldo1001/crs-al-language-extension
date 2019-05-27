@@ -31,7 +31,7 @@
     "Snippet: Table Field": {
         "prefix": "tfield (CRS)",
         "body": [
-            "field(${1:id}; \"${2:MyField}\"; ${3|Blob,BigInteger,Boolean,Code[50],Date,DateFormula,Decimal,Duration,Integer,Guid,Media,MediaSet,Option,RecordID,TableFilter,Text[50],Time|})",
+            "field(${1:id}; \"${2:MyField}\"; ${3|Blob,BigInteger,Boolean,Code[50],Date,DateFormula,DateTime,Decimal,Duration,Integer,Guid,Media,MediaSet,Option,RecordID,TableFilter,Text[50],Time,Enum|})",
             "{",
             "\tCaption = '${2:MyField}';",
             "\tDataClassification = ${4|ToBeClassified,CustomerContent,EndUserIdentifiableInformation,AccountData,EndUserPseudonymousIdentifiers,OrganizationIdentifiableInformation,SystemMetadata|};",
