@@ -41,7 +41,7 @@ export class NAVObject {
             this.loadObjectProperties();
     }
 
-    setObjectProperies(objectType: string, objectId : string, objectName : string) {
+    setObjectProperies(objectType: string, objectId: string, objectName: string) {
         this._objectFileNamePattern = this._workSpaceSettings[Settings.FileNamePattern];
         this.objectType = objectType;
         this.objectId = objectId;
@@ -50,7 +50,7 @@ export class NAVObject {
         this.extendedObjectId = '';
     }
 
-    setObjectExtensionProperies(objectType: string, objectId : string, objectName : string, extendedObjectId : string, extendedObjectName : string) {
+    setObjectExtensionProperies(objectType: string, objectId: string, objectName: string, extendedObjectId: string, extendedObjectName: string) {
         this._objectFileNamePattern = this._workSpaceSettings[Settings.FileNamePatternExtensions];
         this.objectType = objectType;
         this.objectId = objectId;
@@ -222,7 +222,7 @@ export class NAVObject {
                 default: {
                     //Error('Not able to parse this file: ' + this.NAVObjectText);
                     vscode.window.showErrorMessage('Not able to parse this file: ' + this.NAVObjectText);
-                    
+
                     return null
                 }
             }
@@ -242,7 +242,7 @@ export class NAVObject {
             this.objectName = '';
             this.extendedObjectName = '';
             this.extendedObjectId = '';
-                
+
             return null;
         }
 
@@ -288,7 +288,7 @@ export class NAVObject {
             case 'enumextension':
                 return true;
             default: return false;
-        }         
+        }
     }
 
     private ApplyExtensionObjectNamePattern(objectName: string): string {
@@ -522,7 +522,7 @@ class NAVPageField {
     private _suffix: string;
 
     public static fieldRegEx(): RegExp {
-        return /.*(field\( *"?([ a-zA-Z0-9._/&-]+)"? *; *"?([ a-zA-Z0-9._/&-]+)"? *\))/g;
+        return /.*(field\( *"?([ a-zA-Z0-9._/&-]+)"? *; *([" a-zA-Z0-9._/&-]+) *\))/g;
     }
 
     get nameFixed(): string {
@@ -542,7 +542,7 @@ class NAVPageField {
     get fullFieldTextFixed(): string {
         if (!this._prefix && !this._suffix) { return this.fullFieldText }
 
-        return "field(\"" + this.nameFixed + "\"; \"" + this.expression + "\")"
+        return "field(\"" + this.nameFixed + "\"; " + this.expression + ")"
     }
 
     constructor(fullFieldText: string, objectType: string, prefix?: string, suffix?: string) {
