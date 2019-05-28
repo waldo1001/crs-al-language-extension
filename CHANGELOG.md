@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension.
 
+## [1.1.4] - 2019-05-28
+Fixed:
+- Improved stability for "rename with Git" (remember the setting `crs.RenameWithGit`)
+- snippet - [tfield does not show DateTime as you time](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/116) - reported by [GreatScott000](https://github.com/GreatScott000)
+- vulnerability issue with typescript
+
 ## [1.1.3] - 2019-04-12
 Improved snippets, including a contribution of [Rasmus Aaen](https://github.com/RasmusTidselbak) with a snippet for test cases by [this pullrequest](https://github.com/CloudReadySoftware/crs-al-language-extension/pull/113).
 
