@@ -27,7 +27,11 @@ export class WorkspaceFiles {
 
         return workspaceFolder;
     }
+    static getCurrentWorkspaceFolderFromUri(filePath: vscode.Uri): vscode.WorkspaceFolder {
+        let workspaceFolder = vscode.workspace.getWorkspaceFolder(filePath);
 
+         return workspaceFolder;
+    }
     static getAlFilesFromCurrentWorkspace() {
         let activeTextEditorDocumentUri = this.getCurrentWorkspaceFolder();
 
@@ -50,7 +54,7 @@ export class WorkspaceFiles {
             let newFilePath = path.join(path.dirname(fileName.fsPath), navObject.objectFileNameFixed);
 
             withGit = withGit ? withGit : (git.isGitRepositorySync() && settings[Settings.RenameWithGit])
-            this.DoRenameFile(fileName.fsPath, newFilePath, withGit)
+            this.DoRenameFile(fileName, newFilePath, withGit)
 
             return newFilePath;
             //console.log('renamed', fileName.fsPath, '-->', newFilePath);
@@ -93,7 +97,7 @@ export class WorkspaceFiles {
                 (!fs.existsSync(objectTypeFolder)) ? fs.mkdirSync(objectTypeFolder) : '';
 
                 withGit = withGit ? withGit : (git.isGitRepositorySync() && settings[Settings.RenameWithGit])
-                this.DoRenameFile(fileName.fsPath, destinationFileName, withGit)
+                this.DoRenameFile(fileName, destinationFileName, withGit)
 
                 //console.log('renamed', fileName.fsPath, '-->', destinationFileName);
 
@@ -104,10 +108,10 @@ export class WorkspaceFiles {
         return fileName.fsPath;
     }
 
-    static DoRenameFile(from: string, to: string, withGit: boolean) {
+    static DoRenameFile(from: vscode.Uri, to: string, withGit: boolean) {
         if (!withGit) {
-            fs.renameSync(from, to);
-            crsOutput.showOutput(`Rename file from ${from.substr(from.lastIndexOf('\\') + 1)} to ${to.substr(to.lastIndexOf('\\') + 1)}`)
+            fs.renameSync(from.fsPath, to);
+            crsOutput.showOutput(`Rename file from ${from.fsPath.substr(from.fsPath.lastIndexOf('\\') + 1)} to ${to.substr(to.lastIndexOf('\\') + 1)}`)
         } else {
             git.gitMove(from, to);
         }

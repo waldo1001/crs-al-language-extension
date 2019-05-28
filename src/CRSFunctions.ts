@@ -120,6 +120,7 @@ export function RenameAllFiles() {
     vscode.window.showWarningMessage('Are you sure to rename all files from all opened workspaces?', 'Yes', 'No').then((action: String) => {
         if (action === 'Yes') {
             WorkspaceFiles.RenameAllFiles();
+            vscode.commands.executeCommand('workbench.action.closeAllEditors');
         }
     });
 
@@ -142,6 +143,7 @@ export function ReorganizeAllFiles() {
     vscode.window.showWarningMessage('Are you sure to reorganize all files from all opened workspaces?', 'Yes', 'No').then((action: String) => {
         if (action === 'Yes') {
             WorkspaceFiles.ReorganizeAllFiles();
+            vscode.commands.executeCommand('workbench.action.closeAllEditors');
         }
     });
 
