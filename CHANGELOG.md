@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension.
 
-## [1.1.5] - 2019-05-28
+## [1.1.6] - 2019-05-28
 Fixed:
 - [Rename command adds quotes around all object + control names](https://github.com/CloudReadySoftware/crs-al-language-extension/issues/114) by [rvanbekkum](https://github.com/rvanbekkum) - thanks so much!
 - Improved stability for "rename with Git" (remember the setting `crs.RenameWithGit`)
