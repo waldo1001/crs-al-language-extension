@@ -12,7 +12,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/CloudReadySoftware/crs-al-language-extension.git"
+        "url": "https://github.com/waldo1001/crs-al-language-extension.git"
     },
     "preview": false,
     "keywords": [
@@ -23,7 +23,7 @@
         "ERP"
     ],
     "bugs": {
-        "url": "https://github.com/CloudReadySoftware/crs-al-language-extension/issues"
+        "url": "https://github.com/waldo1001/crs-al-language-extension/issues"
     },
     "license": "MIT",
     "galleryBanner": {
@@ -103,7 +103,7 @@
                 "title": "CRS: Search Microsoft Docs"
             },
             {
-                "command": "crs.SearchGoogle",
+                "command": "crs.SearchGoogle",                
                 "title": "CRS: Search Google"
             }
         ],
