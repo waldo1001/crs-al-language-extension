@@ -439,12 +439,7 @@ class NAVObjectAction {
     get fullActionTextFixed(): string {
         if (!this._prefix && !this._suffix) { return this.fullActionText };
 
-        var actionName = this.nameFixed;
-        if (actionName.indexOf(' ') >= 0) {
-            return "action(\"" + this.nameFixed + "\")"
-        } else {
-            return "action(" + this.nameFixed + ")"
-        }
+        return "action(" + StringFunctions.encloseInQuotesIfMultiWord(this.nameFixed) + ")"
     }
 
     constructor(fullActionText: string, objectType: string, prefix?: string, suffix?: string) {
@@ -495,12 +490,7 @@ class NAVTableField {
     get fullFieldTextFixed(): string {
         if (!this._prefix && !this._suffix) { return this.fullFieldText }
 
-        var fieldName = this.nameFixed;
-        if (fieldName.indexOf(' ') >= 0) {
-            return "field(" + this.number + "; \"" + this.nameFixed + "\"; " + this.type + ")"
-        } else {
-            return "field(" + this.number + "; " + this.nameFixed + "; " + this.type + ")"
-        }
+        return "field(" + this.number + "; " + StringFunctions.encloseInQuotesIfMultiWord(this.nameFixed) + "; " + this.type + ")"
     }
 
     constructor(fullFieldText: string, objectType: string, prefix?: string, suffix?: string) {
@@ -552,12 +542,7 @@ class NAVPageField {
     get fullFieldTextFixed(): string {
         if (!this._prefix && !this._suffix) { return this.fullFieldText }
 
-        var fieldName = this.nameFixed;
-        if (fieldName.indexOf(' ') >= 0) {
-            return "field(\"" + fieldName + "\"; " + this.expression + ")"
-        } else {
-            return "field(" + fieldName + "; " + this.expression + ")"
-        }
+        return "field(" + StringFunctions.encloseInQuotesIfMultiWord(this.nameFixed) + "; " + this.expression + ")"
     }
 
     constructor(fullFieldText: string, objectType: string, prefix?: string, suffix?: string) {
@@ -608,12 +593,7 @@ class NAVPageGroup {
     get fullGroupTextFixed(): string {
         if (!this._prefix && !this._suffix) { return this.fullGroupText }
 
-        var groupName = this.nameFixed;
-        if (groupName.indexOf(' ') >= 0) {
-            return "group(\"" + this.nameFixed + "\")"
-        } else {
-            return "group(" + this.nameFixed + ")"
-        }
+        return "group(" + StringFunctions.encloseInQuotesIfMultiWord(this.nameFixed) + ")"
     }
 
     constructor(fullGroupText: string, objectType: string, prefix?: string, suffix?: string) {
