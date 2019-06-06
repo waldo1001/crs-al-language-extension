@@ -10,4 +10,15 @@ export class StringFunctions {
     static removeAllButAlfaNumeric(str) {
         return str.replace(/\W/g, '');
     }
+
+    static encloseInQuotesIfMultiWord(str) {
+        if (!str)
+            return str;
+
+        if (str.indexOf(' ') >= 0) {
+            return "\""+str+"\"";
+        } else {
+            return str;
+        }
+    }
 }

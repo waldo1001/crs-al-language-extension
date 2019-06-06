@@ -439,7 +439,7 @@ class NAVObjectAction {
     get fullActionTextFixed(): string {
         if (!this._prefix && !this._suffix) { return this.fullActionText };
 
-        return "action(\"" + this.nameFixed + "\")"
+        return "action(" + StringFunctions.encloseInQuotesIfMultiWord(this.nameFixed) + ")"
     }
 
     constructor(fullActionText: string, objectType: string, prefix?: string, suffix?: string) {
@@ -490,7 +490,7 @@ class NAVTableField {
     get fullFieldTextFixed(): string {
         if (!this._prefix && !this._suffix) { return this.fullFieldText }
 
-        return "field(" + this.number + "; \"" + this.nameFixed + "\"; " + this.type + ")"
+        return "field(" + this.number + "; " + StringFunctions.encloseInQuotesIfMultiWord(this.nameFixed) + "; " + this.type + ")"
     }
 
     constructor(fullFieldText: string, objectType: string, prefix?: string, suffix?: string) {
@@ -542,7 +542,7 @@ class NAVPageField {
     get fullFieldTextFixed(): string {
         if (!this._prefix && !this._suffix) { return this.fullFieldText }
 
-        return "field(\"" + this.nameFixed + "\"; " + this.expression + ")"
+        return "field(" + StringFunctions.encloseInQuotesIfMultiWord(this.nameFixed) + "; " + this.expression + ")"
     }
 
     constructor(fullFieldText: string, objectType: string, prefix?: string, suffix?: string) {
@@ -593,7 +593,7 @@ class NAVPageGroup {
     get fullGroupTextFixed(): string {
         if (!this._prefix && !this._suffix) { return this.fullGroupText }
 
-        return "group(\"" + this.nameFixed + "\")"
+        return "group(" + StringFunctions.encloseInQuotesIfMultiWord(this.nameFixed) + ")"
     }
 
     constructor(fullGroupText: string, objectType: string, prefix?: string, suffix?: string) {
