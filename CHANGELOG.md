@@ -1,5 +1,8 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension.
+## [1.1.7] - 2019-06-06
+- [Kenneth Fuglsang](https://github.com/kfuglsang) changed the field-handling: [only add quotes when necessary](https://github.com/waldo1001/crs-al-language-extension/pull/120).  Thanks so much!
+- [New and improved Method Snippets](https://github.com/waldo1001/crs-al-language-extension/commit/62d417fce7c1daf2b5cec94a49b5401e308784e7)
 
 ## [1.1.6] - 2019-05-28
 Fixed:
