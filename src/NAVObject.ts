@@ -439,7 +439,12 @@ class NAVObjectAction {
     get fullActionTextFixed(): string {
         if (!this._prefix && !this._suffix) { return this.fullActionText };
 
-        return "action(\"" + this.nameFixed + "\")"
+        var actionName = this.nameFixed;
+        if (actionName.indexOf(' ') >= 0) {
+            return "action(\"" + this.nameFixed + "\")"
+        } else {
+            return "action(" + this.nameFixed + ")"
+        }
     }
 
     constructor(fullActionText: string, objectType: string, prefix?: string, suffix?: string) {
@@ -490,7 +495,12 @@ class NAVTableField {
     get fullFieldTextFixed(): string {
         if (!this._prefix && !this._suffix) { return this.fullFieldText }
 
-        return "field(" + this.number + "; \"" + this.nameFixed + "\"; " + this.type + ")"
+        var fieldName = this.nameFixed;
+        if (fieldName.indexOf(' ') >= 0) {
+            return "field(" + this.number + "; \"" + this.nameFixed + "\"; " + this.type + ")"
+        } else {
+            return "field(" + this.number + "; " + this.nameFixed + "; " + this.type + ")"
+        }
     }
 
     constructor(fullFieldText: string, objectType: string, prefix?: string, suffix?: string) {
@@ -542,7 +552,12 @@ class NAVPageField {
     get fullFieldTextFixed(): string {
         if (!this._prefix && !this._suffix) { return this.fullFieldText }
 
-        return "field(\"" + this.nameFixed + "\"; " + this.expression + ")"
+        var fieldName = this.nameFixed;
+        if (fieldName.indexOf(' ') >= 0) {
+            return "field(\"" + fieldName + "\"; " + this.expression + ")"
+        } else {
+            return "field(" + fieldName + "; " + this.expression + ")"
+        }
     }
 
     constructor(fullFieldText: string, objectType: string, prefix?: string, suffix?: string) {
@@ -593,7 +608,12 @@ class NAVPageGroup {
     get fullGroupTextFixed(): string {
         if (!this._prefix && !this._suffix) { return this.fullGroupText }
 
-        return "group(\"" + this.nameFixed + "\")"
+        var groupName = this.nameFixed;
+        if (groupName.indexOf(' ') >= 0) {
+            return "group(\"" + this.nameFixed + "\")"
+        } else {
+            return "group(" + this.nameFixed + ")"
+        }
     }
 
     constructor(fullGroupText: string, objectType: string, prefix?: string, suffix?: string) {
