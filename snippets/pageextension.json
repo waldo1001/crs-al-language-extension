@@ -1,6 +1,6 @@
 {
     "Snippet: Page Extension": {
-        "prefix": "tpageext (CRS)",
+        "prefix": "tpageext(CRS)",
         "body": [
             "pageextension ${1:Id} ${2:MyExtension} extends ${3:MyTargetPage} //${4:MyTargetPageId}",
             "{",

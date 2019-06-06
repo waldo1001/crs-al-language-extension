@@ -90,7 +90,7 @@
     },
     "Snippet (CRS): Enable Assisted Setup ": {
         "description": "Snippet (CRS): Enable Assisted Setup",
-        "prefix": "tassistedsetup (CRS)",
+        "prefix": "tassistedsetup(CRS)",
         "body": [
             "[EventSubscriber(ObjectType::Table, Database::\"Aggregated Assisted Setup\", 'OnRegisterAssistedSetup', '', false, false)]",
             "local procedure AddExtensionAssistedSetup_OnRegisterAssistedSetup(var TempAggregatedAssistedSetup: Record \"Aggregated Assisted Setup\" TEMPORARY);",
@@ -125,7 +125,7 @@
     },
     "Snippet (CRS): Enable My Notifications ": {
         "description": "Snippet (CRS): Enable My Notifications",
-        "prefix": "tmynotifications (CRS)",
+        "prefix": "tmynotifications(CRS)",
         "body": [
             "local procedure GetMyNotificationID(): Guid",
             "begin",
@@ -152,7 +152,7 @@
     },
     "Snippet (CRS): Enable Service Connection": {
         "description": "Snippet (CRS): Enable Service Connection",
-        "prefix": "tserviceconnection (CRS)",
+        "prefix": "tserviceconnection(CRS)",
         "body": [
             "[EventSubscriber(ObjectType::Table, Database:: \"Service Connection\", 'OnRegisterServiceConnection', '',false, false)]",
             "local procedure AddSetup_OnRegisterServiceConnection(var ServiceConnection: Record \"Service Connection\")",
@@ -171,7 +171,7 @@
     },
     "Snippet (CRS): Create Setup Table": {
         "description": "Snippet (CRS): Create Setup Table",
-        "prefix": "ttablesetup (CRS)",
+        "prefix": "ttablesetup(CRS)",
         "body": [
             "table ${1:id} \"${2:MyTable} Setup\"",
             "{",
@@ -211,7 +211,7 @@
         ]
     },
     "Snippet (CRS): Create Setup Page": {
-        "prefix": "tpagesetup (CRS)",
+        "prefix": "tpagesetup(CRS)",
         "body": [
             "page ${1:Id} \"${2:PageName} Setup\"",
             "{",
@@ -246,7 +246,7 @@
         "description": "Snippet (CRS): Create Setup Page"
     },
     "Snippet (CRS): Create Headline Page": {
-        "prefix": "tpageheadline (CRS)",
+        "prefix": "tpageheadline(CRS)",
         "body": [
             "page ${1:Id} \"Headline RC ${2:AppName}\"\r",
             "{\r",
@@ -354,7 +354,7 @@
         "description": "Snippet (CRS): Create Headline Page"
     },
     "Snippet (CRS): Create Role Center Page": {
-        "prefix": "tpagerolecenter (CRS)",
+        "prefix": "tpagerolecenter(CRS)",
         "body": [
             "page ${1:Id} \"${2:AppName} Role Center\"\r",
             "{\r",
@@ -506,7 +506,7 @@
         "description": "Snippet (CRS): Create Role Center Page"
     },
     "Snippet (CRS): Create Role Center Activities Cue Table": {
-        "prefix": "ttableactivities (CRS)",
+        "prefix": "ttableactivities(CRS)",
         "body": [
             "table ${1:Id} \"${2:AppName} Activities Cue\"\r",
             "{\r",
@@ -548,7 +548,7 @@
         "description": "Snippet (CRS): Create Role Center Activities Cue Table"
     },
     "Snippet (CRS): Create Role Center Activities Page": {
-        "prefix": "tpageactivities (CRS)",
+        "prefix": "tpageactivities(CRS)",
         "body": [
             "page ${1:Id} \"${2:AppName} Activities\"\r",
             "{\r",
