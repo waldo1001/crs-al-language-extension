@@ -1,6 +1,6 @@
 {
     "Snippet: Report": {
-        "prefix": "treport (CRS)",
+        "prefix": "treport(CRS)",
         "body": [
             "report ${1:Id} ${2:MyReport}",
             "{",

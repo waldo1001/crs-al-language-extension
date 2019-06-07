@@ -1,6 +1,6 @@
 {
     "Snippet: RuleSet": {
-        "prefix": "truleset (CRS)",
+        "prefix": "truleset(CRS)",
         "body": [
             "{",
             "\t\"name\": \"${1:Name}\",",
@@ -17,7 +17,7 @@
         "description": "Snippet: RuleSet"
     },
     "Snippet: Rule": {
-        "prefix": "trule (CRS)",
+        "prefix": "trule(CRS)",
         "body": [
             "{",
             "\t\"id\": \"${1:DiagnosticId}\",",

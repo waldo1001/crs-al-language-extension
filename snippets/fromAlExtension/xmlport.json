@@ -1,6 +1,6 @@
 {
     "Snippet: XmlPort": {
-        "prefix": "txmlport (CRS)",
+        "prefix": "txmlport(CRS)",
         "body": [
             "xmlport ${1:Id} ${2:MyXmlport}",
             "{",

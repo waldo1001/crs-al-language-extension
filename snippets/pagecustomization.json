@@ -1,6 +1,6 @@
 {
     "Snippet: Page Customization": {
-        "prefix": "tpagecust (CRS)",
+        "prefix": "tpagecust(CRS)",
         "body": [
             "pagecustomization ${1:MyCustomization} customizes ${2:MyTargetPage} //${3:MyTargetPageId}",
             "{",

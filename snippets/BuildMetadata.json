@@ -1,7 +1,7 @@
 {
     "Snippet (CRS): Web Service Collection": {
         "description": "Snippet (CRS): Web Service Collection",
-        "prefix": "twebservicecollection (CRS)",
+        "prefix": "twebservicecollection(CRS)",
         "body": [
             "<?xml version=\"1.0\" encoding=\"utf-8\"?>",
             "<ExportedData>",
@@ -18,7 +18,7 @@
     },
     "Snippet (CRS): Web Service": {
         "description": "Snippet (CRS): Web Service",
-        "prefix": "twebservice (CRS)",
+        "prefix": "twebservice(CRS)",
         "body": [
             "<TenantWebService>",
             "\t<ObjectType>${1|CodeUnit,Page,Query|}</ObjectType>",
@@ -30,7 +30,7 @@
     },
     "Snippet (CRS): Permission Set Collection": {
         "description": "Snippet (CRS): Permission Set Collection",
-        "prefix": "tpermissionsetcollection (CRS)",
+        "prefix": "tpermissionsetcollection(CRS)",
         "body": [
             "<PermissionSets>",
             "\t<PermissionSet RoleID=\"${1:PermissionSetId}\" RoleName=\"${2:PermissionSetName}\">",
@@ -50,7 +50,7 @@
     },
     "Snippet (CRS): Permission Set": {
         "description": "Snippet (CRS): Permission Set",
-        "prefix": "tpermissionset (CRS)",
+        "prefix": "tpermissionset(CRS)",
         "body": [
             "<PermissionSet RoleID=\"${1:PermissionSetId}\" RoleName=\"${2:PermissionSetName}\">",
             "\t<Permission>",
@@ -68,7 +68,7 @@
     },
     "Snippet (CRS): Permission": {
         "description": "Snippet (CRS): Permission",
-        "prefix": "tpermission (CRS)",
+        "prefix": "tpermission(CRS)",
         "body": [
             "<Permission>",
             "\t<ObjectType>${1|TableData,Table,Page,CodeUnit,Report,XmlPort,Query|}</ObjectType>",

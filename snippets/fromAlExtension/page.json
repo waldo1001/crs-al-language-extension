@@ -1,6 +1,6 @@
 {
     "Page": {
-        "prefix": "tpage (CRS)",
+        "prefix": "tpage(CRS)",
         "body": [
             "page ${1:Id} ${2:MyPage}",
             "{",
@@ -44,7 +44,7 @@
         "description": "Snippet: Page"
     },
     "Snippet: Page Field": {
-        "prefix": "tpagefield (CRS)",
+        "prefix": "tpagefield(CRS)",
         "body": [
             "field(${1:MyField; FieldSource})",
             "{",
@@ -55,7 +55,7 @@
         "description": "Snippet: Page Field"
     },
     "Snippet: Action": {
-        "prefix": "taction (CRS)",
+        "prefix": "taction(CRS)",
         "body": [
             "action(${1:ActionName})",
             "{",
@@ -70,7 +70,7 @@
         "description": "Snippet: Page Action"
     },
     "Snippet: User Control": {
-        "prefix": "tusercontrol (CRS)",
+        "prefix": "tusercontrol(CRS)",
         "body": [
             "usercontrol(${1:ControlName}; ${2:AddInName})",
             "{",
@@ -85,7 +85,7 @@
         "description": "Snippet: Page User Control"
     },
     "Snippet: View": {
-        "prefix": "tview (CRS)",
+        "prefix": "tview(CRS)",
         "body": [
             "view(${1:ViewName})",
             "{",
@@ -100,7 +100,7 @@
         "description": "Snippet: Page View"
     },
     "Page of type list": {
-        "prefix": "tpagelist (CRS)",
+        "prefix": "tpagelist(CRS)",
         "body": [
             "page ${1:Id} ${2:PageName}",
             "{",
@@ -148,7 +148,7 @@
         "description": "Snippet: Page of type list"
     },
     "Page of type API": {
-        "prefix": "tpageapi (CRS)",
+        "prefix": "tpageapi(CRS)",
         "body": [
             "page ${1:Id} ${2:ApiPageName}",
             "{",

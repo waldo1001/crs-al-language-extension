@@ -1,6 +1,6 @@
 {
     "Snippet: Table FlowField": {
-        "prefix": "tflowfield (CRS)",
+        "prefix": "tflowfield(CRS)",
         "body": [
             "field(${1:id}; \"${2:MyField}\"; ${3|Blob,BigInteger,Boolean,Code[50],Date,DateFormula,Decimal,Duration,Integer,Guid,Media,MediaSet,Option,RecordID,TableFilter,Text[50],Time|})",
             "{",
@@ -14,7 +14,7 @@
         "description": "Snippet: Table FlowField"
     },
     "Snippet: Table FlowField (LookUp)": {
-        "prefix": "tflowfieldlookup (CRS)",
+        "prefix": "tflowfieldlookup(CRS)",
         "body": [
             "field(${1:id}; \"${2:MyField}\"; ${3|Blob,BigInteger,Boolean,Code[50],Date,DateFormula,Decimal,Duration,Integer,Guid,Media,MediaSet,Option,RecordID,TableFilter,Text[50],Time|})",
             "{",
@@ -28,7 +28,7 @@
         "description": "Snippet: Table FlowField (LookUp)"
     },
     "Snippet: Table FlowField (Count)": {
-        "prefix": "tflowfieldcount (CRS)",
+        "prefix": "tflowfieldcount(CRS)",
         "body": [
             "field(${1:id}; \"${2:MyField}\"; Integer)",
             "{",
@@ -42,7 +42,7 @@
         "description": "Snippet: Table FlowField (Count)"
     },
     "Snippet: Table FlowField (Exist)": {
-        "prefix": "tflowfieldexist (CRS)",
+        "prefix": "tflowfieldexist(CRS)",
         "body": [
             "field(${1:id}; \"${2:MyField}\"; Boolean)",
             "{",
@@ -56,7 +56,7 @@
         "description": "Snippet: Table FlowField (Exist)"
     },
     "Snippet: Table FlowField (Sum)": {
-        "prefix": "tflowfieldsum (CRS)",
+        "prefix": "tflowfieldsum(CRS)",
         "body": [
             "field(${1:id}; \"${2:MyField}\"; ${3|BigInteger,Decimal,Integer|})",
             "{",

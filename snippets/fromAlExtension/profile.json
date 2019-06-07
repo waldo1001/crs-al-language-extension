@@ -1,6 +1,6 @@
 {
     "Snippet: Profile": {
-        "prefix": "tprofile (CRS)",
+        "prefix": "tprofile(CRS)",
         "body": [
             "profile ${1:MyProfile} ",
             "{",
