@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension.
 
+## [1.1.11] - 2019-06-27
+Fixed:
+- [ExtensionObjectNamePattern could create too big object names](https://github.com/waldo1001/crs-al-language-extension/issues/127)
+- [Update tpagewizard to avoid missing paranthesis warning](https://github.com/waldo1001/crs-al-language-extension/pull/125) - Thanks [Chris](https://github.com/ChrisBlankDe)!
+
 ## [1.1.9] - 2019-06-07
 - Fixed [issue with special chars in field names](https://github.com/waldo1001/crs-al-language-extension/issues/122), mentioned by [omurcanates](https://github.com/omurcanates) and fixed by [Kenneth Fuglsang](https://github.com/kfuglsang).
 - [Removed spaces from snippet prefixes](https://github.com/waldo1001/crs-al-language-extension/issues/121), which makes it behave much better in IntelliSense.
