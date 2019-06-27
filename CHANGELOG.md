@@ -1,8 +1,9 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension.
 
-## [1.1.8] - 2019-06-07
-Fixed [issue with special chars in field names](https://github.com/waldo1001/crs-al-language-extension/issues/122), mentioned by [omurcanates](https://github.com/omurcanates) and fixed by [Kenneth Fuglsang](https://github.com/kfuglsang).
+## [1.1.9] - 2019-06-07
+- Fixed [issue with special chars in field names](https://github.com/waldo1001/crs-al-language-extension/issues/122), mentioned by [omurcanates](https://github.com/omurcanates) and fixed by [Kenneth Fuglsang](https://github.com/kfuglsang).
+- [Removed spaces from snippet prefixes](https://github.com/waldo1001/crs-al-language-extension/issues/121), which makes it behave much better in IntelliSense.
 
 ## [1.1.7] - 2019-06-06
 - [Kenneth Fuglsang](https://github.com/kfuglsang) changed the field-handling: [only add quotes when necessary](https://github.com/waldo1001/crs-al-language-extension/pull/120).  Thanks so much!
