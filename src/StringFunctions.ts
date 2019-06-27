@@ -11,12 +11,13 @@ export class StringFunctions {
         return str.replace(/\W/g, '');
     }
 
-    static encloseInQuotesIfMultiWord(str) {
-        if (!str)
+    static encloseInQuotesIfNecessary(str) {
+        if (!str) {
             return str;
+        }
 
-        if (str.indexOf(' ') >= 0) {
-            return "\""+str+"\"";
+        if (/[^a-zA-Z0-9]/.test(str)) {
+            return "\"" + str + "\"";
         } else {
             return str;
         }
