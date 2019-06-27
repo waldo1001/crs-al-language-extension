@@ -62,12 +62,18 @@ export class NAVObject {
     get objectTypeShort(): string {
         return DynamicsNAV.getBestPracticeAbbreviatedObjectType(this.objectType);
     }
+
     get objectNameFixed(): string {
         let objectNameFixed = this.ApplyExtensionObjectNamePattern(this.objectName.trim().toString());
         if (objectNameFixed == this.objectName.trim().toString()) {
             objectNameFixed = this.AddPrefixAndSuffixToObjectNameFixed(objectNameFixed);
         }
 
+        if ((objectNameFixed != this.objectName.trim().toString()) && (objectNameFixed.length > 30)) {
+            vscode.window.showWarningMessage(`Result too long: Tried to rename ${this.objectName.trim().toString()} to ${objectNameFixed}.  Please rename the object manually.`)
+            objectNameFixed = this.objectName.trim().toString();
+        }
+        
         return objectNameFixed;
     }
 
@@ -106,7 +112,7 @@ export class NAVObject {
         let objectFileNameFixed = this._objectFileNamePattern
 
         objectFileNameFixed = this.ApplyPatternToFileName(objectFileNameFixed);
-
+    
         return objectFileNameFixed
     }
 

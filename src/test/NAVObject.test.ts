@@ -616,11 +616,11 @@ suite("NAVObject Tests", () => {
     })
 
 
-    test("PageExtension - Automatic Naming with settings", () => {
+    test("PageExtension - ExtensionObjectNamePattern - Automatic Naming with settings", () => {
         let testSettings = Settings.GetConfigSettings(null)
         testSettings[Settings.ObjectNamePrefix] = 'waldo';
         testSettings[Settings.ObjectNameSuffix] = 'waldo';
-        testSettings[Settings.ExtensionObjectNamePattern] = '<Prefix><Suffix><ObjectType><ObjectTypeShort><ObjectTypeShortUpper><ObjectId><BaseName><BaseNameShort><BaseId>';
+        testSettings[Settings.ExtensionObjectNamePattern] = '<Prefix><Suffix><ObjectType><ObjectTypeShort>'; //<ObjectTypeShortUpper><ObjectId><BaseName><BaseNameShort><BaseId>
 
         let navTestObject = NAVTestObjectLibrary.getPageExtensionWithAmpersandInFileName()
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
@@ -630,11 +630,22 @@ suite("NAVObject Tests", () => {
             + testSettings[Settings.ObjectNameSuffix]
             + navObject.objectType
             + navObject.objectTypeShort
-            + navObject.objectTypeShort.toUpperCase()
-            + navObject.objectId
-            + navObject.extendedObjectName
-            + navObject.extendedObjectNameFixedShort
-            + navObject.extendedObjectId)
+            // + navObject.objectTypeShort.toUpperCase()
+            // + navObject.objectId
+            // + navObject.extendedObjectName
+            // + navObject.extendedObjectNameFixedShort
+            // + navObject.extendedObjectId
+        )
+    })
+
+    test("PageExtension - ExtensionObjectNamePattern - Ignore Too Long Object Name", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+        testSettings[Settings.ExtensionObjectNamePattern] = 'This is a pattern that makes the object name far too long, so it should be ignored';
+
+        let navTestObject = NAVTestObjectLibrary.getPageExtensionWithAmpersandInFileName()
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
+
+        assert.equal(navObject.objectName.length, navObject.objectNameFixed.length);
     })
 
     test("PageExtension - Automatic Naming without settings", () => {
@@ -650,18 +661,20 @@ suite("NAVObject Tests", () => {
         let testSettings = Settings.GetConfigSettings(null)
         testSettings[Settings.ObjectNamePrefix] = 'waldo';
         testSettings[Settings.ObjectNameSuffix] = 'waldo';
-        testSettings[Settings.ExtensionObjectNamePattern] = '<Prefix><Suffix><ObjectType><ObjectTypeShort><ObjectTypeShortUpper><ObjectId><BaseName><BaseNameShort><BaseId>';
+        testSettings[Settings.ExtensionObjectNamePattern] = '<ObjectId><BaseName><BaseNameShort><BaseId>';
 
         let navTestObject = NAVTestObjectLibrary.getTableExtensionWrongFileName()
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
 
-        assert.equal(navObject.objectNameFixed,
-            testSettings[Settings.ObjectNamePrefix]
-            + testSettings[Settings.ObjectNameSuffix]
-            + navObject.objectType
-            + navObject.objectTypeShort
-            + navObject.objectTypeShort.toUpperCase()
-            + navObject.objectId
+        assert.equal(
+            navObject.objectNameFixed,
+            // testSettings[Settings.ObjectNamePrefix]
+            // + testSettings[Settings.ObjectNameSuffix]
+            // + navObject.objectType
+            // + navObject.objectTypeShort
+            // + navObject.objectTypeShort.toUpperCase()
+            // + 
+            navObject.objectId
             + navObject.extendedObjectName
             + navObject.extendedObjectNameFixedShort
             + navObject.extendedObjectId)
