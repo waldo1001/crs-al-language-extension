@@ -28,7 +28,7 @@ suite("NAVObject FilePattern Tests", () => {
         let testSettings = Settings.GetConfigSettings(null)
         testSettings[Settings.FileNamePatternExtensions] = '<ObjectType><ObjectTypeShort><ObjectTypeShortUpper><ObjectId><ObjectName><ObjectNameShort><BaseName><BaseId>';//<ObjectType>,<ObjectTypeShort>,<ObjectTypeShortUpper>,<ObjectId>,<ObjectName>,<ObjectNameShort>,<BaseName>,<BaseId>
 
-        let navTestObject = NAVTestObjectLibrary.getTableExtensionWrongFileName()
+        let navTestObject = NAVTestObjectLibrary.getTableExtensionWrongFileNameAndKeyWord()
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
 
         assert.equal(navObject.objectFileNameFixed,
@@ -335,7 +335,7 @@ suite("NAVObject FilePattern Tests", () => {
         testSettings[Settings.ObjectNameSuffix] = 'waldo';
         testSettings[Settings.ExtensionObjectNamePattern] = '<ObjectId><BaseName><BaseNameShort><BaseId>';
 
-        let navTestObject = NAVTestObjectLibrary.getTableExtensionWrongFileName()
+        let navTestObject = NAVTestObjectLibrary.getTableExtensionWrongFileNameAndKeyWord()
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
 
         assert.equal(

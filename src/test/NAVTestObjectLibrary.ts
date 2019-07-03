@@ -405,7 +405,7 @@ export function getPageCustomizationWrongFileName(): NAVTestObject {
     `
     return object;
 }
-export function getTableExtensionWrongFileName(): NAVTestObject {
+export function getTableExtensionWrongFileNameAndKeyWord(): NAVTestObject {
     let object = new NAVTestObject;
 
     object.ObjectFileName = 'SomeTableExt.al'
@@ -425,6 +425,16 @@ export function getTableExtensionWrongFileName(): NAVTestObject {
         {
 
             DataClassification = ToBeClassified;
+        }
+        field(114; Grid; Boolean) // This is a keyword used as a fieldname
+        {
+            Caption = 'Grid';
+            DataClassification = CustomerContent;
+        }
+        field(115; page; Boolean) // This is a keyword used as a fieldname
+        {
+            Caption = 'page';
+            DataClassification = CustomerContent;
         }
     }
     

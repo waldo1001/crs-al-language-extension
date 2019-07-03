@@ -151,7 +151,7 @@ suite("NAVObject ObjectNamePrefix Tests", () => {
         let testSettings = Settings.GetConfigSettings(null)
         testSettings[Settings.ObjectNamePrefix] = 'waldo';
 
-        let navTestObject = NAVTestObjectLibrary.getTableExtensionWrongFileName();
+        let navTestObject = NAVTestObjectLibrary.getTableExtensionWrongFileNameAndKeyWord();
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
 
         assert.equal(navObject.tableFields[0].nameFixed, testSettings[Settings.ObjectNamePrefix] + navObject.tableFields[0].name)
@@ -171,7 +171,7 @@ suite("NAVObject ObjectNamePrefix Tests", () => {
         let testSettings = Settings.GetConfigSettings(null)
         testSettings[Settings.ObjectNameSuffix] = 'waldo';
 
-        let navTestObject = NAVTestObjectLibrary.getTableExtensionWrongFileName();
+        let navTestObject = NAVTestObjectLibrary.getTableExtensionWrongFileNameAndKeyWord();
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
 
         assert.equal(navObject.tableFields[0].nameFixed, navObject.tableFields[0].name + testSettings[Settings.ObjectNameSuffix])

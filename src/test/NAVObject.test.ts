@@ -8,11 +8,9 @@ import * as assert from 'assert';
 import { suite, test } from 'mocha';
 
 import { NAVObject } from '../NAVObject'
-import { WorkspaceFiles } from '../WorkspaceFiles'
-import * as myExtension from '../extension';
 import * as NAVTestObjectLibrary from './NAVTestObjectLibrary'
 import { Settings } from '../Settings';
-import { settings } from 'cluster';
+import { DynamicsNAV } from '../DynamicsNAV';
 
 
 // Defines a Mocha test suite to group tests of similar kind together
@@ -85,7 +83,7 @@ suite("NAVObject General Tests", () => {
     test("TableExtension - Automatic Naming without settings", () => {
         let testSettings = Settings.GetConfigSettings(null)
 
-        let navTestObject = NAVTestObjectLibrary.getTableExtensionWrongFileName()
+        let navTestObject = NAVTestObjectLibrary.getTableExtensionWrongFileNameAndKeyWord()
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
 
         assert.equal(navObject.objectNameFixed, navObject.objectName)
@@ -135,4 +133,19 @@ suite("NAVObject General Tests", () => {
             + navObject.objectTypeShort.toUpperCase()
             + navObject.objectId)
     })
+
+    test("TableExtension - Fields with keyword-names", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+
+        let navTestObject = NAVTestObjectLibrary.getTableExtensionWrongFileNameAndKeyWord()
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
+
+        let navObject2 = new NAVObject(navObject.NAVObjectTextFixed, testSettings, navObject.objectFileNameFixed)
+        navObject2.tableFields.forEach(tableField => {
+            if (DynamicsNAV.getAllKeywords().includes(tableField.name)){
+                throw ('TODO'); //TODO finish test
+            }
+        });
+    })
+
 });
