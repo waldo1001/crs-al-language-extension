@@ -73,7 +73,7 @@ export class NAVObject {
             vscode.window.showWarningMessage(`Result too long: Tried to rename ${this.objectName.trim().toString()} to ${objectNameFixed}.  Please rename the object manually.`)
             objectNameFixed = this.objectName.trim().toString();
         }
-        
+
         return objectNameFixed;
     }
 
@@ -112,7 +112,7 @@ export class NAVObject {
         let objectFileNameFixed = this._objectFileNamePattern
 
         objectFileNameFixed = this.ApplyPatternToFileName(objectFileNameFixed);
-    
+
         return objectFileNameFixed
     }
 
@@ -494,7 +494,7 @@ class NAVTableField {
     }
 
     get fullFieldTextFixed(): string {
-        if (!this._prefix && !this._suffix) { return this.fullFieldText }
+        //if (!this._prefix && !this._suffix) { return this.fullFieldText } //TODO: Check!  Might be necessary to revert this.
 
         return "field(" + this.number + "; " + StringFunctions.encloseInQuotesIfNecessary(this.nameFixed) + "; " + this.type + ")"
     }

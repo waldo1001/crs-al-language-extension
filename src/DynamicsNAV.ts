@@ -162,7 +162,18 @@ export class DynamicsNAV {
         }
     }
 
-    static getAllKeywords(): String[]{
+    static isKeyWord(value: String): boolean {
+        return DynamicsNAV.getAllKeywordsLowerCased().indexOf(value.toLowerCase()) != -1
+    }
+
+    static getAllKeywordsLowerCased(): String[] {
+        var lowerCasedNames = this.getAllKeywords().map(value => {
+            return value.toLowerCase();
+        })
+        return lowerCasedNames;
+    }
+
+    static getAllKeywords(): String[] {
         //Source: AL Variable Helper Source Code (Thank you Rasmus ;-))
         let keywords: String[] = [
             "Confirm",

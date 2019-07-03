@@ -156,7 +156,7 @@ suite("NAVObject ObjectNamePrefix Tests", () => {
 
         assert.equal(navObject.tableFields[0].nameFixed, testSettings[Settings.ObjectNamePrefix] + navObject.tableFields[0].name)
         assert.equal(navObject.tableFields[0].nameFixed.startsWith(testSettings[Settings.ObjectNamePrefix]), true)
-        assert.equal(navObject.tableFields.length, 3)
+        assert.equal(navObject.tableFields.length, 5) //has 5 fields 
         navObject.tableFields.forEach(field => {
             assert.equal(field.nameFixed.startsWith(testSettings[Settings.ObjectNamePrefix]), true)
         })
@@ -176,7 +176,7 @@ suite("NAVObject ObjectNamePrefix Tests", () => {
 
         assert.equal(navObject.tableFields[0].nameFixed, navObject.tableFields[0].name + testSettings[Settings.ObjectNameSuffix])
         assert.equal(navObject.tableFields[0].nameFixed.endsWith(testSettings[Settings.ObjectNameSuffix]), true)
-        assert.equal(navObject.tableFields.length, 3)
+        assert.equal(navObject.tableFields.length, 5) //has 5 fields 
         navObject.tableFields.forEach(field => {
             assert.equal(field.nameFixed.endsWith(testSettings[Settings.ObjectNameSuffix]), true)
         })

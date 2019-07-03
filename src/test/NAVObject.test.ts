@@ -142,8 +142,10 @@ suite("NAVObject General Tests", () => {
 
         let navObject2 = new NAVObject(navObject.NAVObjectTextFixed, testSettings, navObject.objectFileNameFixed)
         navObject2.tableFields.forEach(tableField => {
-            if (DynamicsNAV.getAllKeywords().includes(tableField.name)){
-                throw ('TODO'); //TODO finish test
+            if (DynamicsNAV.getAllKeywordsLowerCased().indexOf(tableField.name.toLowerCase()) != -1) {
+                var expectedValueToFind = `"${tableField.name}"`
+                //console.log(tableField.fullFieldTextFixed);
+                assert.equal((tableField.fullFieldText.indexOf(expectedValueToFind) > -1), true, `"${tableField.name}" is a keyword and should be surrounded with quotes, while this is the fixed text: "${tableField.fullFieldText}"`)
             }
         });
     })

@@ -1,9 +1,11 @@
+import { DynamicsNAV } from "./DynamicsNAV";
+
 export class StringFunctions {
     static replaceAll(str, find, replace) {
         return str.replace(new RegExp(this.escapeRegExp(find), 'g'), replace);
     }
 
-    static escapeRegExp(str)  {
+    static escapeRegExp(str) {
         return str.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
     }
 
@@ -16,10 +18,12 @@ export class StringFunctions {
             return str;
         }
 
-        if (/[^a-zA-Z0-9]/.test(str)) {
+        if (/[^a-zA-Z0-9]/.test(str) || DynamicsNAV.isKeyWord(str)) {
             return "\"" + str + "\"";
         } else {
             return str;
         }
     }
+
+
 }
