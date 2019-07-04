@@ -1,6 +1,13 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension.
 
+## [1.1.15] - 2019-07-04
+Fixed:
+- When using keywords as fieldnames, you really NEED the surrounding quotes.  Issue on github: [Surround Keywords with doublequotes](https://github.com/waldo1001/crs-al-language-extension/issues/129).
+- [Make rename/reorganize work for controladdins](https://github.com/waldo1001/crs-al-language-extension/issues/103).
+Improved:
+- Show output when there is a git-warning.
+
 ## [1.1.11] - 2019-06-27
 Fixed:
 - [ExtensionObjectNamePattern could create too big object names](https://github.com/waldo1001/crs-al-language-extension/issues/127)
