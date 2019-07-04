@@ -494,7 +494,7 @@ class NAVTableField {
     }
 
     get fullFieldTextFixed(): string {
-        //if (!this._prefix && !this._suffix) { return this.fullFieldText } //TODO: Check!  Might be necessary to revert this.
+        if (!this._prefix && !this._suffix) { return this.fullFieldText }
 
         return "field(" + this.number + "; " + StringFunctions.encloseInQuotesIfNecessary(this.nameFixed) + "; " + this.type + ")"
     }

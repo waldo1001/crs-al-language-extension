@@ -426,12 +426,12 @@ export function getTableExtensionWrongFileNameAndKeyWord(): NAVTestObject {
 
             DataClassification = ToBeClassified;
         }
-        field(114; Grid; Boolean) // This is a keyword used as a fieldname
+        field(114; "Grid"; Boolean) // This is a keyword used as a fieldname
         {
             Caption = 'Grid';
             DataClassification = CustomerContent;
         }
-        field(115; page; Boolean) // This is a keyword used as a fieldname
+        field(115; "page"; Boolean) // This is a keyword used as a fieldname
         {
             Caption = 'page';
             DataClassification = CustomerContent;
@@ -439,6 +439,46 @@ export function getTableExtensionWrongFileNameAndKeyWord(): NAVTestObject {
     }
     
 }
+    `
+    return object;
+}
+export function getTableWrongFileNameAndKeyWord(): NAVTestObject {
+    let object = new NAVTestObject;
+
+    object.ObjectFileName = 'SomeTableExt.al'
+    object.ObjectText = `table 50102 "Sales&Receivables"
+    {
+        DataClassification = CustomerContent;
+    
+        fields
+        {
+            field(1; MyField; Integer)
+            {
+                ObsoleteState = Pending;
+                DataClassification = CustomerContent;
+            }
+            field(114; "Grid"; Boolean) // This is a keyword used as a fieldname
+            {
+                Caption = 'Grid';
+                DataClassification = CustomerContent;
+            }
+            field(115; "page"; Boolean) // This is a keyword used as a fieldname
+            {
+                Caption = 'page';
+                DataClassification = CustomerContent;
+            }
+    
+        }
+    
+        keys
+        {
+            key(PK; "MyField")
+            {
+                Clustered = true;
+            }
+        }
+    
+    }
     `
     return object;
 }

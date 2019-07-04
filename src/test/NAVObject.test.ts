@@ -149,5 +149,54 @@ suite("NAVObject General Tests", () => {
             }
         });
     })
+    test("TableExtension - Fields with keyword-names (with Prefix)", () => {
+        //same as above, but now with prefix
+        let testSettings = Settings.GetConfigSettings(null)
+        testSettings[Settings.ObjectNamePrefix] = 'waldo';
+        
+        let navTestObject = NAVTestObjectLibrary.getTableExtensionWrongFileNameAndKeyWord()
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
+        
+        let navObject2 = new NAVObject(navObject.NAVObjectTextFixed, testSettings, navObject.objectFileNameFixed)
+        navObject2.tableFields.forEach(tableField => {
+            if (DynamicsNAV.getAllKeywordsLowerCased().indexOf(tableField.name.toLowerCase()) != -1) {
+                var expectedValueToFind = `"${tableField.name}"`
+                //console.log(tableField.fullFieldTextFixed);
+                assert.equal((tableField.fullFieldText.indexOf(expectedValueToFind) > -1), true, `"${tableField.name}" is a keyword and should be surrounded with quotes, while this is the fixed text: "${tableField.fullFieldText}"`)
+            }
+        });
+    })
+    test("Table - Fields with keyword-names", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+        
+        let navTestObject = NAVTestObjectLibrary.getTableWrongFileNameAndKeyWord()
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
+        
+        let navObject2 = new NAVObject(navObject.NAVObjectTextFixed, testSettings, navObject.objectFileNameFixed)
+        navObject2.tableFields.forEach(tableField => {
+            if (DynamicsNAV.getAllKeywordsLowerCased().indexOf(tableField.name.toLowerCase()) != -1) {
+                var expectedValueToFind = `"${tableField.name}"`
+                //console.log(tableField.fullFieldTextFixed);
+                assert.equal((tableField.fullFieldText.indexOf(expectedValueToFind) > -1), true, `"${tableField.name}" is a keyword and should be surrounded with quotes, while this is the fixed text: "${tableField.fullFieldText}"`)
+            }
+        });
+    })
+    test("Table - Fields with keyword-names (With Prefix)", () => {
+        //same as above, but now with prefix
+        let testSettings = Settings.GetConfigSettings(null)
+        testSettings[Settings.ObjectNamePrefix] = 'waldo';
+        
+        let navTestObject = NAVTestObjectLibrary.getTableWrongFileNameAndKeyWord()
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
+
+        let navObject2 = new NAVObject(navObject.NAVObjectTextFixed, testSettings, navObject.objectFileNameFixed)
+        navObject2.tableFields.forEach(tableField => {
+            if (DynamicsNAV.getAllKeywordsLowerCased().indexOf(tableField.name.toLowerCase()) != -1) {
+                var expectedValueToFind = `"${tableField.name}"`
+                //console.log(tableField.fullFieldTextFixed);
+                assert.equal((tableField.fullFieldText.indexOf(expectedValueToFind) > -1), true, `"${tableField.name}" is a keyword and should be surrounded with quotes, while this is the fixed text: "${tableField.fullFieldText}"`)
+            }
+        });
+    })
 
 });
