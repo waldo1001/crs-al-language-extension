@@ -159,6 +159,7 @@ export class DynamicsNAV {
             case 'pagecustomization': return 'Pag';
             case 'enum': return 'Enum';
             case 'enumextension': return 'Enum';
+            case 'controladdin': return 'ConAddin';
         }
     }
 

@@ -283,6 +283,10 @@ export class WorkspaceFiles {
             }
         }
 
+        if (navObject.objectType == 'controladdin'){
+            return `${navObject.objectType}\\${navObject.objectNameFixed}`
+        }
+
         return navObject.objectType
     }
 }

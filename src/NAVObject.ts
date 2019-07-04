@@ -129,7 +129,7 @@ export class NAVObject {
     }
 
     private loadObjectProperties(): any {
-        var patternObjectType = new RegExp('(codeunit |page |pagecustomization |pageextension |profile |query |report |requestpage |table |tableextension |xmlport |enum |enumextension )', "i")
+        var patternObjectType = new RegExp('(codeunit |page |pagecustomization |pageextension |profile |query |report |requestpage |table |tableextension |xmlport |enum |enumextension |controladdin)', "i")
 
         let ObjectTypeArr = this.NAVObjectText.match(patternObjectType);
 
@@ -201,6 +201,18 @@ export class NAVObject {
                 case 'profile': {
 
                     var patternObject = new RegExp('(profile)( +"?[ a-zA-Z0-9._/&-]+"?)', "i");
+                    let currObject = this.NAVObjectText.match(patternObject);
+
+                    this.objectType = currObject[1];
+                    this.objectId = '';
+                    this.objectName = currObject[2];
+
+                    this._objectFileNamePattern = this._workSpaceSettings[Settings.FileNamePattern];
+
+                    break;
+                }
+                case 'controladdin': {
+                    var patternObject = new RegExp('(controladdin)( +"?[ a-zA-Z0-9._/&-]+"?)', "i");
                     let currObject = this.NAVObjectText.match(patternObject);
 
                     this.objectType = currObject[1];
@@ -292,6 +304,7 @@ export class NAVObject {
             case 'xmlport':
             case 'enum':
             case 'enumextension':
+            case 'controladdin':
                 return true;
             default: return false;
         }
