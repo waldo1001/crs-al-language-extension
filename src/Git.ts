@@ -49,11 +49,11 @@ export function gitMove(from: vscode.Uri, to: string) {
 	git.mv(from.fsPath, to, function (error) {
 		if (error) {
 			fs.renameSync(from.fsPath, to);
-			crsOutput.showOutput(`*** Warning`);
+			crsOutput.showOutput(`*** Warning`, true);
 			crsOutput.showOutput(`* ${error}`);
 			crsOutput.showOutput(`* fallback: renaming without git from ${from.fsPath.substr(from.fsPath.lastIndexOf('\\') + 1)} to ${to.substr(to.lastIndexOf('\\') + 1)}`);
 			crsOutput.showOutput(`* you might want to set the setting "crs.RenameWithGit" to false for this workspace.`);
-			crsOutput.showOutput(`***`);
+			crsOutput.showOutput(`***`);			
 		} else {
 			crsOutput.showOutput(`success: git mv ${from.fsPath.substr(from.fsPath.lastIndexOf('\\') + 1)} ${to.substr(to.lastIndexOf('\\') + 1)}`);
 		}
