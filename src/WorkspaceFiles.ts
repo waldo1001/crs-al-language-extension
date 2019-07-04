@@ -86,7 +86,8 @@ export class WorkspaceFiles {
 
             let objectFolder = path.join(vscode.workspace.getWorkspaceFolder(fileName).uri.fsPath, this.getDestinationFolder(navObject, settings));
             let objectTypeFolder = path.join(objectFolder, this.getObjectTypeFolder(navObject));
-            let destinationFileName = path.join(objectTypeFolder, fixedname);
+            let objectSubFolder = path.join(objectTypeFolder, this.getObjectSubFolder(navObject));
+            let destinationFileName = path.join(objectSubFolder, fixedname);
 
             if (destinationFileName.toLocaleLowerCase() == fileName.fsPath.toLocaleLowerCase()) {
                 //console.log('paths are the same.');
@@ -95,6 +96,7 @@ export class WorkspaceFiles {
 
                 (!fs.existsSync(objectFolder)) ? fs.mkdirSync(objectFolder) : '';
                 (!fs.existsSync(objectTypeFolder)) ? fs.mkdirSync(objectTypeFolder) : '';
+                (!fs.existsSync(objectSubFolder)) ? fs.mkdirSync(objectSubFolder) : '';
 
                 withGit = withGit ? withGit : (git.isGitRepositorySync() && settings[Settings.RenameWithGit])
                 this.DoRenameFile(fileName, destinationFileName, withGit)
@@ -283,11 +285,15 @@ export class WorkspaceFiles {
             }
         }
 
-        if (navObject.objectType == 'controladdin'){
-            return `${navObject.objectType}\\${navObject.objectNameFixed}`
-        }
-
         return navObject.objectType
+    }
+
+    static getObjectSubFolder(navObject: NAVObject): string {        
+        if (navObject.objectType == 'controladdin'){
+            return navObject.objectNameFixed
+        } 
+
+        return "";
     }
 }
 
