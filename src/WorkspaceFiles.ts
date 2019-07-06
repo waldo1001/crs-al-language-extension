@@ -30,7 +30,7 @@ export class WorkspaceFiles {
     static getCurrentWorkspaceFolderFromUri(filePath: vscode.Uri): vscode.WorkspaceFolder {
         let workspaceFolder = vscode.workspace.getWorkspaceFolder(filePath);
 
-         return workspaceFolder;
+        return workspaceFolder;
     }
     static getAlFilesFromCurrentWorkspace() {
         let activeTextEditorDocumentUri = this.getCurrentWorkspaceFolder();
@@ -288,10 +288,10 @@ export class WorkspaceFiles {
         return navObject.objectType
     }
 
-    static getObjectSubFolder(navObject: NAVObject): string {        
-        if (navObject.objectType == 'controladdin'){
-            return navObject.objectNameFixed
-        } 
+    static getObjectSubFolder(navObject: NAVObject): string {
+        if (navObject.objectType == 'controladdin') {
+            return navObject.objectNameFixedShort
+        }
 
         return "";
     }
