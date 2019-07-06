@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension.
 
+## [1.1.16] - 2019-07-06
+Fixed: [Remove spaces in ControlAddIn names and paths](https://github.com/waldo1001/crs-al-language-extension/issues/131). 
+
 ## [1.1.15] - 2019-07-04
 Fixed:
 - When using keywords as fieldnames, you really NEED the surrounding quotes.  Issue on github: [Surround Keywords with doublequotes](https://github.com/waldo1001/crs-al-language-extension/issues/129).
