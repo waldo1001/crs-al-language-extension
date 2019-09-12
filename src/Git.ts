@@ -42,7 +42,7 @@ export function isGitRepositorySync(): boolean {
 	}
 }
 
-export function gitMove(from: vscode.Uri, to: string) {
+export function gitMove(from: vscode.Uri, to: string, callback?: Function) {
 	let currentWorkspaceFolder = WorkspaceFiles.getCurrentWorkspaceFolderFromUri(from).uri.fsPath;
 	const git = require('simple-git')(currentWorkspaceFolder);
 
@@ -53,9 +53,13 @@ export function gitMove(from: vscode.Uri, to: string) {
 			crsOutput.showOutput(`* ${error}`);
 			crsOutput.showOutput(`* fallback: renaming without git from ${from.fsPath.substr(from.fsPath.lastIndexOf('\\') + 1)} to ${to.substr(to.lastIndexOf('\\') + 1)}`);
 			crsOutput.showOutput(`* you might want to set the setting "crs.RenameWithGit" to false for this workspace.`);
-			crsOutput.showOutput(`***`);			
+			crsOutput.showOutput(`***`);
+			if(callback)
+				callback();
 		} else {
 			crsOutput.showOutput(`success: git mv ${from.fsPath.substr(from.fsPath.lastIndexOf('\\') + 1)} ${to.substr(to.lastIndexOf('\\') + 1)}`);
+			if(callback)
+				callback();
 		}
 	})
 }
