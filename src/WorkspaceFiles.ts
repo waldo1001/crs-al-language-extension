@@ -42,7 +42,7 @@ export class WorkspaceFiles {
         }
     }
 
-    static RenameFile(fileName: vscode.Uri, withGit?: boolean, callback?: Function): string {
+    static RenameFile(fileName: vscode.Uri, withGit?: boolean): string {
         if (!fileName.toString().toLowerCase().endsWith('.al')) { return fileName.fsPath };
         let settings = Settings.GetConfigSettings(fileName);
 
@@ -54,7 +54,7 @@ export class WorkspaceFiles {
             let newFilePath = path.join(path.dirname(fileName.fsPath), navObject.objectFileNameFixed);
 
             withGit = withGit ? withGit : (git.isGitRepositorySync() && settings[Settings.RenameWithGit])
-            this.DoRenameFile(fileName, newFilePath, withGit, callback)
+            this.DoRenameFile(fileName, newFilePath, withGit)
 
             return newFilePath;
             //console.log('renamed', fileName.fsPath, '-->', newFilePath);
@@ -71,7 +71,7 @@ export class WorkspaceFiles {
         fs.writeFileSync(fileName.fsPath, FixedCode);
     }
 
-    static ReorganizeFile(fileName: vscode.Uri, withGit?: boolean, callback? : Function): string {
+    static ReorganizeFile(fileName: vscode.Uri, withGit?: boolean): string {
         if (!fileName.toString().toLowerCase().endsWith('.al')) { return fileName.fsPath };
 
         let navObject = new NAVObject(fs.readFileSync(fileName.fsPath).toString(), Settings.GetConfigSettings(fileName), path.basename(fileName.fsPath))
@@ -99,7 +99,7 @@ export class WorkspaceFiles {
                 (!fs.existsSync(objectSubFolder)) ? fs.mkdirSync(objectSubFolder) : '';
 
                 withGit = withGit ? withGit : (git.isGitRepositorySync() && settings[Settings.RenameWithGit])
-                this.DoRenameFile(fileName, destinationFileName, withGit, callback)
+                this.DoRenameFile(fileName, destinationFileName, withGit)
 
                 //console.log('renamed', fileName.fsPath, '-->', destinationFileName);
 
@@ -110,14 +110,12 @@ export class WorkspaceFiles {
         return fileName.fsPath;
     }
 
-    static DoRenameFile(from: vscode.Uri, to: string, withGit: boolean, callback? : Function) {
+    static DoRenameFile(from: vscode.Uri, to: string, withGit: boolean) {
         if (!withGit) {
             fs.renameSync(from.fsPath, to);
             crsOutput.showOutput(`Rename file from ${from.fsPath.substr(from.fsPath.lastIndexOf('\\') + 1)} to ${to.substr(to.lastIndexOf('\\') + 1)}`)
-            if(callback)
-                callback();
         } else {
-            git.gitMove(from, to, callback);
+            git.gitMove(from, to);
         }
     }
 
@@ -223,23 +221,22 @@ export class WorkspaceFiles {
         //vscode.window.activeTextEditor.document.save();
 
         let mySettings = Settings.GetConfigSettings(currentfile);
-        let openAfterOperation = () => {
-            if (newFilePath != currentfile.fsPath) {
-                this.openRenamedFile(newFilePath);
-            }
-        }
 
         let newFilePath: string;
         switch (mySettings[Settings.OnSaveAlFileAction].toLowerCase()) {
             case "rename":
-                newFilePath = this.RenameFile(currentfile, undefined, openAfterOperation);
+                newFilePath = this.RenameFile(currentfile);
                 break;
             case "reorganize":
-                newFilePath = this.ReorganizeFile(currentfile, undefined, openAfterOperation);
+                newFilePath = this.ReorganizeFile(currentfile);
                 break;
             case "donothing":
                 newFilePath = currentfile.fsPath;
                 break
+        }
+
+        if (newFilePath != currentfile.fsPath) {
+            this.openRenamedFile(newFilePath);
         }
     }
 
