@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension.
 
+## [1.1.17] - 2019-10-09
+Fixed: Test Snippets - it included a "." in the names, but seemed to break the "AL Test Runner". Changed to "_"?
+
 ## [1.1.16] - 2019-07-06
 Fixed: [Remove spaces in ControlAddIn names and paths](https://github.com/waldo1001/crs-al-language-extension/issues/131). 
 
