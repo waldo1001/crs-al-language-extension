@@ -1,6 +1,6 @@
 {
     "Snippet: Table Extension": {
-        "prefix": "ttableext(CRS)",
+        "prefix": "ttableext(waldo)",
         "body": [
             "tableextension ${1:Id} ${2:MyExtension} extends ${3:MyTargetTable} //${4:MyTargetTableId}",
             "{",
@@ -11,6 +11,6 @@
             "\t",
             "}"
         ],
-        "description": "Snippet (CRS): Table Extension"
+        "description": "Snippet (waldo): Table Extension"
     }
 }

@@ -1,6 +1,6 @@
 {
     "Snippet: Query": {
-        "prefix": "tquery(CRS)",
+        "prefix": "tquery(waldo)",
         "body": [
             "query ${1:Id} ${2:MyQuery}",
             "{",
@@ -30,7 +30,7 @@
         "description": "Snippet: Query"
     },
     "Query of type API": {
-        "prefix": "tqueryapi(CRS)",
+        "prefix": "tqueryapi(waldo)",
         "body": [
             "query ${1:Id} ${2:MyQuery}",
             "{",

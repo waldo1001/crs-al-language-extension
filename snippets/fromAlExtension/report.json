@@ -1,6 +1,6 @@
 {
     "Snippet: Report": {
-        "prefix": "treport(CRS)",
+        "prefix": "treport(waldo)",
         "body": [
             "report ${1:Id} ${2:MyReport}",
             "{",
@@ -50,5 +50,28 @@
             "}"
         ],
         "description": "Snippet: Report"
+    },
+    "Snippet: Data Item": {
+        "prefix": "tdataitem(waldo)",
+        "body": [
+            "dataitem(${1:DataItemName}; ${2:SourceTableName})",
+            "{",
+            "\tcolumn(${3:ColumnName}; ${4:SourceFieldName})",
+            "\t{",
+            "\t\t${0}",
+            "\t}",
+            "}"
+        ],
+        "description": "Snippet: Report Data Item"
+    },
+    "Snippet: Column": {
+        "prefix": "tcolumn(waldo)",
+        "body": [
+            "column(${1:ColumnName}; ${2:SourceFieldName})",
+            "{",
+            "\t${0}",
+            "}"
+        ],
+        "description": "Snippet: Column"
     }
 }

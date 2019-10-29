@@ -1,6 +1,6 @@
 {
     "Snippet: DotNetPackage": {
-        "prefix": "tdotnet(CRS)",
+        "prefix": "tdotnet(waldo)",
         "body": [
             "dotnet",
             "{",
@@ -13,7 +13,7 @@
         "description": "Snippet: DotNet Package"
     },
     "Snippet: DotNetAssembly": {
-        "prefix": "tdotnetassembly(CRS)",
+        "prefix": "tdotnetassembly(waldo)",
         "body": [
             "assembly(${1:AssemblyName})",
             "{",
@@ -23,7 +23,7 @@
         "description": "Snippet: DotNet Assembly"
     },
     "Snippet: DotNetType": {
-        "prefix": "tdotnettype(CRS)",
+        "prefix": "tdotnettype(waldo)",
         "body": [
             "type(\"${1:TypeName}\"; ${0:AliasName}) { }"
         ],

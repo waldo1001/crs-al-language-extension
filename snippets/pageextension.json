@@ -1,6 +1,6 @@
 {
     "Snippet: Page Extension": {
-        "prefix": "tpageext(CRS)",
+        "prefix": "tpageext(waldo)",
         "body": [
             "pageextension ${1:Id} ${2:MyExtension} extends ${3:MyTargetPage} //${4:MyTargetPageId}",
             "{",
@@ -14,6 +14,6 @@
             "\t}",
             "}"
         ],
-        "description": "Snippet (CRS): Page Extension"
+        "description": "Snippet (waldo): Page Extension"
     }
 }

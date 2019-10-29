@@ -1,6 +1,6 @@
 {
     "Page": {
-        "prefix": "tpage(CRS)",
+        "prefix": "tpage(waldo)",
         "body": [
             "page ${1:Id} ${2:MyPage}",
             "{",
@@ -44,7 +44,7 @@
         "description": "Snippet: Page"
     },
     "Snippet: Page Field": {
-        "prefix": "tpagefield(CRS)",
+        "prefix": "tpagefield(waldo)",
         "body": [
             "field(${1:MyField; FieldSource})",
             "{",
@@ -55,7 +55,7 @@
         "description": "Snippet: Page Field"
     },
     "Snippet: Action": {
-        "prefix": "taction(CRS)",
+        "prefix": "taction(waldo)",
         "body": [
             "action(${1:ActionName})",
             "{",
@@ -70,7 +70,7 @@
         "description": "Snippet: Page Action"
     },
     "Snippet: User Control": {
-        "prefix": "tusercontrol(CRS)",
+        "prefix": "tusercontrol(waldo)",
         "body": [
             "usercontrol(${1:ControlName}; ${2:AddInName})",
             "{",
@@ -84,12 +84,25 @@
         ],
         "description": "Snippet: Page User Control"
     },
-    "Snippet: View": {
-        "prefix": "tview(CRS)",
+    "Snippet: View Shared Layout": {
+        "prefix": "tviewshared(waldo)",
         "body": [
             "view(${1:ViewName})",
             "{",
-            "\tCaption = ${2:ViewCaption};",
+            "\tCaption = '${2:ViewCaption}';",
+            "\tFilters = where(${3:TableFieldName} = filter(${0:FilterValue}));",
+            "}"
+        ],
+        "description": "Snippet: Page View without layout changes"
+    },
+    "Snippet: View Detached Layout": {
+        "prefix": "tviewdetached(waldo)",
+        "body": [
+            "view(${1:ViewName})",
+            "{",
+            "\tCaption = '${2:ViewCaption}';",
+            "\tFilters = where(${3:TableFieldName} = filter(${4:FilterValue}));",
+            "\tSharedLayout = false;",
             "\t",
             "\tlayout",
             "\t{",
@@ -97,10 +110,19 @@
             "\t}",
             "}"
         ],
-        "description": "Snippet: Page View"
+        "description": "Snippet: Page View with layout changes"
     },
-    "Page of type list": {
-        "prefix": "tpagelist(CRS)",
+    "Snippet: Part": {
+        "prefix": "tpart(waldo)",
+        "body": [
+            "part(${1:PartName}; ${2:PartSource})",
+            "{",
+            "\t${0}",
+            "}"
+        ],
+        "description": "Snippet: Page Part"
+    },    "Page of type list": {
+        "prefix": "tpagelist(waldo)",
         "body": [
             "page ${1:Id} ${2:PageName}",
             "{",
@@ -148,7 +170,7 @@
         "description": "Snippet: Page of type list"
     },
     "Page of type API": {
-        "prefix": "tpageapi(CRS)",
+        "prefix": "tpageapi(waldo)",
         "body": [
             "page ${1:Id} ${2:ApiPageName}",
             "{",
@@ -179,5 +201,51 @@
             "}"
         ],
         "description": "Snippet: Page of type API"
+    },
+    "Page of type Role Center": {
+        "prefix": "tpage(waldo)",
+        "body": [
+            "page ${1:Id} ${2:RoleCenterName}",
+            "{",
+            "\tPageType = RoleCenter;",
+            "\t",
+            "\tlayout",
+            "\t{",
+            "\t\tarea(RoleCenter)",
+            "\t\t{",
+            "\t\t\t$0",
+            "\t\t}",
+            "\t}",
+            "\t",
+            "\tactions",
+            "\t{",
+            "\t\tarea(Creation)",
+            "\t\t{",
+            "\t\t\taction(${3:ActionBarAction})",
+            "\t\t\t{",
+            "\t\t\t\tRunObject = ${4|Page,Report,XmlPort,Codeunit|} ${5:ObjectName};",
+            "\t\t\t}",
+            "\t\t}",
+            "\t\tarea(Sections)",
+            "\t\t{",
+            "\t\t\tgroup(${6:SectionsGroupName})",
+            "\t\t\t{",
+            "\t\t\t\taction(${7:SectionsAction})",
+            "\t\t\t\t{",
+            "\t\t\t\t\tRunObject = ${8|Page,Report,XmlPort,Codeunit|} ${9:ObjectName};",
+            "\t\t\t\t}",
+            "\t\t\t}",
+            "\t\t}",
+            "\t\tarea(Embedding)",
+            "\t\t{",
+            "\t\t\taction(${10:EmbeddingAction})",
+            "\t\t\t{",
+            "\t\t\t\tRunObject = ${11|Page,Report,XmlPort,Codeunit|} ${12:ObjectName};",
+            "\t\t\t}",
+            "\t\t}",
+            "\t}",
+            "}"
+        ],
+        "description": "Snippet: Page of type Role Center"
     }
 }

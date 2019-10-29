@@ -1,6 +1,6 @@
 {
     "Snippet: Repeat Until": {
-        "prefix": "trepeat(CRS)",
+        "prefix": "trepeat(waldo)",
         "body": [
             "if ${1:Rec}.FindSet() then begin",
             "\trepeat",
@@ -10,17 +10,17 @@
         ],
         "description": "Snippet: if findset repeat until"
     },
-    "Snippet (CRS): Declare a variable ": {
-        "description": "Snippet (CRS): Declare a variable",
-        "prefix": "tvar(CRS)",
+    "Snippet (waldo): Declare a variable ": {
+        "description": "Snippet (waldo): Declare a variable",
+        "prefix": "tvar(waldo)",
         "body": [
             "${3:VariableName}: ${1:Type} ${2:Subtype};",
             "${0}"
         ]
     },
-    "Snippet (CRS): Field Groups": {
-        "description": "Snippet (CRS): Add Field Groups section",
-        "prefix": "tfieldgroups(CRS)",
+    "Snippet (waldo): Field Groups": {
+        "description": "Snippet (waldo): Add Field Groups section",
+        "prefix": "tfieldgroups(waldo)",
         "body": [
             "fieldgroups",
             "{",
@@ -28,9 +28,9 @@
             "}"
         ]
     },
-    "Snippet (CRS): Field Group": {
-        "description": "Snippet (CRS): Add Field Group",
-        "prefix": "tfieldgroup(CRS)",
+    "Snippet (waldo): Field Group": {
+        "description": "Snippet (waldo): Add Field Group",
+        "prefix": "tfieldgroup(waldo)",
         "body": [
             "fieldgroup(${1|DropDown,Brick|}; ${2:AddFieldsHere}) { }"
         ]

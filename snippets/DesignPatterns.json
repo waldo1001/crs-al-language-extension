@@ -1,6 +1,6 @@
 {
-    "Snippet (CRS): Method Codeunit": {
-		"description": "Snippet (CRS): Method Codeunit",
+    "Snippet (waldo): Method Codeunit": {
+		"description": "Snippet (waldo): Method Codeunit",
 		"prefix": "tcodeunit (CRS: Method)",
 		"body": [
 			"codeunit ${1:Id} \"${2:FullMethodName} Meth\"",
@@ -52,8 +52,8 @@
 			"}"
 		]
     },
-    "Snippet (CRS): Method Codeunit (No UI)": {
-        "description": "Snippet (CRS): Method Codeunit (No UI)",
+    "Snippet (waldo): Method Codeunit (No UI)": {
+        "description": "Snippet (waldo): Method Codeunit (No UI)",
         "prefix": "tcodeunit (CRS: Method - No UI)",
         "body": [
             "codeunit ${1:id} \"${2:Name} Meth\"",
@@ -88,9 +88,9 @@
             "}"
         ]
     },
-    "Snippet (CRS): Enable Assisted Setup ": {
-        "description": "Snippet (CRS): Enable Assisted Setup",
-        "prefix": "tassistedsetup(CRS)",
+    "Snippet (waldo): Enable Assisted Setup ": {
+        "description": "Snippet (waldo): Enable Assisted Setup",
+        "prefix": "tassistedsetup(waldo)",
         "body": [
             "[EventSubscriber(ObjectType::Table, Database::\"Aggregated Assisted Setup\", 'OnRegisterAssistedSetup', '', false, false)]",
             "local procedure AddExtensionAssistedSetup_OnRegisterAssistedSetup(var TempAggregatedAssistedSetup: Record \"Aggregated Assisted Setup\" TEMPORARY);",
@@ -123,9 +123,9 @@
             "end;"
         ]
     },
-    "Snippet (CRS): Enable My Notifications ": {
-        "description": "Snippet (CRS): Enable My Notifications",
-        "prefix": "tmynotifications(CRS)",
+    "Snippet (waldo): Enable My Notifications ": {
+        "description": "Snippet (waldo): Enable My Notifications",
+        "prefix": "tmynotifications(waldo)",
         "body": [
             "local procedure GetMyNotificationID(): Guid",
             "begin",
@@ -150,9 +150,9 @@
             "//IF NOT MyNotifications.IsEnabledForRecord(GetMyNotificationID,\"${6:TableName}\") THEN EXIT;"
         ]
     },
-    "Snippet (CRS): Enable Service Connection": {
-        "description": "Snippet (CRS): Enable Service Connection",
-        "prefix": "tserviceconnection(CRS)",
+    "Snippet (waldo): Enable Service Connection": {
+        "description": "Snippet (waldo): Enable Service Connection",
+        "prefix": "tserviceconnection(waldo)",
         "body": [
             "[EventSubscriber(ObjectType::Table, Database:: \"Service Connection\", 'OnRegisterServiceConnection', '',false, false)]",
             "local procedure AddSetup_OnRegisterServiceConnection(var ServiceConnection: Record \"Service Connection\")",
@@ -169,9 +169,9 @@
             "end;"
         ]
     },
-    "Snippet (CRS): Create Setup Table": {
-        "description": "Snippet (CRS): Create Setup Table",
-        "prefix": "ttablesetup(CRS)",
+    "Snippet (waldo): Create Setup Table": {
+        "description": "Snippet (waldo): Create Setup Table",
+        "prefix": "ttablesetup(waldo)",
         "body": [
             "table ${1:id} \"${2:MyTable} Setup\"",
             "{",
@@ -210,8 +210,8 @@
             "}"
         ]
     },
-    "Snippet (CRS): Create Setup Page": {
-        "prefix": "tpagesetup(CRS)",
+    "Snippet (waldo): Create Setup Page": {
+        "prefix": "tpagesetup(waldo)",
         "body": [
             "page ${1:Id} \"${2:PageName} Setup\"",
             "{",
@@ -243,10 +243,10 @@
             "}",
             ""
         ],
-        "description": "Snippet (CRS): Create Setup Page"
+        "description": "Snippet (waldo): Create Setup Page"
     },
-    "Snippet (CRS): Create Headline Page": {
-        "prefix": "tpageheadline(CRS)",
+    "Snippet (waldo): Create Headline Page": {
+        "prefix": "tpageheadline(waldo)",
         "body": [
             "page ${1:Id} \"Headline RC ${2:AppName}\"\r",
             "{\r",
@@ -351,10 +351,10 @@
             "\tend;\r",
             "}"
         ],
-        "description": "Snippet (CRS): Create Headline Page"
+        "description": "Snippet (waldo): Create Headline Page"
     },
-    "Snippet (CRS): Create Role Center Page": {
-        "prefix": "tpagerolecenter(CRS)",
+    "Snippet (waldo): Create Role Center Page": {
+        "prefix": "tpagerolecenter(waldo)",
         "body": [
             "page ${1:Id} \"${2:AppName} Role Center\"\r",
             "{\r",
@@ -503,10 +503,10 @@
             "\r",
             "}"
         ],
-        "description": "Snippet (CRS): Create Role Center Page"
+        "description": "Snippet (waldo): Create Role Center Page"
     },
-    "Snippet (CRS): Create Role Center Activities Cue Table": {
-        "prefix": "ttableactivities(CRS)",
+    "Snippet (waldo): Create Role Center Activities Cue Table": {
+        "prefix": "ttableactivities(waldo)",
         "body": [
             "table ${1:Id} \"${2:AppName} Activities Cue\"\r",
             "{\r",
@@ -545,10 +545,10 @@
             "\r",
             "}"
         ],
-        "description": "Snippet (CRS): Create Role Center Activities Cue Table"
+        "description": "Snippet (waldo): Create Role Center Activities Cue Table"
     },
-    "Snippet (CRS): Create Role Center Activities Page": {
-        "prefix": "tpageactivities(CRS)",
+    "Snippet (waldo): Create Role Center Activities Page": {
+        "prefix": "tpageactivities(waldo)",
         "body": [
             "page ${1:Id} \"${2:AppName} Activities\"\r",
             "{\r",
@@ -617,6 +617,6 @@
             "\r",
             "}"
         ],
-        "description": "Snippet (CRS): Create Role Center Activities Page"
+        "description": "Snippet (waldo): Create Role Center Activities Page"
     }
 }

@@ -1,6 +1,6 @@
 {
     "Snippet: Codeunit": {
-        "prefix": "tcodeunit(CRS)",
+        "prefix": "tcodeunit(waldo)",
         "body": [
             "codeunit ${1:Id} ${2:MyCodeunit}",
             "{",

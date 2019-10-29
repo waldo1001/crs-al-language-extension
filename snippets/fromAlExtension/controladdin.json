@@ -1,6 +1,6 @@
 {
     "Snippet: Control Add-In": {
-        "prefix": "tcontroladdin(CRS)",
+        "prefix": "tcontroladdin(waldo)",
         "body": [
             "controladdin ${1:MyControlAddIn}",
             "{",

@@ -1,6 +1,6 @@
 {
-    "Snippet (CRS): Test Case": {
-        "description": "Snippet (CRS): Test Case",
+    "Snippet (waldo): Test Case": {
+        "description": "Snippet (waldo): Test Case",
         "prefix": "ttestcase",
         "body": [
             "[Test]",
