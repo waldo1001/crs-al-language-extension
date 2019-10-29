@@ -47,26 +47,26 @@ al Snippets:
 * tpagewizard (CRS: 3 steps)
     * creates a wizard with 3 steps
     * includes placeholders
-* ttableextension (CRS)
+* ttableextension (waldo)
     * Quite the same as the default snippet, but with the comment to include an TargetTableId to be able to properly rename the file (which might need that ID).
-* tpageextension (CRS)
+* tpageextension (waldo)
     * Quite the same as the default snippet, but with the comment to include an TargetPageId to be able to properly rename the file (which might need that ID).
-* tpagecustomization (CRS)
+* tpagecustomization (waldo)
     * Quite the same as the default snippet, but with the comment to include an TargetPageId to be able to properly rename the file (which might need that ID).
-* tvar (CRS)
+* tvar (waldo)
     * Some easier way to greate a variable
-* tfieldgroup(s) (CRS)
+* tfieldgroup(s) (waldo)
     * To work with fieldgroups (Like "Brick" & "DropDown")
 Apply some design patterns:
 * tcodeunit (CRS: Method - No UI)
     * creates a codeunit, conform on the "Event Based Software Architecture"
     * no functions for UI
     * includes placeholders
-* tmynotifications (CRS)
+* tmynotifications (waldo)
     * apply "discover event subscriber" for adding a "My Notification"
-* tassistedsetup (CRS)
+* tassistedsetup (waldo)
     * apply "discover event subscriber" for adding an assisted setup
-* tserviceconnection (CRS)
+* tserviceconnection (waldo)
     * apply "discover event subscriber" for adding a service connection 
 * ttablesetup & tpagesetup
     * create setup-table with page
@@ -158,7 +158,7 @@ tableextension 50100 "Just Some Table Extension" extends Customer //18
 * `CRS.AlSubFolderName`: Variable subfoldername.  "None" means you want to disable the command to move files to a subfolder.  
 * `CRS.OnSaveAlFileAction`: Automatically will Rename/Reorganize the file you are editing.  Takes into account the prefix/suffix as well.
 * `DisableDefaultAlSnippets`: Disables the default snippets that come with the Microsoft.al-language extension.  When you change the setting, you need to restart VSCode twice.  Once for disabling the snippets on activation (at that time, the snippets are still loaded).  And the second time to actually not load the snippets anymore.
-* `DisableCRSSnippets`: Disables the CRS snippets that come with this extension.  When you change the setting, you need to restart VSCode twice.  Once for disabling the snippets on activation (at that time, the snippets are still loaded).  And the second time to actually not load the snippets anymore.
+* `DisableWaldoSnippets`: Disables the CRS snippets that come with this extension.  When you change the setting, you need to restart VSCode twice.  Once for disabling the snippets on activation (at that time, the snippets are still loaded).  And the second time to actually not load the snippets anymore.
 * `RenameWithGit`: Use 'git mv' to rename a file.  This keeps history of the file, but stages the rename, which you should commit separately.  **The feature is still in preview-mode, therefore the default value is 'false'**
 
 ## Known Issues

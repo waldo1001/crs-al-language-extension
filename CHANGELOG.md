@@ -1,6 +1,12 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension.
 
+## [1.1.19] - 2019-10-29
+- Improved: 
+  - Prevent deleting files because of Multiroot Issue (Issue [RenameWithGit icw MultiRoot workspace removes files](https://github.com/waldo1001/crs-al-language-extension/issues/140))
+  - All snippets
+- Renamed to "waldo's al language extension".  Initially, it was intended to be built by the team members of CRS.  But it turned out to be a purely community project by waldo only - so renaming it was inevitable ;-).  I expect to rename the commands at some point as well.. .
+
 ## [1.1.17] - 2019-10-09
 Fixed: Test Snippets - it included a "." in the names, but seemed to break the "AL Test Runner". Changed to "_"?
 
@@ -236,7 +242,7 @@ New command:
 - CRS: Run Current Object (Web Client) (CTRL+SHIFT+r)
 New settings:
 - DisableDefaultAlSnippets
-- DisableCRSSnippets
+- DisableWaldoSnippets
 Snippets:
 - improved snippets from the al language extension
 
