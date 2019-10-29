@@ -1,7 +1,7 @@
 {
     "Snippet: PageWizard": {
         "description": "Snippet (waldo): Wizard Page (3 steps)",
-        "prefix": "tpagewizard (CRS: 3 steps)",
+        "prefix": "tpagewizard (waldo: 3 steps)",
         "body": [
             "page ${1:Id} \"${2:PageName} Wizard\"",
             "{",

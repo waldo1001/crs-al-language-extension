@@ -1,7 +1,7 @@
 {
     "Snippet (waldo): Method Codeunit": {
 		"description": "Snippet (waldo): Method Codeunit",
-		"prefix": "tcodeunit (CRS: Method)",
+		"prefix": "tcodeunit (waldo: Method)",
 		"body": [
 			"codeunit ${1:Id} \"${2:FullMethodName} Meth\"",
 			"{",
@@ -54,7 +54,7 @@
     },
     "Snippet (waldo): Method Codeunit (No UI)": {
         "description": "Snippet (waldo): Method Codeunit (No UI)",
-        "prefix": "tcodeunit (CRS: Method - No UI)",
+        "prefix": "tcodeunit (waldo: Method - No UI)",
         "body": [
             "codeunit ${1:id} \"${2:Name} Meth\"",
             "{",
