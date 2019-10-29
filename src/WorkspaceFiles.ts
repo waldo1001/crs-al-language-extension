@@ -111,7 +111,12 @@ export class WorkspaceFiles {
     }
 
     static DoRenameFile(from: vscode.Uri, to: string, withGit: boolean) {
-        if (!withGit) {
+        let isMultiroot = vscode.workspace.workspaceFolders.length > 1
+
+        if (!withGit || isMultiroot) {
+            if (withGit && isMultiroot) {
+                crsOutput.showOutput(`Warning: can't rename with git because of multiroot workspace issues.  If you want to rename objects, it's best to do it in a non-multiroot environment.`, true)
+            }
             fs.renameSync(from.fsPath, to);
             crsOutput.showOutput(`Rename file from ${from.fsPath.substr(from.fsPath.lastIndexOf('\\') + 1)} to ${to.substr(to.lastIndexOf('\\') + 1)}`)
         } else {
