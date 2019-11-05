@@ -11,7 +11,7 @@ import { settings } from 'cluster';
 suite("NAVObject FilePattern Tests", () => {
     test("Filename - FileNamePatterns with prefix", () => {
         let testSettings = Settings.GetConfigSettings(null)
-        testSettings[Settings.FileNamePattern] = '<ObjectType><ObjectTypeShort><ObjectTypeShortUpper><ObjectId><ObjectName><ObjectNameShort>';//<ObjectType>,<ObjectTypeShort>,<ObjectTypeShortUpper>,<ObjectId>,<ObjectName>,<ObjectNameShort>
+        testSettings[Settings.FileNamePattern] = '<ObjectType><ObjectTypeShort><ObjectTypeShortPascalCase><ObjectTypeShortUpper><ObjectId><ObjectName><ObjectNameShort>';//<ObjectType>,<ObjectTypeShort>,<ObjectTypeShortUpper>,<ObjectId>,<ObjectName>,<ObjectNameShort>
 
         let navTestObject = NAVTestObjectLibrary.getPageNoPrefixCorrectNameWithActions()
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
@@ -19,6 +19,7 @@ suite("NAVObject FilePattern Tests", () => {
         assert.equal(navObject.objectFileNameFixed,
             navObject.objectType
             + navObject.objectTypeShort
+            + navObject.ObjectTypeShortPascalCase
             + navObject.objectTypeShort.toUpperCase()
             + navObject.objectId
             + navObject.objectNameFixed
@@ -26,7 +27,7 @@ suite("NAVObject FilePattern Tests", () => {
     })
     test("Filename - FileNamePatternExtensions with prefix", () => {
         let testSettings = Settings.GetConfigSettings(null)
-        testSettings[Settings.FileNamePatternExtensions] = '<ObjectType><ObjectTypeShort><ObjectTypeShortUpper><ObjectId><ObjectName><ObjectNameShort><BaseName><BaseId>';//<ObjectType>,<ObjectTypeShort>,<ObjectTypeShortUpper>,<ObjectId>,<ObjectName>,<ObjectNameShort>,<BaseName>,<BaseId>
+        testSettings[Settings.FileNamePatternExtensions] = '<ObjectType><ObjectTypeShort><ObjectTypeShortPascalCase><ObjectTypeShortUpper><ObjectId><ObjectName><ObjectNameShort><BaseName><BaseId>';//<ObjectType>,<ObjectTypeShort>,<ObjectTypeShortUpper>,<ObjectId>,<ObjectName>,<ObjectNameShort>,<BaseName>,<BaseId>
 
         let navTestObject = NAVTestObjectLibrary.getTableExtensionWrongFileNameAndKeyWord()
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
@@ -34,6 +35,7 @@ suite("NAVObject FilePattern Tests", () => {
         assert.equal(navObject.objectFileNameFixed,
             navObject.objectType
             + navObject.objectTypeShort
+            + navObject.ObjectTypeShortPascalCase
             + navObject.objectTypeShort.toUpperCase()
             + navObject.objectId
             + navObject.objectNameFixed

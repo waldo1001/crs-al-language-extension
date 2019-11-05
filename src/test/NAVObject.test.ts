@@ -119,7 +119,7 @@ suite("NAVObject General Tests", () => {
         let testSettings = Settings.GetConfigSettings(null)
         testSettings[Settings.ObjectNamePrefix] = 'waldo';
         testSettings[Settings.ObjectNameSuffix] = 'waldo';
-        testSettings[Settings.FileNamePattern] = '<Prefix><Suffix><ObjectType><ObjectTypeShort><ObjectTypeShortUpper><ObjectId>';
+        testSettings[Settings.FileNamePattern] = '<Prefix><Suffix><ObjectType><ObjectTypeShort><ObjectTypeShortPascalCase><ObjectTypeShortUpper><ObjectId>';
 
         let navTestObject = NAVTestObjectLibrary.getTableWithComments();
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
@@ -130,6 +130,7 @@ suite("NAVObject General Tests", () => {
             + testSettings[Settings.ObjectNameSuffix]
             + navObject.objectType
             + navObject.objectTypeShort
+            + navObject.ObjectTypeShortPascalCase
             + navObject.objectTypeShort.toUpperCase()
             + navObject.objectId)
     })
@@ -153,10 +154,10 @@ suite("NAVObject General Tests", () => {
         //same as above, but now with prefix
         let testSettings = Settings.GetConfigSettings(null)
         testSettings[Settings.ObjectNamePrefix] = 'waldo';
-        
+
         let navTestObject = NAVTestObjectLibrary.getTableExtensionWrongFileNameAndKeyWord()
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
-        
+
         let navObject2 = new NAVObject(navObject.NAVObjectTextFixed, testSettings, navObject.objectFileNameFixed)
         navObject2.tableFields.forEach(tableField => {
             if (DynamicsNAV.getAllKeywordsLowerCased().indexOf(tableField.name.toLowerCase()) != -1) {
@@ -168,10 +169,10 @@ suite("NAVObject General Tests", () => {
     })
     test("Table - Fields with keyword-names", () => {
         let testSettings = Settings.GetConfigSettings(null)
-        
+
         let navTestObject = NAVTestObjectLibrary.getTableWrongFileNameAndKeyWord()
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
-        
+
         let navObject2 = new NAVObject(navObject.NAVObjectTextFixed, testSettings, navObject.objectFileNameFixed)
         navObject2.tableFields.forEach(tableField => {
             if (DynamicsNAV.getAllKeywordsLowerCased().indexOf(tableField.name.toLowerCase()) != -1) {
@@ -185,7 +186,7 @@ suite("NAVObject General Tests", () => {
         //same as above, but now with prefix
         let testSettings = Settings.GetConfigSettings(null)
         testSettings[Settings.ObjectNamePrefix] = 'waldo';
-        
+
         let navTestObject = NAVTestObjectLibrary.getTableWrongFileNameAndKeyWord()
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
 

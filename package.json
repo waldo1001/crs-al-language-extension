@@ -2,7 +2,7 @@
     "name": "crs-al-language-extension",
     "displayName": "waldo's CRS AL Language Extension",
     "description": "Make working with the (Dynamics NAV / 365) AL Language easier and more efficient.",
-    "version": "1.1.19",
+    "version": "1.1.21",
     "publisher": "waldo",
     "icon": "images/waldo.png",
     "author": {
@@ -111,130 +111,130 @@
             "title": "CRS AL Language Extension Configuration",
             "properties": {
                 "CRS.nstfolder": {
-                "type": "string",
-                "default": "C:\\Program Files\\Microsoft Dynamics NAV\\*\\Service",
-                "description": "Folder of the NST",
-                "scope": "resource"
-            },
-            "CRS.WebServerInstancePort": {
-                "type": "string",
-                "default": "",
-                "description": "Port number for the web client",
-                "scope": "resource"
-            },
-            "CRS.WinServer": {
-                "type": "string",
-                "default": "localhost",
-                "description": "Server where the windows client is connecting to",
-                "scope": "resource"
-            },
-            "CRS.WinServerInstance": {
-                "type": "string",
-                "default": "NAV",
-                "description": "Serverinstance where the windows client is connecting to",
-                "scope": "resource"
-            },
-            "CRS.WinServerInstancePort": {
-                "type": "number",
-                "default": 7046,
-                "description ": "Portnumber of the serverinstance where the windows client is connecting to",
-                "scope": "resource"
-            },
-            "CRS.PublicWebBaseUrl": {
-                "type": "string",
-                "default": "",
-                "description": "Public Web Url that overrules the setting in launch.json (empty setting will just take the settings in launch.json)",
-                "scope": "resource"
-            },
-            "CRS.ExtensionObjectNamePattern": {
-                "Type": "string",
-                "default": "",
-                "description": "The pattern of the objectname for extension objects (PageExtension or TableExtension).  These vars can be used: <Prefix>,<Suffix>,<ObjectType>,<ObjectTypeShort>,<ObjectTypeShortUpper>,<ObjectId>,<BaseName>,<BaseNameShort>,<BaseId>",
-                "scope": "resource"
-            },
-            "CRS.FileNamePattern": {
-                "Type": "string",
-                "default": "<ObjectTypeShort><ObjectId>.<ObjectNameShort>.al",
-                "description": "The pattern of the filename for non-extension objects..  These vars can be used: <Prefix>,<Suffix>,<ObjectType>,<ObjectTypeShort>,<ObjectId>,<ObjectName>,<ObjectNameShort>,<ObjectTypeShortUpper>",
-                "scope": "resource"
-            },
-            "CRS.FileNamePatternExtensions": {
-                "Type": "string",
-                "default": "<ObjectTypeShort><BaseId>-Ext<ObjectId>.<ObjectNameShort>.al",
-                "description": "The pattern of the filename for extension objects.  These vars can be used: <Prefix>,<Suffix>,<ObjectType>,<ObjectTypeShort>,<ObjectId>,<ObjectName>,<ObjectNameShort>,<ObjectTypeShortUpper>,<BaseName>,<BaseNameShort>,<BaseId> (If you want this to work, you need to put the Id in comment after the base name, like //21)",
-                "scope": "resource"
-            },
-            "CRS.FileNamePatternPageCustomizations": {
-                "Type": "string",
-                "default": "<ObjectTypeShort><BaseId>-PageCust.<ObjectNameShort>.al",
-                "description": "The pattern of the filename for extension objects.  These vars can be used: <Prefix>,<Suffix>,<ObjectType>,<ObjectTypeShort>,<ObjectName>,<ObjectNameShort>,<ObjectTypeShortUpper>,<BaseName>,<BaseNameShort>,<BaseId> (If you want this to work, you need to put the Id in comment after the base name, like //21)",
-                "scope": "resource"
-            },
-            "CRS.AlSubFolderName": {
-                "enum": [
-                    "src",
-                    "Source",
-                    "Objects",
-                    "Al",
-                    "None"
-                ],
-                "type": "string",
-                "default": "src",
-                "description": "Sets the subfoldername of where the objects will be placed.  'None' prevents the 'Reorganize' to do anything (if you want to apply your own folder structure).",
-                "scope": "resource"
-            },
-            "CRS.OnSaveAlFileAction": {
-                "enum": [
-                    "DoNothing",
-                    "Rename",
-                    "Reorganize"
-                ],
-                "type": "string",
-                "default": "DoNothing",
-                "description": "Automatically will Rename/Reorganize the file you are editing.  Takes into account the prefix/suffix as well.",
-                "scope": "resource"
-            },
-            "CRS.ObjectNamePrefix": {
-                "type": "string",
-                "default": null,
-                "description": "When using the Reorganize/Rename-commands, this setting will make sure the object name (and filename) will have a Prefix.  Tips: use as a workspace-setting. Use an ending-space if you want the prefix to be separated with a space.",
-                "scope": "resource"
-            },
-            "CRS.ObjectNameSuffix": {
-                "type": "string",
-                "default": null,
-                "description": "When using the Reorganize/Rename-commands, this setting will make sure the object name (and filename) will have a Suffix.  Tips: use as a workspace-setting. Use an ending-space if you want the prefix to be separated with a space.",
-                "scope": "resource"
-            },
-            "CRS.RemovePrefixFromFilename": {
-                "type": "boolean",
-                "default": false,
-                "description": "When using the Reorganize/Rename-commands, this setting will remove any prefix from the filename (but keep it in object name).  Tip: use as a workspace-setting",
-                "scope": "resource"
-            },
-            "CRS.RemoveSuffixFromFilename": {
-                "type": "boolean",
-                "default": false,
-                "description": "When using the Reorganize/Rename-commands, this setting will remove any suffix from the filename (but keep it in object name).  Tip: use as a workspace-setting",
-                "scope": "resource"
-            },
-            "CRS.DisableDefaultAlSnippets": {
-                "type": "boolean",
-                "default": false,
-                "description": "Disable the default Al Snippets.  When you change the setting, you need to restart VSCode twice.  Once for disabling the snippets on activation (at that time, the snippets are still loaded).  And the second time to actually not load the snippets anymore",
-                "scope": "resource"
-            },
-            "CRS.DisableCRSSnippets": {
-                "type": "boolean",
-                "default": false,
-                "description": "Disable the Al Snippets that come with this extension.  When you change the setting, you need to restart VSCode twice.  Once for disabling the snippets on activation (at that time, the snippets are still loaded).  And the second time to actually not load the snippets anymore",
-                "scope": "resource"
-            },
-            "CRS.RenameWithGit": {
-                "type": "boolean",
-                "default": false,
-                "description": "Use 'git mv' to rename a file.  This keeps history of the file, but stages the rename, which you should commit separately.  The feature is still in preview-mode, therefore the default value is 'false'",
-                "scope": "resource"
+                    "type": "string",
+                    "default": "C:\\Program Files\\Microsoft Dynamics NAV\\*\\Service",
+                    "description": "Folder of the NST",
+                    "scope": "resource"
+                },
+                "CRS.WebServerInstancePort": {
+                    "type": "string",
+                    "default": "",
+                    "description": "Port number for the web client",
+                    "scope": "resource"
+                },
+                "CRS.WinServer": {
+                    "type": "string",
+                    "default": "localhost",
+                    "description": "Server where the windows client is connecting to",
+                    "scope": "resource"
+                },
+                "CRS.WinServerInstance": {
+                    "type": "string",
+                    "default": "NAV",
+                    "description": "Serverinstance where the windows client is connecting to",
+                    "scope": "resource"
+                },
+                "CRS.WinServerInstancePort": {
+                    "type": "number",
+                    "default": 7046,
+                    "description ": "Portnumber of the serverinstance where the windows client is connecting to",
+                    "scope": "resource"
+                },
+                "CRS.PublicWebBaseUrl": {
+                    "type": "string",
+                    "default": "",
+                    "description": "Public Web Url that overrules the setting in launch.json (empty setting will just take the settings in launch.json)",
+                    "scope": "resource"
+                },
+                "CRS.ExtensionObjectNamePattern": {
+                    "Type": "string",
+                    "default": "",
+                    "description": "The pattern of the objectname for extension objects (PageExtension or TableExtension).  These vars can be used: <Prefix>,<Suffix>,<ObjectType>,<ObjectTypeShort>,<ObjectTypeShortPascalCase>,<ObjectTypeShortUpper>,<ObjectId>,<BaseName>,<BaseNameShort>,<BaseId>",
+                    "scope": "resource"
+                },
+                "CRS.FileNamePattern": {
+                    "Type": "string",
+                    "default": "<ObjectTypeShort><ObjectId>.<ObjectNameShort>.al",
+                    "description": "The pattern of the filename for non-extension objects..  These vars can be used: <Prefix>,<Suffix>,<ObjectType>,<ObjectTypeShort>,<ObjectTypeShortPascalCase>,<ObjectId>,<ObjectName>,<ObjectNameShort>,<ObjectTypeShortUpper>",
+                    "scope": "resource"
+                },
+                "CRS.FileNamePatternExtensions": {
+                    "Type": "string",
+                    "default": "<ObjectTypeShort><BaseId>-Ext<ObjectId>.<ObjectNameShort>.al",
+                    "description": "The pattern of the filename for extension objects.  These vars can be used: <Prefix>,<Suffix>,<ObjectType>,<ObjectTypeShort>,<ObjectTypeShortPascalCase>,<ObjectId>,<ObjectName>,<ObjectNameShort>,<ObjectTypeShortUpper>,<BaseName>,<BaseNameShort>,<BaseId> (If you want this to work, you need to put the Id in comment after the base name, like //21)",
+                    "scope": "resource"
+                },
+                "CRS.FileNamePatternPageCustomizations": {
+                    "Type": "string",
+                    "default": "<ObjectTypeShort><BaseId>-PageCust.<ObjectNameShort>.al",
+                    "description": "The pattern of the filename for extension objects.  These vars can be used: <Prefix>,<Suffix>,<ObjectType>,<ObjectTypeShort>,<ObjectTypeShortPascalCase>,<ObjectName>,<ObjectNameShort>,<ObjectTypeShortUpper>,<BaseName>,<BaseNameShort>,<BaseId> (If you want this to work, you need to put the Id in comment after the base name, like //21)",
+                    "scope": "resource"
+                },
+                "CRS.AlSubFolderName": {
+                    "enum": [
+                        "src",
+                        "Source",
+                        "Objects",
+                        "Al",
+                        "None"
+                    ],
+                    "type": "string",
+                    "default": "src",
+                    "description": "Sets the subfoldername of where the objects will be placed.  'None' prevents the 'Reorganize' to do anything (if you want to apply your own folder structure).",
+                    "scope": "resource"
+                },
+                "CRS.OnSaveAlFileAction": {
+                    "enum": [
+                        "DoNothing",
+                        "Rename",
+                        "Reorganize"
+                    ],
+                    "type": "string",
+                    "default": "DoNothing",
+                    "description": "Automatically will Rename/Reorganize the file you are editing.  Takes into account the prefix/suffix as well.",
+                    "scope": "resource"
+                },
+                "CRS.ObjectNamePrefix": {
+                    "type": "string",
+                    "default": null,
+                    "description": "When using the Reorganize/Rename-commands, this setting will make sure the object name (and filename) will have a Prefix.  Tips: use as a workspace-setting. Use an ending-space if you want the prefix to be separated with a space.",
+                    "scope": "resource"
+                },
+                "CRS.ObjectNameSuffix": {
+                    "type": "string",
+                    "default": null,
+                    "description": "When using the Reorganize/Rename-commands, this setting will make sure the object name (and filename) will have a Suffix.  Tips: use as a workspace-setting. Use an ending-space if you want the prefix to be separated with a space.",
+                    "scope": "resource"
+                },
+                "CRS.RemovePrefixFromFilename": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "When using the Reorganize/Rename-commands, this setting will remove any prefix from the filename (but keep it in object name).  Tip: use as a workspace-setting",
+                    "scope": "resource"
+                },
+                "CRS.RemoveSuffixFromFilename": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "When using the Reorganize/Rename-commands, this setting will remove any suffix from the filename (but keep it in object name).  Tip: use as a workspace-setting",
+                    "scope": "resource"
+                },
+                "CRS.DisableDefaultAlSnippets": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Disable the default Al Snippets.  When you change the setting, you need to restart VSCode twice.  Once for disabling the snippets on activation (at that time, the snippets are still loaded).  And the second time to actually not load the snippets anymore",
+                    "scope": "resource"
+                },
+                "CRS.DisableCRSSnippets": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Disable the Al Snippets that come with this extension.  When you change the setting, you need to restart VSCode twice.  Once for disabling the snippets on activation (at that time, the snippets are still loaded).  And the second time to actually not load the snippets anymore",
+                    "scope": "resource"
+                },
+                "CRS.RenameWithGit": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Use 'git mv' to rename a file.  This keeps history of the file, but stages the rename, which you should commit separately.  The feature is still in preview-mode, therefore the default value is 'false'",
+                    "scope": "resource"
                 }
             }
         },

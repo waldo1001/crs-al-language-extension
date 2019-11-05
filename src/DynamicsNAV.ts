@@ -163,6 +163,24 @@ export class DynamicsNAV {
         }
     }
 
+    static getBestPracticeObjectTypeInPascalCase(ObjectType: String): string {
+        switch (ObjectType.trim().toLowerCase()) {
+            case 'page': return 'Page';
+            case 'pageextension': return 'PageExt';
+            case 'codeunit': return 'Codeunit';
+            case 'table': return 'Table';
+            case 'tableextension': return 'TableExt';
+            case 'xmlport': return 'XmlPort';
+            case 'report': return 'Report';
+            case 'query': return 'Query';
+            case 'profile': return 'Profile';
+            case 'pagecustomization': return 'PageCust';
+            case 'enum': return 'Enum';
+            case 'enumextension': return 'EnumExt';
+            case 'controladdin': return 'ConAddin';
+        }
+    }
+
     static isKeyWord(value: String): boolean {
         return DynamicsNAV.getAllKeywordsLowerCased().indexOf(value.toLowerCase()) != -1
     }

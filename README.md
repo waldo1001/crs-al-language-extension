@@ -97,6 +97,7 @@ This extension contributes the following settings:
     - `<Suffix>`
     - `<ObjectType>`
     - `<ObjectTypeShort>` - a short notation of the object type.
+    - `<ObjectTypeShortPascalCase>` - PascalCased object type
     - `<ObjectTypeShortUpper>` - Same as "ObjectTypeShort" but uppercased
     - `<ObjectId>`
     - `<BaseName>` - weird chars are removed - does NOT include prefix nor suffix
@@ -107,6 +108,7 @@ This extension contributes the following settings:
     - `<Suffix>` - just the suffix separately
     - `<ObjectType>`
     - `<ObjectTypeShort>` - a short notation of the object type.
+    - `<ObjectTypeShortPascalCase>` - PascalCased object type
     - `<ObjectTypeShortUpper>` - Same as "ObjectTypeShort" but uppercased
     - `<ObjectId>`
     - `<ObjectName>` - weird chars are removed - includes prefix and suffix
@@ -116,6 +118,7 @@ This extension contributes the following settings:
     - `<Suffix>` - just the suffix separately
     - `<ObjectType>`
     - `<ObjectTypeShort>` - a short notation of the object type.
+    - `<ObjectTypeShortPascalCase>` - PascalCased object type
     - `<ObjectTypeShortUpper>` - Same as "ObjectTypeShort" but uppercased
     - `<ObjectId>`
     - `<ObjectName>` - weird chars are removed - includes prefix and suffix
@@ -141,6 +144,7 @@ tableextension 50100 "Just Some Table Extension" extends Customer //18
     - `<Suffix>` - just the suffix separately
     - `<ObjectType>`
     - `<ObjectTypeShort>` - a short notation of the object type.
+    - `<ObjectTypeShortPascalCase>` - PascalCased object type
     - `<ObjectTypeShortUpper>` - Same as "ObjectTypeShort" but uppercased
     - `<ObjectName>` - weird chars are removed - includes prefix and suffix
     - `<ObjectNameShort>` - includes prefix and suffix

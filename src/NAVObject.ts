@@ -63,6 +63,10 @@ export class NAVObject {
         return DynamicsNAV.getBestPracticeAbbreviatedObjectType(this.objectType);
     }
 
+    get ObjectTypeShortPascalCase(): string {
+        return DynamicsNAV.getBestPracticeObjectTypeInPascalCase(this.objectType);
+    }
+
     get objectNameFixed(): string {
         let objectNameFixed = this.ApplyExtensionObjectNamePattern(this.objectName.trim().toString());
         if (objectNameFixed == this.objectName.trim().toString()) {
@@ -325,6 +329,7 @@ export class NAVObject {
         result = StringFunctions.replaceAll(result, '<Suffix>', this._workSpaceSettings[Settings.ObjectNameSuffix]);
         result = StringFunctions.replaceAll(result, '<ObjectType>', this.objectType)
         result = StringFunctions.replaceAll(result, '<ObjectTypeShort>', this.objectTypeShort);
+        result = StringFunctions.replaceAll(result, '<ObjectTypeShortPascalCase>', this.ObjectTypeShortPascalCase);
         result = StringFunctions.replaceAll(result, '<ObjectTypeShortUpper>', this.objectTypeShort.toUpperCase());
         result = StringFunctions.replaceAll(result, '<ObjectId>', this.objectId);
         result = StringFunctions.replaceAll(result, '<BaseName>', this.extendedObjectNameFixedForFileName);
@@ -340,6 +345,7 @@ export class NAVObject {
         result = StringFunctions.replaceAll(result, '<Suffix>', this._workSpaceSettings[Settings.ObjectNameSuffix]);
         result = StringFunctions.replaceAll(result, '<ObjectType>', this.objectType)
         result = StringFunctions.replaceAll(result, '<ObjectTypeShort>', this.objectTypeShort);
+        result = StringFunctions.replaceAll(result, '<ObjectTypeShortPascalCase>', this.ObjectTypeShortPascalCase);
         result = StringFunctions.replaceAll(result, '<ObjectTypeShortUpper>', this.objectTypeShort.toUpperCase());
         result = StringFunctions.replaceAll(result, '<ObjectId>', this.objectId);
         result = StringFunctions.replaceAll(result, '<ObjectName>', this.objectNameFixedForFileName);

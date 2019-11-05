@@ -1,6 +1,19 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension.
 
+## [1.1.21] - 2019-11-05
+Added `<ObjectTypeShortPascalCase>` as an extra FilePattern option because Microsoft is going to include this as a Best Practice.  Thanks [ernestasjuska](https://github.com/ernestasjuska) and [hmerbouche](https://github.com/hmerbouche) for [the heads up](https://github.com/waldo1001/crs-al-language-extension/issues/141)!
+
+An example of the new "best practice" settings looks like:
+```json
+    "CRS.OnSaveAlFileAction": "Rename",
+    "CRS.FileNamePattern": "<ObjectNameShort>.<ObjectTypeShortPascalCase>.al",
+    "CRS.FileNamePatternExtensions": "<ObjectNameShort>.<ObjectTypeShortPascalCase>.al",
+    "CRS.FileNamePatternPageCustomizations": "<ObjectNameShort>.<ObjectTypeShortPascalCase>.al",
+    "CRS.ObjectNamePrefix": "ALDA ",
+    "CRS.RemovePrefixFromFilename": true,
+```
+
 ## [1.1.19] - 2019-10-29
 - Improved: 
   - Prevent deleting files because of Multiroot Issue (Issue [RenameWithGit icw MultiRoot workspace removes files](https://github.com/waldo1001/crs-al-language-extension/issues/140))
