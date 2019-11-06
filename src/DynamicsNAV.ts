@@ -159,7 +159,10 @@ export class DynamicsNAV {
             case 'pagecustomization': return 'Pag';
             case 'enum': return 'Enum';
             case 'enumextension': return 'Enum';
-            case 'controladdin': return 'ConAddin';
+            case 'controladdin': return 'ControlAddIn';
+            case 'interface': return 'Interface';
+            case 'requestpage': return 'RequestPage';
+            case 'dotnet': return 'Dotnet';
         }
     }
 
@@ -332,7 +335,10 @@ export class DynamicsNAV {
             "report",
             "FieldCaption",
             "grid",
-            "profile"
+            "profile",
+            "Key",
+            "Area",
+            "Actions"
         ];
 
         return keywords;
