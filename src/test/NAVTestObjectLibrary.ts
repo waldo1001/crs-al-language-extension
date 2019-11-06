@@ -541,6 +541,17 @@ export function getPageWithWaldoPrefixWrongName(): NAVTestObject {
             }
         }
 
+        local procedure ShowSourceDocOrTransaction(pbolShowSourceDocument: Boolean)
+        var
+            lrecRegisteredTrans: Record "NVT WMS Registered Transaction";
+            liCounter: Integer;
+            liTypes: Integer;
+            liPossibleTypes: array[10] of Integer;
+        begin
+            ShowSourceDocOrTransaction(false); 
+            CheckTransaction(true)
+        end;
+        
         var
             myInt: Integer;
     }

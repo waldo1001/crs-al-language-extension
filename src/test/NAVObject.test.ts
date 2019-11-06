@@ -199,5 +199,22 @@ suite("NAVObject General Tests", () => {
             }
         });
     })
+    test("Page - Actions with keyword-names (With Prefix)", () => {
+        //TODO: this should be changed so that transaction(false) functioncall isn't going to get a "fix"
+        let testSettings = Settings.GetConfigSettings(null)
+        testSettings[Settings.ObjectNamePrefix] = 'waldo';
+
+        let navTestObject = NAVTestObjectLibrary.getPageWithWaldoPrefixWrongName()
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
+
+        let navObject2 = new NAVObject(navObject.NAVObjectTextFixed, testSettings, navObject.objectFileNameFixed)
+        navObject2.objectActions.forEach(pageAction => {
+            if (DynamicsNAV.getAllKeywordsLowerCased().indexOf(pageAction.name.toLowerCase()) != -1) {
+                var expectedValueToFind = `"${pageAction.name}"`
+                //console.log(pageAction.fullFieldTextFixed);
+                assert.equal((pageAction.fullActionText.indexOf(expectedValueToFind) > -1), true, `"${pageAction.name}" is a keyword and should be surrounded with quotes, while this is the fixed text: "${pageAction.fullActionText}"`)
+            }
+        });
+    })
 
 });
