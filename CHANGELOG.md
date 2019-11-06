@@ -2,6 +2,9 @@
 All notable changes to the "crs-al-language-extension" extension.
 
 ## [1.1.21] - 2019-11-05
+
+Added keywords as suggested [here](https://github.com/waldo1001/crs-al-language-extension/issues/143) by [Frédéric Vercaemst](https://github.com/fvet).
+
 Added `<ObjectTypeShortPascalCase>` as an extra FilePattern option because Microsoft is going to include this as a Best Practice.  Thanks [ernestasjuska](https://github.com/ernestasjuska) and [hmerbouche](https://github.com/hmerbouche) for [the heads up](https://github.com/waldo1001/crs-al-language-extension/issues/141)!
 
 An example of the new "best practice" settings looks like:
