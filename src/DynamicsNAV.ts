@@ -338,7 +338,8 @@ export class DynamicsNAV {
             "profile",
             "Key",
             "Area",
-            "Actions"
+            "Actions",
+            "Trigger"
         ];
 
         return keywords;
