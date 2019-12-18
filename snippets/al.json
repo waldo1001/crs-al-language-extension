@@ -34,5 +34,17 @@
         "body": [
             "fieldgroup(${1|DropDown,Brick|}; ${2:AddFieldsHere}) { }"
         ]
+    },
+    "Snippet (waldo): Codeunit with proc": {
+        "description": "Snippet (waldo): Procedure from clipboard",
+        "prefix": "tProcedureFromClipboard(waldo)",
+        "body": [
+            "local procedure ${1:ProcedureName}()",
+            "begin",
+            "\t${CLIPBOARD}",
+            "end;",
+            "",
+            "${0}"
+        ]
     }
 }
