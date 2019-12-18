@@ -11,5 +11,47 @@
             "\t// [THEN] ${3} ${0}",
             "end;"
         ]
+    },
+    "Snippet (waldo): Handler Function Argument": {
+        "prefix": "tTestHandlerFunctionsArgument",
+        "description": "HandlerFunctions(HandlerNames: Text)",
+        "body": [
+            "[HandlerFunctions('${1:CommaSeperateAllHandlerFunctions}')]",
+            "${0}"
+        ]
+    },
+    "Snippet (waldo): Modal Page Handler": {
+        "prefix": "tTestModalPageHandler",
+        "description": "ModelPageHandler Procedure",
+        "body": [
+            "[ModalPageHandler]",
+            "procedure ${1:ModalPageHandler}(var ${2:Modalpage}: TestPage ${3:\"Your Page\"});",
+            "begin",
+            "\t${0}",
+            "end;"
+        ]
+    },
+    "Snippet (waldo): Message Handler": {
+        "prefix": "tTestMessageHandler",
+        "description": "Message Handler Procedure",
+        "body": [
+            "[MessageHandler]",
+            "procedure MessageHandler(MessageText: Text[1024])",
+            "begin",
+            "\t${0}",
+            "end;"
+        ]
+    },
+    "Snippet (waldo): Confirm Handler": {
+        "prefix": "tTestConfirmHandler",
+        "description": "ModelPageHandler Procedure",
+        "body": [
+            "[ConfirmHandler]",
+            "procedure ${1:ConfirmHandler}(Question: Text[1024]; var Reply: Boolean);",
+            "begin",
+            "\t${0}",
+            "\tReply := ${2|true,false|};",
+            "end;"
+        ]
     }
 }
