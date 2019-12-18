@@ -180,7 +180,7 @@ export class DynamicsNAV {
             case 'pagecustomization': return 'PageCust';
             case 'enum': return 'Enum';
             case 'enumextension': return 'EnumExt';
-            case 'controladdin': return 'ConAddin';
+            case 'controladdin': return 'ControlAddin';
         }
     }
 
