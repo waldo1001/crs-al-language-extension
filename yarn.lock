@@ -7,10 +7,10 @@
   resolved "https://registry.yarnpkg.com/@types/mocha/-/mocha-5.2.7.tgz#315d570ccb56c53452ff8638738df60726d5b6ea"
   integrity sha512-NYrtPht0wGzhwe9+/idPaBB+TqkY9AhTvOLMkThm0IoEfLaiVQZwBwyJ5puCkO3AUCWrmcoePjp2mbFocKy4SQ==
 
-"@types/node@^7.10.2":
-  version "7.10.6"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-7.10.6.tgz#c42137f0f2f6458bf0c898d65f48c5f600911475"
-  integrity sha512-d0BOAicT0tEdbdVQlLGOVul1kvg6YvbaADRCThGCz5NJ0e9r00SofcR1x69hmlCyrHuB6jd4cKzL9bMLjPnpAA==
+"@types/node@^7.10.9":
+  version "7.10.9"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-7.10.9.tgz#4343e3b009f8cf5e1ed685e36097b74b4101e880"
+  integrity sha512-usSpgoUsRtO5xNV5YEPU8PPnHisFx8u0rokj1BPVn/hDF7zwUDzVLiuKZM38B7z8V2111Fj6kd4rGtQFUZpNOw==
 
 agent-base@4, agent-base@^4.1.0:
   version "4.3.0"
@@ -322,6 +322,16 @@ is-typedarray@~1.0.0:
   resolved "https://registry.yarnpkg.com/is-typedarray/-/is-typedarray-1.0.0.tgz#e479c80858df0c1b11ddda6940f96011fcda4a9a"
   integrity sha1-5HnICFjfDBsR3dppQPlgEfzaSpo=
 
+is-undefined@^1.0.0:
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/is-undefined/-/is-undefined-1.0.10.tgz#3af5ac9264616252784287018f6a3046b7ef31bc"
+  integrity sha512-hMauRkt6V5toiszSuYtQFwRHRW1nrv8nhhgVEImNpxaBV6nJsHU9hT9g9YPabnN7aY6S1Lcg+1WF2GshniuSoQ==
+
+is-win@^1.0.2:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/is-win/-/is-win-1.0.9.tgz#bde41e505614c00980c891c2f08d0a5858d71eab"
+  integrity sha512-YRT/Lz4mMDl11TgyicW+EQdfkswgmd0PWSmf4612ZDe1A0uAz9vkWxHA+87ZoP2f3PUmpNuNdW6ZD8QQOX4nwA==
+
 is-wsl@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/is-wsl/-/is-wsl-1.1.0.tgz#1f16e4aa22b04d1336b66188a66af3c600c3a66d"
@@ -419,6 +429,11 @@ ms@^2.1.1:
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.2.tgz#d09d1f357b443f493382a8eb3ccd183872ae6009"
   integrity sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==
 
+ncp@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/ncp/-/ncp-2.0.0.tgz#195a21d6c46e361d2fb1281ba38b91e9df7bdbb3"
+  integrity sha1-GVoh1sRuNh0vsSgbo4uR6d9727M=
+
 oauth-sign@~0.9.0:
   version "0.9.0"
   resolved "https://registry.yarnpkg.com/oauth-sign/-/oauth-sign-0.9.0.tgz#47a7b016baa68b5fa0ecf3dee08a85c679ac6455"
@@ -447,6 +462,20 @@ performance-now@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
   integrity sha1-Ywn04OX6kT7BxpMHrjZLSzd8nns=
+
+powershell@^2.3.1:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/powershell/-/powershell-2.3.1.tgz#267ab1752a31f49cb11322119a1bf163f85303b6"
+  integrity sha512-unE7o0yo3mIL5vk2T44tZgGwznUYHVwyeLDa95qf5QPRbtp0Ol9xAGJje1GVHt1vgf7w28O+7MsDM5JbIDxsfg==
+  dependencies:
+    is-undefined "^1.0.0"
+    is-win "^1.0.2"
+    spawno "^1.0.0"
+
+proc-output@^1.0.0:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/proc-output/-/proc-output-1.0.7.tgz#b83bf4c0ab2f6dc443001096fa947ab0c74320b1"
+  integrity sha512-/0vbJ1s2EAqW4ddiHfOgB2ui9sTHGtLVdVDnjyBFHq1g3cVH1Dt2EZoux5P19Ie+aiilB3j1dCgJTcXIp1T2Cw==
 
 psl@^1.1.24:
   version "1.1.32"
@@ -538,6 +567,13 @@ source-map@^0.6.0:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.6.1.tgz#74722af32e9614e9c287a8d0bbde48b5e2f1a263"
   integrity sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==
+
+spawno@^1.0.0:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/spawno/-/spawno-1.0.4.tgz#8df56503fc315693588e7221494d5c94f165bb57"
+  integrity sha1-jfVlA/wxVpNYjnIhSU1clPFlu1c=
+  dependencies:
+    proc-output "^1.0.0"
 
 sshpk@^1.7.0:
   version "1.16.1"
