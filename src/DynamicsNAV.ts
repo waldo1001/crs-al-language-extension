@@ -98,7 +98,9 @@ export class DynamicsNAV {
     }
     public static ComposeRunObjectInWebClientURL(workspacesettings: any, ClientType: string, runObjectType: String, runObjectid: number): String {
 
-        let returnUrl = "https://businesscentral.dynamics.com/sandbox?"
+        let returnUrl = "https://businesscentral.dynamics.com/"
+        returnUrl += workspacesettings[Settings.SandboxName] ? workspacesettings[Settings.SandboxName] : 'sandbox'
+        returnUrl += '?'
 
         if (workspacesettings[Settings.WebServer]) {
             if (workspacesettings[Settings.PublicWebBaseUrl]) {

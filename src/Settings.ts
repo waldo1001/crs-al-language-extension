@@ -5,6 +5,7 @@ export class Settings {
 
     static readonly DefaultRunObjectType = 'DefaultRunObjectType';
     static readonly DefaultRunObjectId = 'DefaultRunObjectId';
+    static readonly SandboxName = 'sandboxName';
 
     static readonly WebServer = 'WebServer';
     static readonly WebServerInstance = 'WebServerInstance';
@@ -104,6 +105,7 @@ export class Settings {
         this.SettingCollection[this.Tenant] = currentLaunchConfig[0].tenant ? currentLaunchConfig[0].tenant : "default";
         this.SettingCollection[this.DefaultRunObjectType] = currentLaunchConfig[0].startupObjectType;
         this.SettingCollection[this.DefaultRunObjectId] = currentLaunchConfig[0].startupObjectId;
+        this.SettingCollection[this.SandboxName] = currentLaunchConfig[0].sandboxName;
     }
 
     public static GetAllSettings(ResourceUri: vscode.Uri) {

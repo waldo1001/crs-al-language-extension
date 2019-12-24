@@ -50,4 +50,32 @@ suite("RunObject Tests", () => {
         assert.equal(url.indexOf('default'), -1);
         assert.notEqual(url.indexOf('phone'), -1);
     })
+    test("Run Object on SaaS with no Named Sandbox", () => {
+        let testSettings = Settings.GetConfigSettings(null);
+        testSettings[Settings.WebServer] = null;
+        testSettings[Settings.WebServerInstance] = null;
+        testSettings[Settings.WebServerInstancePort] = null;
+        testSettings[Settings.Tenant] = null;
+        testSettings[Settings.PublicWebBaseUrl] = null;
+        testSettings[Settings.SandboxName] = null;
+
+        let url = DynamicsNAV.ComposeRunObjectInWebClientURL(testSettings, 'WebClient', 'page', 22);
+
+        assert.notEqual(url.indexOf('sandbox'), -1);
+        assert.equal(url.indexOf('dev'), -1);
+    })
+    test("Run Object on SaaS with Named Sandbox", () => {
+        let testSettings = Settings.GetConfigSettings(null);
+        testSettings[Settings.WebServer] = null;
+        testSettings[Settings.WebServerInstance] = null;
+        testSettings[Settings.WebServerInstancePort] = null;
+        testSettings[Settings.Tenant] = null;
+        testSettings[Settings.PublicWebBaseUrl] = null;
+        testSettings[Settings.SandboxName] = 'dev';
+
+        let url = DynamicsNAV.ComposeRunObjectInWebClientURL(testSettings, 'WebClient', 'page', 22);
+
+        assert.equal(url.indexOf('sandbox'), -1);
+        assert.notEqual(url.indexOf('dev'), -1);
+    })
 })
