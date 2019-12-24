@@ -1,8 +1,18 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension.
 
-## [1.1.21] - 2019-11-05
+## [1.1.22] - 2019-12-24
+Added and updated snippets, like:
+- tassistedsetup - for version >=15
+- tProcedureFromClipboard - to convert a piece of code into a function, just cut the code and use this snippet - pretty cool ;-).
+- tTestHandler.. - [multiple snippets](https://github.com/waldo1001/crs-al-language-extension/commit/e58b72dddda3007b982b31e85a3b9caa351adcd4) for easily adding handlers in test-codeunits
 
+Solved:
+- Updated naming convention for Control Addin (Thanks to [this pullrequest](https://github.com/waldo1001/crs-al-language-extension/issues/141).)
+- Wrong behaviour when using "Trigger" as a new of a control (don't remember who gave the feedback, my apologies.  [here](https://github.com/waldo1001/crs-al-language-extension/commit/6c91c8023aff5a87f9fc8245493ffe4be6fa0fe2) is the commit)
+- Run Object for **named** online sandbox.
+
+## [1.1.21] - 2019-11-05
 Added keywords as suggested [here](https://github.com/waldo1001/crs-al-language-extension/issues/143) by [Frédéric Vercaemst](https://github.com/fvet).
 
 Added `<ObjectTypeShortPascalCase>` as an extra FilePattern option because Microsoft is going to include this as a Best Practice.  Thanks [ernestasjuska](https://github.com/ernestasjuska) and [hmerbouche](https://github.com/hmerbouche) for [the heads up](https://github.com/waldo1001/crs-al-language-extension/issues/141)!

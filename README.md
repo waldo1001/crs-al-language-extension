@@ -57,6 +57,11 @@ al Snippets:
     * Some easier way to greate a variable
 * tfieldgroup(s) (waldo)
     * To work with fieldgroups (Like "Brick" & "DropDown")
+* tProcedureFromClipboard
+    * to convert a piece of code into a function, just cut the code and use this snippet - pretty cool ;-).
+* tTestHandler.. 
+    * [multiple snippets](https://github.com/waldo1001/crs-al-language-extension/commit/e58b72dddda3007b982b31e85a3b9caa351adcd4) for easily adding handlers in test-codeunits
+
 Apply some design patterns:
 * tcodeunit (CRS: Method - No UI)
     * creates a codeunit, conform on the "Event Based Software Architecture"
@@ -70,6 +75,7 @@ Apply some design patterns:
     * apply "discover event subscriber" for adding a service connection 
 * ttablesetup & tpagesetup
     * create setup-table with page
+
 
 Snippets for building metadata (used in an xml-file):
 * twebservice.. - 2 snippets
