@@ -6,6 +6,7 @@ Added and updated snippets, like:
 - tassistedsetup - for version >=15
 - tProcedureFromClipboard - to convert a piece of code into a function, just cut the code and use this snippet - pretty cool ;-).
 - tTestHandler.. - [multiple snippets](https://github.com/waldo1001/crs-al-language-extension/commit/e58b72dddda3007b982b31e85a3b9caa351adcd4) for easily adding handlers in test-codeunits
+- added "caption" to snippets with also "UsageCategory" (to enable translation).
 
 Solved:
 - Updated naming convention for Control Addin (Thanks to [this pullrequest](https://github.com/waldo1001/crs-al-language-extension/issues/141).)
