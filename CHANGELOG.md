@@ -12,6 +12,7 @@ Solved:
 - Updated naming convention for Control Addin (Thanks to [this pullrequest](https://github.com/waldo1001/crs-al-language-extension/issues/141).)
 - Wrong behaviour when using "Trigger" as a new of a control (don't remember who gave the feedback, my apologies.  [here](https://github.com/waldo1001/crs-al-language-extension/commit/6c91c8023aff5a87f9fc8245493ffe4be6fa0fe2) is the commit)
 - Run Object for **named** online sandbox.
+- Use al browser settings (if any).  Reported by [mjmatthiesen](https://github.com/mjmatthiesen) [here](https://github.com/waldo1001/crs-al-language-extension/issues/152).
 
 ## [1.1.21] - 2019-11-05
 Added keywords as suggested [here](https://github.com/waldo1001/crs-al-language-extension/issues/143) by [Frédéric Vercaemst](https://github.com/fvet).

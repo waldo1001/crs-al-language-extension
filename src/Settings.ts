@@ -32,6 +32,8 @@ export class Settings {
     static readonly DisableDefaultAlSnippets = 'DisableDefaultAlSnippets';
     static readonly DisableCRSSnippets = 'DisableCRSSnippets';
     static readonly RenameWithGit = 'RenameWithGit';
+    static readonly Browser = 'browser';
+    static readonly Incognito = 'incognito';
 
     static readonly AlSubFolderName = 'AlSubFolderName';
 
@@ -41,6 +43,7 @@ export class Settings {
     private static SettingCollection = {};
 
     private static WORKSPACEKEY: string = 'CRS';
+    private static ALWORKSPACEKEY: string = 'al';
 
     private static readonly MANAGEMENTDLL = 'Microsoft.Dynamics.Nav.Management.dll';
 
@@ -80,8 +83,20 @@ export class Settings {
         this.SettingCollection[this.PublicWebBaseUrl] = this.getSetting(this.PublicWebBaseUrl);
         this.SettingCollection[this.RenameWithGit] = this.getSetting(this.RenameWithGit);
 
+        this.getConfigSettingsAL(ResourceUri);
     }
 
+    private static getConfigSettingsAL(ResourceUri: vscode.Uri) {
+        this.config = ResourceUri ?
+            vscode.workspace.getConfiguration(this.ALWORKSPACEKEY, ResourceUri) :
+            vscode.window.activeTextEditor ?
+                vscode.workspace.getConfiguration(this.ALWORKSPACEKEY, vscode.window.activeTextEditor.document.uri) :
+                vscode.workspace.getConfiguration(this.ALWORKSPACEKEY, null);
+
+        this.SettingCollection[this.Browser] = this.getSetting(this.Browser);
+        this.SettingCollection[this.Incognito] = this.getSetting(this.Incognito);
+    }
+ 
     private static getAppSettings(ResourceUri: vscode.Uri) {
         let appSettings = ResourceUri ?
             require(join(vscode.workspace.getWorkspaceFolder(ResourceUri).uri.fsPath, "app.json")) :

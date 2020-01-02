@@ -1,6 +1,8 @@
 import { QuickPickItem } from 'vscode';
 import { Settings } from './Settings';
 import * as crsOutput from './CRSOutput';
+import { exec, spawn } from 'child_process';
+import { settings } from 'cluster';
 
 const open = require('opn');
 
@@ -93,7 +95,26 @@ export class DynamicsNAV {
             objectid);
 
         console.log('url: ' + runURL);
-        open(runURL);
+
+        switch (workspacesettings[Settings.Browser]) {
+            case 'Edge':
+            case 'EdgeBeta':
+                open(`microsoft-edge:${runURL}`)
+                break;
+            case 'Firefox':
+                runURL = workspacesettings[Settings.Incognito] == true ? '-private-window ' + runURL : runURL;
+                exec(`start firefox ${runURL}`, { shell: 'cmd.exe' });
+                break;            
+            case 'Chrome':
+                runURL = workspacesettings[Settings.Incognito] == true ? '-incognito ' + runURL : runURL;
+                exec(`start chrome ${runURL}`, { shell: 'cmd.exe' });
+                break;
+            default:
+                open(runURL);
+                break;
+        }
+
+
         crsOutput.showOutput(`RunObjectInWebClient - ${runURL}`);
     }
     public static ComposeRunObjectInWebClientURL(workspacesettings: any, ClientType: string, runObjectType: String, runObjectid: number): String {
