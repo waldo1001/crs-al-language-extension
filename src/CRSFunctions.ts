@@ -49,7 +49,7 @@ export function RunObjectWeb() {
 export function RunTestTool() {
     console.log('Running: RunTestTool');
 
-    DynamicsNAV.RunObjectInWebClient('Page', 130401, 'WebClient');
+    DynamicsNAV.RunObjectInWebClient('Page', 130451, 'WebClient');
 
     console.log('Done: RunTestTool')
 }
