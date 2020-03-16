@@ -328,7 +328,8 @@ suite("NAVObject FilePattern Tests", () => {
         let navTestObject = NAVTestObjectLibrary.getPageExtensionWithAmpersandInFileName()
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
 
-        assert.equal(navObject.objectName.length, navObject.objectNameFixed.length);
+        assert.notEqual(navObject.objectName.length, navObject.objectNameFixed.length);
+        assert.equal(true, navObject.objectNameFixed.length > 30)
     })
 
     test("TableExtension - Automatic Naming with settings", () => {

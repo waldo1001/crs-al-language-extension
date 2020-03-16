@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension.
 
+## [1.1.23] - 2020-03-16
+Changed - [Allow renaming to result in too big object names](https://github.com/waldo1001/crs-al-language-extension/issues/157)
+
 ## [1.1.22] - 2020-01-03
 Added and updated snippets, like:
 - tassistedsetup - for version >=15

@@ -73,10 +73,10 @@ export class NAVObject {
             objectNameFixed = this.AddPrefixAndSuffixToObjectNameFixed(objectNameFixed);
         }
 
-        if ((objectNameFixed != this.objectName.trim().toString()) && (objectNameFixed.length > 30)) {
-            vscode.window.showWarningMessage(`Result too long: Tried to rename ${this.objectName.trim().toString()} to ${objectNameFixed}.  Please rename the object manually.`)
-            objectNameFixed = this.objectName.trim().toString();
-        }
+        // if ((objectNameFixed != this.objectName.trim().toString()) && (objectNameFixed.length > 30)) {
+        //     vscode.window.showWarningMessage(`Result too long: Tried to rename ${this.objectName.trim().toString()} to ${objectNameFixed}.  Please rename the object manually.`)
+        //     objectNameFixed = this.objectName.trim().toString();
+        // }
 
         return objectNameFixed;
     }
