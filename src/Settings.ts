@@ -35,6 +35,8 @@ export class Settings {
     static readonly Browser = 'browser';
     static readonly Incognito = 'incognito';
 
+    static readonly SearchObjectNamesRegexPattern = 'SearchObjectNamesRegexPattern';
+
     static readonly AlSubFolderName = 'AlSubFolderName';
 
     private static config: vscode.WorkspaceConfiguration;
@@ -82,6 +84,7 @@ export class Settings {
         this.SettingCollection[this.DisableCRSSnippets] = this.getSetting(this.DisableCRSSnippets);
         this.SettingCollection[this.PublicWebBaseUrl] = this.getSetting(this.PublicWebBaseUrl);
         this.SettingCollection[this.RenameWithGit] = this.getSetting(this.RenameWithGit);
+        this.SettingCollection[this.SearchObjectNamesRegexPattern] = this.getSetting(this.SearchObjectNamesRegexPattern);
 
         this.getConfigSettingsAL(ResourceUri);
     }

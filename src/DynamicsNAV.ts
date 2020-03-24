@@ -2,6 +2,7 @@ import { QuickPickItem } from 'vscode';
 import { Settings } from './Settings';
 import * as crsOutput from './CRSOutput';
 import { exec, spawn } from 'child_process';
+import * as vscode from 'vscode';
 import { settings } from 'cluster';
 
 const open = require('opn');
@@ -205,6 +206,21 @@ export class DynamicsNAV {
             case 'enumextension': return 'EnumExt';
             case 'controladdin': return 'ControlAddin';
         }
+    }
+
+    static SearchObjectNames(SearchString: String){
+        let workspacesettings = Settings.GetConfigSettings(null);
+
+        SearchString = workspacesettings[Settings.SearchObjectNamesRegexPattern] + SearchString;
+
+        vscode.commands.executeCommand('workbench.action.findInFiles', {
+            query: SearchString,
+            triggerSearch: true,
+            matchWholeWord: false,
+            isCaseSensitive: false,
+        });
+
+        crsOutput.showOutput('SearchObjectNames: ' + SearchString)
     }
 
     static isKeyWord(value: String): boolean {

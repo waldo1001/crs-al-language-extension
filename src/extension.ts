@@ -32,6 +32,8 @@ export function activate(context: vscode.ExtensionContext) { //is called when yo
 
         vscode.commands.registerCommand('crs.SearchMicrosoftDocs', CRSFunctions.SearchMicrosoftDocs),
         vscode.commands.registerCommand('crs.SearchGoogle', CRSFunctions.SearchGoogle),
+        
+        vscode.commands.registerCommand('crs.SearchObjectNames', CRSFunctions.SearchObjectNames),
 
         vscode.commands.registerCommand('crs.SetupSnippets', CRSFunctions.SetupSnippets),
     ];

@@ -1,6 +1,13 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension.
 
+## [1.1.24] - 2020-03-25
+New Command: "CRS: Search Object Names"
+- It will search the selected object name in all your files.  
+- The regex can be set up with the setting `CRS.SearchObjectNamesRegexPattern`.
+- This idea comes from [this blog](https://jackmallender.com/2020/03/24/searching-the-business-central-base-app/) by [Jack Mallender](https://twitter.com/Jack_Mallender).  Thank you so much - this is extremely useful :-).
+
+
 ## [1.1.23] - 2020-03-16
 Changed - [Allow renaming to result in too big object names](https://github.com/waldo1001/crs-al-language-extension/issues/157)
 

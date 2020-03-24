@@ -170,6 +170,16 @@ export function SearchGoogle() {
     console.log('Done: SearchGoogle');
 }
 
+export function SearchObjectNames() {
+    console.log('Running: SearchObjectNames');
+
+    let currentword = vscode.window.activeTextEditor ? getWord(vscode.window.activeTextEditor) : "";
+    vscode.window.showInputBox({ value: currentword, prompt: "Search String:" }).then(SearchString =>
+        DynamicsNAV.SearchObjectNames(SearchString));
+        
+    console.log('Done: SearchObjectNames');
+}
+
 export function SetupSnippets() {
     console.log('Running: SetupSnippets');
 

@@ -2,7 +2,7 @@
     "name": "crs-al-language-extension",
     "displayName": "waldo's CRS AL Language Extension",
     "description": "Make working with the (Dynamics NAV / 365) AL Language easier and more efficient.",
-    "version": "1.1.23",
+    "version": "1.1.24",
     "publisher": "waldo",
     "icon": "images/waldo.png",
     "author": {
@@ -105,6 +105,10 @@
             {
                 "command": "crs.SearchGoogle",
                 "title": "CRS: Search Google"
+            },
+            {
+                "command": "crs.SearchObjectNames",
+                "title": "CRS: Search Object Names"
             }
         ],
         "configuration": {
@@ -234,6 +238,12 @@
                     "type": "boolean",
                     "default": false,
                     "description": "Use 'git mv' to rename a file.  This keeps history of the file, but stages the rename, which you should commit separately.  The feature is still in preview-mode, therefore the default value is 'false'",
+                    "scope": "resource"
+                },
+                "CRS.SearchObjectNamesRegexPattern": {
+                    "type": "string",
+                    "default": "^\\w+ (\\d* )?\"*",
+                    "description": "The regex pattern that will be used to search through files for object names.",
                     "scope": "resource"
                 }
             }
