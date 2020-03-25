@@ -384,6 +384,26 @@ export function getPageExtensionWithAmpersandInFileName(): NAVTestObject {
     `
     return object;
 }
+
+export function getPageExtensionWithLongBaseName(): NAVTestObject {
+    let object = new NAVTestObject;
+
+    object.ObjectFileName = 'Pag50102.justAName.al'
+    object.ObjectText = `pageextension 50102 "Sales & Purch" extends "VeryLongBaseNameForExtending" //14
+    {
+        layout
+        {
+            ////
+        }
+        
+        actions
+        {
+        }
+    }
+    `
+    return object;
+}
+
 export function getPageCustomizationWrongFileName(): NAVTestObject {
     let object = new NAVTestObject;
 

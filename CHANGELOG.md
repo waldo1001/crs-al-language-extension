@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension.
 
+## [1.1.25] - 2020-03-26
+Fixed issue when autorenaming resulted in a table-/pageextension that was too long.
+
 ## [1.1.24] - 2020-03-25
 New Command: "CRS: Search Object Names"
 - It will search the selected object name in all your files.  

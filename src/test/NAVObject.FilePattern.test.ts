@@ -332,6 +332,19 @@ suite("NAVObject FilePattern Tests", () => {
         assert.equal(true, navObject.objectNameFixed.length > 30)
     })
 
+    test("PageExtension - ExtensionObjectNamePattern - Ignore too Long - With Very Long Base name", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+        testSettings[Settings.ExtensionObjectNamePattern] = '<BaseNameShort> Ext PTE';
+
+        let navTestObject = NAVTestObjectLibrary.getPageExtensionWithLongBaseName()
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
+        
+        let navObject2 = new NAVObject(navObject.NAVObjectTextFixed, testSettings, navObject.objectFileNameFixed)
+        assert.equal(navObject2.objectName.length, navObject.objectName.length);
+        assert.equal(navObject2.objectName, navObject.objectName);
+        assert.equal(true, navObject2.objectName.length <= 30)
+    })
+
     test("TableExtension - Automatic Naming with settings", () => {
         let testSettings = Settings.GetConfigSettings(null)
         testSettings[Settings.ObjectNamePrefix] = 'waldo';

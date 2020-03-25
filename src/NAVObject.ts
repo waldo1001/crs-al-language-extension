@@ -393,10 +393,13 @@ export class NAVObject {
         if (!this.objectName) { return objectText };
         var escapedObjectName = this.escapeRegExp(this.objectName);
         var searchPattern = RegExp(escapedObjectName);
+
+        let fixedObjectName = this.objectNameFixed.length <= 30 ? this.objectNameFixed : this.objectName;
+
         if (objectText.indexOf("\"" + this.objectName + "\"") >= 0) {
-            return objectText.replace(searchPattern, this.objectNameFixed);
+            return objectText.replace(searchPattern, fixedObjectName);
         } else {
-            return objectText.replace(searchPattern, "\"" + this.objectNameFixed + "\"");
+            return objectText.replace(searchPattern, "\"" + fixedObjectName + "\"");
         }
     }
 
