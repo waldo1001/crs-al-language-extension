@@ -7,6 +7,7 @@ import * as myExtension from '../extension';
 import * as NAVTestObjectLibrary from './NAVTestObjectLibrary'
 import { Settings } from '../Settings';
 import { settings } from 'cluster';
+import { StringFunctions } from '../StringFunctions'
 
 suite("NAVObject FilePattern Tests", () => {
     test("Filename - FileNamePatterns with prefix", () => {
@@ -338,7 +339,7 @@ suite("NAVObject FilePattern Tests", () => {
 
         let navTestObject = NAVTestObjectLibrary.getPageExtensionWithLongBaseName()
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
-        
+
         let navObject2 = new NAVObject(navObject.NAVObjectTextFixed, testSettings, navObject.objectFileNameFixed)
         assert.equal(navObject2.objectName.length, navObject.objectName.length);
         assert.equal(navObject2.objectName, navObject.objectName);
@@ -366,6 +367,26 @@ suite("NAVObject FilePattern Tests", () => {
             + navObject.extendedObjectName
             + navObject.extendedObjectNameFixedShort
             + navObject.extendedObjectId)
+    })
+    test("FileName - Extension Object with which would be too", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+        testSettings[Settings.FileNamePatternExtensions] = '<ObjectNameShort><ObjectTypeShortPascalCase>';
+        testSettings[Settings.ExtensionObjectNamePattern] = '<BaseNameShort> Ext BASE';
+
+        let navTestObject = NAVTestObjectLibrary.getExtensionObjectWithVeryLongObjectName()
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
+              
+        assert.equal(true, navObject.objectFileNameFixed.startsWith(StringFunctions.removeAllButAlfaNumeric(navObject.objectName)))
+    })
+    test("FileName - Extension Object with which would be too (not DataAgnostic)", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+        testSettings[Settings.FileNamePatternExtensions] = '<ObjectNameShort><ObjectTypeShortPascalCase>';
+        testSettings[Settings.ExtensionObjectNamePattern] = '<BaseNameShort> Ext BASE';
+
+        let navTestObject = NAVTestObjectLibrary.getExtensionObjectWithVeryLongObjectName()
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
+              
+        assert.equal(navObject.objectFileNameFixed,'BlankPurchOrderSubfrmExtBASEPageExt')        
     })
 
 })

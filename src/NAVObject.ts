@@ -73,11 +73,6 @@ export class NAVObject {
             objectNameFixed = this.AddPrefixAndSuffixToObjectNameFixed(objectNameFixed);
         }
 
-        // if ((objectNameFixed != this.objectName.trim().toString()) && (objectNameFixed.length > 30)) {
-        //     vscode.window.showWarningMessage(`Result too long: Tried to rename ${this.objectName.trim().toString()} to ${objectNameFixed}.  Please rename the object manually.`)
-        //     objectNameFixed = this.objectName.trim().toString();
-        // }
-
         return objectNameFixed;
     }
 
@@ -86,7 +81,11 @@ export class NAVObject {
         return objectNameFixed.replace(new RegExp(`[${this.prohibitedFilenameCharsPattern}]`, 'g'), '_');
     }
     get objectNameFixedShort(): string {
-        return StringFunctions.removeAllButAlfaNumeric(this.RemovePrefixAndSuffixFromObjectNameFixed(this.objectNameFixed));
+        if (this.objectNameFixed.length > 30) {
+            return StringFunctions.removeAllButAlfaNumeric(this.RemovePrefixAndSuffixFromObjectNameFixed(this.objectName));
+        } else {
+            return StringFunctions.removeAllButAlfaNumeric(this.RemovePrefixAndSuffixFromObjectNameFixed(this.objectNameFixed));
+        }
     }
     get extendedObjectNameFixed(): string {
         let extendedObjectName = this.extendedObjectName.trim().toString();

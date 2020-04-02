@@ -462,6 +462,73 @@ export function getTableExtensionWrongFileNameAndKeyWord(): NAVTestObject {
     `
     return object;
 }
+
+export function getExtensionObjectWithVeryLongObjectName(): NAVTestObject {
+    let object = new NAVTestObject;
+
+    object.ObjectFileName = 'bleh.al'
+    object.ObjectText = `pageextension 2036789 "BlankPurchOrderSubfrm Ext BASE" extends "Blanket Purchase Order Subform" //510
+    {
+    
+        layout
+        {
+            addlast(Control1)
+            {
+                field("VMF Status Icon"; "VMF Status Icon")
+                {
+                    ApplicationArea = All;
+                    Visible = GlobalShowVMFStatusIcon;
+                }
+            }
+        }
+    
+        actions
+        {
+            addlast("&Line")
+            {
+                action(ActionShowVMFMessages)
+                {
+                    Image = ErrorLog;
+                    Caption = 'Show VMF Messages';
+                    Visible = GlobalVMFIsEnabled;
+                    ApplicationArea = All;
+                    trigger OnAction()
+                    begin
+                        ShowVMFMessages();
+                    end;
+                }
+            }
+        }
+        var
+            GlobalShowVMFStatusIcon: Boolean;
+            GlobalVMFIsEnabled: Boolean;
+    
+        trigger OnOpenPage()
+        var
+            VMFClass: Codeunit "VMF Class";
+        begin
+            GlobalShowVMFStatusIcon := VMFClass.IsVMFStatusIconEnabledForPurchase();
+            GlobalVMFIsEnabled := VMFClass.IsVMFEnabled();
+        end;
+    
+        trigger OnAfterGetRecord()
+        begin
+            if GlobalShowVMFStatusIcon then
+                VMFUpdateStatusIcon();
+        end;
+    
+        trigger OnModifyRecord(): Boolean
+        begin
+            if GlobalShowVMFStatusIcon then
+                VMFUpdateStatusIcon();
+        end;
+    }
+    `
+    
+    return object;
+
+}
+
 export function getTableWrongFileNameAndKeyWord(): NAVTestObject {
     let object = new NAVTestObject;
 
