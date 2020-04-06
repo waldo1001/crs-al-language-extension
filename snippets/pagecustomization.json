@@ -2,7 +2,7 @@
     "Snippet: Page Customization": {
         "prefix": "tpagecust(waldo)",
         "body": [
-            "pagecustomization ${1:MyCustomization} customizes ${2:MyTargetPage} //${3:MyTargetPageId}",
+            "pagecustomization ${1:MyCustomization} customizes ${2:MyTargetPage}",
             "{",
             "\tlayout",
             "\t{",

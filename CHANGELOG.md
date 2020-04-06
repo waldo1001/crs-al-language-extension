@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension.
 
+## [1.2.0] - 2020-04-06
+Added support for "Interface" object of Business Central v16
+
 ## [1.1.26] - 2020-04-02
 Fixed a small issue with renaming extension objects with long name (and auto object naming)
 

@@ -388,5 +388,14 @@ suite("NAVObject FilePattern Tests", () => {
               
         assert.equal(navObject.objectFileNameFixed,'BlankPurchOrderSubfrmExtBASEPageExt')        
     })
+    test("FileName - Simple Interface (not DataAgnostic)", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+        testSettings[Settings.FileNamePattern] = '<ObjectNameShort>.<ObjectTypeShortPascalCase>.al';
+
+        let navTestObject = NAVTestObjectLibrary.getSimpleInterface()
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
+              
+        assert.equal(navObject.objectFileNameFixed,'IBallColorIdentifier.Interface.al')        
+    })
 
 })

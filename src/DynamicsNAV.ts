@@ -18,6 +18,7 @@ export class DynamicsNAV {
         items.push({ label: 'Query', description: 'Query' });
         items.push({ label: 'XMLPort', description: 'XMLPort' });
         items.push({ label: 'MenuSuite', description: 'MenuSuite' });
+        items.push({ label: 'Interface', description: 'Interface' });
 
         return items
     }
@@ -31,6 +32,7 @@ export class DynamicsNAV {
         items.push('Query');
         items.push('XMLPort');
         items.push('MenuSuite');
+        items.push('Interface');
 
         return items
     }
@@ -65,6 +67,7 @@ export class DynamicsNAV {
         let items: QuickPickItem[] = [];
 
         items.push({ label: 'Page', description: 'Page' })
+        items.push({ label: 'Query', description: 'Query' })
         items.push({ label: 'Report', description: 'Report' })
         items.push({ label: 'Table', description: 'Table' })
 
@@ -75,6 +78,7 @@ export class DynamicsNAV {
         let items: String[] = [];
 
         items.push('Page');
+        items.push('Query');
         items.push('Report');
         items.push('Table');
 
@@ -184,7 +188,7 @@ export class DynamicsNAV {
             case 'enum': return 'Enum';
             case 'enumextension': return 'Enum';
             case 'controladdin': return 'ControlAddIn';
-            case 'interface': return 'Interface';
+            case 'interface': return 'Iface';
             case 'requestpage': return 'RequestPage';
             case 'dotnet': return 'Dotnet';
         }
@@ -205,6 +209,7 @@ export class DynamicsNAV {
             case 'enum': return 'Enum';
             case 'enumextension': return 'EnumExt';
             case 'controladdin': return 'ControlAddin';
+            case 'interface': return 'Interface';
         }
     }
 
@@ -378,7 +383,8 @@ export class DynamicsNAV {
             "Key",
             "Area",
             "Actions",
-            "Trigger"
+            "Trigger",
+            "Interface"
         ];
 
         return keywords;

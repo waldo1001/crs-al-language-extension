@@ -778,3 +778,14 @@ export function getPageExtensionWithPrefixAndSuffix(): NAVTestObject {
     `
     return object;
 }
+export function getSimpleInterface(): NAVTestObject {
+    let object = new NAVTestObject;
+
+    object.ObjectFileName = 'SomeInterface.al'
+    object.ObjectText = `interface "IBallColorIdentifier"
+    {
+        procedure GetBallColor(): Text;
+    }
+    `
+    return object;
+}
