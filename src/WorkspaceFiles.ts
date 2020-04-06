@@ -3,8 +3,6 @@ import * as vscode from 'vscode';
 import * as fs from 'fs';
 import * as path from 'path'
 import { Settings } from './Settings';
-import { DynamicsNAV } from './DynamicsNAV';
-import { error } from 'util';
 import { NAVObject } from './NAVObject';
 import { Dictionary } from './Dictionary';
 import * as git from './Git';
@@ -215,7 +213,8 @@ export class WorkspaceFiles {
                 + " is set to 'None'.  Please choose another value for this function to work.";
 
             vscode.window.showErrorMessage(errorMessage);
-            throw new error(errorMessage);
+            
+            throw new Error(errorMessage);
         }
     }
 
