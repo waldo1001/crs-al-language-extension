@@ -48,7 +48,7 @@
             "\tCaption = '${2:MyField}';",
             "\tDataClassification = ${3|ToBeClassified,CustomerContent,EndUserIdentifiableInformation,AccountData,EndUserPseudonymousIdentifiers,OrganizationIdentifiableInformation,SystemMetadata|};",
             "\tOptionMembers = ${4:Default};",
-            "\tOptionCaption = '${4:Default}';"
+            "\tOptionCaption = '${4:Default}';",
             "}",
             "$0"
         ],
