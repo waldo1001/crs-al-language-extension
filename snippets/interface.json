@@ -1,6 +1,6 @@
 {
     "Snippet: Interface": {
-        "prefix": "tinterfaceprocedure(waldo)",
+        "prefix": "tinterfaceprocedurewaldo",
         "description": "Snippet: Interface Procedure",
         "body": [
             "procedure ${1:MyProcedure}(${2:Parameters})${3};",

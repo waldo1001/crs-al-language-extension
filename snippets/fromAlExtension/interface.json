@@ -1,6 +1,6 @@
 {
     "Snippet: Interface": {
-        "prefix": "tinterface(waldo)",
+        "prefix": "tinterfacewaldo",
         "body": [
             "interface ${1:IMyInterface}",
             "{",

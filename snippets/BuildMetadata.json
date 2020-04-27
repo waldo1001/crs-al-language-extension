@@ -1,7 +1,7 @@
 {
     "Snippet (waldo): Web Service Collection": {
         "description": "Snippet (waldo): Web Service Collection",
-        "prefix": "twebservicecollection(waldo)",
+        "prefix": "twebservicecollectionwaldo",
         "body": [
             "<?xml version=\"1.0\" encoding=\"utf-8\"?>",
             "<ExportedData>",
@@ -18,7 +18,7 @@
     },
     "Snippet (waldo): Web Service": {
         "description": "Snippet (waldo): Web Service",
-        "prefix": "twebservice(waldo)",
+        "prefix": "twebservicewaldo",
         "body": [
             "<TenantWebService>",
             "\t<ObjectType>${1|CodeUnit,Page,Query|}</ObjectType>",
@@ -30,7 +30,7 @@
     },
     "Snippet (waldo): Permission Set Collection": {
         "description": "Snippet (waldo): Permission Set Collection",
-        "prefix": "tpermissionsetcollection(waldo)",
+        "prefix": "tpermissionsetcollectionwaldo",
         "body": [
             "<PermissionSets>",
             "\t<PermissionSet RoleID=\"${1:PermissionSetId}\" RoleName=\"${2:PermissionSetName}\">",
@@ -50,7 +50,7 @@
     },
     "Snippet (waldo): Permission Set": {
         "description": "Snippet (waldo): Permission Set",
-        "prefix": "tpermissionset(waldo)",
+        "prefix": "tpermissionsetwaldo",
         "body": [
             "<PermissionSet RoleID=\"${1:PermissionSetId}\" RoleName=\"${2:PermissionSetName}\">",
             "\t<Permission>",
@@ -68,7 +68,7 @@
     },
     "Snippet (waldo): Permission": {
         "description": "Snippet (waldo): Permission",
-        "prefix": "tpermission(waldo)",
+        "prefix": "tpermissionwaldo",
         "body": [
             "<Permission>",
             "\t<ObjectType>${1|TableData,Table,Page,CodeUnit,Report,XmlPort,Query|}</ObjectType>",

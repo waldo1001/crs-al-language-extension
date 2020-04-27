@@ -1,6 +1,6 @@
 {
     "Snippet: Trigger": {
-        "prefix": "ttrigger(waldo)",
+        "prefix": "ttriggerwaldo",
         "body": [
             "trigger ${1:OnWhat}()",
             "begin",
@@ -10,7 +10,7 @@
         "description": "Snippet: Trigger"
     },
     "Snippet: Procedure": {
-        "prefix": "tprocedure(waldo)",
+        "prefix": "tprocedurewaldo",
         "body": [
             "${1:local} procedure ${2:MyProcedure}(${3})",
             "begin",
@@ -20,7 +20,7 @@
         "description": "Snippet: Procedure"
     },
     "Snippet: Assert Error": {
-        "prefix": "tassert(waldo)",
+        "prefix": "tassertwaldo",
         "body": [
             "assertError ${1:AssertStatement};",
             "if ${2:getLastErrorText} <> ${3:ErrorText} then",
@@ -29,7 +29,7 @@
         "description": "Snippet: Assert Error"
     },
     "Snippet: With Do": {
-        "prefix": "twithdo(waldo)",
+        "prefix": "twithdowaldo",
         "body": [
             "with ${1:RecordName} do begin",
             "\t$0",
@@ -38,7 +38,7 @@
         "description": "Snippet: With Do"
     },
     "Snippet: If": {
-        "prefix": "tif(waldo)",
+        "prefix": "tifwaldo",
         "body": [
             "if ${1:BooleanExpression} then begin",
             "\t$0",
@@ -47,7 +47,7 @@
         "description": "Snippet: If"
     },
     "Snippet: If Else": {
-        "prefix": "tifelse(waldo)",
+        "prefix": "tifelsewaldo",
         "body": [
             "if ${1:BooleanExpression} then begin",
             "\t${2}",
@@ -58,7 +58,7 @@
         "description": "Snippet: If Else"
     },
     "Snippet: Case Of": {
-        "prefix": "tcaseof(waldo)",
+        "prefix": "tcaseofwaldo",
         "body": [
             "case ${1:Expression} of",
             "\t${2:ExpressionOrRange}:",
@@ -70,7 +70,7 @@
         "description": "Snippet: Case Of"
     },
     "Snippet: Case Else": {
-        "prefix": "tcaseelse(waldo)",
+        "prefix": "tcaseelsewaldo",
         "body": [
             "case ${1:Expression} of",
             "\t${2:ExpressionOrRange}:",
@@ -84,7 +84,7 @@
         "description": "Snippet: Case Else"
     },
     "Snippet: For": {
-        "prefix": "tfor(waldo)",
+        "prefix": "tforwaldo",
         "body": [
             "for ${1:ControlVariable} := ${2:StartNumber} to ${3:EndNumber} do begin",
             "\t$0",
@@ -93,7 +93,7 @@
         "description": "Snippet: For"
     },
     "Snippet: ForEach": {
-        "prefix": "tforeach(waldo)",
+        "prefix": "tforeachwaldo",
         "body": [
             "foreach ${1:Value} in ${2:EnumerableCollection} do begin",
             "\t$0",
@@ -102,7 +102,7 @@
         "description": "Snippet: ForEach"
     },
     "Snippet: While": {
-        "prefix": "twhile(waldo)",
+        "prefix": "twhilewaldo",
         "body": [
             "while ${1:BooleanExpression} do begin",
             "\t$0",
@@ -111,7 +111,7 @@
         "description": "Snippet: While"
     },
     "Snippet: Repeat Until": {
-        "prefix": "trepeat(waldo)",
+        "prefix": "trepeatwaldo",
         "body": [
             "repeat",
             "\t$0",
@@ -120,7 +120,7 @@
         "description": "Snippet: Repeat Until"
     },
     "Snippet: Event Subscriber": {
-        "prefix": "teventsub(waldo)",
+        "prefix": "teventsubwaldo",
         "body": [
             "[EventSubscriber(ObjectType::${1|Codeunit,Page,Query,Report,Table,XmlPort|}, ${2|Codeunit::,Database::,Page::,Query::,Report::,XmlPort::|}, ${3:'OnSomeEvent'}, ${4:'ElementName'}, ${5:SkipOnMissingLicense}, ${6:SkipOnMissingPermission})]",
             "local procedure ${7:MyProcedure}(${8})",
@@ -131,7 +131,7 @@
         "description": "Snippet: Event Subscriber"
     },
     "Snippet: Integration Event": {
-        "prefix": "teventint(waldo)",
+        "prefix": "teventintwaldo",
         "body": [
             "[IntegrationEvent(${1:IncludeSender},${2:GlobalVarAccess})]",
             "local procedure ${0:MyProcedure}()",
@@ -141,7 +141,7 @@
         "description": "Snippet: Integration Event"
     },
     "Snippet: Business Event": {
-        "prefix": "teventbus(waldo)",
+        "prefix": "teventbuswaldo",
         "body": [
             "[BusinessEvent(${1:IncludeSender})]",
             "local procedure ${0:MyProcedure}()",
@@ -151,7 +151,7 @@
         "description": "Snippet: Business Event"
     },
     "Snippet: Internal Event": {
-        "prefix": "teventinternal(waldo)",
+        "prefix": "teventinternalwaldo",
         "body": [
             "[InternalEvent(${1:IncludeSender})]",
             "local procedure ${0:MyProcedure}()",
@@ -161,7 +161,7 @@
         "description": "Snippet: Internal Event"
     },
     "Snippet: Caption ML": {
-        "prefix": "tcaptionml(waldo)",
+        "prefix": "tcaptionmlwaldo",
         "body": [
             "CaptionML = ENU = '${1:englishText}',",
             "\t\t\t${2:languageShortcut} = '${0:languageText}';"
@@ -169,7 +169,7 @@
         "description": "Snippet: Caption ML"
     },
     "Snippet: Option Caption ML": {
-        "prefix": "toptioncaptionml(waldo)",
+        "prefix": "toptioncaptionmlwaldo",
         "body": [
             "OptionCaptionML = ENU = '${1:englishText}',",
             "\t\t\t${2:languageShortcut} = '${0:languageText}';"
@@ -177,7 +177,7 @@
         "description": "Snippet: Option Caption ML"
     },
     "Snippet: If Table Empty Else": {
-        "prefix": "tisemptyelse(waldo)",
+        "prefix": "tisemptyelsewaldo",
         "body": [
             "if ${1:Rec}.IsEmpty then begin",
             "\t${2}",
@@ -188,7 +188,7 @@
         "description": "Snippet: If Table Empty Else"
     },
     "Snippet: If Table Empty": {
-        "prefix": "tisempty(waldo)",
+        "prefix": "tisemptywaldo",
         "body": [
             "if ${1:Rec}.IsEmpty then begin",
             "\t$0",

@@ -1,6 +1,6 @@
 {
     "Snippet: Table Extension": {
-        "prefix": "ttableext(waldo)",
+        "prefix": "ttableextwaldo",
         "body": [
             "tableextension ${1:Id} ${2:MyExtension} extends ${3:MyTargetTable}",
             "{",

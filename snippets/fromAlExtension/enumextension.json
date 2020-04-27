@@ -1,6 +1,6 @@
 {
     "Snippet: Enum Extension": {
-        "prefix": "tenumext(waldo)",
+        "prefix": "tenumextwaldo",
         "body": [
             "enumextension ${1:Id} ${2:MyEnumExtension} extends ${3:MyTargetEnum}",
             "{",

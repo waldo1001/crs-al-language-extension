@@ -1,6 +1,6 @@
 {
     "Snippet: Page Customization": {
-        "prefix": "tpagecust(waldo)",
+        "prefix": "tpagecustwaldo",
         "body": [
             "pagecustomization ${1:MyCustomization} customizes ${2:MyTargetPage}",
             "{",

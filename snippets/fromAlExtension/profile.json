@@ -1,6 +1,6 @@
 {
     "Snippet: Profile": {
-        "prefix": "tprofile(waldo)",
+        "prefix": "tprofilewaldo",
         "body": [
             "profile ${1:MyProfile} ",
             "{",
@@ -12,7 +12,7 @@
         "description": "Snippet: Profile"
     },
     "Snippet: Profile (4.0)": {
-        "prefix": "tprofile(waldo)",
+        "prefix": "tprofilewaldo",
         "body": [
             "profile ${1:MyProfile} ",
             "{",

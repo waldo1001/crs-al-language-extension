@@ -1,6 +1,6 @@
 {
     "Page": {
-        "prefix": "tpage(waldo)",
+        "prefix": "tpagewaldo",
         "body": [
             "page ${1:Id} \"${2:MyPage}\"",
             "{",
@@ -45,7 +45,7 @@
         "description": "Snippet: Page"
     },
     "Snippet: Page Field": {
-        "prefix": "tpagefield(waldo)",
+        "prefix": "tpagefieldwaldo",
         "body": [
             "field(${1:MyField; FieldSource})",
             "{",
@@ -56,7 +56,7 @@
         "description": "Snippet: Page Field"
     },
     "Snippet: Action": {
-        "prefix": "taction(waldo)",
+        "prefix": "tactionwaldo",
         "body": [
             "action(${1:ActionName})",
             "{",
@@ -71,7 +71,7 @@
         "description": "Snippet: Page Action"
     },
     "Snippet: User Control": {
-        "prefix": "tusercontrol(waldo)",
+        "prefix": "tusercontrolwaldo",
         "body": [
             "usercontrol(${1:ControlName}; ${2:AddInName})",
             "{",
@@ -86,7 +86,7 @@
         "description": "Snippet: Page User Control"
     },
     "Snippet: View Shared Layout": {
-        "prefix": "tviewshared(waldo)",
+        "prefix": "tviewsharedwaldo",
         "body": [
             "view(${1:ViewName})",
             "{",
@@ -97,7 +97,7 @@
         "description": "Snippet: Page View without layout changes"
     },
     "Snippet: View Detached Layout": {
-        "prefix": "tviewdetached(waldo)",
+        "prefix": "tviewdetachedwaldo",
         "body": [
             "view(${1:ViewName})",
             "{",
@@ -114,7 +114,7 @@
         "description": "Snippet: Page View with layout changes"
     },
     "Snippet: Part": {
-        "prefix": "tpart(waldo)",
+        "prefix": "tpartwaldo",
         "body": [
             "part(${1:PartName}; ${2:PartSource})",
             "{",
@@ -124,7 +124,7 @@
         "description": "Snippet: Page Part"
     },    
     "Page of type list": {
-        "prefix": "tpagelist(waldo)",
+        "prefix": "tpagelistwaldo",
         "body": [
             "page ${1:Id} ${2:PageName}",
             "{",
@@ -173,7 +173,7 @@
         "description": "Snippet: Page of type list"
     },
     "Page of type API": {
-        "prefix": "tpageapi(waldo)",
+        "prefix": "tpageapiwaldo",
         "body": [
             "page ${1:Id} ${2:ApiPageName}",
             "{",
@@ -206,7 +206,7 @@
         "description": "Snippet: Page of type API"
     },
     "Page of type Role Center": {
-        "prefix": "tpage(waldo)",
+        "prefix": "tpagewaldo",
         "body": [
             "page ${1:Id} ${2:RoleCenterName}",
             "{",

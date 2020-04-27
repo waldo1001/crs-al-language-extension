@@ -1,6 +1,6 @@
 {
     "Snippet: Repeat Until": {
-        "prefix": "tdependency(waldo)",
+        "prefix": "tdependencywaldo",
         "body": [
             "{",
             "\t\"appId\": \"${1:The AppId}\",",

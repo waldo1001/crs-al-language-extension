@@ -1,7 +1,7 @@
 {
     "Snippet (waldo): Method Codeunit": {
         "description": "Snippet (waldo): Method Codeunit (With UI)",
-        "prefix": "tcodeunit(waldo:Method-WithUI)",
+        "prefix": "tcodeunitMethodWithUIwaldo",
         "body": [
             "codeunit ${1:Id} \"${2:FullMethodName} Meth\"",
             "{",
@@ -54,7 +54,7 @@
     },
     "Snippet (waldo): Method Codeunit (No UI)": {
         "description": "Snippet (waldo): Method Codeunit (No UI)",
-        "prefix": "tcodeunit(waldo:Method-WithoutUI)",
+        "prefix": "tcodeunittcodeunitMethodWithoutUIwaldo",
         "body": [
             "codeunit ${1:id} \"${2:Name} Meth\"",
             "{",
@@ -90,7 +90,7 @@
     },
     "Snippet (waldo): Enable Assisted Setup (<15.0) ": {
         "description": "Snippet (waldo): Enable Assisted Setup (<15.0)",
-        "prefix": "tassistedsetup(waldo)(<v15)",
+        "prefix": "tassistedsetupwaldobeforev15",
         "body": [
             "[EventSubscriber(ObjectType::Table, Database::\"Aggregated Assisted Setup\", 'OnRegisterAssistedSetup', '', false, false)]",
             "local procedure AddExtensionAssistedSetup_OnRegisterAssistedSetup(var TempAggregatedAssistedSetup: Record \"Aggregated Assisted Setup\" TEMPORARY);",
@@ -125,7 +125,7 @@
     },
     "Snippet (waldo): Enable Assisted Setup (>=15.0) ": {
         "description": "Snippet (waldo): Enable Assisted Setup (>=15.0)",
-        "prefix": "tassistedsetup(waldo)(>=15)",
+        "prefix": "tassistedsetupwaldoafterv15",
         "body": [
 			"codeunit ${1:id} \"${2:Name} Meth\"",
 			"{",
@@ -202,7 +202,7 @@
 	},
     "Snippet (waldo): Enable My Notifications ": {
         "description": "Snippet (waldo): Enable My Notifications",
-        "prefix": "tmynotifications(waldo)",
+        "prefix": "tmynotificationswaldo",
         "body": [
             "local procedure GetMyNotificationID(): Guid",
             "begin",
@@ -229,7 +229,7 @@
     },
     "Snippet (waldo): Enable Service Connection": {
         "description": "Snippet (waldo): Enable Service Connection",
-        "prefix": "tserviceconnection(waldo)",
+        "prefix": "tserviceconnectionwaldo",
         "body": [
             "[EventSubscriber(ObjectType::Table, Database:: \"Service Connection\", 'OnRegisterServiceConnection', '',false, false)]",
             "local procedure AddSetup_OnRegisterServiceConnection(var ServiceConnection: Record \"Service Connection\")",
@@ -248,7 +248,7 @@
     },
     "Snippet (waldo): Create Setup Table": {
         "description": "Snippet (waldo): Create Setup Table",
-        "prefix": "ttablesetup(waldo)",
+        "prefix": "ttablesetupwaldo",
         "body": [
             "table ${1:id} \"${2:MyTable} Setup\"",
             "{",
@@ -288,7 +288,7 @@
         ]
     },
     "Snippet (waldo): Create Setup Page": {
-        "prefix": "tpagesetup(waldo)",
+        "prefix": "tpagesetupwaldo",
         "body": [
             "page ${1:Id} \"${2:PageName} Setup\"",
             "{",
@@ -323,7 +323,7 @@
         "description": "Snippet (waldo): Create Setup Page"
     },
     "Snippet (waldo): Create Headline Page": {
-        "prefix": "tpageheadline(waldo)",
+        "prefix": "tpageheadlinewaldo",
         "body": [
             "page ${1:Id} \"Headline RC ${2:AppName}\"\r",
             "{\r",
@@ -431,7 +431,7 @@
         "description": "Snippet (waldo): Create Headline Page"
     },
     "Snippet (waldo): Create Role Center Page": {
-        "prefix": "tpagerolecenter(waldo)",
+        "prefix": "tpagerolecenterwaldo",
         "body": [
             "page ${1:Id} \"${2:AppName} Role Center\"\r",
             "{\r",
@@ -583,7 +583,7 @@
         "description": "Snippet (waldo): Create Role Center Page"
     },
     "Snippet (waldo): Create Role Center Activities Cue Table": {
-        "prefix": "ttableactivities(waldo)",
+        "prefix": "ttableactivitieswaldo",
         "body": [
             "table ${1:Id} \"${2:AppName} Activities Cue\"\r",
             "{\r",
@@ -625,7 +625,7 @@
         "description": "Snippet (waldo): Create Role Center Activities Cue Table"
     },
     "Snippet (waldo): Create Role Center Activities Page": {
-        "prefix": "tpageactivities(waldo)",
+        "prefix": "tpageactivitieswaldo",
         "body": [
             "page ${1:Id} \"${2:AppName} Activities\"\r",
             "{\r",

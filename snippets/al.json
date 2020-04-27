@@ -1,6 +1,6 @@
 {
     "Snippet: Repeat Until": {
-        "prefix": "trepeat(waldo)",
+        "prefix": "trepeatwaldo",
         "body": [
             "if ${1:Rec}.FindSet() then begin",
             "\trepeat",
@@ -12,7 +12,7 @@
     },
     "Snippet (waldo): Declare a variable ": {
         "description": "Snippet (waldo): Declare a variable",
-        "prefix": "tvar(waldo)",
+        "prefix": "tvarwaldo",
         "body": [
             "${3:VariableName}: ${1:Type} ${2:Subtype};",
             "${0}"
@@ -20,7 +20,7 @@
     },
     "Snippet (waldo): Field Groups": {
         "description": "Snippet (waldo): Add Field Groups section",
-        "prefix": "tfieldgroups(waldo)",
+        "prefix": "tfieldgroupswaldo",
         "body": [
             "fieldgroups",
             "{",
@@ -30,14 +30,14 @@
     },
     "Snippet (waldo): Field Group": {
         "description": "Snippet (waldo): Add Field Group",
-        "prefix": "tfieldgroup(waldo)",
+        "prefix": "tfieldgroupwaldo",
         "body": [
             "fieldgroup(${1|DropDown,Brick|}; ${2:AddFieldsHere}) { }"
         ]
     },
     "Snippet (waldo): Codeunit with proc": {
         "description": "Snippet (waldo): Procedure from clipboard",
-        "prefix": "tProcedureFromClipboard(waldo)",
+        "prefix": "tProcedureFromClipboardwaldo",
         "body": [
             "local procedure ${1:ProcedureName}()",
             "begin",

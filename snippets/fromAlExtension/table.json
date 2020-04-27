@@ -1,6 +1,6 @@
 {
     "Snippet: Table": {
-        "prefix": "ttable(waldo)",
+        "prefix": "ttablewaldo",
         "body": [
             "table ${1:id} ${2:MyTable}",
             "{",
@@ -29,7 +29,7 @@
         "description": "Snippet: Table"
     },
     "Snippet: Table Field": {
-        "prefix": "tfield(waldo)",
+        "prefix": "tfieldwaldo",
         "body": [
             "field(${1:id}; \"${2:MyField}\"; ${3|Blob,BigInteger,Boolean,Code[50],Date,DateFormula,DateTime,Decimal,Duration,Integer,Guid,Media,MediaSet,Option,RecordID,TableFilter,Text[50],Time,Enum|})",
             "{",
@@ -41,7 +41,7 @@
         "description": "Snippet: Table Field"
     },
     "Snippet: Table Field Option": {
-        "prefix": "tfieldoption(waldo)",
+        "prefix": "tfieldoptionwaldo",
         "body": [
             "field(${1:id}; \"${2:MyField}\"; Option)",
             "{",
@@ -55,7 +55,7 @@
         "description": "Snippet: Table Field Option"
     },
     "Snippet: Table Field Code": {
-        "prefix": "tfieldcode(waldo)",
+        "prefix": "tfieldcodewaldo",
         "body": [
             "field(${1:id}; \"${2:MyField}\"; Code[${3:Length}])",
             "{",
@@ -67,7 +67,7 @@
         "description": "Snippet: Table Field Code"
     },
     "Snippet: Table Field Text": {
-        "prefix": "tfieldtext(waldo)",
+        "prefix": "tfieldtextwaldo",
         "body": [
             "field(${1:id}; \"${2:MyField}\"; Text[${3:Length}])",
             "{",
@@ -79,7 +79,7 @@
         "description": "Snippet: Table Field Text"
     },
     "Snippet: Table Key": {
-        "prefix": "tkey(waldo)",
+        "prefix": "tkeywaldo",
         "body": [
             "key(${1:MyKey}; \"${2:MyField}\")",
             "{",
