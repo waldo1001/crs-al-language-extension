@@ -287,6 +287,10 @@
             },
             {
                 "language": "al",
+                "path": "./snippets/interface.json"
+            },
+            {
+                "language": "al",
                 "path": "./snippets/fromAlExtension/al.json"
             },
             {
@@ -336,6 +340,10 @@
             {
                 "language": "al",
                 "path": "./snippets/fromAlExtension/xmlport.json"
+            },
+            {
+                "language": "al",
+                "path": "./snippets/fromAlExtension/interface.json"
             },
             {
                 "language": "json",
