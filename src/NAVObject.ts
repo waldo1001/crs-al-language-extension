@@ -261,8 +261,8 @@ export class NAVObject {
 
             this.objectType = this.objectType.trim().toString();
             this.objectId = this.objectId.trim().toString();
-            this.objectName = this.objectName.trim().toString().replace(/"/g, '');
-            this.extendedObjectName = this.extendedObjectName.trim().toString().replace(/"/g, '');
+            this.objectName = this.objectName.trim().toString().replace(/["_]/g, '');
+            this.extendedObjectName = this.extendedObjectName.trim().toString().replace(/["_]/g, '');
             this.extendedObjectId = this.extendedObjectId.trim().toString();
         }
 
