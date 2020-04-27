@@ -1,6 +1,19 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension.
 
+## [1.2.2] - 2020-04-27
+Finally found a solution for the annoying snippets that popped up in IntelliSense when not wanted.
+
+Added:
+- [New snippet - interface enhancement](https://github.com/waldo1001/crs-al-language-extension/issues/165)
+
+Fixed:
+- [if/then statement runs tcodeunit snippet](https://github.com/waldo1001/crs-al-language-extension/issues/166)
+- [Remove the '.' in assistedsetup snippets](https://github.com/waldo1001/crs-al-language-extension/issues/162)
+- [Renaming doesn't remove underscore](https://github.com/waldo1001/crs-al-language-extension/issues/161)
+- [Renaming files fails on codeunits that implement interfaces](https://github.com/waldo1001/crs-al-language-extension/issues/159)
+- [Intellisense on EventSubscriber Procedure](https://github.com/waldo1001/crs-al-language-extension/issues/86)
+
 ## [1.2.1] - 2020-04-06
 Added support for "Interface" object of Business Central v16
 

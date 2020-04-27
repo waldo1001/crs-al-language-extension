@@ -44,18 +44,18 @@ The selected word in the editor will be added by default as a search string.
 
 ### Snippets
 al Snippets:
-* tpagewizard (CRS: 3 steps)
+* tpagewizard3stepswaldo
     * creates a wizard with 3 steps
     * includes placeholders
-* ttableextension (waldo)
+* ttableextensionwaldo
     * Quite the same as the default snippet, but with the comment to include an TargetTableId to be able to properly rename the file (which might need that ID).
-* tpageextension (waldo)
+* tpageextensionwaldo
     * Quite the same as the default snippet, but with the comment to include an TargetPageId to be able to properly rename the file (which might need that ID).
-* tpagecustomization (waldo)
+* tpagecustomizationwaldo
     * Quite the same as the default snippet, but with the comment to include an TargetPageId to be able to properly rename the file (which might need that ID).
-* tvar (waldo)
+* tvarwaldo
     * Some easier way to greate a variable
-* tfieldgroup(s) (waldo)
+* tfieldgroup(s)waldo
     * To work with fieldgroups (Like "Brick" & "DropDown")
 * tProcedureFromClipboard
     * to convert a piece of code into a function, just cut the code and use this snippet - pretty cool ;-).
@@ -63,15 +63,17 @@ al Snippets:
     * [multiple snippets](https://github.com/waldo1001/crs-al-language-extension/commit/e58b72dddda3007b982b31e85a3b9caa351adcd4) for easily adding handlers in test-codeunits
 
 Apply some design patterns:
-* tcodeunit (CRS: Method - No UI)
+* tcodeunittcodeunitMethodWithoutUIwaldo
     * creates a codeunit, conform on the "Event Based Software Architecture"
     * no functions for UI
     * includes placeholders
-* tmynotifications (waldo)
+* tcodeunitMethodWithUIwaldo
+    * Same as above, but WITH the UI functions
+* tmynotificationswaldo
     * apply "discover event subscriber" for adding a "My Notification"
-* tassistedsetup (waldo)
+* tassistedsetupwaldo
     * apply "discover event subscriber" for adding an assisted setup
-* tserviceconnection (waldo)
+* tserviceconnectionwaldo
     * apply "discover event subscriber" for adding a service connection 
 * ttablesetup & tpagesetup
     * create setup-table with page
