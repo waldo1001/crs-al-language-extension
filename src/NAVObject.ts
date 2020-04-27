@@ -165,12 +165,7 @@ export class NAVObject {
                         vscode.window.showErrorMessage(`File '${this.objectFileName}' does not have valid object name. Maybe it got double quotes (") in the object name?`)
                         return null
                     }
-                    if (currObject[4] != null) {
-                        //throw new Error(`File '${this.objectFileName}' does not have valid object name, it has too many double quotes (")`)
-                        vscode.window.showErrorMessage(`File '${this.objectFileName}' does not have valid object name, it has too many double quotes (")`)
-                        return null
-                    }
-
+                    
                     this.objectType = currObject[1];
                     this.objectId = currObject[2];
                     this.objectName = currObject[3];

@@ -188,17 +188,6 @@ suite("NAVObject FilePattern Tests", () => {
         assert.equal(navObject.objectId, '')
     })
 
-
-    test("Filename - Rename Page with double qoutes in object name", () => {
-        let testSettings = Settings.GetConfigSettings(null)
-        testSettings[Settings.FileNamePatternExtensions] = '<BaseName>_<ObjectName>.al'
-
-        let navTestObject = NAVTestObjectLibrary.getPageWithQuotesInObjectName();
-        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
-
-        assert.equal(navObject.objectId, '')
-    })
-
     test("Filename - Rename Page with Brackets in the object name", () => {
         let testSettings = Settings.GetConfigSettings(null)
         testSettings[Settings.FileNamePatternExtensions] = '<BaseName>_<ObjectName>.al'
