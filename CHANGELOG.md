@@ -1,6 +1,14 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension.
 
+## [1.2.3] - 2020-04-28
+New setting:
+- `CRS.RemoveUnderscoreFromFilename`: When using the Reorganize/Rename-commands, this setting will remove any underscore from the filename (but keep it in object name).  Tip: use as a workspace-setting
+
+Fixed:
+- [Prefix/Suffix with underscores fails to be removed from filename](https://github.com/waldo1001/crs-al-language-extension/issues/169)
+- [Prefix/Suffix in procedures to objects parameters if procedure name ends with "action"](https://github.com/waldo1001/crs-al-language-extension/issues/168)
+
 ## [1.2.2] - 2020-04-27
 Finally found a solution for the annoying snippets that popped up in IntelliSense when not wanted.
 
