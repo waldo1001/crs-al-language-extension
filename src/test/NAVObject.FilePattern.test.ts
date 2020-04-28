@@ -206,10 +206,25 @@ suite("NAVObject FilePattern Tests", () => {
         testSettings[Settings.FileNamePatternExtensions] = '<ObjectNameShort>__<ObjectName>.al';
         testSettings[Settings.ObjectNamePrefix] = 'CRS ';
         testSettings[Settings.RemovePrefixFromFilename] = true;
+        testSettings[Settings.RemoveUnderscoreFromFilename] = false;
 
         let navTestObject = NAVTestObjectLibrary.getPageExtensionWithPrefix();
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
         assert.equal(navObject.objectFileNameFixed, 'SalespersonsPurchasers__Salespersons_Purchasers.al')
+        assert.equal(navObject.objectNameFixed, 'CRS Salespersons/Purchasers')
+    })
+
+    test("Filename - Rename PageExtension with Prefix in object name, and remove prefix in filename (not data-agnostic)", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+
+        testSettings[Settings.FileNamePatternExtensions] = '<ObjectNameShort>__<ObjectName>.al';
+        testSettings[Settings.ObjectNamePrefix] = 'CRS ';
+        testSettings[Settings.RemovePrefixFromFilename] = true;
+        testSettings[Settings.RemoveUnderscoreFromFilename] = true;
+
+        let navTestObject = NAVTestObjectLibrary.getPageExtensionWithPrefix();
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
+        assert.equal(navObject.objectFileNameFixed, 'SalespersonsPurchasersSalespersonsPurchasers.al')
         assert.equal(navObject.objectNameFixed, 'CRS Salespersons/Purchasers')
     })
 
@@ -219,6 +234,7 @@ suite("NAVObject FilePattern Tests", () => {
         testSettings[Settings.FileNamePatternExtensions] = '<ObjectNameShort>__<ObjectName>.al';
         testSettings[Settings.ObjectNamePrefix] = 'CRS ';
         testSettings[Settings.RemovePrefixFromFilename] = true;
+        testSettings[Settings.RemoveUnderscoreFromFilename] = false;
 
         let navTestObject = NAVTestObjectLibrary.getPageExtensionWithPrefix();
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
@@ -233,6 +249,7 @@ suite("NAVObject FilePattern Tests", () => {
         testSettings[Settings.FileNamePatternExtensions] = '<ObjectNameShort>__<ObjectName>.al';
         testSettings[Settings.ObjectNameSuffix] = ' CRS';
         testSettings[Settings.RemoveSuffixFromFilename] = true;
+        testSettings[Settings.RemoveUnderscoreFromFilename] = false;
 
         let navTestObject = NAVTestObjectLibrary.getPageExtensionWithSuffix();
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
@@ -246,6 +263,7 @@ suite("NAVObject FilePattern Tests", () => {
         testSettings[Settings.FileNamePatternExtensions] = '<ObjectNameShort>__<ObjectName>.al';
         testSettings[Settings.ObjectNameSuffix] = ' CRS';
         testSettings[Settings.RemoveSuffixFromFilename] = true;
+        testSettings[Settings.RemoveUnderscoreFromFilename] = false;
 
         let navTestObject = NAVTestObjectLibrary.getPageExtensionWithSuffix();
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
@@ -260,6 +278,7 @@ suite("NAVObject FilePattern Tests", () => {
         testSettings[Settings.FileNamePatternExtensions] = '<ObjectNameShort>__<ObjectName>.al';
         testSettings[Settings.ObjectNamePrefix] = 'PCRS ';
         testSettings[Settings.RemovePrefixFromFilename] = true;
+        testSettings[Settings.RemoveUnderscoreFromFilename] = false;
 
         testSettings[Settings.ObjectNameSuffix] = ' SCRS';
         testSettings[Settings.RemoveSuffixFromFilename] = true;
@@ -387,4 +406,64 @@ suite("NAVObject FilePattern Tests", () => {
         assert.equal(navObject.objectFileNameFixed,'IBallColorIdentifier.Interface.al')        
     })
 
+    test("Filename - Rename PageExtension with Suffix with underscore in object name, and remove suffix in filename (not data-agnostic)", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+
+        testSettings[Settings.FileNamePattern] = '<ObjectName>.al';
+        testSettings[Settings.ObjectNameSuffix] = '_EVAS';
+        testSettings[Settings.RemoveSuffixFromFilename] = true;
+
+        let navTestObject = NAVTestObjectLibrary.getTestCodeunitWithPrefix(); //codeunit 50101 "Vault Management_EVAS"
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
+        assert.equal(navObject.objectFileNameFixed, 'Vault Management.al')
+        assert.equal(navObject.objectNameFixed, 'Vault Management_EVAS')
+    })
+    test("Filename - Rename PageExtension with Suffix with underscore in object name, and remove suffix in filename (not data-agnostic)", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+
+        testSettings[Settings.FileNamePattern] = '<ObjectName>.al';
+        testSettings[Settings.ObjectNameSuffix] = '_EVAS';
+        testSettings[Settings.RemoveSuffixFromFilename] = true;
+        testSettings[Settings.RemoveUnderscoreFromFilename] = false;
+
+        let navTestObject = NAVTestObjectLibrary.getTestCodeunitWithPrefix(); //codeunit 50101 "Vault Management_EVAS"
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
+        assert.equal(navObject.objectFileNameFixed, 'Vault Management.al')
+        assert.equal(navObject.objectNameFixed, 'Vault Management_EVAS')
+    })
+
+    test("Filename - Rename PageExtension with underscore - remove underscore (not data-agnostic)", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+
+        testSettings[Settings.FileNamePattern] = '<ObjectName>.al';
+
+        let navTestObject = NAVTestObjectLibrary.getTestCodeunitWithPrefix(); //codeunit 50101 "Vault Management_EVAS"
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
+        assert.equal(navObject.objectFileNameFixed, 'Vault ManagementEVAS.al')
+        assert.equal(navObject.objectNameFixed, 'Vault Management_EVAS')
+    })
+
+    test("Filename - Rename PageExtension with underscore - remove underscore (not data-agnostic)", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+
+        testSettings[Settings.FileNamePattern] = '<ObjectName>.al';
+        testSettings[Settings.RemoveUnderscoreFromFilename] = false;
+
+        let navTestObject = NAVTestObjectLibrary.getTestCodeunitWithPrefix(); //codeunit 50101 "Vault Management_EVAS"
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
+        assert.equal(navObject.objectFileNameFixed, 'Vault Management_EVAS.al')
+        assert.equal(navObject.objectNameFixed, 'Vault Management_EVAS')
+    })
+
+    test("Filename - Rename PageExtension with underscore - remove underscore (not data-agnostic)", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+
+        testSettings[Settings.FileNamePattern] = '<ObjectNameShort>.al';
+        testSettings[Settings.RemoveUnderscoreFromFilename] = false;
+
+        let navTestObject = NAVTestObjectLibrary.getTestCodeunitWithPrefix(); //codeunit 50101 "Vault Management_EVAS"
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
+        assert.equal(navObject.objectFileNameFixed, 'VaultManagement_EVAS.al')
+        assert.equal(navObject.objectNameFixed, 'Vault Management_EVAS')
+    })
 })

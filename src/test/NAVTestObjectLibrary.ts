@@ -140,6 +140,18 @@ export function getTestCodeunit(): NAVTestObject {
     `
     return object;
 }
+export function getTestCodeunitWithPrefix(): NAVTestObject {
+    let object = new NAVTestObject;
+
+    object.ObjectFileName = 'Cod50100.justAName.al'
+    object.ObjectText = `
+        codeunit 50101 "Vault Management_EVAS"
+        {
+        
+        }
+    `
+    return object;
+}
 
 export function getTableWithWrongFileName(): NAVTestObject {
     let object = new NAVTestObject;

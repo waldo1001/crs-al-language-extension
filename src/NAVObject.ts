@@ -77,14 +77,15 @@ export class NAVObject {
     }
 
     get objectNameFixedForFileName(): string {
-        let objectNameFixed = this.RemovePrefixAndSuffixFromObjectNameFixed(this.objectNameFixed);
+        let objectNameFixed = this.RemovePrefixAndSuffix(this.objectNameFixed);
         return objectNameFixed.replace(new RegExp(`[${this.prohibitedFilenameCharsPattern}]`, 'g'), '_');
     }
+
     get objectNameFixedShort(): string {
         if (this.objectNameFixed.length > 30) {
-            return StringFunctions.removeAllButAlfaNumeric(this.RemovePrefixAndSuffixFromObjectNameFixed(this.objectName));
+            return StringFunctions.removeAllButAlfaNumeric(this.RemovePrefixAndSuffix(this.objectName));
         } else {
-            return StringFunctions.removeAllButAlfaNumeric(this.RemovePrefixAndSuffixFromObjectNameFixed(this.objectNameFixed));
+            return StringFunctions.removeAllButAlfaNumeric(this.RemovePrefixAndSuffix(this.objectNameFixed));
         }
     }
     get extendedObjectNameFixed(): string {
@@ -115,8 +116,9 @@ export class NAVObject {
         let objectFileNameFixed = this._objectFileNamePattern
 
         objectFileNameFixed = this.ApplyPatternToFileName(objectFileNameFixed);
+        objectFileNameFixed = this.RemoveUnderscore(objectFileNameFixed);
 
-        return objectFileNameFixed
+        return objectFileNameFixed;
     }
 
     get objectCodeunitSubType(): string {
@@ -165,7 +167,7 @@ export class NAVObject {
                         vscode.window.showErrorMessage(`File '${this.objectFileName}' does not have valid object name. Maybe it got double quotes (") in the object name?`)
                         return null
                     }
-                    
+
                     this.objectType = currObject[1];
                     this.objectId = currObject[2];
                     this.objectName = currObject[3];
@@ -256,8 +258,8 @@ export class NAVObject {
 
             this.objectType = this.objectType.trim().toString();
             this.objectId = this.objectId.trim().toString();
-            this.objectName = this.objectName.trim().toString().replace(/["_]/g, '');
-            this.extendedObjectName = this.extendedObjectName.trim().toString().replace(/["_]/g, '');
+            this.objectName = this.objectName.trim().toString().replace(/["]/g, '');
+            this.extendedObjectName = this.extendedObjectName.trim().toString().replace(/["]/g, '');
             this.extendedObjectId = this.extendedObjectId.trim().toString();
         }
 
@@ -375,7 +377,7 @@ export class NAVObject {
         }
         return objectName
     }
-    private RemovePrefixAndSuffixFromObjectNameFixed(objectName: string): string {
+    private RemovePrefixAndSuffix(objectName: string): string {
         let removePrefix = this._workSpaceSettings[Settings.RemovePrefixFromFilename];
         let removeSuffix = this._workSpaceSettings[Settings.RemoveSuffixFromFilename];
         if (!removePrefix && !removeSuffix) { return objectName }
@@ -393,6 +395,17 @@ export class NAVObject {
         }
 
         return objectName
+    }
+    private RemoveUnderscore(objectName: string): string {
+        let removeUnderscores = this._workSpaceSettings[Settings.RemoveUnderscoreFromFilename];
+
+        if (removeUnderscores) {
+            return objectName.replace(/[_]/g, "");
+        }
+        else {
+            return objectName;
+        }
+
     }
 
     private updateObjectNameInObjectText(objectText: string): string {
