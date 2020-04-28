@@ -250,7 +250,13 @@ export function getPageExtensionWrongFileNameWithActions(): NAVTestObject {
                 }
             }
         }
-    }
+
+        trigger OnOpenPage()
+        var
+            TestCodeunit: Codeunit "Testcodeunit SUFFIX";
+        begin
+            TestCodeunit.MyProcedureNameEndsWithaction(Rec);
+        end;
     }
     `
     return object;

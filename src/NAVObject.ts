@@ -466,7 +466,7 @@ class NAVObjectAction {
     private _objectType: string;
 
     public static actionRegEx(): RegExp {
-        return /.*((action\("?)([ a-zA-Z0-9._/&-]+)"?\))/g
+        return /.*([ \t](action\("?)([ a-zA-Z0-9._/&-]+)"?\))/g
     }
 
     get nameFixed(): string {
