@@ -466,7 +466,7 @@ class NAVObjectAction {
     private _objectType: string;
 
     public static actionRegEx(): RegExp {
-        return /.*([ \t](action\("?)([ a-zA-Z0-9._/&-]+)"?\))/g
+        return /.*( (action\("?)([ a-zA-Z0-9._/&-]+)"?\))/g
     }
 
     get nameFixed(): string {
@@ -486,7 +486,7 @@ class NAVObjectAction {
     get fullActionTextFixed(): string {
         if (!this._prefix && !this._suffix) { return this.fullActionText };
 
-        return "action(" + StringFunctions.encloseInQuotesIfNecessary(this.nameFixed) + ")"
+        return " action(" + StringFunctions.encloseInQuotesIfNecessary(this.nameFixed) + ")"
     }
 
     constructor(fullActionText: string, objectType: string, prefix?: string, suffix?: string) {

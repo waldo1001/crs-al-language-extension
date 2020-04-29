@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension.
 
+## [1.2.4] - 2020-04-29
+Fixed: [action indentation after rename](https://github.com/waldo1001/crs-al-language-extension/issues/170)
+
 ## [1.2.3] - 2020-04-28
 New setting:
 - `CRS.RemoveUnderscoreFromFilename`: When using the Reorganize/Rename-commands, this setting will remove any underscore from the filename (but keep it in object name).  Tip: use as a workspace-setting
