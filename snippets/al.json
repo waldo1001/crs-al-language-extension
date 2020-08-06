@@ -1,12 +1,11 @@
 {
     "Snippet: Repeat Until": {
-        "prefix": "trepeatwaldo",
+        "prefix": "tiffindrepeatwaldo",
         "body": [
-            "if ${1:Rec}.FindSet() then begin",
+            "if ${1:Rec}.FindSet() then",
             "\trepeat",
             "\t$0",
             "\tuntil ${1:Rec}.Next() < 1;",
-            "end;"
         ],
         "description": "Snippet: if findset repeat until"
     },
