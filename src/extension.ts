@@ -45,7 +45,9 @@ export function activate(context: vscode.ExtensionContext) { //is called when yo
     context.subscriptions.concat(commandlist, componentlist);
 
     context.subscriptions.push(vscode.workspace.onDidSaveTextDocument(CRSFunctions.HandleOnSaveTextDocument));
-    context.subscriptions.push(vscode.workspace.onDidOpenTextDocument(CRSFunctions.HandleOnOpenTextDocument));
+    // changed to onDidChangeActiveTextEditor eventhandler
+    //context.subscriptions.push(vscode.workspace.onDidOpenTextDocument(CRSFunctions.HandleOnOpenTextDocument));
+    context.subscriptions.push(vscode.window.onDidChangeActiveTextEditor(CRSFunctions.HandleOnChangeActiveTextEditor));
 
     vscode.commands.executeCommand('crs.SetupSnippets');
 
