@@ -197,12 +197,23 @@ export function HandleOnSaveTextDocument() {
     console.log('Done: HandleOnSaveTextDocument');
 }
 
+/*** changed to onDidChangeActiveTextEditor eventhandler
+ * @deprecated
+ */
 export function HandleOnOpenTextDocument() {
     console.log('Running: HandleOnOpenTextDocument');
 
     CRSStatusBar.toggleRunObjectFromStatusBar();
 
     console.log('Done: HandleOnOpenTextDocument')
+}
+
+export function HandleOnChangeActiveTextEditor(editor?: vscode.TextEditor) {
+    console.log('Running: HandleOnChangeActiveTextEditor');
+
+    CRSStatusBar.toggleRunObjectFromStatusBar(editor?.document);
+
+    console.log('Done: HandleOnChangeActiveTextEditor')
 }
 
 function getWord(editor: vscode.TextEditor): string {
