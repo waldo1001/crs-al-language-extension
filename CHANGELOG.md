@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension.
 
+## [1.2.5] - 2020-10-05
+[Fix](https://github.com/waldo1001/crs-al-language-extension/pull/181) from [Márton Sági](https://github.com/martonsagi) about focusing webview and performance loss.
+Fixed a few snippets to comply with CodeCops
+
 ## [1.2.4] - 2020-04-29
 Fixed: [action indentation after rename](https://github.com/waldo1001/crs-al-language-extension/issues/170)
 
