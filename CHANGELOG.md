@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension.
 
-## [1.3.0] - 2020-11-05
+## [1.3.1] - 2020-11-05
 New Command: `CRS: Create GraphViz Dependency Graph`
 
 This command will read all app.json files in your workspace (so this function is really useful in a Multi-root workspace) and create a .dot dependency file from it.  To display this file graphically, I recommend to also install the extension [Graphviz Interactive Preview](https://marketplace.visualstudio.com/items?itemName=tintinweb.graphviz-interactive-preview).  If you have, this command will automatically open the preview after generating the graph.

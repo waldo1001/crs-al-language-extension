@@ -2,7 +2,7 @@
     "name": "crs-al-language-extension",
     "displayName": "waldo's CRS AL Language Extension",
     "description": "Make working with the (Dynamics NAV / 365) AL Language easier and more efficient.",
-    "version": "1.3.0",
+    "version": "1.3.1",
     "publisher": "waldo",
     "icon": "images/waldo.png",
     "author": {
@@ -258,7 +258,7 @@
                 },
                 "CRS.DependencyGraph.IncludeTestApps": {
                     "type": "boolean",
-                    "default": "false",
+                    "default": false,
                     "description": "Whether to include all dependencies to test apps in the Dependency Graph.",
                     "scope": "resource"
                 },
