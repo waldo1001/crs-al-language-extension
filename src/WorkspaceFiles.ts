@@ -8,8 +8,12 @@ import { Dictionary } from './Dictionary';
 import * as git from './Git';
 import * as CRSTerminal from './CRSTerminal';
 import * as crsOutput from './CRSOutput';
+import { ALGraphVis } from './ALGraphVis';
+import { AppJson } from './AppJson';
+
 
 export class WorkspaceFiles {
+    static graphVisResult = [];
 
     static getCurrentWorkspaceFolder(): vscode.WorkspaceFolder {
         let workspaceFolder = vscode.workspace.getWorkspaceFolder(vscode.workspace.workspaceFolders[0].uri);
@@ -213,7 +217,7 @@ export class WorkspaceFiles {
                 + " is set to 'None'.  Please choose another value for this function to work.";
 
             vscode.window.showErrorMessage(errorMessage);
-            
+
             throw new Error(errorMessage);
         }
     }
@@ -298,6 +302,43 @@ export class WorkspaceFiles {
         }
 
         return "";
+    }
+
+    static async CreateGraphVizDependencyGraph() {
+        crsOutput.showOutput(`Creating dependency graph (GraphViz) from apps in this workspace`, true);
+
+        let GraphVis = new ALGraphVis();
+        let appJsonFiles = await vscode.workspace.findFiles('**/app.json')
+        appJsonFiles.forEach(appJsonFile => {
+            let appJson = new AppJson(appJsonFile);
+
+            if (appJson.dependencies) {
+                appJson.dependencies.forEach(dependency => {
+                    GraphVis.addDependency(appJson, dependency)
+                });
+            }
+        })
+
+        await this.showNewUntitledDocument(GraphVis.dotContent).then(() => {
+            vscode.commands.executeCommand('graphviz-interactive-preview.preview.beside');
+        });
+
+    }
+
+    public static async showNewUntitledDocument(content: string) {
+        //source: AZ AL Dev Tools/AL Code Outline
+        try {
+            let document = await vscode.workspace.openTextDocument({
+                content: content,
+                language: "dot"
+            });
+            vscode.window.showTextDocument(document, {
+                preview: false
+            });
+        }
+        catch (err) {
+            vscode.window.showErrorMessage(err);
+        }
     }
 }
 

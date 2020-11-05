@@ -40,6 +40,13 @@ export class Settings {
 
     static readonly AlSubFolderName = 'AlSubFolderName';
 
+    //Dependency Graph
+    static readonly DependencyGraphIncludeTestApps = 'DependencyGraph.IncludeTestApps';
+    static readonly DependencyGraphExcludeAppNames = 'DependencyGraph.ExcludeAppNames';
+    static readonly DependencyGraphExcludePublishers = 'DependencyGraph.ExcludePublishers';
+    static readonly DependencyGraphRemovePrefix = 'DependencyGraph.RemovePrefix';
+
+
     private static config: vscode.WorkspaceConfiguration;
     private static launchconfig: vscode.WorkspaceConfiguration;
 
@@ -87,6 +94,10 @@ export class Settings {
         this.SettingCollection[this.PublicWebBaseUrl] = this.getSetting(this.PublicWebBaseUrl);
         this.SettingCollection[this.RenameWithGit] = this.getSetting(this.RenameWithGit);
         this.SettingCollection[this.SearchObjectNamesRegexPattern] = this.getSetting(this.SearchObjectNamesRegexPattern);
+        this.SettingCollection[this.DependencyGraphIncludeTestApps] = this.getSetting(this.DependencyGraphIncludeTestApps);
+        this.SettingCollection[this.DependencyGraphExcludeAppNames] = this.getSetting(this.DependencyGraphExcludeAppNames);
+        this.SettingCollection[this.DependencyGraphExcludePublishers] = this.getSetting(this.DependencyGraphExcludePublishers);
+        this.SettingCollection[this.DependencyGraphRemovePrefix] = this.getSetting(this.DependencyGraphRemovePrefix);
 
         this.getConfigSettingsAL(ResourceUri);
     }
@@ -101,7 +112,7 @@ export class Settings {
         this.SettingCollection[this.Browser] = this.getSetting(this.Browser);
         this.SettingCollection[this.Incognito] = this.getSetting(this.Incognito);
     }
- 
+
     private static getAppSettings(ResourceUri: vscode.Uri) {
         let appSettings = ResourceUri ?
             require(join(vscode.workspace.getWorkspaceFolder(ResourceUri).uri.fsPath, "app.json")) :

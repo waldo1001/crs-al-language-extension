@@ -51,6 +51,10 @@
                 "title": "CRS: Install Waldo's Modules"
             },
             {
+                "command": "crs.CreateGraphVizDependencyGraph",
+                "title": "CRS: Create GraphViz Dependency Graph"
+            },
+            {
                 "command": "crs.RunCurrentObjectWeb",
                 "title": "CRS: Run Current Object (Web Client)"
             },
@@ -250,6 +254,36 @@
                     "type": "string",
                     "default": "^\\w+ (\\d* )?\"*",
                     "description": "The regex pattern that will be used to search through files for object names.",
+                    "scope": "resource"
+                },
+                "CRS.DependencyGraph.IncludeTestApps": {
+                    "type": "boolean",
+                    "default": "false",
+                    "description": "Whether to include all dependencies to test apps in the Dependency Graph.",
+                    "scope": "resource"
+                },
+                "CRS.DependencyGraph.ExcludeAppNames": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of apps you don't want in the dependency graph.",
+                    "scope": "resource"
+                },
+                "CRS.DependencyGraph.ExcludePublishers": {
+                    "type": "array",
+                    "default": [
+                        "Microsoft"
+                    ],
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of publishers you don't want in the dependency graph.",
+                    "scope": "resource"
+                },
+                "CRS.DependencyGraph.RemovePrefix": {
+                    "type": "string",
+                    "description": "Remove this prefix from the appname in the graph.  Remark: this has no influence on the 'Exluce AppNames' setting.",
                     "scope": "resource"
                 }
             }

@@ -11,12 +11,22 @@ import { Google } from './Google';
 import * as CRSStatusBar from './UI/CRSStatusBar';
 import * as crsOutput from './CRSOutput';
 
+
+
 export function InstallWaldosModules() {
     console.log('Running: InstallWaldosModules');
 
     vscode.window.showErrorMessage('This function has been temporarily disabled');
 
     console.log('Done: InstallWaldosModules');
+}
+
+export async function CreateGraphVizDependencyGraph() {
+    console.log('Running: CreateGraphVizDependencyGraph');
+
+    await WorkspaceFiles.CreateGraphVizDependencyGraph();
+
+    console.log('Done: CreateGraphVizDependencyGraph');
 }
 
 export function RunCurrentObjectWeb(currFile: vscode.Uri) {
@@ -176,7 +186,7 @@ export function SearchObjectNames() {
     let currentword = vscode.window.activeTextEditor ? getWord(vscode.window.activeTextEditor) : "";
     vscode.window.showInputBox({ value: currentword, prompt: "Search String:" }).then(SearchString =>
         DynamicsNAV.SearchObjectNames(SearchString));
-        
+
     console.log('Done: SearchObjectNames');
 }
 

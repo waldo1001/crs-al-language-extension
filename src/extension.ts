@@ -15,10 +15,11 @@ export function activate(context: vscode.ExtensionContext) { //is called when yo
     // The commandId parameter must match the command field in package.json    
     let commandlist = [
         vscode.commands.registerCommand('crs.InstallWaldosModules', CRSFunctions.InstallWaldosModules),
+        vscode.commands.registerCommand('crs.CreateGraphVizDependencyGraph', CRSFunctions.CreateGraphVizDependencyGraph),
 
         vscode.commands.registerCommand('crs.RunCurrentObjectWeb', (currFile: vscode.Uri) => CRSFunctions.RunCurrentObjectWeb(currFile)),
         vscode.commands.registerCommand('crs.RunObjectWeb', CRSFunctions.RunObjectWeb),
-        vscode.commands.registerCommand('crs.RunObjectTablet', CRSFunctions.RunObjectTablet),   
+        vscode.commands.registerCommand('crs.RunObjectTablet', CRSFunctions.RunObjectTablet),
         vscode.commands.registerCommand('crs.RunObjectPhone', CRSFunctions.RunObjectPhone),
         vscode.commands.registerCommand('crs.RunObjectWindows', CRSFunctions.RunObjectWindows),
         vscode.commands.registerCommand('crs.RunTestTool', CRSFunctions.RunTestTool),
@@ -32,7 +33,7 @@ export function activate(context: vscode.ExtensionContext) { //is called when yo
 
         vscode.commands.registerCommand('crs.SearchMicrosoftDocs', CRSFunctions.SearchMicrosoftDocs),
         vscode.commands.registerCommand('crs.SearchGoogle', CRSFunctions.SearchGoogle),
-        
+
         vscode.commands.registerCommand('crs.SearchObjectNames', CRSFunctions.SearchObjectNames),
 
         vscode.commands.registerCommand('crs.SetupSnippets', CRSFunctions.SetupSnippets),
@@ -40,7 +41,7 @@ export function activate(context: vscode.ExtensionContext) { //is called when yo
 
     let componentlist = [
         CRSStatusBar.RunObjectFromStatusBar
-    ] 
+    ]
 
     context.subscriptions.concat(commandlist, componentlist);
 
@@ -52,7 +53,7 @@ export function activate(context: vscode.ExtensionContext) { //is called when yo
     vscode.commands.executeCommand('crs.SetupSnippets');
 
     //return extension api
-    let extensionApi : CRSExtensionPublicApi = new CRSExtensionPublicApi();
+    let extensionApi: CRSExtensionPublicApi = new CRSExtensionPublicApi();
     return extensionApi;
 }
 
