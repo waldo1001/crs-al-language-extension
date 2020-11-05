@@ -526,7 +526,7 @@ export function getExtensionObjectWithVeryLongObjectName(): NAVTestObject {
         end;
     }
     `
-    
+
     return object;
 
 }
@@ -651,7 +651,7 @@ export function getPageWithWaldoPrefixWrongName(): NAVTestObject {
 export function getPageNoPrefixCorrectNameWithActions(): NAVTestObject {
     let object = new NAVTestObject;
 
-    object.ObjectFileName = 'Pag50100.justAName.al'
+    object.ObjectFileName = 'justAName.Page.al'
     object.ObjectText = `page 50100 justAName
     {
         PageType = Card;

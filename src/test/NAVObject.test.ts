@@ -104,7 +104,6 @@ suite("NAVObject General Tests", () => {
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
 
         assert.notEqual(navObject.extendedObjectName, navObject.objectName);
-        assert.equal(navObject.objectFileNameFixed.toLowerCase().startsWith('enum'), true);
     })
     test("Filename - Rename enumExtension", () => {
         let testSettings = Settings.GetConfigSettings(null)
@@ -113,7 +112,6 @@ suite("NAVObject General Tests", () => {
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
 
         assert.notEqual(navObject.extendedObjectName, navObject.objectName);
-        assert.equal(navObject.objectFileNameFixed.toLowerCase().startsWith('enum'), true);
     })
     test("Comments in table", () => {
         let testSettings = Settings.GetConfigSettings(null)
