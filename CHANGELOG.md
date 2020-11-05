@@ -1,6 +1,17 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension.
 
+## [1.3.0] - 2020-11-05
+New Command: `CRS: Create GraphViz Dependency Graph`
+
+This command will read all app.json files in your workspace (so this function is really useful in a Multi-root workspace) and create a .dot dependency file from it.  To display this file graphically, I recommend to also install the extension [Graphviz Interactive Preview](https://marketplace.visualstudio.com/items?itemName=tintinweb.graphviz-interactive-preview).  If you have, this command will automatically open the preview after generating the graph.
+
+This functionality  will take these settings into account:
+* `CRS.DependencyGraph.IncludeTestApps`: Whether to include all dependencies to test apps in the Dependency Graph.
+* `CRS.DependencyGraph.ExcludeAppNames`: List of apps you don't want in the dependency graph.
+* `CRS.DependencyGraph.ExcludePublishers`: List of publishers you don't want in the dependency graph.
+* `CRS.DependencyGraph.RemovePrefix`: Remove this prefix from the appname in the graph.  Remark: this has no influence on the 'Exluce AppNames' setting.
+
 ## [1.2.5] - 2020-10-05
 [Fix](https://github.com/waldo1001/crs-al-language-extension/pull/181) from [Márton Sági](https://github.com/martonsagi) about focusing webview and performance loss.
 Fixed a few snippets to comply with CodeCops
