@@ -59,7 +59,15 @@ export class AppJsonDependency {
     }
 
     get isMicrosoft(): boolean {
+        if (this._appJsonDependency.publisher == '') { return false }
         return (this._appJsonDependency.publisher.toLowerCase() == 'microsoft');
+    }
+
+    get TestFields(): boolean {
+        if (this.name = '') { return false };
+        if (this.publisher = '') { return false };
+
+        return true;
     }
 
 
