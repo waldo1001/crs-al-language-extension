@@ -64,8 +64,8 @@ export class AppJsonDependency {
     }
 
     get TestFields(): boolean {
-        if (this.name = '') { return false };
-        if (this.publisher = '') { return false };
+        if (this.name == '') { return false };
+        if (this.publisher == '') { return false };
 
         return true;
     }
