@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension.
 
+## [1.3.2] - 2020-11-06
+Fix - run `CRS: Create GraphViz Dependency Graph` on "just" a folder with lots of apps.  Open the folder in VSCode, run the command.
+
 ## [1.3.1] - 2020-11-05
 New Command: `CRS: Create GraphViz Dependency Graph`
 
