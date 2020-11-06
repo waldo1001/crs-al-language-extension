@@ -32,6 +32,8 @@ export class ALGraphVis {
         let appName = app.name.startsWith(removePrefix) ? app.name.substr(removePrefix.length) : app.name;
         let dependencyName = dependency.name.startsWith(removePrefix) ? dependency.name.substr(removePrefix.length) : dependency.name;
 
+        if (dependencyName == '') { return };
+
         let dependencyTxt = `"${appName}" -> "${dependencyName}"`
         crsOutput.showOutput(dependencyTxt, false);
         this._graphVizText.push(dependencyTxt);
