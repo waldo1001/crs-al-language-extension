@@ -1,5 +1,14 @@
 # Change Log
-All notable changes to the "crs-al-language-extension" extension.
+All notable changes to the "crs-al-language-extension" extension:
+
+## [1.3.3] - 2020-11-19
+Added 2 snippets for Notification Codeunit Patterns (described by [Luc van Vugt](https://dynamicsuser.net/nav/b/vanvugt)): 
+- `tnotificationcodeunitwaldo`: (Notification Codeunit with a bunch of needed mechanics)
+- `tmynotificationscodeunitwaldo`: (same is above, but now with added subscriber to add the notification to the "My Notifications" page)
+
+More information on Luc's blog: 
+- [How-to: Create Notifications – Steps to Take](https://dynamicsuser.net/nav/b/vanvugt/posts/how-to-create-notifications-steps-to-take)
+- [How-to: Add your notification to My Notifications](https://dynamicsuser.net/nav/b/vanvugt/posts/how-to-add-your-notification-to-my-notifications)
 
 ## [1.3.2] - 2020-11-06
 Fix - run `CRS: Create GraphViz Dependency Graph` on "just" a folder with lots of apps.  Open the folder in VSCode, run the command.

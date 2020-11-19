@@ -2,7 +2,7 @@
     "name": "crs-al-language-extension",
     "displayName": "waldo's CRS AL Language Extension",
     "description": "Make working with the (Dynamics NAV / 365) AL Language easier and more efficient.",
-    "version": "1.3.2",
+    "version": "1.3.3",
     "publisher": "waldo",
     "icon": "images/waldo.png",
     "author": {
