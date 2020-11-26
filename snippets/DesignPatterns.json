@@ -5,7 +5,7 @@
         "body": [
             "codeunit ${1:Id} \"${2:FullMethodName} Meth\"",
             "{",
-            "\tprocedure ${3:ShortMethodName}(var ${4:VarName}: Record ${5:TableName}; HideDialog: Boolean);",
+            "\tprotected procedure ${3:ShortMethodName}(var ${4:VarName}: Record ${5:TableName}; HideDialog: Boolean);",
             "\tvar",
             "\t\tHandled: Boolean;",
             "\tbegin",
@@ -58,7 +58,7 @@
         "body": [
             "codeunit ${1:id} \"${2:Name} Meth\"",
             "{",
-            "\tprocedure ${3:MethodName}(var ${4:VarName}: Record ${5:TableName});",
+            "\tprotected procedure ${3:MethodName}(var ${4:VarName}: Record ${5:TableName});",
             "\tvar",
             "\t\tHandled : Boolean;",
             "\tbegin",
