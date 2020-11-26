@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension:
 
+## [1.3.4] - 2020-11-26
+Added "internal" to the method-snippet. [Thanks Stefan](https://github.com/waldo1001/crs-al-language-extension/pull/183)!
+
 ## [1.3.3] - 2020-11-19
 Added 2 snippets for Notification Codeunit Patterns (described by [Luc van Vugt](https://dynamicsuser.net/nav/b/vanvugt)): 
 - `tnotificationcodeunitwaldo`: (Notification Codeunit with a bunch of needed mechanics)
