@@ -1,6 +1,10 @@
 # crs-al-language-extension
 A bunch of useful commands, settings and snippets to improve your life as an al developer for Microsoft Dynamics 365 Business Central (or "Microsoft Dynamics NAV").
 
+You can support me here:
+
+[![https://www.buymeacoffee.com/waldo](./images/buymeacoffeeSmall.png)](https://www.buymeacoffee.com/waldo)
+
 ## Features
 These features are concluded at this moment:
 
