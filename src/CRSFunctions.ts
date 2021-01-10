@@ -47,6 +47,26 @@ export function RunCurrentObjectWeb(currFile: vscode.Uri) {
     console.log('Done: RunCurrentObjectWeb')
 }
 
+export async function PublishAndRunCurrentObjectWeb(currFile: vscode.Uri) {
+    console.log('Running: RunCurrentObjectWeb');
+
+    let currentdocument = currFile;
+
+    if (!currentdocument) {
+        currentdocument = vscode.window.activeTextEditor.document.uri
+    }
+    let navObject = new NAVObject(fs.readFileSync(currentdocument.fsPath).toString(), Settings.GetConfigSettings(currentdocument), path.basename(currentdocument.fsPath));
+
+    let objectId = navObject.objectType.toLowerCase().endsWith('extension') ? navObject.extendedObjectId : navObject.objectId;
+    let objectType = navObject.objectType.toLowerCase().endsWith('extension') ? navObject.objectType.toLowerCase().replace('extension', '') : navObject.objectType
+    if (objectId) {
+        await vscode.commands.executeCommand('al.publish');
+        DynamicsNAV.RunObjectInWebClient(objectType, objectId, 'WebClient');
+    }
+
+    console.log('Done: RunCurrentObjectWeb')
+}
+
 export function RunObjectWeb() {
     console.log('Running: RunObjectWeb');
 

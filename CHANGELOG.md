@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension:
 
+## [1.3.6] - 2021-01-11
+Added new command: `CRS: Publish and Run Current Object`.  Now you don't have to compile/publish first, to run object afterwards - it's all one command now!
+
 ## [1.3.5] - 2020-11-26
 Added "internal" to the method-snippet. [Thanks Stefan](https://github.com/waldo1001/crs-al-language-extension/pull/183)!
 

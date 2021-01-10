@@ -18,6 +18,7 @@ export function activate(context: vscode.ExtensionContext) { //is called when yo
         vscode.commands.registerCommand('crs.CreateGraphVizDependencyGraph', CRSFunctions.CreateGraphVizDependencyGraph),
 
         vscode.commands.registerCommand('crs.RunCurrentObjectWeb', (currFile: vscode.Uri) => CRSFunctions.RunCurrentObjectWeb(currFile)),
+        vscode.commands.registerCommand('crs.PublishAndRunCurrentObjectWeb', CRSFunctions.PublishAndRunCurrentObjectWeb),
         vscode.commands.registerCommand('crs.RunObjectWeb', CRSFunctions.RunObjectWeb),
         vscode.commands.registerCommand('crs.RunObjectTablet', CRSFunctions.RunObjectTablet),
         vscode.commands.registerCommand('crs.RunObjectPhone', CRSFunctions.RunObjectPhone),
