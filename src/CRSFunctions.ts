@@ -48,7 +48,7 @@ export function RunCurrentObjectWeb(currFile: vscode.Uri) {
 }
 
 export async function PublishAndRunCurrentObjectWeb(currFile: vscode.Uri) {
-    console.log('Running: RunCurrentObjectWeb');
+    console.log('Running: PublishAndRunCurrentObjectWeb');
 
     let currentdocument = currFile;
 
@@ -60,11 +60,11 @@ export async function PublishAndRunCurrentObjectWeb(currFile: vscode.Uri) {
     let objectId = navObject.objectType.toLowerCase().endsWith('extension') ? navObject.extendedObjectId : navObject.objectId;
     let objectType = navObject.objectType.toLowerCase().endsWith('extension') ? navObject.objectType.toLowerCase().replace('extension', '') : navObject.objectType
     if (objectId) {
-        await vscode.commands.executeCommand('al.publish');
+        await vscode.commands.executeCommand('al.publishNoDebug');
         DynamicsNAV.RunObjectInWebClient(objectType, objectId, 'WebClient');
     }
 
-    console.log('Done: RunCurrentObjectWeb')
+    console.log('Done: PublishAndRunCurrentObjectWeb')
 }
 
 export function RunObjectWeb() {
