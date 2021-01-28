@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension:
 
+## [1.3.8] - 2021-01-28
+Fix a very rare case where a rename could overwrite a file.
+
 ## [1.3.7] - 2021-01-11
 Added new command: `CRS: Publish and Run Current Object`.  Now you don't have to compile/publish first, to run object afterwards - it's all one command now!
 
