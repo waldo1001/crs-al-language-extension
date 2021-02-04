@@ -322,11 +322,22 @@ suite("NAVObject FilePattern Tests", () => {
             + testSettings[Settings.ObjectNameSuffix]
             + navObject.objectType
             + navObject.objectTypeShort
-            // + navObject.objectTypeShort.toUpperCase()
-            // + navObject.objectId
-            // + navObject.extendedObjectName
-            // + navObject.extendedObjectNameFixedShort
-            // + navObject.extendedObjectId
+        )
+    })
+    test("ReportExtension - ExtensionObjectNamePattern - Automatic Naming with settings", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+        testSettings[Settings.ObjectNamePrefix] = 'waldo';
+        testSettings[Settings.ObjectNameSuffix] = 'waldo';
+        testSettings[Settings.ExtensionObjectNamePattern] = '<Prefix><Suffix><ObjectType><ObjectTypeShort>'; //<ObjectTypeShortUpper><ObjectId><BaseName><BaseNameShort><BaseId>
+
+        let navTestObject = NAVTestObjectLibrary.getSimpleReportExtension()
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
+
+        assert.equal(navObject.objectNameFixed,
+            testSettings[Settings.ObjectNamePrefix]
+            + testSettings[Settings.ObjectNameSuffix]
+            + navObject.objectType
+            + navObject.objectTypeShort
         )
     })
 
@@ -354,6 +365,23 @@ suite("NAVObject FilePattern Tests", () => {
         assert.equal(true, navObject2.objectName.length <= 30)
     })
 
+    test("ReportExtension - Automatic Naming with settings", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+        testSettings[Settings.ObjectNamePrefix] = 'waldo';
+        testSettings[Settings.ObjectNameSuffix] = 'waldo';
+        testSettings[Settings.ExtensionObjectNamePattern] = '<ObjectId><BaseName><BaseNameShort><BaseId>';
+
+        let navTestObject = NAVTestObjectLibrary.getSimpleReportExtension()
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
+
+        assert.equal(
+            navObject.objectNameFixed,
+            navObject.objectId
+            + navObject.extendedObjectName
+            + navObject.extendedObjectNameFixedShort
+            + navObject.extendedObjectId)
+    })
+
     test("TableExtension - Automatic Naming with settings", () => {
         let testSettings = Settings.GetConfigSettings(null)
         testSettings[Settings.ObjectNamePrefix] = 'waldo';
@@ -376,6 +404,8 @@ suite("NAVObject FilePattern Tests", () => {
             + navObject.extendedObjectNameFixedShort
             + navObject.extendedObjectId)
     })
+
+
     test("FileName - Extension Object with which would be too", () => {
         let testSettings = Settings.GetConfigSettings(null)
         testSettings[Settings.FileNamePatternExtensions] = '<ObjectNameShort><ObjectTypeShortPascalCase>';
@@ -465,5 +495,15 @@ suite("NAVObject FilePattern Tests", () => {
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
         assert.equal(navObject.objectFileNameFixed, 'VaultManagement_EVAS.al')
         assert.equal(navObject.objectNameFixed, 'Vault Management_EVAS')
+    })
+    test("Filename - Rename ReportExtension", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+
+        testSettings[Settings.FileNamePatternExtensions] = '<ObjectNameShort>.al';
+
+        let navTestObject = NAVTestObjectLibrary.getSimpleReportExtension();
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
+
+        assert.equal(navObject.objectFileNameFixed, 'CustomerTop10ListExt.al')
     })
 })
