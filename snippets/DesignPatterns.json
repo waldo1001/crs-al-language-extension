@@ -340,7 +340,7 @@
             "",
             "\ttrigger OnOpenPage()",
             "\tbegin",
-            "\t\tRec.GetRecordOnce();",
+            "\t\tRec.InsertIfNotExists();",
             "\tend;",
             "\t",
             "}",
