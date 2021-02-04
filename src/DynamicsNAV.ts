@@ -113,8 +113,10 @@ export class DynamicsNAV {
             case 'Chrome':
                 runURL = workspacesettings[Settings.Incognito] == true ? '-incognito ' + runURL : runURL;
                 exec(`start chrome ${runURL}`, { shell: 'cmd.exe' });
+                vscode.window.showWarningMessage('Running an object in Chrome might not work.  Use Edge instead (you can set al.Browser setting to Edge (in User Settings)).')
                 break;
             default:
+                crsOutput.showOutput("If you're using Chrome, the 'run object' command might not work.  Use Edge instead (you can set al.Browser setting to Edge (in User Settings)).", true)
                 open(runURL);
                 break;
         }
@@ -180,6 +182,7 @@ export class DynamicsNAV {
             case 'codeunit': return 'Cod';
             case 'table': return 'Tab';
             case 'tableextension': return 'Tab';
+            case 'reportextension': return 'Rep';
             case 'xmlport': return 'Xml';
             case 'report': return 'Rep';
             case 'query': return 'Que';
@@ -201,6 +204,7 @@ export class DynamicsNAV {
             case 'codeunit': return 'Codeunit';
             case 'table': return 'Table';
             case 'tableextension': return 'TableExt';
+            case 'reportextension': return 'ReportExt';
             case 'xmlport': return 'XmlPort';
             case 'report': return 'Report';
             case 'query': return 'Query';
@@ -371,6 +375,7 @@ export class DynamicsNAV {
             "page",
             "pagecustomization",
             "pageextension",
+            "reportextension",
             "extends",
             "tableextension",
             "table",
