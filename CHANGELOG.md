@@ -1,6 +1,13 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension:
 
+## [1.4.1] - 2021-02-04
+Added: 
+- Support for Report Extensions
+- New snippets regarding `GetRecordOnce` in setup tables.
+- Warning when using Chrome in combination with RunObject commands
+- Take comments into account - it might have confused the object parsing ([Bug 167](https://github.com/waldo1001/crs-al-language-extension/issues/167))
+
 ## [1.3.8] - 2021-01-28
 Fix a very rare case where a rename could overwrite a file.
 
