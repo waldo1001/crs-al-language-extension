@@ -506,4 +506,15 @@ suite("NAVObject FilePattern Tests", () => {
 
         assert.equal(navObject.objectFileNameFixed, 'CustomerTop10ListExt.al')
     })
+    test("Filename - Object with comments", () => {
+        // bug report: https://github.com/waldo1001/crs-al-language-extension/issues/167
+        let testSettings = Settings.GetConfigSettings(null)
+
+        testSettings[Settings.FileNamePatternExtensions] = '<ObjectNameShort>.<ObjectTypeShortPascalCase>.al';
+
+        let navTestObject = NAVTestObjectLibrary.getSimpleReportExtensionWithSummaryComments();
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
+
+        assert.equal(navObject.objectFileNameFixed, 'CustomerTop10ListExt.ReportExt.al')
+    })
 })

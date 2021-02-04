@@ -810,3 +810,26 @@ export function getSimpleReportExtension(): NAVTestObject {
     `
     return object;
 }
+export function getSimpleReportExtensionWithSummaryComments(): NAVTestObject {
+    let object = new NAVTestObject;
+
+    object.ObjectFileName = 'getSimpleReportExtension.al'
+    object.ObjectText = `
+    /// <summary>
+    /// Interface "bleh"
+    /// </summary>
+    reportextension 50100 "Customer Top 10 List Ext" extends "Customer - Top 10 List"
+    {
+        dataset
+        {
+            // Add changes to dataitems and columns here
+        }
+    
+        requestpage
+        {
+            // Add changes to the requestpage here
+        }
+    }
+    `
+    return object;
+}

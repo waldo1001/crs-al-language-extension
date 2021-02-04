@@ -134,9 +134,15 @@ export class NAVObject {
     }
 
     private loadObjectProperties(): any {
-        var patternObjectType = new RegExp('(codeunit |page |pagecustomization |pageextension |reportextension| profile |query |report |requestpage |table |tableextension |xmlport |enum |enumextension |controladdin |interface)', "i")
+        var patternObjectType = new RegExp('(codeunit |page |pagecustomization |pageextension |reportextension |profile |query |report |requestpage |table |tableextension |xmlport |enum |enumextension |controladdin |interface)', "i")
 
-        let ObjectTypeArr = this.NAVObjectText.match(patternObjectType);
+        //Remove comments to apply regex to
+        var lines = this.NAVObjectText.split('\n');
+        var filteredlines = lines.filter(function (line) {
+            return line.trimLeft().indexOf('//') != 0;
+        });
+
+        let ObjectTypeArr = filteredlines.toString().match(patternObjectType);
 
         this._objectFileNamePattern = '';
         this.objectType = '';
