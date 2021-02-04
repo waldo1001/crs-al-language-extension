@@ -134,7 +134,7 @@ export class NAVObject {
     }
 
     private loadObjectProperties(): any {
-        var patternObjectType = new RegExp('(codeunit |page |pagecustomization |pageextension |profile |query |report |requestpage |table |tableextension |xmlport |enum |enumextension |controladdin |interface)', "i")
+        var patternObjectType = new RegExp('(codeunit |page |pagecustomization |pageextension |reportextension| profile |query |report |requestpage |table |tableextension |xmlport |enum |enumextension |controladdin |interface)', "i")
 
         let ObjectTypeArr = this.NAVObjectText.match(patternObjectType);
 
@@ -178,6 +178,7 @@ export class NAVObject {
                 }
                 case 'pageextension':
                 case 'tableextension':
+                case 'reportextension':
                 case 'enumextension': {
                     var patternObject = new RegExp(`(${ObjectTypeArr[0].trim().toLowerCase()}) +([0-9]+) +(${ObjectNamePattern}|${ObjectNameNoQuotesPattern}) +extends +(${ObjectNamePattern}|${ObjectNameNoQuotesPattern})\\s*(\\/\\/\\s*)?([0-9]+)?`, "i");
                     let currObject = this.NAVObjectText.match(patternObject);
@@ -306,6 +307,7 @@ export class NAVObject {
             case 'page':
             case 'pagecustomization':
             case 'pageextension':
+            case 'reportextension':
             case 'profile':
             case 'query':
             case 'report':
