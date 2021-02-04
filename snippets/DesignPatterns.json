@@ -246,7 +246,7 @@
             "end;"
         ]
     },
-    "Snippet (waldo): Create Setup Table": {
+	"Snippet (waldo): Create Setup Table": {
         "description": "Snippet (waldo): Create Setup Table",
         "prefix": "ttablesetupwaldo",
         "body": [
@@ -271,7 +271,17 @@
             "\t\t\tClustered = true;",
             "\t\t}",
             "\t}",
+			"",
+            "var",
+            "\tRecordHasBeenRead: Boolean;",
             "",
+            "procedure GetRecordOnce()",
+            "begin",
+            "\tif RecordHasBeenRead then",
+            "\t\texit;",
+            "\tGet();",
+            "\tRecordHasBeenRead := true;",
+            "end;",
             "\tprocedure InsertIfNotExists()",
             "\tvar",
             "\tbegin",
@@ -285,6 +295,22 @@
             "",
             "",
             "}"
+        ]
+    },
+    "Get Record Once": {
+        "prefix": "tGetRecordOncewaldo",
+        "description": "GetRecordOnce (waldo)",
+        "body": [
+            "var",
+            "\tRecordHasBeenRead: Boolean;",
+            "",
+            "procedure GetRecordOnce()",
+            "begin",
+            "\tif RecordHasBeenRead then",
+            "\t\texit;",
+            "\tGet();",
+            "\tRecordHasBeenRead := true;",
+            "end;"
         ]
     },
     "Snippet (waldo): Create Setup Page": {
