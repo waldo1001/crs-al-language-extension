@@ -45,7 +45,8 @@
         "onCommand:crs.CreateGraphVizDependencyGraph",
         "onCommand:crs.SearchMicrosoftDocs",
         "onCommand:crs.SearchGoogle",
-        "onCommand:crs.SearchObjectNames"
+        "onCommand:crs.SearchObjectNames",
+        "onCommand:crs.ConfigureBestPracticeNaming"
     ],
     "main": "./out/extension",
     "contributes": {
@@ -121,6 +122,10 @@
             {
                 "command": "crs.SearchObjectNames",
                 "title": "CRS: Search Object Names"
+            },
+            {
+                "command": "crs.ConfigureBestPracticeNaming",
+                "title": "CRS: Configure Best-practice File Naming"
             }
         ],
         "configuration": {

@@ -10,6 +10,7 @@ import { MSDocs } from './MSDocs';
 import { Google } from './Google';
 import * as CRSStatusBar from './UI/CRSStatusBar';
 import * as crsOutput from './CRSOutput';
+import * as Configuration from './Configuration';
 
 
 
@@ -244,6 +245,14 @@ export function HandleOnChangeActiveTextEditor(editor?: vscode.TextEditor) {
     CRSStatusBar.toggleRunObjectFromStatusBar(editor?.document);
 
     console.log('Done: HandleOnChangeActiveTextEditor')
+}
+
+export function ConfigureBestPracticeNaming() {
+    console.log('Running: ConfigureBestPracticeNaming');
+
+    Configuration.configureBestPracticesNaming();
+
+    console.log('Done: ConfigureBestPracticeNaming')
 }
 
 function getWord(editor: vscode.TextEditor): string {
