@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension:
 
+## [1.4.2] - 2021-02-08
+Added command `CRS: Configure Best-practice File Naming`, it will set up your user settings or workspace settings with some settings that are considered to be best practice (Thank you, [Vjeko](https://github.com/vjekob)).
+
 ## [1.4.1] - 2021-02-04
 Added: 
 - Support for Report Extensions

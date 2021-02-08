@@ -48,6 +48,9 @@ The commands can rename your file, and move the file to the folder, correspondin
 * CRS: Reorganize - Current File
 * CRS: CRS: Reorganize - All Files
 Note - "Reorganize" will move a test-codeunit to the test-folder
+
+With the command `CRS: Configure Best-practice File Naming`, it will set up your user settings or workspace settings with some settings that are considered to be best practice.
+
 ### Search on Google / Microsoft Docs
 Two commands have been added to search for any given search string on Google or Microsoft Docs.  The search string "Business Central" will automatically be added.
 * CRS: Search Microsoft Docs
