@@ -38,6 +38,8 @@ export function activate(context: vscode.ExtensionContext) { //is called when yo
         vscode.commands.registerCommand('crs.SearchObjectNames', CRSFunctions.SearchObjectNames),
 
         vscode.commands.registerCommand('crs.SetupSnippets', CRSFunctions.SetupSnippets),
+
+        vscode.commands.registerCommand('crs.ConfigureBestPracticeNaming', CRSFunctions.ConfigureBestPracticeNaming)
     ];
 
     let componentlist = [
