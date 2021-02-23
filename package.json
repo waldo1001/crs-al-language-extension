@@ -73,7 +73,7 @@
             },
             {
                 "command": "crs.RunTestTool",
-                "title": "CRS: Run CAL Test Tool in Web Client"
+                "title": "CRS: Run AL Test Tool in Web Client"
             },
             {
                 "command": "crs.RunEventSubscribers",

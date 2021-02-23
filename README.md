@@ -37,7 +37,7 @@ Depending on which client, you will be asked for object type and object id.  The
 Furthermore, there are ways to open certain object directly:
 * `CRS: Run Current Object (Web Client)` (CTRL+SHIFT+r) - runs the object from the open file (the extension needs to be published first).  You can also run this command from the status bar ('Run In Web Client') and the context menu from the explorer.`
 * `CRS: Publish and Run Current Object`
-* `CRS: Run CAL Test Tool in Web Client`
+* `CRS: Run AL Test Tool in Web Client`
 * `CRS: Run Event Subscribers Page in Web Client`
 * `CRS: Run Database Locks Page in Web Client`
 
