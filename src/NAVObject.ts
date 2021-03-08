@@ -134,7 +134,7 @@ export class NAVObject {
     }
 
     private loadObjectProperties(): any {
-        var patternObjectType = new RegExp('(codeunit |page |pagecustomization |pageextension |reportextension |profile |query |report |requestpage |table |tableextension |xmlport |enum |enumextension |controladdin |interface)', "i")
+        var patternObjectType = new RegExp('(codeunit |page |pagecustomization |pageextension |reportextension |permissionset |permissionsetextension |profile |query |report |requestpage |table |tableextension |xmlport |enum |enumextension |controladdin |interface)', "i")
 
         //Remove comments to apply regex to
         var lines = this.NAVObjectText.split('\n');
@@ -164,6 +164,7 @@ export class NAVObject {
                 case 'requestpage':
                 case 'table':
                 case 'xmlport':
+                case 'permissionset':
                 case 'enum': {
 
                     var patternObject = new RegExp(`(${ObjectTypeArr[0].trim().toLowerCase()}) +([0-9]+) +(${ObjectNamePattern}|${ObjectNameNoQuotesPattern})([^"\n]*"[^"\n]*)?`, "i");
@@ -185,6 +186,7 @@ export class NAVObject {
                 case 'pageextension':
                 case 'tableextension':
                 case 'reportextension':
+                case 'permissionsetextension':
                 case 'enumextension': {
                     var patternObject = new RegExp(`(${ObjectTypeArr[0].trim().toLowerCase()}) +([0-9]+) +(${ObjectNamePattern}|${ObjectNameNoQuotesPattern}) +extends +(${ObjectNamePattern}|${ObjectNameNoQuotesPattern})\\s*(\\/\\/\\s*)?([0-9]+)?`, "i");
                     let currObject = this.NAVObjectText.match(patternObject);
@@ -325,6 +327,8 @@ export class NAVObject {
             case 'enumextension':
             case 'controladdin':
             case 'interface':
+            case 'permissionset':
+            case 'permissionsetextension':
                 return true;
             default: return false;
         }

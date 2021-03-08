@@ -19,6 +19,8 @@ export class DynamicsNAV {
         items.push({ label: 'XMLPort', description: 'XMLPort' });
         items.push({ label: 'MenuSuite', description: 'MenuSuite' });
         items.push({ label: 'Interface', description: 'Interface' });
+        items.push({ label: 'PermissionSet', description: 'PermissionSet' });
+        items.push({ label: 'PermissionSetExtension', description: 'PermissionSetExtension' });
 
         return items
     }
@@ -33,6 +35,7 @@ export class DynamicsNAV {
         items.push('XMLPort');
         items.push('MenuSuite');
         items.push('Interface');
+        items.push('PermissionSet');
 
         return items
     }
@@ -109,7 +112,7 @@ export class DynamicsNAV {
             case 'Firefox':
                 runURL = workspacesettings[Settings.Incognito] == true ? '-private-window ' + runURL : runURL;
                 exec(`start firefox ${runURL}`, { shell: 'cmd.exe' });
-                break;            
+                break;
             case 'Chrome':
                 runURL = workspacesettings[Settings.Incognito] == true ? '-incognito ' + runURL : runURL;
                 exec(`start chrome ${runURL}`, { shell: 'cmd.exe' });
@@ -194,6 +197,8 @@ export class DynamicsNAV {
             case 'interface': return 'Iface';
             case 'requestpage': return 'RequestPage';
             case 'dotnet': return 'Dotnet';
+            case 'permissionset': return 'PermissionSet';
+            case 'permissionsetextension': return 'permissionset';
         }
     }
 
@@ -214,10 +219,12 @@ export class DynamicsNAV {
             case 'enumextension': return 'EnumExt';
             case 'controladdin': return 'ControlAddin';
             case 'interface': return 'Interface';
+            case 'permissionset': return 'PermissionSet';
+            case 'permissionsetextension': return 'PermissionSetExtension';
         }
     }
 
-    static SearchObjectNames(SearchString: String){
+    static SearchObjectNames(SearchString: String) {
         let workspacesettings = Settings.GetConfigSettings(null);
 
         SearchString = workspacesettings[Settings.SearchObjectNamesRegexPattern] + SearchString;
@@ -376,6 +383,9 @@ export class DynamicsNAV {
             "pagecustomization",
             "pageextension",
             "reportextension",
+            "permissionset",
+            "entitlement",
+            "permissionsetextension",
             "extends",
             "tableextension",
             "table",
