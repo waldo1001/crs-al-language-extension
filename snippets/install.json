@@ -1,0 +1,34 @@
+{
+    "Snippet: install codeunit": {
+        "prefix": "tinstallcodeunitwaldo",
+        "description": "Snippet: Install Codeunit",
+        "body": [
+            "codeunit ${1:Id} ${2:Name}",
+            "{",
+            "\tSubtype = Install;",
+            "",
+            "\ttrigger ${3|OnInstallAppPerDatabase,OnInstallAppPerCompany|}();",
+            "\tvar",
+            "\t\tmyAppInfo: ModuleInfo;",
+            "\tbegin",
+            "\t\tNavApp.GetCurrentModuleInfo(myAppInfo);",
+            "",
+            "\t\tif myAppInfo.DataVersion = Version.Create(0, 0, 0, 0) then",
+            "\t\t\tHandleFreshInstall",
+            "\t\telse",
+            "\t\t\tHandleReinstall;",
+            "\tend;",
+            "",
+            "\tlocal procedure HandleFreshInstall();",
+            "\tbegin",
+            "\t\t${0}",
+            "\tend;",
+            "",
+            "\tlocal procedure HandleReinstall();",
+            "\tbegin",
+            "\t\t",
+            "\tend;",
+            "}"
+        ]
+    }
+}

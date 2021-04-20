@@ -401,6 +401,10 @@
             {
                 "language": "json",
                 "path": "./snippets/appjson.json"
+            },
+            {
+                "language": "al",
+                "path": "./snippets/install.json"
             }
         ],
         "menus": {
