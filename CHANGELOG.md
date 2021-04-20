@@ -1,10 +1,15 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension:
 
-## [1.4.3] - 
+## [1.4.3] - 2021-04-20
 Renamed "Run AL Test Tool" command.
 New objects: `PermissionSet` and `PermissionSetExtension` in rename process
-Added snippet: `tinstallcodeunitwaldo` (thank you [Waldemar](https://github.com/wbrakowski))
+Added snippets: 
+  - `tinstallcodeunitwaldo` - A template install codeunit. (thank you [Waldemar](https://github.com/wbrakowski) and [AJ](https://github.com/ajkauffmann))
+  - `tUpgradeCodeunitwaldo` - A template upgrade codeunit.
+  - `tUpgradeTableProcedurewaldo` - A template procedure to move all data from one table to the next.
+  - `tUpgradeFieldProcedurewaldo` - A template procedure to move field data from one table to the other.
+
 Improved snippets (thank you [Daniel](https://github.com/TheDenSter))
 
 ## [1.4.2] - 2021-02-08

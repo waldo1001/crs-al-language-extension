@@ -1,0 +1,78 @@
+{
+    "Upgrade Table Codeunit": {
+        "prefix": "tUpgradeCodeunitwaldo",
+        "description": "Move data from obsolete table to new table",
+        "body": [
+            "codeunit ${1:id} \"${3:Name} Upgrade\"",
+            "{",
+            "\tSubtype = Upgrade;",
+            "",
+            "\ttrigger OnUpgradePerCompany()",
+            "\tvar",
+            "\t\tUpgradeTag: Codeunit \"Upgrade Tag\";",
+            "\tbegin",
+            "\t\tif UpgradeTag.HasUpgradeTag(${4:Reason}Lbl) then exit;",
+            "",
+            "\t\tPerformUpgrade();",
+            "",
+            "\t\tUpgradeTag.SetUpgradeTag(${4:Reason}Lbl);",
+            "\tend;",
+            "",
+            "\tlocal procedure PerformUpgrade()",
+            "\tvar",
+            "\tbegin",
+            "\t\t${0}",
+            "\tend;",
+            "",
+            "",
+            "\t[EventSubscriber(ObjectType::Codeunit, Codeunit::\"Upgrade Tag\", 'OnGetPerCompanyUpgradeTags', '', false, false)]",
+            "\tlocal procedure OnGetPerCompanyUpgradeTags(var PerCompanyUpgradeTags: List of [Code[250]]);",
+            "\tbegin",
+            "\t\tPerCompanyUpgradeTags.Add(${4:Reason}Lbl);",
+            "\tend;",
+            "",
+            "",
+            "\tvar",
+            "\t\t${4:Reason}Lbl: Label '${5:CompanyName}-${4:Reason}-${CURRENT_YEAR}${CURRENT_MONTH}${CURRENT_DATE}', Locked = true;",
+            "}"
+        ]
+    },
+    "Upgrade Table Procedure": {
+        "prefix": "tUpgradeTableProcedurewaldo",
+        "description": "Move data from obsolete table to new table",
+        "body": [
+            "local procedure Move${3:OldTableNameVar}Data()",
+            "var",
+            "\t${3:OldTableNameVar}: Record \"${4:OldTableName}\";",
+            "\t${6:NewTableNameVar}: Record \"${5:NewTableName}\";",
+            "begin",
+            "\tif ${3:OldTableNameVar}.FindSet() then",
+            "\t\trepeat",
+            "\t\t\t${6:NewTableNameVar}.TransferFields(${3:OldTableNameVar});",
+            "\t\t\t${6:NewTableNameVar}.SystemId := ${3:OldTableNameVar}.SystemId;",
+            "\t\t\t${6:NewTableNameVar}.Insert(false, true);",
+            "",
+            "\t\tuntil ${3:OldTableNameVar}.Next() < 1;",
+            "end;",
+            "Move${3:OldTableNameVar}Data(); //Move this to the OnUpgradePer..trigger"
+        ]
+    },
+    "Upgrade Fields Procedure": {
+        "prefix": "tUpgradeFieldProcedurewaldo",
+        "description": "Move data from obsolete fields to new table",
+        "body": [
+            "local procedure Move${1:TableExtension}Data()",
+            "var",
+            "\t${1:TableVar}: Record \"${2:Table}\";",
+            "begin",
+            "\tif ${1:TableVar}.FindSet() then",
+            "\t\trepeat",
+            "\t\t\t${1:TableVar}.\"${4:NewField}\" := ${1:TableVar}.\"${5:OldField}\";",
+            "\t\t\t${0}",
+            "\t\t\t${1:TableVar}.modify(false);",
+            "\t\tuntil ${1:TableVar}.Next() < 1;",
+            "end;",
+            "Move${1:TableExtension}Data(); //Move this to the OnUpgradePer..trigger"
+        ]
+    }
+}
