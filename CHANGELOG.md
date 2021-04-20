@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension:
 
-## [1.4.3] - 2021-04-20
+## [1.4.4] - 2021-04-20
 Renamed "Run AL Test Tool" command.
 New objects: `PermissionSet` and `PermissionSetExtension` in rename process
 Added snippets: 
