@@ -26,6 +26,9 @@ This functionality  will take these settings into account:
 * `CRS.DependencyGraph.ExcludePublishers`: List of publishers you don't want in the dependency graph.
 * `CRS.DependencyGraph.RemovePrefix`: Remove this prefix from the appname in the graph.  Remark: this has no influence on the 'Exluce AppNames' setting.
 
+To generate a DGML (using the ALC.EXE):
+* `CRS: Compile DGML`, which enables the new capabilities of the compiler to generate a DGML document that can be opened by a DGML reader (usually Visual Studio).
+
 ### Run Object
 The idea is to be able to run an object straight from the development environment.  There are four functions in the Command Palette:
 * `CRS: Run Object (Web Client)`

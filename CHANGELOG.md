@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension:
 
-## [1.4.5] - 2021-05-10
+## [1.4.6] - 2021-05-10
 New command `CRS: Compile DGML`, which enables the new capabilities of the compiler to generate a DGML document that can be opened by a DGML reader (usually Visual Studio).
 
 ## [1.4.4] - 2021-04-20
