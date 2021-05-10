@@ -39,7 +39,9 @@ export function activate(context: vscode.ExtensionContext) { //is called when yo
 
         vscode.commands.registerCommand('crs.SetupSnippets', CRSFunctions.SetupSnippets),
 
-        vscode.commands.registerCommand('crs.ConfigureBestPracticeNaming', CRSFunctions.ConfigureBestPracticeNaming)
+        vscode.commands.registerCommand('crs.ConfigureBestPracticeNaming', CRSFunctions.ConfigureBestPracticeNaming),
+
+        vscode.commands.registerCommand('crs.CompileDGML', CRSFunctions.CompileDGML)
     ];
 
     let componentlist = [

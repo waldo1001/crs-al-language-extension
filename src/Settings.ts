@@ -35,6 +35,7 @@ export class Settings {
     static readonly RenameWithGit = 'RenameWithGit';
     static readonly Browser = 'browser';
     static readonly Incognito = 'incognito';
+    static readonly packageCachePath = 'packageCachePath';
 
     static readonly SearchObjectNamesRegexPattern = 'SearchObjectNamesRegexPattern';
 
@@ -111,6 +112,7 @@ export class Settings {
 
         this.SettingCollection[this.Browser] = this.getSetting(this.Browser);
         this.SettingCollection[this.Incognito] = this.getSetting(this.Incognito);
+        this.SettingCollection[this.packageCachePath] = this.getSetting(this.packageCachePath);
     }
 
     private static getAppSettings(ResourceUri: vscode.Uri) {

@@ -9,8 +9,8 @@ import * as path from 'path'
 import { MSDocs } from './MSDocs';
 import { Google } from './Google';
 import * as CRSStatusBar from './UI/CRSStatusBar';
-import * as crsOutput from './CRSOutput';
 import * as Configuration from './Configuration';
+import { ALCExe } from './ALCExe';
 
 
 
@@ -28,6 +28,14 @@ export async function CreateGraphVizDependencyGraph() {
     await WorkspaceFiles.CreateGraphVizDependencyGraph();
 
     console.log('Done: CreateGraphVizDependencyGraph');
+}
+
+export async function CompileDGML() {
+    console.log('Running: CompileDGML');
+
+    ALCExe.CompileDGML();
+
+    console.log('Done: CompileDGML');
 }
 
 export function RunCurrentObjectWeb(currFile: vscode.Uri) {
@@ -254,6 +262,8 @@ export function ConfigureBestPracticeNaming() {
 
     console.log('Done: ConfigureBestPracticeNaming')
 }
+
+
 
 function getWord(editor: vscode.TextEditor): string {
     const selection = editor.selection;
