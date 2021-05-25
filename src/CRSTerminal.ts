@@ -20,6 +20,6 @@ export function OpenFileFromTerminal(path: string) {
 export function CompileDGML(alcpath: string, projectpath: string, packagecachepath: string) {
     packagecachepath = packagecachepath ? packagecachepath : projectpath + '/.alpackages'
 
-    Terminal.sendText(`${alcpath} /project:${projectpath} /packagecachepath:${packagecachepath} /generatecrossreferences`);
+    Terminal.sendText(`${alcpath} /project:"${projectpath}" /packagecachepath:"${packagecachepath}" /generatecrossreferences`);
     Terminal.show();
 }
