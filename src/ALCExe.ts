@@ -32,7 +32,7 @@ export class ALCExe {
 
         if (!MicrosoftPath) { return null }
 
-        let ALCPath = join(process.env.USERPROFILE, '.vscode', 'extensions', MicrosoftPath[0], 'bin', 'alc.exe')
+        let ALCPath = join(process.env.USERPROFILE, '.vscode', 'extensions', MicrosoftPath[0], 'bin')
 
         crsOutput.showOutput(`alc.exe path: ${ALCPath}`, false)
 
