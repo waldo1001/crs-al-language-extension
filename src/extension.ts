@@ -4,6 +4,9 @@ import * as vscode from 'vscode';  //VS Code extensibility API
 import * as CRSFunctions from './CRSFunctions';  //Our own functions
 import { CRSExtensionPublicApi } from './api/CRSExtensionPublicApi';
 import * as CRSStatusBar from './UI/CRSStatusBar';
+import { GetTerminal } from './CRSTerminal';
+
+export const Terminal: vscode.Terminal = GetTerminal();
 
 export function activate(context: vscode.ExtensionContext) { //is called when your extension is activated (when command is executed)
 

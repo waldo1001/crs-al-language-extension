@@ -1,6 +1,5 @@
 import * as vscode from 'vscode';
-
-export const Terminal = vscode.window.createTerminal('crs');
+import { Terminal } from './extension';
 
 export function GitMove(from: string, to: string) {
     Terminal.sendText(`git mv ${from} ${to}`);
@@ -26,4 +25,15 @@ export function CompileDGML(alcpath: string, projectpath: string, packagecachepa
     Terminal.sendText(`Set-Location $Temp`);
 
     Terminal.show();
+}
+
+export function GetTerminal(terminalName: string = 'crs'): vscode.Terminal {
+    const terminals = vscode.window.terminals.filter(element => element.name === terminalName);
+    
+    if (terminals.length > 0) {
+        return terminals.shift()!;
+    }
+    else {
+        return vscode.window.createTerminal(terminalName);
+    }
 }
