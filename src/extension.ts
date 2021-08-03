@@ -6,9 +6,12 @@ import { CRSExtensionPublicApi } from './api/CRSExtensionPublicApi';
 import * as CRSStatusBar from './UI/CRSStatusBar';
 import { GetTerminal } from './CRSTerminal';
 
-export const Terminal: vscode.Terminal = GetTerminal();
+export function Terminal(): vscode.Terminal {
+    return GetTerminal();
+}
 
 export function activate(context: vscode.ExtensionContext) { //is called when your extension is activated (when command is executed)
+
 
     // This line of code will only be executed once when your extension is activated
     console.log('Extension "crs-al-language-extension" is now activated!'); //diagnostic information
