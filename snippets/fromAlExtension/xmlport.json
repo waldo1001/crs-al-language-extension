@@ -17,6 +17,28 @@
             "\t\t\t}",
             "\t\t}",
             "\t}",
+            "}"
+        ],
+        "description": "Snippet: XmlPort"
+    },
+    "Snippet: XmlPort (Full)": {
+        "prefix": "txmlportfullwaldo",
+        "body": [
+            "xmlport ${1:Id} ${2:MyXmlport}",
+            "{",
+            "\tschema",
+            "\t{",
+            "\t\ttextelement(${3:NodeName1})",
+            "\t\t{",
+            "\t\t\ttableelement(${5:NodeName2}; ${4:SourceTableName})",
+            "\t\t\t{",
+            "\t\t\t\tfieldattribute(${7:NodeName3}; ${5:NodeName2}.${6:SourceFieldName})",
+            "\t\t\t\t{",
+            "\t\t\t\t\t${8}",
+            "\t\t\t\t}",
+            "\t\t\t}",
+            "\t\t}",
+            "\t}",
             "\t",
             "\trequestpage",
             "\t{",

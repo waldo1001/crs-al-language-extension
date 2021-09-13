@@ -1,0 +1,13 @@
+{
+    "Snippet: PermissionSetExtension": {
+        "prefix": "tpermissionsetextensionwaldo",
+        "body": [
+            "permissionsetextension ${1:Id} ${2:MyPermissionSetExt} extends ${3:MyTargetPermissionSet}",
+            "{",
+            "\tPermissions = ",
+            "\t\t${4|tabledata,codeunit,page,query,report,system,xmlport,table|} ${5:ObjectName} = ${6:ObjectPermissions};",
+            "}"
+        ],
+        "description": "Snippet: Permission set extension"
+    }
+}

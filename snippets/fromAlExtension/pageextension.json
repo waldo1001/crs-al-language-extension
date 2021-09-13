@@ -8,10 +8,6 @@
             "\t{",
             "\t\t${0}",
             "\t}",
-            "\t",
-            "\tactions",
-            "\t{",
-            "\t}",
             "}"
         ],
         "description": "Snippet (waldo): Page Extension"

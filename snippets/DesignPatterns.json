@@ -26,10 +26,14 @@
             "",
             "\tlocal procedure Confirm${3:ShortMethodName}(var ${4:VarName}: Record ${5:TableName}; HideDialog: Boolean): Boolean",
             "\tvar",
+            "\t\tConfirmManagement: Codeunit \"Confirm Management\";",
             "\t\tConfirmQst: label 'Are You Sure?';",
+            "\t\tDefaultAnswer: Boolean;",
             "\tbegin",
-            "\t\tif Not GuiAllowed or HideDialog then exit(true);",
-            "\t\texit(Confirm(ConfirmQst));",
+            "\t\tDefaultAnswer := ${6:true};",
+            "\t\t",
+            "\t\tif HideDialog then exit(DefaultAnswer);",
+            "\t\texit(ConfirmManagement.GetResponseOrDefault(ConfirmQst, DefaultAnswer));",
             "\tend;",
             "",
             "\tlocal procedure Acknowledge${3:ShortMethodName}(var ${4:VarName}: Record ${5:TableName}; HideDialog: Boolean)",
@@ -246,7 +250,7 @@
             "end;"
         ]
     },
-	"Snippet (waldo): Create Setup Table": {
+    "Snippet (waldo): Create Setup Table": {
         "description": "Snippet (waldo): Create Setup Table",
         "prefix": "ttablesetupwaldo",
         "body": [
@@ -271,7 +275,7 @@
             "\t\t\tClustered = true;",
             "\t\t}",
             "\t}",
-			"",
+            "",
             "var",
             "\tRecordHasBeenRead: Boolean;",
             "",

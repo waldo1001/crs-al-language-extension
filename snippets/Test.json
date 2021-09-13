@@ -1,7 +1,7 @@
 {
     "Snippet (waldo): Test Case": {
         "description": "Snippet (waldo): Test Case",
-        "prefix": "ttestcase",
+        "prefix": "ttestcasewaldo",
         "body": [
             "[Test]",
             "procedure \"${1:Given Some State}_${2:When Some Action}_${3:Then Expected Output}\"()",
@@ -13,16 +13,16 @@
         ]
     },
     "Snippet (waldo): Handler Function Argument": {
-        "prefix": "tTestHandlerFunctionsArgument",
-        "description": "HandlerFunctions(HandlerNames: Text)",
+        "prefix": "tTestHandlerFunctionsArgumentwaldo",
+        "description": "Snippet (waldo): HandlerFunctions(HandlerNames: Text)",
         "body": [
             "[HandlerFunctions('${1:CommaSeperateAllHandlerFunctions}')]",
             "${0}"
         ]
     },
     "Snippet (waldo): Modal Page Handler": {
-        "prefix": "tTestModalPageHandler",
-        "description": "ModelPageHandler Procedure",
+        "prefix": "tTestModalPageHandlerwaldo",
+        "description": "Snippet (waldo): ModelPageHandler Procedure",
         "body": [
             "[ModalPageHandler]",
             "procedure ${1:ModalPageHandler}(var ${2:Modalpage}: TestPage ${3:\"Your Page\"});",
@@ -32,8 +32,8 @@
         ]
     },
     "Snippet (waldo): Message Handler": {
-        "prefix": "tTestMessageHandler",
-        "description": "Message Handler Procedure",
+        "prefix": "tTestMessageHandlerwaldo",
+        "description": "Snippet (waldo): Message Handler Procedure",
         "body": [
             "[MessageHandler]",
             "procedure MessageHandler(MessageText: Text[1024])",
@@ -43,8 +43,8 @@
         ]
     },
     "Snippet (waldo): Confirm Handler": {
-        "prefix": "tTestConfirmHandler",
-        "description": "ModelPageHandler Procedure",
+        "prefix": "tTestConfirmHandlerwaldo",
+        "description": "Snippet (waldo): ModelPageHandler Procedure",
         "body": [
             "[ConfirmHandler]",
             "procedure ${1:ConfirmHandler}(Question: Text[1024]; var Reply: Boolean);",

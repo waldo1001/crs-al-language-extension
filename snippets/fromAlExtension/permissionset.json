@@ -1,0 +1,14 @@
+{
+    "Snippet: PermissionSet": {
+        "prefix": "tpermissionsetwaldo",
+        "body": [
+            "permissionset ${1:Id} ${2:MyPermissionSet}",
+            "{",
+            "\tAssignable = ${3|true,false|};",
+            "\tPermissions = ",
+            "\t\t${4|tabledata,codeunit,page,query,report,system,xmlport,table|} ${6:ObjectName} = ${7:ObjectPermissions};",
+            "}"
+        ],
+        "description": "Snippet: Permission Set"
+    }
+}

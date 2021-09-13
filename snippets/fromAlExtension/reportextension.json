@@ -1,0 +1,15 @@
+{
+	"Snippet: Report Extension": {
+		"prefix": "treportextwaldo",
+		"body": [
+			"reportextension ${1:Id} ${2:MyExtension} extends ${3:MyTargetReport}",
+			"{",
+			"\tdataset",
+			"\t{",
+			"\t\t${0}",
+			"\t}",
+			"}"
+		],
+		"description": "Snippet: Report Extension"
+	}
+}

@@ -4,9 +4,17 @@
         "body": [
             "interface ${1:IMyInterface}",
             "{",
-			    "\tprocedure ${0:MyProcedure}();",
+            "\tprocedure ${0:MyProcedure}();",
             "}"
         ],
         "description": "Snippet: Interface"
+    },
+    "Snippet: Interface Procedure": {
+        "prefix": "tinterfaceprocedurewaldo",
+        "description": "Snippet: Interface Procedure",
+        "body": [
+            "procedure ${1:MyProcedure}(${2:Parameters})${3};",
+            "${0}"
+        ]
     }
 }

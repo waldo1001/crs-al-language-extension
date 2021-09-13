@@ -20,11 +20,6 @@
             "\t\t\t}",
             "\t\t}",
             "\t}",
-            "\t",
-            "\ttrigger ${14:OnBeforeOpen}()",
-            "\tbegin",
-            "\t\t$0",
-            "\tend;",
             "}"
         ],
         "description": "Snippet: Query"
@@ -55,11 +50,6 @@
             "\t\t\t}",
             "\t\t}",
             "\t}",
-            "\t",
-            "\ttrigger ${19:OnBeforeOpen}()",
-            "\tbegin",
-            "\t\t$0",
-            "\tend;",
             "}"
         ],
         "description": "Snippet: Query of type API"

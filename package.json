@@ -2,7 +2,7 @@
     "name": "crs-al-language-extension",
     "displayName": "waldo's CRS AL Language Extension",
     "description": "Make working with the (Dynamics NAV / 365) AL Language easier and more efficient.",
-    "version": "1.4.10",
+    "version": "1.4.11",
     "publisher": "waldo",
     "icon": "images/waldo.png",
     "author": {
@@ -308,46 +308,6 @@
         "snippets": [
             {
                 "language": "al",
-                "path": "./snippets/al.json"
-            },
-            {
-                "language": "al",
-                "path": "./snippets/designPatterns.json"
-            },
-            {
-                "language": "al",
-                "path": "./snippets/page.json"
-            },
-            {
-                "language": "al",
-                "path": "./snippets/table.json"
-            },
-            {
-                "language": "al",
-                "path": "./snippets/pageextension.json"
-            },
-            {
-                "language": "al",
-                "path": "./snippets/tableextension.json"
-            },
-            {
-                "language": "al",
-                "path": "./snippets/pagecustomization.json"
-            },
-            {
-                "language": "al",
-                "path": "./snippets/Test.json"
-            },
-            {
-                "language": "xml",
-                "path": "./snippets/buildMetadata.json"
-            },
-            {
-                "language": "al",
-                "path": "./snippets/interface.json"
-            },
-            {
-                "language": "al",
                 "path": "./snippets/fromAlExtension/al.json"
             },
             {
@@ -364,6 +324,10 @@
             },
             {
                 "language": "al",
+                "path": "./snippets/fromAlExtension/entitlement.json"
+            },
+            {
+                "language": "al",
                 "path": "./snippets/fromAlExtension/enum.json"
             },
             {
@@ -372,7 +336,27 @@
             },
             {
                 "language": "al",
+                "path": "./snippets/fromAlExtension/interface.json"
+            },
+            {
+                "language": "al",
                 "path": "./snippets/fromAlExtension/page.json"
+            },
+            {
+                "language": "al",
+                "path": "./snippets/fromAlExtension/pagecustomization.json"
+            },
+            {
+                "language": "al",
+                "path": "./snippets/fromAlExtension/pageextension.json"
+            },
+            {
+                "language": "al",
+                "path": "./snippets/fromAlExtension/permissionset.json"
+            },
+            {
+                "language": "al",
+                "path": "./snippets/fromAlExtension/permissionsetextension.json"
             },
             {
                 "language": "al",
@@ -388,6 +372,10 @@
             },
             {
                 "language": "al",
+                "path": "./snippets/fromAlExtension/reportextension.json"
+            },
+            {
+                "language": "json",
                 "path": "./snippets/fromAlExtension/ruleset.json"
             },
             {
@@ -396,11 +384,19 @@
             },
             {
                 "language": "al",
+                "path": "./snippets/fromAlExtension/tableextension.json"
+            },
+            {
+                "language": "xml",
+                "path": "./snippets/fromAlExtension/xml.json"
+            },
+            {
+                "language": "al",
                 "path": "./snippets/fromAlExtension/xmlport.json"
             },
             {
                 "language": "al",
-                "path": "./snippets/fromAlExtension/interface.json"
+                "path": "./snippets/al.json"
             },
             {
                 "language": "json",
@@ -408,7 +404,23 @@
             },
             {
                 "language": "al",
+                "path": "./snippets/DesignPatterns.json"
+            },
+            {
+                "language": "al",
                 "path": "./snippets/install.json"
+            },
+            {
+                "language": "al",
+                "path": "./snippets/page.json"
+            },
+            {
+                "language": "al",
+                "path": "./snippets/table.json"
+            },
+            {
+                "language": "al",
+                "path": "./snippets/Test.json"
             },
             {
                 "language": "al",
