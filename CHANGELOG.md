@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension:
 
+## [1.4.12] - 
+Improved snippets
+
+
+
 ## [1.4.11] - 2021-09-13
 Updated snippets (including v19)
 
