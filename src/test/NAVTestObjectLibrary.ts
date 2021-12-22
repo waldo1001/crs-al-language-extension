@@ -163,6 +163,7 @@ export function getTableWithWrongFileName(): NAVTestObject {
     
         fields
         {
+            //crs-al disable
             field(1; MyField; Integer)
             {
     
@@ -170,9 +171,11 @@ export function getTableWithWrongFileName(): NAVTestObject {
             }
             field(10;MyField2; Integer)
             {
+            //crs-al enable
     
                 DataClassification = ToBeClassified;
             }
+            //crs-al disable
             field(200;"My Field with a weird / Name"; Integer)
             {
     

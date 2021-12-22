@@ -136,6 +136,11 @@ export class NAVObject {
     private loadObjectProperties(): any {
         var patternObjectType = new RegExp('(codeunit |page |pagecustomization |pageextension |reportextension |permissionset |permissionsetextension |profile |query |report |requestpage |table |tableextension |xmlport |enum |enumextension |controladdin |interface)', "i")
 
+        //Remove content between crs-al disable -> enable
+        var patternIgnoreRegion = new RegExp('^\s*\/\/crs\-al\ disable.*\/\/crs\-al\ enable$',"gms");
+
+        this.NAVObjectText = this.NAVObjectText.replace(patternIgnoreRegion,'');
+
         //Remove comments to apply regex to
         var lines = this.NAVObjectText.split('\n');
         var filteredlines = lines.filter(function (line) {
