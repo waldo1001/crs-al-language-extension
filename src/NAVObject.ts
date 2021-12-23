@@ -137,10 +137,11 @@ export class NAVObject {
         var patternObjectType = new RegExp('(codeunit |page |pagecustomization |pageextension |reportextension |permissionset |permissionsetextension |profile |query |report |requestpage |table |tableextension |xmlport |enum |enumextension |controladdin |interface)', "i")
 
         //Remove content between crs-al disable -> enable
-        var patternIgnoreRegion = new RegExp('^\s*\/\/crs\-al\ disable.*\/\/crs\-al\ enable$',"gms");
+        var initNAVObjectText = this.NAVObjectText;
 
-        this.NAVObjectText = this.NAVObjectText.replace(patternIgnoreRegion,'');
-
+        var patternIgnoreRange = new RegExp('\/\/crs\-al\ disable.*?\/\/crs\-al\ enable',"gis");
+        this.NAVObjectText = this.NAVObjectText.replace(patternIgnoreRange,"");
+        
         //Remove comments to apply regex to
         var lines = this.NAVObjectText.split('\n');
         var filteredlines = lines.filter(function (line) {
@@ -312,6 +313,8 @@ export class NAVObject {
         while ((result = reg.exec(this.NAVObjectText)) !== null) {
             this.pageGroups.push(new NAVPageGroup(result[1], this.objectType, this._workSpaceSettings[Settings.ObjectNamePrefix], this._workSpaceSettings[Settings.ObjectNameSuffix]))
         }
+
+        this.NAVObjectText = initNAVObjectText;
     }
 
     private IsValidObjectType(objectType: string): boolean {
