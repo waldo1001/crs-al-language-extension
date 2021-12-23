@@ -175,7 +175,6 @@ export function getTableWithWrongFileName(): NAVTestObject {
     
                 DataClassification = ToBeClassified;
             }
-            //crs-al disable
             field(200;"My Field with a weird / Name"; Integer)
             {
     
