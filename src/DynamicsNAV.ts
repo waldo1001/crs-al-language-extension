@@ -20,7 +20,6 @@ export class DynamicsNAV {
         items.push({ label: 'MenuSuite', description: 'MenuSuite' });
         items.push({ label: 'Interface', description: 'Interface' });
         items.push({ label: 'PermissionSet', description: 'PermissionSet' });
-        items.push({ label: 'PermissionSetExtension', description: 'PermissionSetExtension' });
 
         return items
     }
@@ -198,7 +197,7 @@ export class DynamicsNAV {
             case 'requestpage': return 'RequestPage';
             case 'dotnet': return 'Dotnet';
             case 'permissionset': return 'PermissionSet';
-            case 'permissionsetextension': return 'permissionset';
+            case 'permissionsetextension': return 'PermissionSetExt';
         }
     }
 
@@ -220,7 +219,7 @@ export class DynamicsNAV {
             case 'controladdin': return 'ControlAddin';
             case 'interface': return 'Interface';
             case 'permissionset': return 'PermissionSet';
-            case 'permissionsetextension': return 'PermissionSetExtension';
+            case 'permissionsetextension': return 'PermissionSetExt';
         }
     }
 
