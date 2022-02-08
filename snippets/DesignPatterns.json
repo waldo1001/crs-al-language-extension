@@ -286,6 +286,7 @@
             "\t\tGet();",
             "\t\tRecordHasBeenRead := true;",
             "\tend;",
+            "",
             "\tprocedure InsertIfNotExists()",
             "\tvar",
             "\tbegin",
