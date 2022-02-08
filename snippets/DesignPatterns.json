@@ -288,7 +288,6 @@
             "\tend;",
             "",
             "\tprocedure InsertIfNotExists()",
-            "\tvar",
             "\tbegin",
             "\t\tReset();",
             "\t\tif not Get() then begin",
