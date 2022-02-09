@@ -5,10 +5,10 @@ import { FileFunctions } from '../../FileFunctions'
 
 suite("FileFunctions Tests", () => {
     test("getDirectory", () => {
-        assert.equal(FileFunctions.getDirectory('c:\\program files\\somefolder\\myFolder\\myfile.al'), 'c:\\program files\\somefolder\\myFolder\\');
+        assert.strictEqual(FileFunctions.getDirectory('c:\\program files\\somefolder\\myFolder\\myfile.al'), 'c:\\program files\\somefolder\\myFolder\\');
     });
     test("getFileName", () => {
-        assert.equal(FileFunctions.getFileName('c:\\program files\\somefolder\\myFolder\\myfile.al'), 'myfile.al');
+        assert.strictEqual(FileFunctions.getFileName('c:\\program files\\somefolder\\myFolder\\myfile.al'), 'myfile.al');
     });
 
 })

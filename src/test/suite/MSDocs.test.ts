@@ -9,11 +9,11 @@ suite("MSDocs Tests", () => {
         let SearchString = 'Option Types';
         let Result = MSDocs.GetSearchUrl(SearchString);
 
-        assert.notEqual(Result.indexOf('Option'), -1);
-        assert.notEqual(Result.indexOf('Types'), -1);
-        assert.equal(Result.indexOf('Option Types'), -1);
-        assert.notEqual(Result.indexOf('Option+Types'), -1);
-        assert.equal(Result.length > 12, true);
+        assert.notStrictEqual(Result.indexOf('Option'), -1);
+        assert.notStrictEqual(Result.indexOf('Types'), -1);
+        assert.strictEqual(Result.indexOf('Option Types'), -1);
+        assert.notStrictEqual(Result.indexOf('Option+Types'), -1);
+        assert.strictEqual(Result.length > 12, true);
     })
 
 })

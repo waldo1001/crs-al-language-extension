@@ -17,7 +17,7 @@ suite("NAVObject FilePattern Tests", () => {
         let navTestObject = NAVTestObjectLibrary.getPageNoPrefixCorrectNameWithActions()
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
 
-        assert.equal(navObject.objectFileNameFixed,
+        assert.strictEqual(navObject.objectFileNameFixed,
             navObject.objectType
             + navObject.objectTypeShort
             + navObject.ObjectTypeShortPascalCase
@@ -33,7 +33,7 @@ suite("NAVObject FilePattern Tests", () => {
         let navTestObject = NAVTestObjectLibrary.getTableExtensionWrongFileNameAndKeyWord()
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
 
-        assert.equal(navObject.objectFileNameFixed,
+        assert.strictEqual(navObject.objectFileNameFixed,
             navObject.objectType
             + navObject.objectTypeShort
             + navObject.ObjectTypeShortPascalCase
@@ -51,7 +51,7 @@ suite("NAVObject FilePattern Tests", () => {
         let navTestObject = NAVTestObjectLibrary.getPageCustomizationWrongFileName()
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
 
-        assert.equal(navObject.objectFileNameFixed,
+        assert.strictEqual(navObject.objectFileNameFixed,
             navObject.objectType
             + navObject.objectTypeShort
             + navObject.objectTypeShort.toUpperCase()
@@ -68,8 +68,8 @@ suite("NAVObject FilePattern Tests", () => {
         let navTestObject = NAVTestObjectLibrary.getPageCustomizationWrongFileName()
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
 
-        assert.notEqual(navObject.objectType, navObject.objectTypeShort);
-        assert.equal(navObject.objectTypeShort.toUpperCase(), navObject.objectFileNameFixed);
+        assert.notStrictEqual(navObject.objectType, navObject.objectTypeShort);
+        assert.strictEqual(navObject.objectTypeShort.toUpperCase(), navObject.objectFileNameFixed);
 
     })
 
@@ -80,7 +80,7 @@ suite("NAVObject FilePattern Tests", () => {
         let navTestObject = NAVTestObjectLibrary.getPageExtensionWithSlashInFileName();
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
 
-        assert.equal(navObject.objectFileNameFixed.indexOf('/'), -1); //does not contain slash
+        assert.strictEqual(navObject.objectFileNameFixed.indexOf('/'), -1); //does not contain slash
     })
     test("Filename - <BaseName> Rename PageExtension with ampersand(&)", () => {
         let testSettings = Settings.GetConfigSettings(null)
@@ -89,8 +89,8 @@ suite("NAVObject FilePattern Tests", () => {
         let navTestObject = NAVTestObjectLibrary.getPageExtensionWithAmpersandInFileName();
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
 
-        assert.notEqual(navObject.objectFileNameFixed.indexOf('&'), -1); //does contain &
-        assert.notEqual(navObject.extendedObjectName, navObject.objectName);
+        assert.notStrictEqual(navObject.objectFileNameFixed.indexOf('&'), -1); //does contain &
+        assert.notStrictEqual(navObject.extendedObjectName, navObject.objectName);
     })
     test("Filename - <ObjectName> Rename PageExtension with ampersand(&)", () => {
         let testSettings = Settings.GetConfigSettings(null)
@@ -99,8 +99,8 @@ suite("NAVObject FilePattern Tests", () => {
         let navTestObject = NAVTestObjectLibrary.getPageExtensionWithAmpersandInFileName();
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
 
-        assert.notEqual(navObject.objectFileNameFixed.indexOf('&'), -1); //does contain &
-        assert.notEqual(navObject.extendedObjectName, navObject.objectName);
+        assert.notStrictEqual(navObject.objectFileNameFixed.indexOf('&'), -1); //does contain &
+        assert.notStrictEqual(navObject.extendedObjectName, navObject.objectName);
     })
     test("Filename - <BaseNameShort> Rename PageExtension with ampersand(&)", () => {
         let testSettings = Settings.GetConfigSettings(null)
@@ -109,8 +109,8 @@ suite("NAVObject FilePattern Tests", () => {
         let navTestObject = NAVTestObjectLibrary.getPageExtensionWithAmpersandInFileName();
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
 
-        assert.equal(navObject.objectFileNameFixed.indexOf('&'), -1); //does not contain &
-        assert.notEqual(navObject.extendedObjectName, navObject.objectName);
+        assert.strictEqual(navObject.objectFileNameFixed.indexOf('&'), -1); //does not contain &
+        assert.notStrictEqual(navObject.extendedObjectName, navObject.objectName);
     })
     test("Filename - <ObjectNameShort> Rename PageExtension with ampersand(&)", () => {
         let testSettings = Settings.GetConfigSettings(null)
@@ -119,8 +119,8 @@ suite("NAVObject FilePattern Tests", () => {
         let navTestObject = NAVTestObjectLibrary.getPageExtensionWithAmpersandInFileName();
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
 
-        assert.equal(navObject.objectFileNameFixed.indexOf('&'), -1); //does not contain &
-        assert.notEqual(navObject.extendedObjectName, navObject.objectName);
+        assert.strictEqual(navObject.objectFileNameFixed.indexOf('&'), -1); //does not contain &
+        assert.notStrictEqual(navObject.extendedObjectName, navObject.objectName);
     })
 
     test("Filename - <BaseName[Short]> Extension Base object With Spaces", () => {
@@ -131,7 +131,7 @@ suite("NAVObject FilePattern Tests", () => {
         let navTestObject = NAVTestObjectLibrary.getPageExtensionWrongFileNameWithActions()
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
 
-        assert.notEqual(navObject.objectFileNameFixed.indexOf(' '), -1)
+        assert.notStrictEqual(navObject.objectFileNameFixed.indexOf(' '), -1)
 
         //Short
         testSettings[Settings.FileNamePatternExtensions] = '<BaseNameShort>.al'
@@ -139,7 +139,7 @@ suite("NAVObject FilePattern Tests", () => {
         navTestObject = NAVTestObjectLibrary.getPageExtensionWrongFileNameWithActions()
         navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
 
-        assert.equal(navObject.objectFileNameFixed.indexOf(' '), -1)
+        assert.strictEqual(navObject.objectFileNameFixed.indexOf(' '), -1)
     })
 
     test("Filename - <prefix> and <suffix>", () => {
@@ -152,8 +152,8 @@ suite("NAVObject FilePattern Tests", () => {
         let navTestObject = NAVTestObjectLibrary.getPageExtensionWrongFileNameWithActions()
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
 
-        assert.equal(navObject.objectFileNameFixed, testSettings[Settings.ObjectNamePrefix] + testSettings[Settings.ObjectNameSuffix] + '.al')
-        assert.notEqual(navObject.objectFileName, navObject.objectFileNameFixed)
+        assert.strictEqual(navObject.objectFileNameFixed, testSettings[Settings.ObjectNamePrefix] + testSettings[Settings.ObjectNameSuffix] + '.al')
+        assert.notStrictEqual(navObject.objectFileName, navObject.objectFileNameFixed)
     })
 
     test("Filename - Rename PageExtension with WeirdChars", () => {
@@ -163,18 +163,18 @@ suite("NAVObject FilePattern Tests", () => {
         let navTestObject = NAVTestObjectLibrary.getPageExtensionWithWeirdChars();
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
 
-        assert.notEqual(navObject.objectFileNameFixed.indexOf('µ'), -1); //does still contain µ
-        assert.notEqual(navObject.objectFileNameFixed.indexOf('åäö'), -1); //does still contain åäö
+        assert.notStrictEqual(navObject.objectFileNameFixed.indexOf('µ'), -1); //does still contain µ
+        assert.notStrictEqual(navObject.objectFileNameFixed.indexOf('åäö'), -1); //does still contain åäö
 
-        assert.equal(navObject.objectFileNameFixed.indexOf('<'), -1); //does not contain slash
-        assert.equal(navObject.objectFileNameFixed.indexOf('>'), -1); //does not contain slash
-        assert.equal(navObject.objectFileNameFixed.indexOf(':'), -1); //does not contain slash
-        assert.equal(navObject.objectFileNameFixed.indexOf('"'), -1); //does not contain slash
-        assert.equal(navObject.objectFileNameFixed.indexOf('/'), -1); //does not contain slash
-        assert.equal(navObject.objectFileNameFixed.indexOf('\\'), -1); //does not contain slash
-        assert.equal(navObject.objectFileNameFixed.indexOf('|'), -1); //does not contain slash
-        assert.equal(navObject.objectFileNameFixed.indexOf('?'), -1); //does not contain slash
-        assert.equal(navObject.objectFileNameFixed.indexOf('*'), -1); //does not contain slash
+        assert.strictEqual(navObject.objectFileNameFixed.indexOf('<'), -1); //does not contain slash
+        assert.strictEqual(navObject.objectFileNameFixed.indexOf('>'), -1); //does not contain slash
+        assert.strictEqual(navObject.objectFileNameFixed.indexOf(':'), -1); //does not contain slash
+        assert.strictEqual(navObject.objectFileNameFixed.indexOf('"'), -1); //does not contain slash
+        assert.strictEqual(navObject.objectFileNameFixed.indexOf('/'), -1); //does not contain slash
+        assert.strictEqual(navObject.objectFileNameFixed.indexOf('\\'), -1); //does not contain slash
+        assert.strictEqual(navObject.objectFileNameFixed.indexOf('|'), -1); //does not contain slash
+        assert.strictEqual(navObject.objectFileNameFixed.indexOf('?'), -1); //does not contain slash
+        assert.strictEqual(navObject.objectFileNameFixed.indexOf('*'), -1); //does not contain slash
 
     })
 
@@ -185,7 +185,7 @@ suite("NAVObject FilePattern Tests", () => {
         let navTestObject = NAVTestObjectLibrary.getPageExtensionWithQuotesInObjectName();
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
 
-        assert.equal(navObject.objectId, '')
+        assert.strictEqual(navObject.objectId, '')
     })
 
     test("Filename - Rename Page with Brackets in the object name", () => {
@@ -195,8 +195,8 @@ suite("NAVObject FilePattern Tests", () => {
         let navTestObject = NAVTestObjectLibrary.getObjectWithBracketsInName();
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
 
-        assert.equal(navObject.objectFileNameFixed.indexOf('('), -1);
-        assert.equal(navObject.objectFileNameFixed.indexOf(')'), -1);
+        assert.strictEqual(navObject.objectFileNameFixed.indexOf('('), -1);
+        assert.strictEqual(navObject.objectFileNameFixed.indexOf(')'), -1);
 
     })
 
@@ -210,8 +210,8 @@ suite("NAVObject FilePattern Tests", () => {
 
         let navTestObject = NAVTestObjectLibrary.getPageExtensionWithPrefix();
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
-        assert.equal(navObject.objectFileNameFixed, 'SalespersonsPurchasers__Salespersons_Purchasers.al')
-        assert.equal(navObject.objectNameFixed, 'CRS Salespersons/Purchasers')
+        assert.strictEqual(navObject.objectFileNameFixed, 'SalespersonsPurchasers__Salespersons_Purchasers.al')
+        assert.strictEqual(navObject.objectNameFixed, 'CRS Salespersons/Purchasers')
     })
 
     test("Filename - Rename PageExtension with Prefix in object name, and remove prefix in filename (not data-agnostic)", () => {
@@ -224,8 +224,8 @@ suite("NAVObject FilePattern Tests", () => {
 
         let navTestObject = NAVTestObjectLibrary.getPageExtensionWithPrefix();
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
-        assert.equal(navObject.objectFileNameFixed, 'SalespersonsPurchasersSalespersonsPurchasers.al')
-        assert.equal(navObject.objectNameFixed, 'CRS Salespersons/Purchasers')
+        assert.strictEqual(navObject.objectFileNameFixed, 'SalespersonsPurchasersSalespersonsPurchasers.al')
+        assert.strictEqual(navObject.objectNameFixed, 'CRS Salespersons/Purchasers')
     })
 
     test("Filename - Rename PageExtension with Prefix in object name, and remove prefix in filename (data-agnostic)", () => {
@@ -238,8 +238,8 @@ suite("NAVObject FilePattern Tests", () => {
 
         let navTestObject = NAVTestObjectLibrary.getPageExtensionWithPrefix();
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
-        assert.equal(navObject.objectFileNameFixed.startsWith(testSettings[Settings.ObjectNamePrefix]), false);
-        assert.equal(navObject.objectNameFixed.startsWith(testSettings[Settings.ObjectNamePrefix]), true);
+        assert.strictEqual(navObject.objectFileNameFixed.startsWith(testSettings[Settings.ObjectNamePrefix]), false);
+        assert.strictEqual(navObject.objectNameFixed.startsWith(testSettings[Settings.ObjectNamePrefix]), true);
     })
 
 
@@ -253,8 +253,8 @@ suite("NAVObject FilePattern Tests", () => {
 
         let navTestObject = NAVTestObjectLibrary.getPageExtensionWithSuffix();
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
-        assert.equal(navObject.objectFileNameFixed, 'SalespersonsPurchasers__Salespersons_Purchasers.al')
-        assert.equal(navObject.objectNameFixed, 'Salespersons/Purchasers CRS')
+        assert.strictEqual(navObject.objectFileNameFixed, 'SalespersonsPurchasers__Salespersons_Purchasers.al')
+        assert.strictEqual(navObject.objectNameFixed, 'Salespersons/Purchasers CRS')
     })
 
     test("Filename - Rename PageExtension with Suffix in object name, and remove suffix in filename (data-agnostic)", () => {
@@ -267,8 +267,8 @@ suite("NAVObject FilePattern Tests", () => {
 
         let navTestObject = NAVTestObjectLibrary.getPageExtensionWithSuffix();
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
-        assert.equal(navObject.objectFileNameFixed.endsWith(testSettings[Settings.ObjectNameSuffix]), false)
-        assert.equal(navObject.objectNameFixed.endsWith(testSettings[Settings.ObjectNameSuffix]), true)
+        assert.strictEqual(navObject.objectFileNameFixed.endsWith(testSettings[Settings.ObjectNameSuffix]), false)
+        assert.strictEqual(navObject.objectNameFixed.endsWith(testSettings[Settings.ObjectNameSuffix]), true)
     })
 
 
@@ -285,8 +285,8 @@ suite("NAVObject FilePattern Tests", () => {
 
         let navTestObject = NAVTestObjectLibrary.getPageExtensionWithPrefixAndSuffix();
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
-        assert.equal(navObject.objectFileNameFixed, 'SalespersonsPurchasers__Salespersons_Purchasers.al')
-        assert.equal(navObject.objectNameFixed, 'PCRS Salespersons/Purchasers SCRS')
+        assert.strictEqual(navObject.objectFileNameFixed, 'SalespersonsPurchasers__Salespersons_Purchasers.al')
+        assert.strictEqual(navObject.objectNameFixed, 'PCRS Salespersons/Purchasers SCRS')
     })
 
     test("Filename - Rename PageExtension with both Prefix and Suffix in object name, and remove Prefix and Suffix in filename (data-agnostic)", () => {
@@ -301,10 +301,10 @@ suite("NAVObject FilePattern Tests", () => {
 
         let navTestObject = NAVTestObjectLibrary.getPageExtensionWithPrefixAndSuffix();
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
-        assert.equal(navObject.objectFileNameFixed.startsWith(testSettings[Settings.ObjectNamePrefix]), false)
-        assert.equal(navObject.objectFileNameFixed.endsWith(testSettings[Settings.ObjectNameSuffix]), false)
-        assert.equal(navObject.objectNameFixed.startsWith(testSettings[Settings.ObjectNamePrefix]), true)
-        assert.equal(navObject.objectNameFixed.endsWith(testSettings[Settings.ObjectNameSuffix]), true)
+        assert.strictEqual(navObject.objectFileNameFixed.startsWith(testSettings[Settings.ObjectNamePrefix]), false)
+        assert.strictEqual(navObject.objectFileNameFixed.endsWith(testSettings[Settings.ObjectNameSuffix]), false)
+        assert.strictEqual(navObject.objectNameFixed.startsWith(testSettings[Settings.ObjectNamePrefix]), true)
+        assert.strictEqual(navObject.objectNameFixed.endsWith(testSettings[Settings.ObjectNameSuffix]), true)
     })
 
 
@@ -317,7 +317,7 @@ suite("NAVObject FilePattern Tests", () => {
         let navTestObject = NAVTestObjectLibrary.getPageExtensionWithAmpersandInFileName()
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
 
-        assert.equal(navObject.objectNameFixed,
+        assert.strictEqual(navObject.objectNameFixed,
             testSettings[Settings.ObjectNamePrefix]
             + testSettings[Settings.ObjectNameSuffix]
             + navObject.objectType
@@ -333,7 +333,7 @@ suite("NAVObject FilePattern Tests", () => {
         let navTestObject = NAVTestObjectLibrary.getSimpleReportExtension()
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
 
-        assert.equal(navObject.objectNameFixed,
+        assert.strictEqual(navObject.objectNameFixed,
             testSettings[Settings.ObjectNamePrefix]
             + testSettings[Settings.ObjectNameSuffix]
             + navObject.objectType
@@ -348,8 +348,8 @@ suite("NAVObject FilePattern Tests", () => {
         let navTestObject = NAVTestObjectLibrary.getPageExtensionWithAmpersandInFileName()
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
 
-        assert.notEqual(navObject.objectName.length, navObject.objectNameFixed.length);
-        assert.equal(true, navObject.objectNameFixed.length > 30)
+        assert.notStrictEqual(navObject.objectName.length, navObject.objectNameFixed.length);
+        assert.strictEqual(true, navObject.objectNameFixed.length > 30)
     })
 
     test("PageExtension - ExtensionObjectNamePattern - Ignore too Long - With Very Long Base name", () => {
@@ -360,9 +360,9 @@ suite("NAVObject FilePattern Tests", () => {
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
 
         let navObject2 = new NAVObject(navObject.NAVObjectTextFixed, testSettings, navObject.objectFileNameFixed)
-        assert.equal(navObject2.objectName.length, navObject.objectName.length);
-        assert.equal(navObject2.objectName, navObject.objectName);
-        assert.equal(true, navObject2.objectName.length <= 30)
+        assert.strictEqual(navObject2.objectName.length, navObject.objectName.length);
+        assert.strictEqual(navObject2.objectName, navObject.objectName);
+        assert.strictEqual(true, navObject2.objectName.length <= 30)
     })
 
     test("ReportExtension - Automatic Naming with settings", () => {
@@ -374,7 +374,7 @@ suite("NAVObject FilePattern Tests", () => {
         let navTestObject = NAVTestObjectLibrary.getSimpleReportExtension()
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
 
-        assert.equal(
+        assert.strictEqual(
             navObject.objectNameFixed,
             navObject.objectId
             + navObject.extendedObjectName
@@ -391,7 +391,7 @@ suite("NAVObject FilePattern Tests", () => {
         let navTestObject = NAVTestObjectLibrary.getTableExtensionWrongFileNameAndKeyWord()
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
 
-        assert.equal(
+        assert.strictEqual(
             navObject.objectNameFixed,
             // testSettings[Settings.ObjectNamePrefix]
             // + testSettings[Settings.ObjectNameSuffix]
@@ -414,7 +414,7 @@ suite("NAVObject FilePattern Tests", () => {
         let navTestObject = NAVTestObjectLibrary.getExtensionObjectWithVeryLongObjectName()
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
 
-        assert.equal(true, navObject.objectFileNameFixed.startsWith(StringFunctions.removeAllButAlfaNumeric(navObject.objectName)))
+        assert.strictEqual(true, navObject.objectFileNameFixed.startsWith(StringFunctions.removeAllButAlfaNumeric(navObject.objectName)))
     })
     test("FileName - Extension Object with which would be too (not DataAgnostic)", () => {
         let testSettings = Settings.GetConfigSettings(null)
@@ -424,7 +424,7 @@ suite("NAVObject FilePattern Tests", () => {
         let navTestObject = NAVTestObjectLibrary.getExtensionObjectWithVeryLongObjectName()
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
 
-        assert.equal(navObject.objectFileNameFixed, 'BlankPurchOrderSubfrmExtBASEPageExt')
+        assert.strictEqual(navObject.objectFileNameFixed, 'BlankPurchOrderSubfrmExtBASEPageExt')
     })
     test("FileName - Simple Interface (not DataAgnostic)", () => {
         let testSettings = Settings.GetConfigSettings(null)
@@ -433,7 +433,7 @@ suite("NAVObject FilePattern Tests", () => {
         let navTestObject = NAVTestObjectLibrary.getSimpleInterface()
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
 
-        assert.equal(navObject.objectFileNameFixed, 'IBallColorIdentifier.Interface.al')
+        assert.strictEqual(navObject.objectFileNameFixed, 'IBallColorIdentifier.Interface.al')
     })
 
     test("Filename - Rename PageExtension with Suffix with underscore in object name, and remove suffix in filename (not data-agnostic)", () => {
@@ -445,8 +445,8 @@ suite("NAVObject FilePattern Tests", () => {
 
         let navTestObject = NAVTestObjectLibrary.getTestCodeunitWithPrefix(); //codeunit 50101 "Vault Management_EVAS"
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
-        assert.equal(navObject.objectFileNameFixed, 'Vault Management.al')
-        assert.equal(navObject.objectNameFixed, 'Vault Management_EVAS')
+        assert.strictEqual(navObject.objectFileNameFixed, 'Vault Management.al')
+        assert.strictEqual(navObject.objectNameFixed, 'Vault Management_EVAS')
     })
     test("Filename - Rename PageExtension with Suffix with underscore in object name, and remove suffix in filename (not data-agnostic)", () => {
         let testSettings = Settings.GetConfigSettings(null)
@@ -458,8 +458,8 @@ suite("NAVObject FilePattern Tests", () => {
 
         let navTestObject = NAVTestObjectLibrary.getTestCodeunitWithPrefix(); //codeunit 50101 "Vault Management_EVAS"
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
-        assert.equal(navObject.objectFileNameFixed, 'Vault Management.al')
-        assert.equal(navObject.objectNameFixed, 'Vault Management_EVAS')
+        assert.strictEqual(navObject.objectFileNameFixed, 'Vault Management.al')
+        assert.strictEqual(navObject.objectNameFixed, 'Vault Management_EVAS')
     })
 
     test("Filename - Rename PageExtension with underscore - remove underscore (not data-agnostic)", () => {
@@ -469,8 +469,8 @@ suite("NAVObject FilePattern Tests", () => {
 
         let navTestObject = NAVTestObjectLibrary.getTestCodeunitWithPrefix(); //codeunit 50101 "Vault Management_EVAS"
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
-        assert.equal(navObject.objectFileNameFixed, 'Vault ManagementEVAS.al')
-        assert.equal(navObject.objectNameFixed, 'Vault Management_EVAS')
+        assert.strictEqual(navObject.objectFileNameFixed, 'Vault ManagementEVAS.al')
+        assert.strictEqual(navObject.objectNameFixed, 'Vault Management_EVAS')
     })
 
     test("Filename - Rename PageExtension with underscore - remove underscore (not data-agnostic)", () => {
@@ -481,8 +481,8 @@ suite("NAVObject FilePattern Tests", () => {
 
         let navTestObject = NAVTestObjectLibrary.getTestCodeunitWithPrefix(); //codeunit 50101 "Vault Management_EVAS"
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
-        assert.equal(navObject.objectFileNameFixed, 'Vault Management_EVAS.al')
-        assert.equal(navObject.objectNameFixed, 'Vault Management_EVAS')
+        assert.strictEqual(navObject.objectFileNameFixed, 'Vault Management_EVAS.al')
+        assert.strictEqual(navObject.objectNameFixed, 'Vault Management_EVAS')
     })
 
     test("Filename - Rename PageExtension with underscore - remove underscore (not data-agnostic)", () => {
@@ -493,8 +493,8 @@ suite("NAVObject FilePattern Tests", () => {
 
         let navTestObject = NAVTestObjectLibrary.getTestCodeunitWithPrefix(); //codeunit 50101 "Vault Management_EVAS"
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
-        assert.equal(navObject.objectFileNameFixed, 'VaultManagement_EVAS.al')
-        assert.equal(navObject.objectNameFixed, 'Vault Management_EVAS')
+        assert.strictEqual(navObject.objectFileNameFixed, 'VaultManagement_EVAS.al')
+        assert.strictEqual(navObject.objectNameFixed, 'Vault Management_EVAS')
     })
     test("Filename - Rename ReportExtension", () => {
         let testSettings = Settings.GetConfigSettings(null)
@@ -504,7 +504,7 @@ suite("NAVObject FilePattern Tests", () => {
         let navTestObject = NAVTestObjectLibrary.getSimpleReportExtension();
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
 
-        assert.equal(navObject.objectFileNameFixed, 'CustomerTop10ListExt.al')
+        assert.strictEqual(navObject.objectFileNameFixed, 'CustomerTop10ListExt.al')
     })
     test("Filename - Object with comments", () => {
         // bug report: https://github.com/waldo1001/crs-al-language-extension/issues/167
@@ -515,6 +515,6 @@ suite("NAVObject FilePattern Tests", () => {
         let navTestObject = NAVTestObjectLibrary.getSimpleReportExtensionWithSummaryComments();
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
 
-        assert.equal(navObject.objectFileNameFixed, 'CustomerTop10ListExt.ReportExt.al')
+        assert.strictEqual(navObject.objectFileNameFixed, 'CustomerTop10ListExt.ReportExt.al')
     })
 })

@@ -22,10 +22,10 @@ suite("NAVObject General Tests", () => {
         let navTestObject = NAVTestObjectLibrary.getAlFileWithoutCode();
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
 
-        assert.equal(navObject.NAVObjectText, navObject.NAVObjectTextFixed);
-        assert.equal(navObject.objectFileName, navObject.objectFileNameFixed);
-        assert.equal(navObject.objectName, navObject.objectNameFixed);
-        assert.equal(navObject.objectNameFixedShort, '');
+        assert.strictEqual(navObject.NAVObjectText, navObject.NAVObjectTextFixed);
+        assert.strictEqual(navObject.objectFileName, navObject.objectFileNameFixed);
+        assert.strictEqual(navObject.objectName, navObject.objectNameFixed);
+        assert.strictEqual(navObject.objectNameFixedShort, '');
     });
 
     test("Reorganize Test Codeunits to 'test'-folder", () => {
@@ -37,8 +37,8 @@ suite("NAVObject General Tests", () => {
         let navTestObject2 = NAVTestObjectLibrary.getNormalCodeunitWithLongName()
         let navObject2 = new NAVObject(navTestObject2.ObjectText, testSettings, navTestObject2.ObjectFileName)
 
-        assert.equal(navObject.objectCodeunitSubType.toLowerCase(), 'test');
-        assert.equal(navObject2.objectCodeunitSubType, null);
+        assert.strictEqual(navObject.objectCodeunitSubType.toLowerCase(), 'test');
+        assert.strictEqual(navObject2.objectCodeunitSubType, null);
     })
 
     test("Filename - <ObjectName[Short]> Normal object With Spaces", () => {
@@ -49,7 +49,7 @@ suite("NAVObject General Tests", () => {
         let navTestObject = NAVTestObjectLibrary.getNormalCodeunitWithLongName()
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
 
-        assert.notEqual(navObject.objectFileNameFixed.indexOf(' '), -1)
+        assert.notStrictEqual(navObject.objectFileNameFixed.indexOf(' '), -1)
 
         //Short
         testSettings[Settings.FileNamePattern] = '<ObjectNameShort>.al'
@@ -57,7 +57,7 @@ suite("NAVObject General Tests", () => {
         navTestObject = NAVTestObjectLibrary.getNormalCodeunitWithLongName()
         navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
 
-        assert.equal(navObject.objectFileNameFixed.indexOf(' '), -1)
+        assert.strictEqual(navObject.objectFileNameFixed.indexOf(' '), -1)
     })
 
     test("Filename - Wrong Extension Casing", () => {
@@ -66,7 +66,7 @@ suite("NAVObject General Tests", () => {
         let navTestObject = NAVTestObjectLibrary.GetFileNameWithWrongCasing();
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
 
-        assert.equal(navObject.objectFileNameFixed.toLocaleLowerCase().endsWith('.al'), true);
+        assert.strictEqual(navObject.objectFileNameFixed.toLocaleLowerCase().endsWith('.al'), true);
     })
 
 
@@ -77,7 +77,7 @@ suite("NAVObject General Tests", () => {
         let navTestObject = NAVTestObjectLibrary.getPageExtensionWithAmpersandInFileName()
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
 
-        assert.equal(navObject.objectNameFixed, navObject.objectName)
+        assert.strictEqual(navObject.objectNameFixed, navObject.objectName)
     })
 
     test("TableExtension - Automatic Naming without settings", () => {
@@ -86,7 +86,7 @@ suite("NAVObject General Tests", () => {
         let navTestObject = NAVTestObjectLibrary.getTableExtensionWrongFileNameAndKeyWord()
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
 
-        assert.equal(navObject.objectNameFixed, navObject.objectName)
+        assert.strictEqual(navObject.objectNameFixed, navObject.objectName)
     })
 
     test("Case Sensitive Object Types", () => {
@@ -95,7 +95,7 @@ suite("NAVObject General Tests", () => {
         let navTestObject = NAVTestObjectLibrary.getPascalCasedObjectType_Report()
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
 
-        assert.equal(navObject.objectType.toLocaleLowerCase(), 'report')
+        assert.strictEqual(navObject.objectType.toLocaleLowerCase(), 'report')
     })
     test("Filename - Rename enum", () => {
         let testSettings = Settings.GetConfigSettings(null)
@@ -103,7 +103,7 @@ suite("NAVObject General Tests", () => {
         let navTestObject = NAVTestObjectLibrary.getEnumObject();
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
 
-        assert.notEqual(navObject.extendedObjectName, navObject.objectName);
+        assert.notStrictEqual(navObject.extendedObjectName, navObject.objectName);
     })
     test("Filename - Rename enumExtension", () => {
         let testSettings = Settings.GetConfigSettings(null)
@@ -111,7 +111,7 @@ suite("NAVObject General Tests", () => {
         let navTestObject = NAVTestObjectLibrary.getEnumExtensionObject();
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
 
-        assert.notEqual(navObject.extendedObjectName, navObject.objectName);
+        assert.notStrictEqual(navObject.extendedObjectName, navObject.objectName);
     })
     test("Comments in table", () => {
         let testSettings = Settings.GetConfigSettings(null)
@@ -122,8 +122,8 @@ suite("NAVObject General Tests", () => {
         let navTestObject = NAVTestObjectLibrary.getTableWithComments();
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
 
-        assert.equal(navObject.objectType.toLowerCase().startsWith('table'), true);
-        assert.equal(navObject.objectFileNameFixed,
+        assert.strictEqual(navObject.objectType.toLowerCase().startsWith('table'), true);
+        assert.strictEqual(navObject.objectFileNameFixed,
             testSettings[Settings.ObjectNamePrefix]
             + testSettings[Settings.ObjectNameSuffix]
             + navObject.objectType
@@ -144,7 +144,7 @@ suite("NAVObject General Tests", () => {
             if (DynamicsNAV.getAllKeywordsLowerCased().indexOf(tableField.name.toLowerCase()) != -1) {
                 var expectedValueToFind = `"${tableField.name}"`
                 //console.log(tableField.fullFieldTextFixed);
-                assert.equal((tableField.fullFieldText.indexOf(expectedValueToFind) > -1), true, `"${tableField.name}" is a keyword and should be surrounded with quotes, while this is the fixed text: "${tableField.fullFieldText}"`)
+                assert.strictEqual((tableField.fullFieldText.indexOf(expectedValueToFind) > -1), true, `"${tableField.name}" is a keyword and should be surrounded with quotes, while this is the fixed text: "${tableField.fullFieldText}"`)
             }
         });
     })
@@ -161,7 +161,7 @@ suite("NAVObject General Tests", () => {
             if (DynamicsNAV.getAllKeywordsLowerCased().indexOf(tableField.name.toLowerCase()) != -1) {
                 var expectedValueToFind = `"${tableField.name}"`
                 //console.log(tableField.fullFieldTextFixed);
-                assert.equal((tableField.fullFieldText.indexOf(expectedValueToFind) > -1), true, `"${tableField.name}" is a keyword and should be surrounded with quotes, while this is the fixed text: "${tableField.fullFieldText}"`)
+                assert.strictEqual((tableField.fullFieldText.indexOf(expectedValueToFind) > -1), true, `"${tableField.name}" is a keyword and should be surrounded with quotes, while this is the fixed text: "${tableField.fullFieldText}"`)
             }
         });
     })
@@ -176,7 +176,7 @@ suite("NAVObject General Tests", () => {
             if (DynamicsNAV.getAllKeywordsLowerCased().indexOf(tableField.name.toLowerCase()) != -1) {
                 var expectedValueToFind = `"${tableField.name}"`
                 //console.log(tableField.fullFieldTextFixed);
-                assert.equal((tableField.fullFieldText.indexOf(expectedValueToFind) > -1), true, `"${tableField.name}" is a keyword and should be surrounded with quotes, while this is the fixed text: "${tableField.fullFieldText}"`)
+                assert.strictEqual((tableField.fullFieldText.indexOf(expectedValueToFind) > -1), true, `"${tableField.name}" is a keyword and should be surrounded with quotes, while this is the fixed text: "${tableField.fullFieldText}"`)
             }
         });
     })
@@ -193,7 +193,7 @@ suite("NAVObject General Tests", () => {
             if (DynamicsNAV.getAllKeywordsLowerCased().indexOf(tableField.name.toLowerCase()) != -1) {
                 var expectedValueToFind = `"${tableField.name}"`
                 //console.log(tableField.fullFieldTextFixed);
-                assert.equal((tableField.fullFieldText.indexOf(expectedValueToFind) > -1), true, `"${tableField.name}" is a keyword and should be surrounded with quotes, while this is the fixed text: "${tableField.fullFieldText}"`)
+                assert.strictEqual((tableField.fullFieldText.indexOf(expectedValueToFind) > -1), true, `"${tableField.name}" is a keyword and should be surrounded with quotes, while this is the fixed text: "${tableField.fullFieldText}"`)
             }
         });
     })
@@ -210,7 +210,7 @@ suite("NAVObject General Tests", () => {
             if (DynamicsNAV.getAllKeywordsLowerCased().indexOf(pageAction.name.toLowerCase()) != -1) {
                 var expectedValueToFind = `"${pageAction.name}"`
                 //console.log(pageAction.fullFieldTextFixed);
-                assert.equal((pageAction.fullActionText.indexOf(expectedValueToFind) > -1), true, `"${pageAction.name}" is a keyword and should be surrounded with quotes, while this is the fixed text: "${pageAction.fullActionText}"`)
+                assert.strictEqual((pageAction.fullActionText.indexOf(expectedValueToFind) > -1), true, `"${pageAction.name}" is a keyword and should be surrounded with quotes, while this is the fixed text: "${pageAction.fullActionText}"`)
             }
         });
     })

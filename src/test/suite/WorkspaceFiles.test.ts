@@ -16,7 +16,7 @@ suite("WorkspaceFiles Tests", () => {
 
         let foldersuggestion = WorkspaceFiles.getDestinationFolder(navObject, testSettings);
 
-        assert.equal(foldersuggestion.toLowerCase(), 'test');
+        assert.strictEqual(foldersuggestion.toLowerCase(), 'test');
     })
     test("getDestinationFolder - no test", () => {
         let testSettings = Settings.GetConfigSettings(null);
@@ -26,7 +26,7 @@ suite("WorkspaceFiles Tests", () => {
 
         let foldersuggestion = WorkspaceFiles.getDestinationFolder(navObject, testSettings);
 
-        assert.notEqual(foldersuggestion.toLowerCase(), 'test');
+        assert.notStrictEqual(foldersuggestion.toLowerCase(), 'test');
     })
     test("getObjectTypeFolder - test", () => {
         let testSettings = Settings.GetConfigSettings(null);
@@ -36,7 +36,7 @@ suite("WorkspaceFiles Tests", () => {
 
         let foldersuggestion = WorkspaceFiles.getObjectTypeFolder(navObject);
 
-        assert.equal(foldersuggestion.toLowerCase(), '');
+        assert.strictEqual(foldersuggestion.toLowerCase(), '');
     })
     test("getObjectTypeFolder - no test", () => {
         let testSettings = Settings.GetConfigSettings(null);
@@ -46,7 +46,7 @@ suite("WorkspaceFiles Tests", () => {
 
         let foldersuggestion = WorkspaceFiles.getObjectTypeFolder(navObject);
 
-        assert.equal(foldersuggestion.toLowerCase().toString(), navObject.objectType.toString());
-        assert.notEqual(foldersuggestion.toLowerCase().toString(), '');
+        assert.strictEqual(foldersuggestion.toLowerCase().toString(), navObject.objectType.toString());
+        assert.notStrictEqual(foldersuggestion.toLowerCase().toString(), '');
     })
 })
