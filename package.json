@@ -444,18 +444,18 @@
     "scripts": {
         "vscode:prepublish": "npm run compile",
         "compile": "tsc -p ./",
-        "watch": "tsc -watch -p ./",
-        "postinstall": "node ./node_modules/vscode/bin/install",
-        "test": "npm run compile && node ./node_modules/vscode/bin/test"
+        "watch": "tsc -watch -p ./"
     },
     "dependencies": {
         "opn": "^6.0.0",
         "simple-git": "^1.110.0"
     },
     "devDependencies": {
-        "@types/mocha": "^7.0.2",
-        "@types/node": "^13.11.0",
-        "typescript": "^3.8.3",
-        "vscode": "^1.1.37"
+        "@types/mocha": "^8.2.2",
+        "mocha": "^8.4.0",
+        "@types/node": "14.x",
+        "typescript": "^4.3.2",
+        "@types/vscode": "^1.28.0",
+        "@vscode/test-electron": "^1.5.2"
     }
 }
