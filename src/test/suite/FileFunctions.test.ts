@@ -1,7 +1,7 @@
 import * as assert from 'assert';
 import { suite, test } from 'mocha';
 
-import { FileFunctions } from '../FileFunctions'
+import { FileFunctions } from '../../FileFunctions'
 
 suite("FileFunctions Tests", () => {
     test("getDirectory", () => {

@@ -1,13 +1,13 @@
 import * as assert from 'assert';
 import { suite, test } from 'mocha';
 
-import { NAVObject } from '../NAVObject'
-import { WorkspaceFiles } from '../WorkspaceFiles'
-import * as myExtension from '../extension';
+import { NAVObject } from '../../NAVObject'
+import { WorkspaceFiles } from '../../WorkspaceFiles'
+import * as myExtension from '../../extension';
 import * as NAVTestObjectLibrary from './NAVTestObjectLibrary'
-import { Settings } from '../Settings';
+import { Settings } from '../../Settings';
 import { settings } from 'cluster';
-import { StringFunctions } from '../StringFunctions'
+import { StringFunctions } from '../../StringFunctions'
 
 suite("NAVObject FilePattern Tests", () => {
     test("Filename - FileNamePatterns with prefix", () => {
@@ -413,7 +413,7 @@ suite("NAVObject FilePattern Tests", () => {
 
         let navTestObject = NAVTestObjectLibrary.getExtensionObjectWithVeryLongObjectName()
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
-              
+
         assert.equal(true, navObject.objectFileNameFixed.startsWith(StringFunctions.removeAllButAlfaNumeric(navObject.objectName)))
     })
     test("FileName - Extension Object with which would be too (not DataAgnostic)", () => {
@@ -423,8 +423,8 @@ suite("NAVObject FilePattern Tests", () => {
 
         let navTestObject = NAVTestObjectLibrary.getExtensionObjectWithVeryLongObjectName()
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
-              
-        assert.equal(navObject.objectFileNameFixed,'BlankPurchOrderSubfrmExtBASEPageExt')        
+
+        assert.equal(navObject.objectFileNameFixed, 'BlankPurchOrderSubfrmExtBASEPageExt')
     })
     test("FileName - Simple Interface (not DataAgnostic)", () => {
         let testSettings = Settings.GetConfigSettings(null)
@@ -432,8 +432,8 @@ suite("NAVObject FilePattern Tests", () => {
 
         let navTestObject = NAVTestObjectLibrary.getSimpleInterface()
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
-              
-        assert.equal(navObject.objectFileNameFixed,'IBallColorIdentifier.Interface.al')        
+
+        assert.equal(navObject.objectFileNameFixed, 'IBallColorIdentifier.Interface.al')
     })
 
     test("Filename - Rename PageExtension with Suffix with underscore in object name, and remove suffix in filename (not data-agnostic)", () => {

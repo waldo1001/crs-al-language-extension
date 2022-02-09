@@ -1,11 +1,11 @@
 import * as assert from 'assert';
 import { suite, test } from 'mocha';
 
-import { NAVObject } from '../NAVObject'
-import { WorkspaceFiles } from '../WorkspaceFiles'
-import * as myExtension from '../extension';
+import { NAVObject } from '../../NAVObject'
+import { WorkspaceFiles } from '../../WorkspaceFiles'
+import * as myExtension from '../../extension';
 import * as NAVTestObjectLibrary from './NAVTestObjectLibrary'
-import { Settings } from '../Settings';
+import { Settings } from '../../Settings';
 import { settings } from 'cluster';
 
 suite("NAVObject ObjectNamePrefix Tests", () => {

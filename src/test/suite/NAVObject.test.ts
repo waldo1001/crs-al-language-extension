@@ -7,10 +7,10 @@
 import * as assert from 'assert';
 import { suite, test } from 'mocha';
 
-import { NAVObject } from '../NAVObject'
+import { NAVObject } from '../../NAVObject'
 import * as NAVTestObjectLibrary from './NAVTestObjectLibrary'
-import { Settings } from '../Settings';
-import { DynamicsNAV } from '../DynamicsNAV';
+import { Settings } from '../../Settings';
+import { DynamicsNAV } from '../../DynamicsNAV';
 
 
 // Defines a Mocha test suite to group tests of similar kind together

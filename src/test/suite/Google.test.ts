@@ -1,13 +1,13 @@
 import * as assert from 'assert';
 import { suite, test } from 'mocha';
 
-import { MSDocs } from '../MSDocs'
+import { Google } from '../../Google'
 
-suite("MSDocs Tests", () => {
+suite("Google Tests", () => {
 
     test("GetSearchUrl", () => {
         let SearchString = 'Option Types';
-        let Result = MSDocs.GetSearchUrl(SearchString);
+        let Result = Google.GetSearchUrl(SearchString);
 
         assert.notEqual(Result.indexOf('Option'), -1);
         assert.notEqual(Result.indexOf('Types'), -1);

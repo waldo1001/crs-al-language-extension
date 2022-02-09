@@ -1,7 +1,7 @@
 import * as assert from 'assert';
 import { suite, test } from 'mocha';
 
-import { StringFunctions } from '../StringFunctions';
+import { StringFunctions } from '../../StringFunctions';
 
 suite("StringFunctions Tests", () => {
     test("replaceAll", () => {

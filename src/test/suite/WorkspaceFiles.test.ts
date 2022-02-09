@@ -1,9 +1,9 @@
 import * as assert from 'assert';
 import { suite, test } from 'mocha';
 
-import { Settings } from '../Settings';
-import { NAVObject } from '../NAVObject'
-import { WorkspaceFiles } from '../WorkspaceFiles';
+import { Settings } from '../../Settings';
+import { NAVObject } from '../../NAVObject'
+import { WorkspaceFiles } from '../../WorkspaceFiles';
 import * as NAVTestObjectLibrary from './NAVTestObjectLibrary'
 import { settings } from 'cluster';
 

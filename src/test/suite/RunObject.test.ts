@@ -1,8 +1,8 @@
 import * as assert from 'assert';
 import { suite, test } from 'mocha';
 
-import { Settings } from '../Settings';
-import { DynamicsNAV } from '../DynamicsNAV';
+import { Settings } from '../../Settings';
+import { DynamicsNAV } from '../../DynamicsNAV';
 
 suite("RunObject Tests", () => {
 
