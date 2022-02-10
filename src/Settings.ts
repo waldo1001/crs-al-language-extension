@@ -71,7 +71,9 @@ export class Settings {
             vscode.workspace.getConfiguration(this.WORKSPACEKEY, ResourceUri) :
             vscode.window.activeTextEditor ?
                 vscode.workspace.getConfiguration(this.WORKSPACEKEY, vscode.window.activeTextEditor.document.uri) :
-                vscode.workspace.getConfiguration(this.WORKSPACEKEY, null);
+                vscode.workspace.workspaceFolders ? 
+                    vscode.workspace.getConfiguration(this.WORKSPACEKEY, vscode.workspace.workspaceFolders[0].uri) :
+                    vscode.workspace.getConfiguration(this.WORKSPACEKEY, null);
 
         this.SettingCollection[this.NstFolder] = this.getSetting(this.NstFolder);
         this.SettingCollection[this.ManagementModule] = this.joinPaths([this.SettingCollection[this.NstFolder], this.MANAGEMENTDLL]);
