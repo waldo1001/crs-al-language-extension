@@ -195,6 +195,15 @@ tableextension 50100 "Just Some Table Extension" extends Customer //18
 * `DisableWaldoSnippets`: Disables the CRS snippets that come with this extension.  When you change the setting, you need to restart VSCode twice.  Once for disabling the snippets on activation (at that time, the snippets are still loaded).  And the second time to actually not load the snippets anymore.
 * `RenameWithGit`: Use 'git mv' to rename a file.  This keeps history of the file, but stages the rename, which you should commit separately.  **The feature is still in preview-mode, therefore the default value is 'false'**
 
+## Skip String manipulation
+You can skip string manipulation by adding comments to your code:
+```AL
+  //crs-al disable
+  ...
+  //crs-al enable
+```
+
+
 ## Known Issues
 I try to keep a list with issues here: https://github.com/CloudReadySoftware/crs-al-language-extension/issues 
 

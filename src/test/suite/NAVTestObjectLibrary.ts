@@ -464,6 +464,29 @@ export function getTableExtensionWrongFileNameAndKeyWord(): NAVTestObject {
     `
     return object;
 }
+export function getTableExtensionWithSkippingFieldForRename(): NAVTestObject {
+    let object = new NAVTestObject;
+
+    object.ObjectFileName = 'SomeTableExt.al'
+    object.ObjectText = `tableextension 50100 "Just Some Table Extension" extends Customer //18
+{
+    fields
+    {
+        //crs-al disable
+        field(50100;"Just Some field";Code[10]){
+            TableRelation="Just Some Table"."No.";
+        }
+        //crs-al enable
+        field(10;MyField2;     Integer)
+        {
+            DataClassification = ToBeClassified;
+        }
+    }
+    
+}
+    `
+    return object;
+}
 
 export function getExtensionObjectWithVeryLongObjectName(): NAVTestObject {
     let object = new NAVTestObject;
