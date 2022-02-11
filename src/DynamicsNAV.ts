@@ -111,11 +111,11 @@ export class DynamicsNAV {
                 break;
             case 'Firefox':
                 runURL = workspacesettings[Settings.Incognito] == true ? '-private-window ' + runURL : runURL;
-                exec(`start firefox ${runURL}`, { shell: 'cmd.exe' });
+                exec(`start firefox "${runURL}"`, { shell: 'cmd.exe' });
                 break;
             case 'Chrome':
                 runURL = workspacesettings[Settings.Incognito] == true ? '-incognito ' + runURL : runURL;
-                exec(`start chrome ${runURL}`, { shell: 'cmd.exe' });
+                exec(`start chrome "${runURL}"`, { shell: 'cmd.exe' });
                 vscode.window.showWarningMessage('Running an object in Chrome might not work.  Use Edge instead (you can set al.Browser setting to Edge (in User Settings)).')
                 break;
             default:
