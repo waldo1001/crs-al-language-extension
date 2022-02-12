@@ -1,11 +1,11 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension:
 
-## [1.5.0] - 2022-02-11
-Fix about loading setting from multiple levels.  (Thanks [dannoe](https://github.com/dannoe))
-Fix regarding runobject with certain browsers. (Thanks [geschwint](https://github.com/geschwint))
-Fix regarding naming convention of PermissionSet(Extension) (Thanks [Tomas Kapitan](https://github.com/TKapitan))
-Added functionality: use comments to disable crs-string-manipulation (Thanks [askotnica](https://github.com/askotnica))
+## [1.5.1] - 2022-02-11
+- Fix about loading setting from multiple levels.  (Thanks [dannoe](https://github.com/dannoe))
+- Fix regarding runobject with certain browsers. (Thanks [geschwint](https://github.com/geschwint))
+- Fix regarding naming convention of PermissionSet(Extension) (Thanks [Tomas Kapitan](https://github.com/TKapitan))
+- Added functionality: use comments to disable crs-string-manipulation (Thanks [askotnica](https://github.com/askotnica))
 ```AL
   //crs-al disable
   ...
