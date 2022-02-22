@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension:
 
-##
+## [1.5.2] - 2022-02-22
 - Fixed snippet tinstallcodeunitwaldo (thanks [Alexander Henkel](https://github.com/ahenkel))
 
 ## [1.5.1] - 2022-02-11
