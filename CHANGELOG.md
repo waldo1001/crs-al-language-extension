@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension:
 
+##
+- Fixed snippet tinstallcodeunitwaldo (thanks [Alexander Henkel](https://github.com/ahenkel))
+
 ## [1.5.1] - 2022-02-11
 - Fix about loading setting from multiple levels.  (Thanks [dannoe](https://github.com/dannoe))
 - Fix regarding runobject with certain browsers. (Thanks [geschwint](https://github.com/geschwint))
