@@ -37,6 +37,8 @@ export class Settings {
     static readonly Incognito = 'incognito';
     static readonly packageCachePath = 'packageCachePath';
 
+    static readonly SkipWarningMessageOnRenameAll = 'SkipWarningMessageOnRenameAll';
+
     static readonly SearchObjectNamesRegexPattern = 'SearchObjectNamesRegexPattern';
 
     static readonly AlSubFolderName = 'AlSubFolderName';
@@ -101,6 +103,7 @@ export class Settings {
         this.SettingCollection[this.DependencyGraphExcludeAppNames] = this.getSetting(this.DependencyGraphExcludeAppNames);
         this.SettingCollection[this.DependencyGraphExcludePublishers] = this.getSetting(this.DependencyGraphExcludePublishers);
         this.SettingCollection[this.DependencyGraphRemovePrefix] = this.getSetting(this.DependencyGraphRemovePrefix);
+        this.SettingCollection[this.SkipWarningMessageOnRenameAll] = this.getSetting(this.SkipWarningMessageOnRenameAll);
 
         this.getConfigSettingsAL(ResourceUri);
     }

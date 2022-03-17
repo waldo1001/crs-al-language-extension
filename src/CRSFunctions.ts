@@ -156,13 +156,23 @@ export function RenameCurrentFile() {
 export function RenameAllFiles() {
     console.log('Running: RenameAllFiles');
 
-    vscode.window.showWarningMessage('Are you sure to rename all files from all opened workspaces?', 'Yes', 'No').then((action: String) => {
-        if (action === 'Yes') {
-            WorkspaceFiles.RenameAllFiles();
-            vscode.commands.executeCommand('workbench.action.closeAllEditors');
-        }
-    });
+    let mySettings = Settings.GetConfigSettings(null);
+    let SkipWarningMessageOnRenameAll = mySettings[Settings.SkipWarningMessageOnRenameAll];
 
+    if (!SkipWarningMessageOnRenameAll) {
+        vscode.window.showWarningMessage('Are you sure to rename all files from all opened workspaces?', 'Yes', 'No').then((action: String) => {
+            if (action === 'Yes') {
+                WorkspaceFiles.RenameAllFiles();
+                vscode.commands.executeCommand('workbench.action.closeAllEditors');
+            }
+        });
+    }
+    else
+    {
+        WorkspaceFiles.RenameAllFiles();
+        vscode.commands.executeCommand('workbench.action.closeAllEditors');
+    }
+    
     console.log('Done: RenameAllFiles')
 }
 
