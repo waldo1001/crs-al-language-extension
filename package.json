@@ -302,6 +302,12 @@
                     "type": "string",
                     "description": "Remove this prefix from the appname in the graph.  Remark: this has no influence on the 'Exluce AppNames' setting.",
                     "scope": "resource"
+                },
+                "CRS.SkipWarningMessageOnRenameAll": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Whether to skip the warning message when renaming all files from all opened workspaces.",
+                    "scope": "resource"
                 }
             }
         },
