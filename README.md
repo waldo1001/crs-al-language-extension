@@ -193,6 +193,7 @@ tableextension 50100 "Just Some Table Extension" extends Customer //18
 * `CRS.OnSaveAlFileAction`: Automatically will Rename/Reorganize the file you are editing.  Takes into account the prefix/suffix as well.
 * `DisableDefaultAlSnippets`: Disables the default snippets that come with the Microsoft.al-language extension.  When you change the setting, you need to restart VSCode twice.  Once for disabling the snippets on activation (at that time, the snippets are still loaded).  And the second time to actually not load the snippets anymore.
 * `DisableWaldoSnippets`: Disables the CRS snippets that come with this extension.  When you change the setting, you need to restart VSCode twice.  Once for disabling the snippets on activation (at that time, the snippets are still loaded).  And the second time to actually not load the snippets anymore.
+* `SkipWarningMessageOnRenameAll`: Skips the Warning when renaming all files which can disturb custom VS tasks.
 * `RenameWithGit`: Use 'git mv' to rename a file.  This keeps history of the file, but stages the rename, which you should commit separately.  **The feature is still in preview-mode, therefore the default value is 'false'**
 
 ## Skip String manipulation

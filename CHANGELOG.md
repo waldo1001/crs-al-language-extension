@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension:
 
+## [1.5.3] - 2022-03-17
+- Added setting `SkipWarningMessageOnRenameAll` that does just that ;-).  Thanks [Mustafa Kilic](https://github.com/mkilic1337) for [the pull request](https://github.com/waldo1001/crs-al-language-extension/pull/224)!
+
 ## [1.5.2] - 2022-02-22
 - Fixed snippet tinstallcodeunitwaldo (thanks [Alexander Henkel](https://github.com/ahenkel))
 
