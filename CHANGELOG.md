@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension:
 
+## [1.5.5] - 2022-04-28
+- Snippet updated by [Arthur](https://github.com/Arthurvdv).  Thanks so much!
+
 ## [1.5.4] - 2022-03-17
 - Added setting `SkipWarningMessageOnRenameAll` that does just that ;-).  Thanks [Mustafa Kilic](https://github.com/mkilic1337) for [the pull request](https://github.com/waldo1001/crs-al-language-extension/pull/224)!
 - Updated snippets tcodeunitMethodWithoutUIwaldo & tcodeunitMethodWithUIwaldo (renamed "Handled" to "IsHandled") (thanks [IceOnly](https://github.com/IceOnly))
