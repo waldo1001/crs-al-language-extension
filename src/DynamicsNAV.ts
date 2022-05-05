@@ -398,7 +398,8 @@ export class DynamicsNAV {
             "Area",
             "Actions",
             "Trigger",
-            "Interface"
+            "Interface",
+            "Event"
         ];
 
         return keywords;
