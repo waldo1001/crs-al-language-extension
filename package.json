@@ -431,6 +431,10 @@
             {
                 "language": "al",
                 "path": "./snippets/upgrade.json"
+            },
+            {
+                "language": "al",
+                "path": "./snippets/Onboarding.json"
             }
         ],
         "menus": {
