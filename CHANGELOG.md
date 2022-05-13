@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension:
 
+## [1.5.7] - 2022-05-10
+- Updated snippets by [Christian Bräunlich](https://github.com/christianbraeunlich) - Big thanks!
+
 ## [1.5.6] - 2022-05-05
 - Added `Event` keyword - thanks [Frédéric Vercaemst](https://github.com/fvet)!
 
