@@ -537,7 +537,7 @@ class NAVTableField {
     private _suffix: string;
 
     public static fieldRegEx(): RegExp {
-        return /.*(field\((\d+); *"?([ a-zA-Z0-9._/&-]+)"?;(.*)\))/g;
+        return /.*(field\((\d+); *"?([ a-zA-Z0-9._/&%\/()-]+)"?;(.*)\))/g;
     }
 
     get nameFixed(): string {
