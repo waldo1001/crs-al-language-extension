@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension:
 
+## [1.5.8] - 2022-05-16
+- Fixed issue "[Prefix missing for Names containing % or brackets ( )](https://github.com/waldo1001/crs-al-language-extension/issues/210)" by [Christian Bräunlich](https://github.com/christianbraeunlich) - Big thanks again! 
+
 ## [1.5.7] - 2022-05-10
 - Updated snippets by [Christian Bräunlich](https://github.com/christianbraeunlich) - Big thanks!
 
