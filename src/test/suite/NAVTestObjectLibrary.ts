@@ -595,6 +595,49 @@ export function getTableWrongFileNameAndKeyWord(): NAVTestObject {
     return object;
 }
 
+export function getTableFieldNamesWithSpecialCharacters(): NAVTestObject {
+    let object = new NAVTestObject;
+
+    object.ObjectFileName = 'JustATestTable.al';
+    object.ObjectText = `table 50102 JustATestTable
+    {
+        DataClassification = CustomerContent;
+    
+        fields
+        {
+            field(1; MyField; Integer)
+            {
+                DataClassification = CustomerContent;
+            }
+            field(123; "Unit Cost (LCY)"; Decimal)
+            {
+                Caption = 'Unit Cost (LCY)';
+                DataClassification = CustomerContent;
+            }
+            field(321; "VAT %"; Decimal)
+            {
+                Caption = 'VAT %';
+                DataClassification = CustomerContent;
+            }
+            field(402; "Cost is Posted to G/L (Cost is Posted to G/L)"; Boolean)
+            {
+                Caption = 'Cost is Posted to G/L (Cost is Posted to G/L)';
+                DataClassification = CustomerContent;
+            }
+        }
+
+        keys
+        {
+            key(PK; "MyField")
+            {
+                Clustered = true;
+            }
+        }
+    }
+    `;
+    return object;
+}
+
 export function getPageWithWaldoPrefixWrongName(): NAVTestObject {
     let object = new NAVTestObject;
 
