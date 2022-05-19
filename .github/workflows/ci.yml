@@ -1,20 +1,140 @@
 name: CI
 
-on: [push, pull_request]
+on: push
 
 jobs:
-  build:
-    runs-on: windows-latest
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
+
       - uses: actions/setup-node@v2
         with:
-          node-version: "14"
-      - run: npm install
-      - run: npm test
-      - run: npm install -g vsce
-      - run: vsce package
-      - uses: actions/upload-artifact@v2
+          node-version: 14
+          cache: npm
+
+      - name: Install
+        run: npm install
+
+      - name: Lint
+        run: npm run lint
+
+  test:
+    name: Test
+    needs: lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v2
         with:
-          name: CRS-AL-Language.vsix
-          path: '**.vsix'
+          node-version: 14
+          cache: npm
+
+      - name: Setup Environment
+        run: node -e "console.log('PACKAGE_VERSION=' + require('./package.json').version + '\nPACKAGE_NAME=' + require('./package.json').name + '-' + require('./package.json').version)" >> $GITHUB_ENV
+
+      - name: Install
+        run: npm install
+      
+      #- name: Test
+      #  run: npm test
+
+  build:
+    name: Build
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14
+          cache: npm
+
+      - name: Setup Environment
+        run: node -e "console.log('PACKAGE_VERSION=' + require('./package.json').version + '\nPACKAGE_NAME=' + require('./package.json').name + '-' + require('./package.json').version)" >> $GITHUB_ENV
+
+      - name: Install
+        run: npm install
+      
+      - name: Test
+        run: npm test
+
+      - name: Install VSCE
+        run: npm install -g vsce
+
+      - name: build
+        run: vsce package
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: ${{ env.PACKAGE_NAME }}.vsix
+          path: ./${{ env.PACKAGE_NAME }}.vsix
+
+    outputs:
+      PACKAGE_NAME: ${{ env.PACKAGE_NAME }}
+      PACKAGE_VERSION: ${{ env.PACKAGE_VERSION }}
+
+  release:
+    name: Release
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14
+          cache: npm
+
+      - uses: actions/download-artifact@v3
+        with:
+          name: ${{ needs.build.outputs.PACKAGE_NAME }}.vsix
+
+      - name: Check package version
+        uses: technote-space/package-version-check-action@v1
+        with:
+          COMMIT_DISABLED: 1
+
+      - name: Install VSCE
+        run: npm install -g vsce
+
+      - name: Publish
+        run: vsce publish --packagePath ./${{ needs.build.outputs.PACKAGE_NAME }}.vsix -p ${{ secrets.VSCE_TOKEN }}
+
+      - name: Generate Changelog
+        id: changelog
+        uses: mindsers/changelog-reader-action@v2
+        with:
+            version: ${{ needs.build.outputs.PACKAGE_VERSION }}
+            path: ./CHANGELOG.md
+
+      - name: Create GitHub release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+            tag_name: ${{ github.ref }}
+            release_name: v${{ needs.build.outputs.PACKAGE_VERSION }}
+            body: ${{ steps.changelog.outputs.changes }}
+            draft: false
+            prerelease: false
+
+      - name: Upload GitHub release
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+            upload_url: ${{ steps.create_release.outputs.upload_url }}
+            asset_path: ./${{ needs.build.outputs.PACKAGE_NAME }}.vsix
+            asset_name: ${{ needs.build.outputs.PACKAGE_NAME }}.vsix
+            asset_content_type: application/zip
