@@ -231,7 +231,7 @@
             "",
             "\ttrigger OnOpenPage()",
             "\tbegin",
-            "\t\tInsertIfNotExists();",
+            "\t\tRec.InsertIfNotExists();",
             "\tend;",
             "\t",
             "}",
