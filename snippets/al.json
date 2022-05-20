@@ -45,5 +45,12 @@
             "",
             "${0}"
         ]
+    },
+    "Snippet (waldo): Log Message": {
+        "description": "Snippet (waldo): Log Message",
+        "prefix": "tLogMessageWaldo",
+        "body": [
+            "Session.LogMessage('${1:Add Event ID}', ${2:AddMessageVariable}, Verbosity::${3|Normal,Critical,Error,Verbose,Warning|}, DataClassification::${4|SystemMetadata,AccountData,CustomerContent,EndUserIdentifiableInformation,EndUserPseudonymousIdentifiers,OrganizationIdentifiableInformation,ToBeClassified|}, TelemetryScope::${5|ExtensionPublisher,All|}, 'Category', ${6:AddValueVariable});"
+        ]
     }
 }
