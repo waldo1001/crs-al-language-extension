@@ -1,3 +1,5 @@
+<img src="images/waldo.png" align="right" width="120" height="120"/>
+
 [![version](https://img.shields.io/vscode-marketplace/v/waldo.crs-al-language-extension.svg?&label=vscode%20marketplace)](https://marketplace.visualstudio.com/items?itemName=waldo.crs-al-language-extension)
 [![installs](https://img.shields.io/vscode-marketplace/d/waldo.crs-al-language-extension.svg)](https://marketplace.visualstudio.com/items?itemName=waldo.crs-al-language-extension)
 [![Rating](https://img.shields.io/visual-studio-marketplace/r/waldo.crs-al-language-extension)](https://marketplace.visualstudio.com/items?itemName=waldo.crs-al-language-extension&ssr=false#review-details)
