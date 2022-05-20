@@ -1,8 +1,13 @@
+.github/**
 .vscode/**
 .vscode-test/**
-out/test/**
-out/**/*.map
 src/**
+test/**
+node_modules
+.eslintrc.json
+.gitattributes
 .gitignore
+.prettierrc
+CODE_OF_CONDUCT.md
+CONTRIBUTING.md
 tsconfig.json
-vsc-extension-quickstart.md
