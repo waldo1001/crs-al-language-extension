@@ -78,13 +78,10 @@ export async function PublishAndRunCurrentObjectWeb(currFile: vscode.Uri) {
 
 export function RunObjectWeb() {
     console.log('Running: RunObjectWeb');
-
-    vscode.window.showQuickPick(DynamicsNAV.GetRunWebObjectTypesAsQuickPickItem()).then(objecttype =>
-        vscode.window.showInputBox({ prompt: 'ObjectID:' }).then(objectid =>
-            DynamicsNAV.RunObjectInWebClient(objecttype, objectid, 'WebClient')));
-
+    RunObjectAux('WebClient');
     console.log('Done: RunObjectWeb')
 }
+
 export function RunTestTool() {
     console.log('Running: RunTestTool');
 
@@ -111,21 +108,13 @@ export function RunDatabaseLocks() {
 
 export function RunObjectTablet() {
     console.log('Running: RunObjectTablet');
-
-    vscode.window.showQuickPick(DynamicsNAV.GetRunWebObjectTypesAsQuickPickItem()).then(objecttype =>
-        vscode.window.showInputBox({ prompt: 'ObjectID:' }).then(objectid =>
-            DynamicsNAV.RunObjectInWebClient(objecttype, objectid, 'Tablet')));
-
+    RunObjectAux('Tablet');
     console.log('Done: RunObjectTablet')
 }
 
 export function RunObjectPhone() {
     console.log('Running: RunObjectPhone');
-
-    vscode.window.showQuickPick(DynamicsNAV.GetRunWebObjectTypesAsQuickPickItem()).then(objecttype =>
-        vscode.window.showInputBox({ prompt: 'ObjectID:' }).then(objectid =>
-            DynamicsNAV.RunObjectInWebClient(objecttype, objectid, 'Phone')));
-
+    RunObjectAux('Phone');
     console.log('Done: RunObjectPhone')
 }
 
@@ -292,4 +281,18 @@ function getWord(editor: vscode.TextEditor): string {
     } else {
         return editor.document.getText(editor.selection);
     }
+}
+
+function RunObjectAux(clienttype: string) {
+    vscode.window.showQuickPick(DynamicsNAV.GetRunWebObjectTypesAsQuickPickItem()).then(objecttype => {
+        if (!objecttype) {
+            return '';
+        }
+        vscode.window.showInputBox({ prompt: 'ObjectID:' }).then(objectid => {
+            if (!objectid) {
+                return '';
+            }
+            DynamicsNAV.RunObjectInWebClient(objecttype, objectid, clienttype)
+        })
+    });
 }

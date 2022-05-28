@@ -130,26 +130,41 @@ export class Settings {
         this.SettingCollection[this.AppName] = appSettings.name
     }
 
-    private static getLaunchSettings(ResourceUri: vscode.Uri) {
+    private static getLaunchSettings(ResourceUri: vscode.Uri, index: number) {
+        let currentLaunchConfig = this.launchconfig.configurations;
+
+         if (currentLaunchConfig.length = 0) {
+            this.launchconfig = ResourceUri ?
+                vscode.workspace.getConfiguration('launch', ResourceUri) :
+                vscode.window.activeTextEditor ?
+                    vscode.workspace.getConfiguration('launch', vscode.window.activeTextEditor.document.uri) :
+                    vscode.workspace.getConfiguration('launch', vscode.workspace.workspaceFolders[0].uri); 
+
+            currentLaunchConfig = this.launchconfig.configurations;
+        }; 
+        
+        this.SettingCollection[this.WebServer] = currentLaunchConfig[index].server;
+        this.SettingCollection[this.WebServerInstance] = currentLaunchConfig[index].serverInstance;
+        this.SettingCollection[this.Tenant] = currentLaunchConfig[index].tenant ? currentLaunchConfig[index].tenant : "default";
+        this.SettingCollection[this.DefaultRunObjectType] = currentLaunchConfig[index].startupObjectType;
+        this.SettingCollection[this.DefaultRunObjectId] = currentLaunchConfig[index].startupObjectId;
+        this.SettingCollection[this.SandboxName] = currentLaunchConfig[index].sandboxName;
+    }
+
+    public static getLaunchSettingsArray(ResourceUri: vscode.Uri) {
         this.launchconfig = ResourceUri ?
             vscode.workspace.getConfiguration('launch', ResourceUri) :
             vscode.window.activeTextEditor ?
                 vscode.workspace.getConfiguration('launch', vscode.window.activeTextEditor.document.uri) :
                 vscode.workspace.getConfiguration('launch', vscode.workspace.workspaceFolders[0].uri);
 
-        let currentLaunchConfig = this.launchconfig.configurations;
-        this.SettingCollection[this.WebServer] = currentLaunchConfig[0].server;
-        this.SettingCollection[this.WebServerInstance] = currentLaunchConfig[0].serverInstance;
-        this.SettingCollection[this.Tenant] = currentLaunchConfig[0].tenant ? currentLaunchConfig[0].tenant : "default";
-        this.SettingCollection[this.DefaultRunObjectType] = currentLaunchConfig[0].startupObjectType;
-        this.SettingCollection[this.DefaultRunObjectId] = currentLaunchConfig[0].startupObjectId;
-        this.SettingCollection[this.SandboxName] = currentLaunchConfig[0].sandboxName;
+        return this.launchconfig.configurations;
     }
 
-    public static GetAllSettings(ResourceUri: vscode.Uri) {
+    public static GetAllSettings(ResourceUri: vscode.Uri, index: number) {
         this.getConfigSettings(ResourceUri);
         this.getAppSettings(ResourceUri);
-        this.getLaunchSettings(ResourceUri);
+        this.getLaunchSettings(ResourceUri,index);
 
         return this.SettingCollection;
     }
@@ -160,8 +175,8 @@ export class Settings {
         return this.SettingCollection;
     }
 
-    public static GetLaunchSettings(ResourceUri: vscode.Uri) {
-        this.getLaunchSettings(ResourceUri);
+    public static GetLaunchSettings(ResourceUri: vscode.Uri, index: number) {
+        this.getLaunchSettings(ResourceUri,index);
 
         return this.SettingCollection;
     }

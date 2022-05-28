@@ -87,8 +87,38 @@ export class DynamicsNAV {
         return items
     }
 
+    static GetLaunchListAsQuickPickItem(): QuickPickItem[] {
+        let items: QuickPickItem[] = [];
+        let currentLaunchConfig = Settings.getLaunchSettingsArray(null);
+
+        if (currentLaunchConfig.length > 0 ) {
+            currentLaunchConfig.forEach(element => {
+                items.push({ label: element.name, detail: 'Server: ' + element.server + '   Instance: ' + element.serverInstance}) 
+            });
+
+            return items
+        } 
+    }
+
     static RunObjectInWebClient(objecttype: any, objectid: any, clienttype: string) {
-        let workspacesettings = Settings.GetAllSettings(null);
+        let items = this.GetLaunchListAsQuickPickItem();
+
+        if (items.length > 1) {
+            vscode.window.showQuickPick(items).then(choice => {
+                if (!choice) {
+                    return '';
+                }
+
+                let index = items.indexOf(choice);
+                this.RunObjectInWebClientAux(objecttype,objectid,clienttype,index);
+            });
+        } else {
+            this.RunObjectInWebClientAux(objecttype,objectid,clienttype,0);
+        }
+    }
+
+    private static RunObjectInWebClientAux(objecttype: any, objectid: any, clienttype: string,index: number) {
+        let workspacesettings = Settings.GetAllSettings(null,index);
 
         if (clienttype != 'WebClient') {
             clienttype = clienttype + '.aspx'
@@ -122,10 +152,10 @@ export class DynamicsNAV {
                 open(runURL);
                 break;
         }
-
-
+        
         crsOutput.showOutput(`RunObjectInWebClient - ${runURL}`);
     }
+
     public static ComposeRunObjectInWebClientURL(workspacesettings: any, ClientType: string, runObjectType: String, runObjectid: number): String {
 
         let returnUrl = "https://businesscentral.dynamics.com/"
@@ -158,7 +188,7 @@ export class DynamicsNAV {
 
 
     static RunObjectInWindowsClient(objecttype: QuickPickItem, objectid: any) {
-        let workspacesettings = Settings.GetAllSettings(null);
+        let workspacesettings = Settings.GetAllSettings(null,0);
 
         let runURL = this.ComposeRunObjectInWindowsClientURL(workspacesettings[Settings.WinServer],
             workspacesettings[Settings.WinServerInstancePort],
