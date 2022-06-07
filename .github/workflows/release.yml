@@ -1,78 +1,44 @@
-name: Release
+name: Create Release and Publish
 
 on:
-  push:
-    tags:
-      - 'v[0-9]+.[0-9]+.[0-9]+'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Tag of this release
+        required: true
+        default: ''
 
 jobs:
-  release:
-    name: Release
+  release-and-publish:
+    name: Release and Publish
     runs-on: windows-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
+      - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
           node-version: 14
-
-      - name: Read package information
-        run: |
-          $version = (Get-Content ./package.json) | ConvertFrom-Json | Select -ExpandProperty "version"
-          $name = (Get-Content ./package.json) | ConvertFrom-Json | Select -ExpandProperty "name"
-          "PACKAGE_VERSION=$version" >> $env:GITHUB_ENV
-          "PACKAGE_NAME=$name-$version" >> $env:GITHUB_ENV
-
-      - name: Check package version
-        uses: geritol/match-tag-to-package-version@0.2.0
-        with:
-          TAG_PREFIX: v
-
-      - name: Install
-        run: npm install
-      
-      - name: Lint
-        run: npm run lint
-
-      - name: Test
-        run: npm test
-
-      - name: Install VSCE
-        run: npm install -g vsce
-
-      - name: build
-        run: vsce package
-
-      - name: Publish
-        run: vsce publish --packagePath ./${{ env.PACKAGE_NAME }}.vsix -p ${{ secrets.VSCE_TOKEN }}
-
-      - name: Generate Changelog
-        id: changelog
-        uses: mindsers/changelog-reader-action@v2
-        with:
-            version: ${{ env.PACKAGE_VERSION }}
-            path: ./CHANGELOG.md
-
-      - name: Create GitHub release
-        id: create_release
-        uses: actions/create-release@v1
+      - run: yarn install
+      - run: npm run lint
+      - run: npm test
+      - run: npm install -g vsce
+      - run: vsce package
+      - run: echo "VSIX_PATH=$(find . -maxdepth 1 -type f -iname "*.vsix" | head -1)" >> $GITHUB_ENV
+      - run: echo "VSIX_NAME=$(basename $(find . -maxdepth 1 -type f -iname "*.vsix" | head -1))" >> $GITHUB_ENV
+      - uses: actions/create-release@v1
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-            tag_name: ${{ github.ref }}
-            release_name: v${{ env.PACKAGE_VERSION }}
-            body: ${{ steps.changelog.outputs.changes }}
+            tag_name: ${{github.event.inputs.tag}}
+            release_name: 'Release v${{github.event.inputs.tag}}'
+            body: See [Change Log](https://github.com/waldo1001/crs-al-language-extension/blob/main/CHANGELOG.md) for details.
             draft: false
             prerelease: false
-
-      - name: Upload GitHub release
-        id: upload-release-asset
-        uses: actions/upload-release-asset@v1
+      - uses: actions/upload-release-asset@v1
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
             upload_url: ${{ steps.create_release.outputs.upload_url }}
-            asset_path: ./${{ env.PACKAGE_NAME }}.vsix
-            asset_name: ${{ env.PACKAGE_NAME }}.vsix
+            asset_path: ${{ env.VSIX_PATH }}
+            asset_name: ${{ env.VSIX_NAME }}
             asset_content_type: application/zip
+      - run: vsce publish -p ${{ secrets.PAT }}
