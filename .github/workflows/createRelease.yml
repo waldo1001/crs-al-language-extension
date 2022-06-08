@@ -28,6 +28,7 @@ jobs:
           "VSIX_PATH=$path" >> $env:GITHUB_ENV
           "VSIX_NAME=$name" >> $env:GITHUB_ENV
       - uses: actions/create-release@v1
+        id: create_release
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
