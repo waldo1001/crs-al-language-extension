@@ -17,12 +17,14 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 14
-      - run: yarn install
+      - run: npm install
       - run: npm run lint
       - run: npm test
       - run: npm install -g vsce
       - run: vsce package
-      - run: echo "VSIX_PATH=$(find . -maxdepth 1 -type f -iname "*.vsix" | head -1)" >> $GITHUB_ENV
+      - run: |
+          "VSIX_PATH=(Get-Item -Path '*.vsix')" >> $env:GITHUB_ENV
+          "VSIX_NAME=(Get-ChildItem '*.vsix' | Select -exp Name)" >> $env:GITHUB_ENV
       - run: echo "VSIX_NAME=$(basename $(find . -maxdepth 1 -type f -iname "*.vsix" | head -1))" >> $GITHUB_ENV
       - uses: actions/create-release@v1
         env:
