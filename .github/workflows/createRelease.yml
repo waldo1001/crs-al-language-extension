@@ -23,8 +23,10 @@ jobs:
       - run: npm install -g vsce
       - run: vsce package
       - run: |
-          "VSIX_PATH=(Get-Item -Path '*.vsix')" >> $env:GITHUB_ENV
-          "VSIX_NAME=(Get-ChildItem '*.vsix' | Select -exp Name)" >> $env:GITHUB_ENV
+          $path = (Get-Item -Path '*.vsix')
+          $name = (Get-ChildItem '*.vsix' | Select -exp Name)
+          "VSIX_PATH=$path" >> $env:GITHUB_ENV
+          "VSIX_NAME=$name" >> $env:GITHUB_ENV
       - uses: actions/create-release@v1
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
