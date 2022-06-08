@@ -17,12 +17,6 @@ jobs:
         with:
           node-version: 14
 
-      - name: Read package information
-        run: |
-          $version = (Get-Content ./package.json) | ConvertFrom-Json | Select -ExpandProperty "version"
-          $name = (Get-Content ./package.json) | ConvertFrom-Json | Select -ExpandProperty "name"
-          "PACKAGE_NAME=$name-$version" >> $env:GITHUB_ENV
-
       - name: Install
         run: npm install
       
@@ -37,9 +31,3 @@ jobs:
 
       - name: build
         run: vsce package
-
-      - uses: actions/upload-artifact@v3
-        with:
-          name: ${{ env.PACKAGE_NAME }}.vsix
-          path: ./${{ env.PACKAGE_NAME }}.vsix
-          retention-days: 5
