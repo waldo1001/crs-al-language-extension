@@ -41,4 +41,4 @@ jobs:
             asset_path: ${{ env.VSIX_PATH }}
             asset_name: ${{ env.VSIX_NAME }}
             asset_content_type: application/zip
-      - run: vsce publish -p ${{ secrets.PAT }}
+      - run: vsce publish -p ${{ secrets.VSCE_TOKEN }}
