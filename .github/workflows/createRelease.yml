@@ -25,7 +25,6 @@ jobs:
       - run: |
           "VSIX_PATH=(Get-Item -Path '*.vsix')" >> $env:GITHUB_ENV
           "VSIX_NAME=(Get-ChildItem '*.vsix' | Select -exp Name)" >> $env:GITHUB_ENV
-      - run: echo "VSIX_NAME=$(basename $(find . -maxdepth 1 -type f -iname "*.vsix" | head -1))" >> $GITHUB_ENV
       - uses: actions/create-release@v1
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
