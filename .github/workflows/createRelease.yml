@@ -1,0 +1,48 @@
+name: Create Release and Publish
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Tag of this release
+        required: true
+        default: ''
+
+jobs:
+  release-and-publish:
+    name: Release and Publish
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14
+      - run: npm install
+      - run: npm run lint
+      - run: npm test
+      - run: npm install -g vsce
+      - run: vsce package
+      - run: |
+          $path = (Get-ChildItem '*.vsix')
+          $name = (Split-Path (Get-Item -Path '*.vsix') -leaf)
+          "VSIX_PATH=$path" >> $env:GITHUB_ENV
+          "VSIX_NAME=$name" >> $env:GITHUB_ENV
+      - uses: actions/create-release@v1
+        id: create_release
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+            tag_name: ${{github.event.inputs.tag}}
+            release_name: 'Release ${{github.event.inputs.tag}}'
+            body: See [Change Log](https://github.com/waldo1001/crs-al-language-extension/blob/main/CHANGELOG.md) for details.
+            draft: false
+            prerelease: false
+      - uses: actions/upload-release-asset@v1
+        env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+            upload_url: ${{ steps.create_release.outputs.upload_url }}
+            asset_path: ${{ env.VSIX_PATH }}
+            asset_name: ${{ env.VSIX_NAME }}
+            asset_content_type: application/zip
+      - run: vsce publish -p ${{ secrets.VSCE_TOKEN }}
