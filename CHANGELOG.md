@@ -4,6 +4,7 @@ All notable changes to the "crs-al-language-extension" extension:
 ## [1.5.9] - ...
 Once again many changes by [Christian Bräunlich](https://github.com/christianbraeunlich) - Big thanks again! 
 - Fixed snippets
+- Added snippets
 - Improved the README
 
 [pri-kise](https://github.com/pri-kise) Added support for more special chars on pages.  Big thanks!
