@@ -589,7 +589,7 @@ class NAVPageField {
     private _suffix: string;
 
     public static fieldRegEx(): RegExp {
-        return /.*(field\( *"?([ a-zA-Z0-9._/&-]+)"? *; *([" a-zA-Z0-9._/&-]+) *\))/g;
+        return /.*(field\( *"?([ a-zA-Z0-9._/&%\/()-]+)"? *; *([" a-zA-Z0-9._/&%\/()-]+) *\))/g;
     }
 
     get nameFixed(): string {
@@ -640,7 +640,7 @@ class NAVPageGroup {
     private _suffix: string;
 
     public static fieldRegEx(): RegExp {
-        return /.*(group\( *"?([ a-zA-Z0-9._/&-]+)"? *\))/g;
+        return /.*(group\( *"?([ a-zA-Z0-9._/&%\/()-]+)"? *\))/g;
     }
 
     get nameFixed(): string {
