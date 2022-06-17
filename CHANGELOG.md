@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension:
 
-## [1.5.9] - ...
+## [1.5.9] - 2022-06-17
 Once again many changes by [Christian Bräunlich](https://github.com/christianbraeunlich) - Big thanks again! 
 - Fixed snippets
 - Added snippets
