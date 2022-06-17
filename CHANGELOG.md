@@ -6,6 +6,8 @@ Once again many changes by [Christian Bräunlich](https://github.com/christianbr
 - Fixed snippets
 - Improved the README
 
+[pri-kise](https://github.com/pri-kise) Added support for more special chars on pages.  Big thanks!
+
 ## [1.5.8] - 2022-05-16
 - Fixed issue "[Prefix missing for Names containing % or brackets ( )](https://github.com/waldo1001/crs-al-language-extension/issues/210)" by [Christian Bräunlich](https://github.com/christianbraeunlich) - Big thanks again! 
 
