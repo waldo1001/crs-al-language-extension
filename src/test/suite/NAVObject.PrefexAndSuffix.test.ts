@@ -16,7 +16,6 @@ suite("NAVObject ObjectNamePrefix Tests", () => {
         let navTestObject = NAVTestObjectLibrary.getPageNoPrefixCorrectNameWithActions();
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
 
-        assert.notStrictEqual(navObject.objectFileName, navObject.objectFileNameFixed);
         assert.strictEqual(navObject.objectActions[0].name, navObject.objectActions[0].nameFixed);
     });
 

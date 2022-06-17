@@ -1,4 +1,4 @@
-import open = require('opn');
+import open = require('open');
 import { StringFunctions } from './StringFunctions';
 import * as crsOutput from './CRSOutput';
 

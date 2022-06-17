@@ -5,7 +5,7 @@ import { exec, spawn } from 'child_process';
 import * as vscode from 'vscode';
 import { settings } from 'cluster';
 
-const open = require('opn');
+const open = require('open');
 
 export class DynamicsNAV {
     static GetAllObjectTypesAsQuickPickItem(): QuickPickItem[] {

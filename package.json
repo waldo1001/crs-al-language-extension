@@ -460,7 +460,7 @@
         "test": "node ./out/test/runTest.js"
     },
     "dependencies": {
-        "opn": "^6.0.0",
+        "open": "^6.0.0",
         "simple-git": "^3.3.0"
     },
     "devDependencies": {
