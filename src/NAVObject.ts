@@ -588,7 +588,7 @@ class NAVPageField {
     private _prefix: string;
     private _suffix: string;
 
-    public static fieldRegEx(): RegExp {        
+    public static fieldRegEx(): RegExp {
         return /.*(field\( *"?([ a-zA-Z0-9._/&%\/()-]+)"? *; *([" a-zA-Z0-9._/&%\/()-]+) *\))/g;
     }
 
