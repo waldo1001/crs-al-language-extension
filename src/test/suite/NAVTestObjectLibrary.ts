@@ -637,6 +637,40 @@ export function getTableFieldNamesWithSpecialCharacters(): NAVTestObject {
     `;
     return object;
 }
+export function getPageFieldNamesWithSpecialCharacters(): NAVTestObject {
+    let object = new NAVTestObject;
+
+    object.ObjectFileName = 'JustATestPage.al';
+    object.ObjectText = `page 50102 JustATestPage
+    {
+        layout
+        {
+            area(content)
+            {
+                repeater(General)
+                {
+                    field(MyField; Integer)
+                    {
+                    }
+                    field("Unit Cost (LCY)"; Decimal)
+                    {
+                        Caption = 'Unit Cost (LCY)';
+                    }
+                    field("VAT %"; Decimal)
+                    {
+                        Caption = 'VAT %';
+                    }
+                    field("Cost is Posted to G/L (Cost is Posted to G/L)"; Boolean)
+                    {
+                        Caption = 'Cost is Posted to G/L (Cost is Posted to G/L)';
+                    }
+                }
+            }
+        }
+    }
+    `;
+    return object;
+}
 
 export function getPageWithWaldoPrefixWrongName(): NAVTestObject {
     let object = new NAVTestObject;

@@ -209,6 +209,14 @@ suite("NAVObject General Tests", () => {
             }
         });
     });
+    test("Page - Fields with special characters in names", () => {
+        let testSettings = Settings.GetConfigSettings(null);
+
+        let navTestObject = NAVTestObjectLibrary.getPageFieldNamesWithSpecialCharacters();
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
+
+        assert.strictEqual(navObject.pageFields.length, 4, "The system should recognize 4 fields");
+    });
     test("Page - Actions with keyword-names (With Prefix)", () => {
         //TODO: this should be changed so that transaction(false) functioncall isn't going to get a "fix"
         let testSettings = Settings.GetConfigSettings(null)
