@@ -6,7 +6,7 @@ on:
       tag:
         description: Tag of this release
         required: true
-        default: ''
+        default: ""
 
 jobs:
   release-and-publish:
@@ -30,19 +30,19 @@ jobs:
       - uses: actions/create-release@v1
         id: create_release
         env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-            tag_name: ${{github.event.inputs.tag}}
-            release_name: 'Release ${{github.event.inputs.tag}}'
-            body: See [Change Log](https://github.com/waldo1001/crs-al-language-extension/blob/main/CHANGELOG.md) for details.
-            draft: false
-            prerelease: false
+          tag_name: ${{github.event.inputs.tag}}
+          release_name: "Release ${{github.event.inputs.tag}}"
+          body: See [Change Log](https://github.com/waldo1001/crs-al-language-extension/blob/master/CHANGELOG.md) for details.
+          draft: false
+          prerelease: false
       - uses: actions/upload-release-asset@v1
         env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-            upload_url: ${{ steps.create_release.outputs.upload_url }}
-            asset_path: ${{ env.VSIX_PATH }}
-            asset_name: ${{ env.VSIX_NAME }}
-            asset_content_type: application/zip
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ${{ env.VSIX_PATH }}
+          asset_name: ${{ env.VSIX_NAME }}
+          asset_content_type: application/zip
       - run: vsce publish -p ${{ secrets.VSCE_TOKEN }}
