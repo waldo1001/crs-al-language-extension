@@ -3,7 +3,6 @@
 .vscode-test/**
 src/**
 test/**
-node_modules
 .eslintrc.json
 .gitattributes
 .gitignore
