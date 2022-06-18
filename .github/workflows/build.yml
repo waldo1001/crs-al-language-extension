@@ -18,10 +18,10 @@ jobs:
           node-version: 14
 
       - name: Install
-        run: npm install
+        run: yarn install
 
       - name: Test
-        run: npm test
+        run: yarn test
 
       - name: Install VSCE
         run: npm install -g vsce

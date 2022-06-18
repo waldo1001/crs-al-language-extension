@@ -17,8 +17,8 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 14
-      - run: npm install
-      - run: npm test
+      - run: yarn install
+      - run: yarn test
       - run: npm install -g vsce
       - run: vsce package
       - run: |
