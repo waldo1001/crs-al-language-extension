@@ -2,11 +2,6 @@ name: Create Release and Publish
 
 on:
   workflow_dispatch:
-    inputs:
-      tag:
-        description: Tag of this release
-        required: true
-        default: ""
 
 jobs:
   release-and-publish:
@@ -17,9 +12,8 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 14
-      - run: npm install
-      - run: npm run lint
-      - run: npm test
+      - run: yarn install
+      - run: yarn test
       - run: npm install -g vsce
       - run: vsce package
       - run: |
@@ -27,13 +21,16 @@ jobs:
           $name = (Split-Path (Get-Item -Path '*.vsix') -leaf)
           "VSIX_PATH=$path" >> $env:GITHUB_ENV
           "VSIX_NAME=$name" >> $env:GITHUB_ENV
+          $json = (Get-Content 'package.json' | ConvertFrom-Json)
+          $version = $json.version
+          "VERSION=v$version" >> $env:GITHUB_ENV
       - uses: actions/create-release@v1
         id: create_release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{github.event.inputs.tag}}
-          release_name: "Release ${{github.event.inputs.tag}}"
+          tag_name: ${{ env.VERSION }}
+          release_name: "Release ${{ env.VERSION }}"
           body: See [Change Log](https://github.com/waldo1001/crs-al-language-extension/blob/master/CHANGELOG.md) for details.
           draft: false
           prerelease: false
