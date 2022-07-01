@@ -17,9 +17,9 @@ export class ALCExe {
         }
 
         let workSpaceSettings = Settings.GetConfigSettings(projectpath);
-        let packageCachePath = join(projectpath, workSpaceSettings[Settings.packageCachePath])
+        let packageCachePath = join(projectpath, workSpaceSettings[Settings.packageCachePath]);
 
-        crsOutput.showOutput(`CompileDGML for project "${projectpath}"`, false)
+        crsOutput.showOutput(`CompileDGML for project "${projectpath}"`, false);
 
         let alcpath = this.GetALCExeDir();
 
