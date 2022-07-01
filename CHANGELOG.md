@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension:
 
+## [1.5.12] - 2022-07-01
+Fixed [Issue with DGML export](https://github.com/waldo1001/crs-al-language-extension/issues/228) (Reported by [tscottjendev](https://github.com/tscottjendev)).
+
 ## [1.5.11] - 2022-06-17
 Once again many changes by [Christian Bräunlich](https://github.com/christianbraeunlich) - Big thanks again! 
 - Fixed snippets
