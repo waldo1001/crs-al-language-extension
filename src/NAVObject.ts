@@ -12,6 +12,7 @@ export class NAVObject {
     public tableFields: NAVTableField[] = new Array();
     public pageFields: NAVPageField[] = new Array();
     public pageGroups: NAVPageGroup[] = new Array();
+    public reportColumns: NAVReportColumn[] = new Array();
     public extendedObjectName: string;
     public extendedObjectId: string;
     public NAVObjectText: string;
@@ -106,7 +107,7 @@ export class NAVObject {
         NAVObjectTextFixed = this.AddPrefixAndSuffixToFields(NAVObjectTextFixed);
         NAVObjectTextFixed = this.AddPrefixAndSuffixToPageFields(NAVObjectTextFixed);
         NAVObjectTextFixed = this.AddPrefixAndSuffixToPageGroups(NAVObjectTextFixed);
-
+        NAVObjectTextFixed = this.AddPrefixAndSuffixToReportColumns(NAVObjectTextFixed);
 
         return NAVObjectTextFixed;
     }
@@ -314,6 +315,12 @@ export class NAVObject {
             this.pageGroups.push(new NAVPageGroup(result[1], this.objectType, this._workSpaceSettings[Settings.ObjectNamePrefix], this._workSpaceSettings[Settings.ObjectNameSuffix]))
         }
 
+        var reg = NAVReportColumn.columnRegEx();
+        var result;
+        while ((result = reg.exec(this.NAVObjectText)) !== null) {
+            this.reportColumns.push(new NAVReportColumn(result[1], this.objectType, this._workSpaceSettings[Settings.ObjectNamePrefix], this._workSpaceSettings[Settings.ObjectNameSuffix]))
+        }
+
         this.NAVObjectText = initNAVObjectText;
     }
 
@@ -476,6 +483,13 @@ export class NAVObject {
 
         return objectText;
     }
+    private AddPrefixAndSuffixToReportColumns(objectText: string): string {
+        this.reportColumns.forEach(column => {
+            objectText = objectText.replace(column.fullColumnText, column.fullColumnTextFixed);
+        })
+
+        return objectText;
+    }
 }
 
 class NAVObjectAction {
@@ -491,7 +505,7 @@ class NAVObjectAction {
 
     get nameFixed(): string {
         if (!this._prefix && !this._suffix) { return this.name }
-        if (this._objectType.toLocaleLowerCase() != "pageextension") { return this.name }; //avoid on pages
+        if (!this._objectType.toLocaleLowerCase().endsWith('extension')) { return this.name }; //only for extensionobjects
 
         let result = this.name
         if (this._prefix && !this.name.startsWith(this._prefix)) {
@@ -542,7 +556,7 @@ class NAVTableField {
 
     get nameFixed(): string {
         if (!this._prefix && !this._suffix) { return this.name }
-        if (this._objectType.toLocaleLowerCase() != "tableextension") { return this.name }; //avoid on tables
+        if (!this._objectType.toLocaleLowerCase().endsWith('extension')) { return this.name }; //only for extensionobjects
 
         let result = this.name
         if (this._prefix && !this.name.startsWith(this._prefix)) {
@@ -594,7 +608,7 @@ class NAVPageField {
 
     get nameFixed(): string {
         if (!this._prefix && !this._suffix) { return this.name }
-        if (this._objectType.toLocaleLowerCase() != "pageextension") { return this.name }; //avoid on pages
+        if (!this._objectType.toLocaleLowerCase().endsWith('extension')) { return this.name }; //only for extensionobjects
 
         let result = this.name
         if (this._prefix && !this.name.startsWith(this._prefix)) {
@@ -645,7 +659,7 @@ class NAVPageGroup {
 
     get nameFixed(): string {
         if (!this._prefix && !this._suffix) { return this.name }
-        if (this._objectType.toLocaleLowerCase() != "pageextension") { return this.name }; //avoid on pages
+        if (!this._objectType.toLocaleLowerCase().endsWith('extension')) { return this.name }; //only for extensionobjects
 
         let result = this.name
         if (this._prefix && !this.name.startsWith(this._prefix)) {
@@ -681,3 +695,56 @@ class NAVPageGroup {
     }
 
 }
+
+class NAVReportColumn {
+    public name: string;
+    public fullColumnText: string;
+    public expression: string;
+    private _objectType: string;
+    private _prefix: string;
+    private _suffix: string;
+
+    public static columnRegEx(): RegExp {
+        return /.*(column\( *"?([ a-zA-Z0-9._/&%\/()-]+)"? *; *([" a-zA-Z0-9._/&%\/()-]+) *\))/g;
+    }
+
+    get nameFixed(): string {
+        if (!this._prefix && !this._suffix) { return this.name }
+        if (!this._objectType.toLocaleLowerCase().endsWith('extension')) { return this.name }; //only for extensionobjects
+
+        let result = this.name
+        if (this._prefix && !this.name.startsWith(this._prefix)) {
+            result = this._prefix + result
+        }
+        if (this._suffix && !this.name.endsWith(this._suffix)) {
+            result = result + this._suffix
+        }
+        return result
+    }
+
+    get fullColumnTextFixed(): string {
+        if (!this._prefix && !this._suffix) { return this.fullColumnText }
+
+        return "column(" + StringFunctions.encloseInQuotesIfNecessary(this.nameFixed) + "; " + this.expression + ")"
+    }
+
+    constructor(fullColumnText: string, objectType: string, prefix?: string, suffix?: string) {
+        this.fullColumnText = fullColumnText;
+        this._prefix = prefix ? prefix : null;
+        this._suffix = suffix ? suffix : null;
+        this._objectType = objectType;
+
+        this.parseColumnText();
+    }
+
+    private parseColumnText() {
+        var reg = NAVReportColumn.columnRegEx();
+        var result = reg.exec(this.fullColumnText)
+        if (result !== null) {
+            this.name = result[2].trim().toString();
+            this.expression = result[3].trim().toString();
+        }
+    }
+
+}
+

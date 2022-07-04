@@ -7,6 +7,7 @@ import * as myExtension from '../../extension';
 import * as NAVTestObjectLibrary from './NAVTestObjectLibrary'
 import { Settings } from '../../Settings';
 import { settings } from 'cluster';
+import { FileDecoration } from 'vscode';
 
 suite("NAVObject ObjectNamePrefix Tests", () => {
     test("Object without prefix - No prefix to set", () => {
@@ -287,5 +288,60 @@ suite("NAVObject ObjectNamePrefix Tests", () => {
         assert.strictEqual(navObject.objectFileName.endsWith(testSettings[Settings.ObjectNameSuffix]), false)
         assert.notStrictEqual(navObject.objectFileNameFixed.indexOf(testSettings[Settings.ObjectNameSuffix]), -1)
     });
+    test("Reportextension - Set prefix", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+        testSettings[Settings.ObjectNamePrefix] = 'waldo';
 
+        let navTestObject = NAVTestObjectLibrary.getSimpleReportExtension();
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
+
+        assert.notStrictEqual(navObject.reportColumns.length, 0)
+
+        navObject.reportColumns.forEach(column => {
+            assert.strictEqual(column.nameFixed.startsWith(testSettings[Settings.ObjectNamePrefix]), true);
+        })
+    });
+    test("Reportextension - Set Suffix", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+        testSettings[Settings.ObjectNameSuffix] = 'waldo';
+
+        let navTestObject = NAVTestObjectLibrary.getSimpleReportExtension();
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
+
+        assert.notStrictEqual(navObject.reportColumns.length, 0)
+
+        navObject.reportColumns.forEach(column => {
+            assert.strictEqual(column.nameFixed.endsWith(testSettings[Settings.ObjectNameSuffix]), true);
+        })
+    });
+    test("Reportextension - Don't set double suffix", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+        testSettings[Settings.ObjectNameSuffix] = 'waldo';
+
+        let navTestObject = NAVTestObjectLibrary.getReportExtensionWithSuffix();
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
+
+        assert.notStrictEqual(navObject.reportColumns.length, 0)
+
+        let navObject2 = new NAVObject(navObject.NAVObjectTextFixed, testSettings, navTestObject.ObjectFileName)
+        navObject2.reportColumns.forEach(column => {
+            assert.strictEqual(column.name.endsWith(testSettings[Settings.ObjectNameSuffix]), true);
+            assert.strictEqual(column.name, column.nameFixed);
+        })
+    });
+    test("Reportextension - Fields on request page", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+        testSettings[Settings.ObjectNameSuffix] = 'waldo';
+
+        let navTestObject = NAVTestObjectLibrary.getSimpleReportExtension();
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
+
+        assert.notStrictEqual(navObject.reportColumns.length, 0)
+        assert.notStrictEqual(navObject.pageFields.length, 0)
+
+        navObject.pageFields.forEach(field => {
+            assert.strictEqual(field.nameFixed.endsWith(testSettings[Settings.ObjectNameSuffix]), true);
+            assert.notStrictEqual(field.name, field.nameFixed);
+        })
+    });
 });

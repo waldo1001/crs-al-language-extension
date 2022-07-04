@@ -899,13 +899,70 @@ export function getSimpleReportExtension(): NAVTestObject {
     {
         dataset
         {
-            // Add changes to dataitems and columns here
+            add(Header)
+            {
+                column("APO_YourReference"; YourReference)
+                {
+    
+                }
+                column("APO_YourReference2"; YourReference)
+                {
+    
+                }
+                column("APO_YourReference3"; YourReference)
+                {
+    
+                }
+            }
         }
     
         requestpage
         {
-            // Add changes to the requestpage here
+            layout
+            {
+                addfirst(Somewhere)
+                {
+                    field(Name; Expression)
+                    {
+                        Caption = 'This Field';
+                    }
+                }
+    
+            }
         }
+        var
+            YourReference: Text[35];
+    }
+    `
+    return object;
+}
+export function getReportExtensionWithSuffix(): NAVTestObject {
+    let object = new NAVTestObject;
+
+    object.ObjectFileName = 'getSimpleReportExtension.al'
+    object.ObjectText = `reportextension 50100 "Customer Top 10 List Ext" extends "Customer - Top 10 List"
+    {
+        dataset
+        {
+            add(Header)
+            {
+                column("APO_YourReference waldo"; YourReference)
+                {
+    
+                }
+                column("APO_YourReference2 waldo"; YourReference)
+                {
+    
+                }
+                column("APO_YourReference3 waldo"; YourReference)
+                {
+    
+                }
+            }
+        }
+    
+        var
+            YourReference: Text[35];
     }
     `
     return object;
@@ -932,4 +989,6 @@ export function getSimpleReportExtensionWithSummaryComments(): NAVTestObject {
     }
     `
     return object;
+
 }
+

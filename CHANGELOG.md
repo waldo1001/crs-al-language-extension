@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension:
 
+## [1.5.13] - 2022-07-04
+Fixed [Prefixing fields and other controls on Report Extensions](https://github.com/waldo1001/crs-al-language-extension/issues/249), Reported by [g-franck](https://github.com/g-franck).  Thanks!
+
 ## [1.5.12] - 2022-07-01
 Fixed [Issue with DGML export](https://github.com/waldo1001/crs-al-language-extension/issues/228) (Reported by [tscottjendev](https://github.com/tscottjendev)).
 
