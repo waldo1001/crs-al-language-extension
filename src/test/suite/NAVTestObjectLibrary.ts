@@ -464,6 +464,24 @@ export function getTableExtensionWrongFileNameAndKeyWord(): NAVTestObject {
     `
     return object;
 }
+export function getTableExtension(): NAVTestObject {
+    let object = new NAVTestObject;
+
+    object.ObjectFileName = 'SomeTableExt.al'
+    object.ObjectText = `tableextension 50006 "Prefix Sales Cr.Memo Header" extends "Sales Cr.Memo Header"
+    {
+        fields
+        {
+            field(50021; "Prefix Test Field"; Code[20])
+            {
+                Caption = 'Test Field';
+                DataClassification = CustomerContent;
+            }        
+    }
+    `
+    return object;
+}
+
 export function getTableExtensionWithSkippingFieldForRename(): NAVTestObject {
     let object = new NAVTestObject;
 

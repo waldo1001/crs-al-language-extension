@@ -204,6 +204,18 @@ suite("NAVObject ObjectNamePrefix Tests", () => {
             assert.strictEqual(field.name.endsWith(testSettings[Settings.ObjectNameSuffix]), true)
         })
     });
+    test("Tableextension - Don't change fieldnumber", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+        testSettings[Settings.ObjectNameSuffix] = 'waldo';
+
+        let navTestObject = NAVTestObjectLibrary.getTableExtension();
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
+
+        let navObject2 = new NAVObject(navObject.NAVObjectTextFixed, testSettings, navTestObject.ObjectFileName)
+
+        assert.strictEqual(navObject.tableFields[0].number, navObject2.tableFields[0].number);
+
+    });
     test("Table - avoid setting prefix to fields", () => {
         let testSettings = Settings.GetConfigSettings(null)
         testSettings[Settings.ObjectNamePrefix] = 'waldo';

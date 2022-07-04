@@ -609,6 +609,7 @@ class NAVPageField {
     get nameFixed(): string {
         if (!this._prefix && !this._suffix) { return this.name }
         if (!this._objectType.toLocaleLowerCase().endsWith('extension')) { return this.name }; //only for extensionobjects
+        if (this._objectType.toLocaleLowerCase().startsWith('table')) { return this.name };    //table-fields should not be parsed as pagefields
 
         let result = this.name
         if (this._prefix && !this.name.startsWith(this._prefix)) {
