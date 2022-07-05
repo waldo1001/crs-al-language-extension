@@ -356,4 +356,26 @@ suite("NAVObject ObjectNamePrefix Tests", () => {
             assert.notStrictEqual(field.name, field.nameFixed);
         })
     });
+    test("Reportextension - Only quotes if necessary - None expected", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+        testSettings[Settings.ObjectNameSuffix] = 'waldo';
+
+        let navTestObject = NAVTestObjectLibrary.getSimpleReportExtension();
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
+
+        navObject.reportColumns.forEach(column => {
+            assert.strictEqual(column.fullColumnTextFixed.includes('"'), false)
+        })
+    });
+    test("Reportextension - Only quotes if necessary - expected", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+        testSettings[Settings.ObjectNameSuffix] = ' waldo';
+
+        let navTestObject = NAVTestObjectLibrary.getSimpleReportExtension();
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
+
+        navObject.reportColumns.forEach(column => {
+            assert.strictEqual(column.fullColumnTextFixed.includes('"'), true)
+        })
+    });
 });

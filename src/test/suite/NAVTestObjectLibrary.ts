@@ -919,15 +919,15 @@ export function getSimpleReportExtension(): NAVTestObject {
         {
             add(Header)
             {
-                column("APO_YourReference"; YourReference)
+                column(APO_YourReference; YourReference)
                 {
     
                 }
-                column("APO_YourReference2"; YourReference)
+                column(APO_YourReference2; YourReference)
                 {
     
                 }
-                column("APO_YourReference3"; YourReference)
+                column(APO_YourReference3; YourReference)
                 {
     
                 }
@@ -964,15 +964,15 @@ export function getReportExtensionWithSuffix(): NAVTestObject {
         {
             add(Header)
             {
-                column("APO_YourReference waldo"; YourReference)
+                column(APO_YourReferencewaldo; YourReference)
                 {
     
                 }
-                column("APO_YourReference2 waldo"; YourReference)
+                column(APO_YourReference2waldo; YourReference)
                 {
     
                 }
-                column("APO_YourReference3 waldo"; YourReference)
+                column(APO_YourReference3waldo; YourReference)
                 {
     
                 }

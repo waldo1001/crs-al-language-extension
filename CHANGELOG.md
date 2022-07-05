@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension:
 
+## [1.5.15] - 2022-07-05
+Fixed [Quotation marks are added to reports/queries](https://github.com/waldo1001/crs-al-language-extension/issues/251), Reported by [Lazys](https://github.com/Lazys).  Thanks!
+
 ## [1.5.14] - 2022-07-04
 Fixed [Prefixing fields and other controls on Report Extensions](https://github.com/waldo1001/crs-al-language-extension/issues/249), Reported by [g-franck](https://github.com/g-franck).  Thanks!
 
