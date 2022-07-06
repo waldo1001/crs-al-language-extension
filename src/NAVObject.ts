@@ -720,6 +720,7 @@ class NAVReportColumn {
         if (this._suffix && !this.name.endsWith(this._suffix)) {
             result = result + this._suffix
         }
+        result = result.replace(" ", "");
         return result
     }
 

@@ -367,7 +367,7 @@ suite("NAVObject ObjectNamePrefix Tests", () => {
             assert.strictEqual(column.fullColumnTextFixed.includes('"'), false)
         })
     });
-    test("Reportextension - Only quotes if necessary - expected", () => {
+    test("Reportextension - No spaces in fixed", () => {
         let testSettings = Settings.GetConfigSettings(null)
         testSettings[Settings.ObjectNameSuffix] = ' waldo';
 
@@ -375,7 +375,7 @@ suite("NAVObject ObjectNamePrefix Tests", () => {
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
 
         navObject.reportColumns.forEach(column => {
-            assert.strictEqual(column.fullColumnTextFixed.includes('"'), true)
+            assert.strictEqual(column.nameFixed.includes(' '), false)
         })
     });
 });

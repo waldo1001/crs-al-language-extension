@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension:
 
+## [1.5.16] - 2022-07-07
+Fixed [Object Name Prefix breaks all reports on save](https://github.com/waldo1001/crs-al-language-extension/issues/252), Reported by [matthias-planzer](https://github.com/matthias-planzer).  Thanks!
+
 ## [1.5.15] - 2022-07-05
 Fixed [Quotation marks are added to reports/queries](https://github.com/waldo1001/crs-al-language-extension/issues/251), Reported by [Lazys](https://github.com/Lazys).  Thanks!
 
