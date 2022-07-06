@@ -11,8 +11,7 @@ import { Google } from './Google';
 import * as CRSStatusBar from './UI/CRSStatusBar';
 import * as Configuration from './Configuration';
 import { ALCExe } from './ALCExe';
-
-
+import { AppInsights, EventName } from './ApplicationInsights';
 
 export function InstallWaldosModules() {
     console.log('Running: InstallWaldosModules');
@@ -25,6 +24,9 @@ export function InstallWaldosModules() {
 export async function CreateGraphVizDependencyGraph() {
     console.log('Running: CreateGraphVizDependencyGraph');
 
+    let appInsightsEntryProperties: any = {};
+    AppInsights.getInstance().trackEvent(EventName.CreateGraphVizDependencyGraph, appInsightsEntryProperties);
+
     await WorkspaceFiles.CreateGraphVizDependencyGraph();
 
     console.log('Done: CreateGraphVizDependencyGraph');
@@ -33,6 +35,10 @@ export async function CreateGraphVizDependencyGraph() {
 export async function CompileDGML() {
     console.log('Running: CompileDGML');
 
+    let appInsightsEntryProperties: any = {};
+    AppInsights.getInstance().trackEvent(EventName.CompileDGML, appInsightsEntryProperties);
+
+
     ALCExe.CompileDGML();
 
     console.log('Done: CompileDGML');
@@ -40,6 +46,10 @@ export async function CompileDGML() {
 
 export function RunCurrentObjectWeb(currFile: vscode.Uri) {
     console.log('Running: RunCurrentObjectWeb');
+
+    let appInsightsEntryProperties: any = {};
+    AppInsights.getInstance().trackEvent(EventName.RunCurrentObjectWeb, appInsightsEntryProperties);
+
     let currentdocument = currFile;
 
     if (!currentdocument) {
@@ -58,6 +68,9 @@ export function RunCurrentObjectWeb(currFile: vscode.Uri) {
 
 export async function PublishAndRunCurrentObjectWeb(currFile: vscode.Uri) {
     console.log('Running: PublishAndRunCurrentObjectWeb');
+
+    let appInsightsEntryProperties: any = {};
+    AppInsights.getInstance().trackEvent(EventName.PublishAndRunCurrentObjectWeb, appInsightsEntryProperties);
 
     let currentdocument = currFile;
 
@@ -79,6 +92,9 @@ export async function PublishAndRunCurrentObjectWeb(currFile: vscode.Uri) {
 export function RunObjectWeb() {
     console.log('Running: RunObjectWeb');
 
+    let appInsightsEntryProperties: any = {};
+    AppInsights.getInstance().trackEvent(EventName.RunObjectWeb, appInsightsEntryProperties);
+
     vscode.window.showQuickPick(DynamicsNAV.GetRunWebObjectTypesAsQuickPickItem()).then(objecttype =>
         vscode.window.showInputBox({ prompt: 'ObjectID:' }).then(objectid =>
             DynamicsNAV.RunObjectInWebClient(objecttype, objectid, 'WebClient')));
@@ -88,6 +104,10 @@ export function RunObjectWeb() {
 export function RunTestTool() {
     console.log('Running: RunTestTool');
 
+    let appInsightsEntryProperties: any = {};
+    AppInsights.getInstance().trackEvent(EventName.RunTestTool, appInsightsEntryProperties);
+
+
     DynamicsNAV.RunObjectInWebClient('Page', 130451, 'WebClient');
 
     console.log('Done: RunTestTool')
@@ -95,6 +115,10 @@ export function RunTestTool() {
 
 export function RunEventSubscribers() {
     console.log('Running: RunEventSubscribers');
+
+    let appInsightsEntryProperties: any = {};
+    AppInsights.getInstance().trackEvent(EventName.RunEventSubscribers, appInsightsEntryProperties);
+
 
     DynamicsNAV.RunObjectInWebClient('Page', 9510, 'WebClient');
 
@@ -104,6 +128,10 @@ export function RunEventSubscribers() {
 export function RunDatabaseLocks() {
     console.log('Running: RunDatabaseLocks');
 
+    let appInsightsEntryProperties: any = {};
+    AppInsights.getInstance().trackEvent(EventName.RunDatabaseLocks, appInsightsEntryProperties);
+
+
     DynamicsNAV.RunObjectInWebClient('Page', 9511, 'WebClient');
 
     console.log('Done: RunDatabaseLocks')
@@ -111,6 +139,10 @@ export function RunDatabaseLocks() {
 
 export function RunObjectTablet() {
     console.log('Running: RunObjectTablet');
+
+    let appInsightsEntryProperties: any = {};
+    AppInsights.getInstance().trackEvent(EventName.RunObjectTablet, appInsightsEntryProperties);
+
 
     vscode.window.showQuickPick(DynamicsNAV.GetRunWebObjectTypesAsQuickPickItem()).then(objecttype =>
         vscode.window.showInputBox({ prompt: 'ObjectID:' }).then(objectid =>
@@ -122,6 +154,10 @@ export function RunObjectTablet() {
 export function RunObjectPhone() {
     console.log('Running: RunObjectPhone');
 
+    let appInsightsEntryProperties: any = {};
+    AppInsights.getInstance().trackEvent(EventName.RunObjectPhone, appInsightsEntryProperties);
+
+
     vscode.window.showQuickPick(DynamicsNAV.GetRunWebObjectTypesAsQuickPickItem()).then(objecttype =>
         vscode.window.showInputBox({ prompt: 'ObjectID:' }).then(objectid =>
             DynamicsNAV.RunObjectInWebClient(objecttype, objectid, 'Phone')));
@@ -132,6 +168,10 @@ export function RunObjectPhone() {
 export function RunObjectWindows() {
     console.log('Running: RunObjectWindows');
 
+    let appInsightsEntryProperties: any = {};
+    AppInsights.getInstance().trackEvent(EventName.RunObjectWindows, appInsightsEntryProperties);
+
+
     vscode.window.showQuickPick(DynamicsNAV.GetRunRTCObjectTypesAsQuickPickItem()).then(objecttype =>
         vscode.window.showInputBox({ prompt: 'ObjectID:' }).then(objectid =>
             DynamicsNAV.RunObjectInWindowsClient(objecttype, objectid)));
@@ -141,6 +181,10 @@ export function RunObjectWindows() {
 
 export function RenameCurrentFile() {
     console.log('Running: RenameCurrentFile');
+
+    let appInsightsEntryProperties: any = {};
+    AppInsights.getInstance().trackEvent(EventName.RenameCurrentFile, appInsightsEntryProperties);
+
 
     vscode.window.activeTextEditor.document.save().then(saved => {
         let oldFilename = vscode.window.activeTextEditor.document
@@ -156,6 +200,10 @@ export function RenameCurrentFile() {
 export function RenameAllFiles() {
     console.log('Running: RenameAllFiles');
 
+    let appInsightsEntryProperties: any = {};
+    AppInsights.getInstance().trackEvent(EventName.RenameAllFiles, appInsightsEntryProperties);
+
+
     let mySettings = Settings.GetConfigSettings(null);
     let SkipWarningMessageOnRenameAll = mySettings[Settings.SkipWarningMessageOnRenameAll];
 
@@ -167,17 +215,20 @@ export function RenameAllFiles() {
             }
         });
     }
-    else
-    {
+    else {
         WorkspaceFiles.RenameAllFiles();
         vscode.commands.executeCommand('workbench.action.closeAllEditors');
     }
-    
+
     console.log('Done: RenameAllFiles')
 }
 
 export function ReorganizeCurrentFile() {
     console.log('Running: ReorganizeCurrentFile');
+
+    let appInsightsEntryProperties: any = {};
+    AppInsights.getInstance().trackEvent(EventName.ReorganizeCurrentFile, appInsightsEntryProperties);
+
 
     vscode.window.activeTextEditor.document.save().then(saved => {
         let newFileName = WorkspaceFiles.ReorganizeFile(vscode.window.activeTextEditor.document.uri);
@@ -188,6 +239,10 @@ export function ReorganizeCurrentFile() {
 
 export function ReorganizeAllFiles() {
     console.log('Running: ReorganizeAllFiles');
+
+    let appInsightsEntryProperties: any = {};
+    AppInsights.getInstance().trackEvent(EventName.ReorganizeAllFiles, appInsightsEntryProperties);
+
 
     vscode.window.showWarningMessage('Are you sure to reorganize all files from all opened workspaces?', 'Yes', 'No').then((action: String) => {
         if (action === 'Yes') {
@@ -202,6 +257,10 @@ export function ReorganizeAllFiles() {
 export function SearchMicrosoftDocs() {
     console.log('Running: SearchMicrosoftDocs');
 
+    let appInsightsEntryProperties: any = {};
+    AppInsights.getInstance().trackEvent(EventName.SearchMicrosoftDocs, appInsightsEntryProperties);
+
+
     let currentword = vscode.window.activeTextEditor ? getWord(vscode.window.activeTextEditor) : "";
     vscode.window.showInputBox({ value: currentword, prompt: "Search String:" }).then(SearchString =>
         MSDocs.OpenSearchUrl(SearchString));
@@ -211,6 +270,10 @@ export function SearchMicrosoftDocs() {
 
 export function SearchGoogle() {
     console.log('Running: SearchGoogle');
+
+    let appInsightsEntryProperties: any = {};
+    AppInsights.getInstance().trackEvent(EventName.SearchGoogle, appInsightsEntryProperties);
+
 
     let currentword = vscode.window.activeTextEditor ? getWord(vscode.window.activeTextEditor) : "";
     vscode.window.showInputBox({ value: currentword, prompt: "Search String:" }).then(SearchString =>
@@ -222,6 +285,10 @@ export function SearchGoogle() {
 export function SearchObjectNames() {
     console.log('Running: SearchObjectNames');
 
+    let appInsightsEntryProperties: any = {};
+    AppInsights.getInstance().trackEvent(EventName.SearchObjectNames, appInsightsEntryProperties);
+
+
     let currentword = vscode.window.activeTextEditor ? getWord(vscode.window.activeTextEditor) : "";
     vscode.window.showInputBox({ value: currentword, prompt: "Search String:" }).then(SearchString =>
         DynamicsNAV.SearchObjectNames(SearchString));
@@ -232,6 +299,10 @@ export function SearchObjectNames() {
 export function SetupSnippets() {
     console.log('Running: SetupSnippets');
 
+    let appInsightsEntryProperties: any = {};
+    AppInsights.getInstance().trackEvent(EventName.SetupSnippets, appInsightsEntryProperties);
+
+
     SnippetFunctions.SetupDefaultAlSnippets();
     SnippetFunctions.SetupCRSAlSnippets();
 
@@ -240,6 +311,10 @@ export function SetupSnippets() {
 
 export function HandleOnSaveTextDocument() {
     console.log('Running: HandleOnSaveTextDocument');
+
+    let appInsightsEntryProperties: any = {};
+    AppInsights.getInstance().trackEvent(EventName.HandleOnSaveTextDocument, appInsightsEntryProperties);
+
 
     WorkspaceFiles.renameFileOnSave();
 
@@ -252,6 +327,10 @@ export function HandleOnSaveTextDocument() {
 export function HandleOnOpenTextDocument() {
     console.log('Running: HandleOnOpenTextDocument');
 
+    let appInsightsEntryProperties: any = {};
+    AppInsights.getInstance().trackEvent(EventName.HandleOnOpenTextDocument, appInsightsEntryProperties);
+
+
     CRSStatusBar.toggleRunObjectFromStatusBar();
 
     console.log('Done: HandleOnOpenTextDocument')
@@ -260,6 +339,10 @@ export function HandleOnOpenTextDocument() {
 export function HandleOnChangeActiveTextEditor(editor?: vscode.TextEditor) {
     console.log('Running: HandleOnChangeActiveTextEditor');
 
+    let appInsightsEntryProperties: any = {};
+    AppInsights.getInstance().trackEvent(EventName.HandleOnChangeActiveTextEditor, appInsightsEntryProperties);
+
+
     CRSStatusBar.toggleRunObjectFromStatusBar(editor?.document);
 
     console.log('Done: HandleOnChangeActiveTextEditor')
@@ -267,6 +350,10 @@ export function HandleOnChangeActiveTextEditor(editor?: vscode.TextEditor) {
 
 export function ConfigureBestPracticeNaming() {
     console.log('Running: ConfigureBestPracticeNaming');
+
+    let appInsightsEntryProperties: any = {};
+    AppInsights.getInstance().trackEvent(EventName.ConfigureBestPracticeNaming, appInsightsEntryProperties);
+
 
     Configuration.configureBestPracticesNaming();
 
