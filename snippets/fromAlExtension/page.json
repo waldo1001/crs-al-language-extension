@@ -47,7 +47,7 @@
     "Snippet: Page Field": {
         "prefix": "tpagefieldwaldo",
         "body": [
-            "field(${1:MyField; FieldSource})",
+            "field(${1:FieldSource}; Rec.${1:FieldSource})",
             "{",
             "\tApplicationArea = ${3|All,Basic,Suite,Advanced|};",
             "}",
@@ -122,7 +122,7 @@
             "}"
         ],
         "description": "Snippet: Page Part"
-    },    
+    },
     "Page of type list": {
         "prefix": "tpagelistwaldo",
         "body": [
