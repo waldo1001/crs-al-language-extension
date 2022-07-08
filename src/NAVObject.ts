@@ -714,10 +714,10 @@ class NAVReportColumn {
         if (!this._objectType.toLocaleLowerCase().endsWith('extension')) { return this.name }; //only for extensionobjects
 
         let result = this.name
-        if (this._prefix && !this.name.startsWith(this._prefix)) {
+        if (this._prefix && !this.name.startsWith(this._prefix.replace(" ", ""))) {
             result = this._prefix + result
         }
-        if (this._suffix && !this.name.endsWith(this._suffix)) {
+        if (this._suffix && !this.name.endsWith(this._suffix.replace(" ", ""))) {
             result = result + this._suffix
         }
         result = result.replace(" ", "");

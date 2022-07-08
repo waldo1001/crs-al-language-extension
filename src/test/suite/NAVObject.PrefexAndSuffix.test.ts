@@ -378,4 +378,15 @@ suite("NAVObject ObjectNamePrefix Tests", () => {
             assert.strictEqual(column.nameFixed.includes(' '), false)
         })
     });
+    test("Reportextension - No spaces in fixed", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+        testSettings[Settings.ObjectNameSuffix] = ' waldo';
+
+        let navTestObject = NAVTestObjectLibrary.getSimpleReportExtension();
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
+
+        let navObject2 = new NAVObject(navObject.NAVObjectTextFixed, testSettings, navTestObject.ObjectFileName)
+
+        assert.strictEqual(navObject.reportColumns[0].fullColumnTextFixed, navObject2.reportColumns[0].fullColumnTextFixed)
+    });
 });
