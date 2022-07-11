@@ -4,6 +4,7 @@ import * as vscode from 'vscode';
 import { Settings } from './Settings';
 import * as crsOutput from './CRSOutput';
 import * as CRSTerminal from './CRSTerminal';
+import { AppInsights, EventName } from './ApplicationInsights';
 
 export class ALCExe {
 
@@ -24,6 +25,10 @@ export class ALCExe {
         let alcpath = this.GetALCExeDir();
 
         CRSTerminal.CompileDGML(alcpath, projectpath, packageCachePath);
+
+        let appInsightsEntryProperties: any = {};
+        appInsightsEntryProperties.ALCExeDir = alcpath;
+        AppInsights.getInstance().trackEvent(EventName.CompileDGML, appInsightsEntryProperties);
     }
 
     static GetALCExeDir(): string {

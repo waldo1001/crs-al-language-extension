@@ -17,6 +17,7 @@ export class Settings {
     static readonly PublicWebBaseUrl = 'PublicWebBaseUrl';
     static readonly Tenant = 'Tenant';
 
+    static readonly AppId = 'id';
     static readonly AppName = 'name';
     static readonly NstFolder = 'nstfolder';
     static readonly ManagementModule = 'managementmodule';
@@ -73,7 +74,7 @@ export class Settings {
             vscode.workspace.getConfiguration(this.WORKSPACEKEY, ResourceUri) :
             vscode.window.activeTextEditor ?
                 vscode.workspace.getConfiguration(this.WORKSPACEKEY, vscode.window.activeTextEditor.document.uri) :
-                vscode.workspace.workspaceFolders ? 
+                vscode.workspace.workspaceFolders ?
                     vscode.workspace.getConfiguration(this.WORKSPACEKEY, vscode.workspace.workspaceFolders[0].uri) :
                     vscode.workspace.getConfiguration(this.WORKSPACEKEY, null);
 
@@ -127,6 +128,7 @@ export class Settings {
                 require(join(vscode.workspace.getWorkspaceFolder(vscode.window.activeTextEditor.document.uri).uri.fsPath, "app.json")) :
                 require(join(vscode.workspace.workspaceFolders[0].uri.fsPath, "app.json"));
 
+        this.SettingCollection[this.AppId] = appSettings.id
         this.SettingCollection[this.AppName] = appSettings.name
     }
 

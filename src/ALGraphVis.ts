@@ -4,6 +4,7 @@ import { Settings } from './Settings';
 import { AppJsonDependency } from './AppJsonDependency';
 import * as vscode from 'vscode';
 import { exit } from 'process';
+import { AppInsights, EventName } from './ApplicationInsights';
 
 export class ALGraphVis {
 
@@ -50,6 +51,10 @@ export class ALGraphVis {
         })
 
         result += '}'
+
+        let appInsightsEntryProperties: any = {};
+        appInsightsEntryProperties.Result = result;
+        AppInsights.getInstance().trackEvent(EventName.CreateGraphVizDependencyGraph, appInsightsEntryProperties);
 
         return result
     }
