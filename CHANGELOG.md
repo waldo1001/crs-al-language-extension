@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension:
 
-## [] - 
+## [1.5.18] - 2022-07-11
 Improved snippet `tpagefieldwaldo`.
 
 ## [1.5.17] - 2022-07-08
