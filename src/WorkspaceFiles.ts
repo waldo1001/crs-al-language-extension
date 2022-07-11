@@ -10,6 +10,7 @@ import * as CRSTerminal from './CRSTerminal';
 import * as crsOutput from './CRSOutput';
 import { ALGraphVis } from './ALGraphVis';
 import { AppJson } from './AppJson';
+import { AppInsights, EventName } from './ApplicationInsights';
 
 
 export class WorkspaceFiles {
@@ -125,6 +126,11 @@ export class WorkspaceFiles {
                 fs.renameSync(from.fsPath, to);
             }
             crsOutput.showOutput(`Rename file from ${from.fsPath.substr(from.fsPath.lastIndexOf('\\') + 1)} to ${to.substr(to.lastIndexOf('\\') + 1)}`)
+
+            let appInsightsEntryProperties: any = {};
+            appInsightsEntryProperties.from = from;
+            appInsightsEntryProperties.to = to;
+            AppInsights.getInstance().trackEvent(EventName.RenameFile, appInsightsEntryProperties);
         } else {
             git.gitMove(from, to);
         }
@@ -154,12 +160,18 @@ export class WorkspaceFiles {
                 })
 
                 vscode.window.showInformationMessage(`${renamedFileCount} files out of ${totalFileCount} was renamed`)
+
+                let appInsightsEntryProperties: any = {};
+                appInsightsEntryProperties.renamedFileCount = renamedFileCount;
+                appInsightsEntryProperties.totalFileCount = totalFileCount;
+                AppInsights.getInstance().trackEvent(EventName.RenameAllFiles, appInsightsEntryProperties);
             } catch (error) {
                 vscode.window.showErrorMessage(error.message);
             }
 
             //WorkspaceFiles.ReopenFilesInEditor(renamedfiles);
         });
+
     }
 
     static ReorganizeAllFiles() {
@@ -185,6 +197,12 @@ export class WorkspaceFiles {
 
                 })
                 vscode.window.showInformationMessage(`${renamedFileCount} files out of ${totalFileCount} was reorganized`)
+
+                let appInsightsEntryProperties: any = {};
+                appInsightsEntryProperties.renamedFileCount = renamedFileCount;
+                appInsightsEntryProperties.totalFileCount = totalFileCount;
+                AppInsights.getInstance().trackEvent(EventName.ReorganizeAllFiles, appInsightsEntryProperties);
+
             } catch (error) {
                 vscode.window.showErrorMessage(error.message);
             }

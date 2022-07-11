@@ -3,6 +3,7 @@ import { join } from 'path';
 import * as vscode from 'vscode';
 import { Settings } from './Settings';
 import * as crsOutput from './CRSOutput';
+import { AppInsights, EventName } from './ApplicationInsights';
 
 export class SnippetFunctions {
     static SetupCRSAlSnippets() {
@@ -39,6 +40,10 @@ export class SnippetFunctions {
                         //console.log('Renamed ' + microsoftAlSnippetsDir + ' -> ' + microsoftAlSnippetsDirDisabled);
                         vscode.window.showInformationMessage('Snippets from ' + extension + ' successfully disabled. Please restart VSCode.');
                         crsOutput.showOutput('Snippets from ' + extension + ' successfully disabled. Please restart VSCode.');
+
+                        let appInsightsEntryProperties: any = {};
+                        appInsightsEntryProperties.extension = extension;
+                        AppInsights.getInstance().trackEvent(EventName.SnippetsDisabled, appInsightsEntryProperties);
                     } else {
                         (!fs.existsSync(microsoftAlSnippetsDirDisabled)) ?
                             console.log('Snippet-directory not found - nothing to disable.') :
@@ -50,6 +55,10 @@ export class SnippetFunctions {
                         //console.log('Renamed ' + microsoftAlSnippetsDirDisabled + ' -> ' + microsoftAlSnippetsDir);
                         vscode.window.showInformationMessage('Snippets from ' + extension + ' successfully enabled. Please restart VSCode.');
                         crsOutput.showOutput('Snippets from ' + extension + ' successfully enabled. Please restart VSCode.');
+
+                        let appInsightsEntryProperties: any = {};
+                        appInsightsEntryProperties.extension = extension;
+                        AppInsights.getInstance().trackEvent(EventName.SnippetsEnabled, appInsightsEntryProperties);
                     } else {
                         (!fs.existsSync(microsoftAlSnippetsDir)) ?
                             console.log('Disabled snippet-directory not found - nothing to enable.') :

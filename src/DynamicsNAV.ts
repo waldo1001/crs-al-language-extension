@@ -4,6 +4,7 @@ import * as crsOutput from './CRSOutput';
 import { exec, spawn } from 'child_process';
 import * as vscode from 'vscode';
 import { settings } from 'cluster';
+import { AppInsights, EventName } from './ApplicationInsights';
 
 const open = require('open');
 
@@ -123,8 +124,11 @@ export class DynamicsNAV {
                 break;
         }
 
-
         crsOutput.showOutput(`RunObjectInWebClient - ${runURL}`);
+
+        let appInsightsEntryProperties: any = {};
+        appInsightsEntryProperties.runURL = runURL;
+        AppInsights.getInstance().trackEvent(EventName.RunObjectWeb, appInsightsEntryProperties);
     }
     public static ComposeRunObjectInWebClientURL(workspacesettings: any, ClientType: string, runObjectType: String, runObjectid: number): String {
 
@@ -236,6 +240,10 @@ export class DynamicsNAV {
         });
 
         crsOutput.showOutput('SearchObjectNames: ' + SearchString)
+
+        let appInsightsEntryProperties: any = {};
+        appInsightsEntryProperties.SearchString = SearchString;
+        AppInsights.getInstance().trackEvent(EventName.SearchObjectNames, appInsightsEntryProperties);
     }
 
     static isKeyWord(value: String): boolean {

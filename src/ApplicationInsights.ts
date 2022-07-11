@@ -1,4 +1,5 @@
 import * as applicationinsights from 'applicationinsights';
+import { Settings } from './Settings';
 
 export class AppInsights {
     private static _instance: AppInsights
@@ -34,11 +35,23 @@ export class AppInsights {
     }
     trackEvent(name: EventName, properties: any) {
         this.start();
+
+        try {
+            let workspacesettings = Settings.GetAllSettings(null);
+            properties.AppId = workspacesettings[Settings.AppId];
+        } catch (error) {
+            properties.AppId = 'unknown';
+        }
+
         this.client.trackEvent({ name: name.toString(), properties: properties });
     }
 }
 export enum EventName {
+    ConsoleLog = 'ConsoleLog',
+    GitMove = 'GitMove',
     SetupSnippets = "SetupSnippets",
+    SnippetsEnabled = "SnippetsEnabled",
+    SnippetsDisabled = "SnippetsDisabled",
     CreateGraphVizDependencyGraph = "CreateGraphVizDependencyGraph",
     CompileDGML = "CompileDGML",
     RunCurrentObjectWeb = "RunCurrentObjectWeb",
@@ -50,6 +63,7 @@ export enum EventName {
     RunObjectTablet = "RunObjectTablet",
     RunObjectPhone = "RunObjectPhone",
     RunObjectWindows = "RunObjectWindows",
+    RenameFile = "RenameFile",
     RenameCurrentFile = "RenameCurrentFile",
     RenameAllFiles = "RenameAllFiles",
     ReorganizeCurrentFile = "ReorganizeCurrentFile",

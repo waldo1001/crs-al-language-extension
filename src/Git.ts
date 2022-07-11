@@ -3,13 +3,14 @@ import * as path from 'path'
 import * as fs from 'fs';
 import * as crsOutput from './CRSOutput';
 import { WorkspaceFiles } from './WorkspaceFiles'
+import { AppInsights, EventName } from './ApplicationInsights';
 
 //var projectRoot = vscode.workspace.rootPath;
 //var simpleGit = require('simple-git')((projectRoot) ? projectRoot : '.');
 
 export async function isGitRepository(folder: vscode.WorkspaceFolder): Promise<boolean> {
 	return true;  //TODO: Doesn't work in multiple workspaces
-	
+
 	if (folder.uri.scheme !== 'file') {
 		return false;
 	}
@@ -26,7 +27,7 @@ export async function isGitRepository(folder: vscode.WorkspaceFolder): Promise<b
 
 export function isGitRepositorySync(): boolean {
 	return true;  //TODO: Doesn't work in multiple workspaces
-	
+
 	let folder = WorkspaceFiles.getCurrentWorkspaceFolder();
 
 	if (folder.uri.scheme !== 'file') {
@@ -53,11 +54,16 @@ export function gitMove(from: vscode.Uri, to: string) {
 			crsOutput.showOutput(`* ${error}`);
 			crsOutput.showOutput(`* fallback: renaming without git from ${from.fsPath.substr(from.fsPath.lastIndexOf('\\') + 1)} to ${to.substr(to.lastIndexOf('\\') + 1)}`);
 			crsOutput.showOutput(`* you might want to set the setting "crs.RenameWithGit" to false for this workspace.`);
-			crsOutput.showOutput(`***`);			
+			crsOutput.showOutput(`***`);
 		} else {
 			crsOutput.showOutput(`success: git mv ${from.fsPath.substr(from.fsPath.lastIndexOf('\\') + 1)} ${to.substr(to.lastIndexOf('\\') + 1)}`);
 		}
 	})
+
+	let appInsightsEntryProperties: any = {};
+	appInsightsEntryProperties.From = from;
+	appInsightsEntryProperties.To = to;
+	AppInsights.getInstance().trackEvent(EventName.GitMove, appInsightsEntryProperties);
 }
 
 function fillFileList(status, fileList, is_gitadd = false) {
