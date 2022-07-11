@@ -4,6 +4,7 @@ export class AppInsights {
     private static _instance: AppInsights
     private appInsights: typeof applicationinsights | undefined
     private client: any
+    private started: boolean
     private constructor() {
     }
     static getInstance(): AppInsights {
@@ -13,21 +14,26 @@ export class AppInsights {
         return AppInsights._instance
     }
     start() {
+        if (this.started) { return };
         this.appInsights = require('applicationinsights');
         this.appInsights.setup("InstrumentationKey=b3550667-aa59-41e0-b132-41e7e0d7a70d;IngestionEndpoint=https://westeurope-5.in.applicationinsights.azure.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.com/")
             .setAutoCollectPerformance(false, false)
             .setAutoCollectExceptions(false)
             .start();
         this.client = this.appInsights.defaultClient;
+        this.started = true;
     }
 
     trackTrace(message: string) {
+        this.start();
         this.client.trackTrace({ message: message });
     }
     trackCommand(command: string) {
+        this.start();
         this.trackTrace(`Command ${command} was executed.`)
     }
     trackEvent(name: EventName, properties: any) {
+        this.start();
         this.client.trackEvent({ name: name.toString(), properties: properties });
     }
 }
