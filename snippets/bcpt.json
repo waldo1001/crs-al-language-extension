@@ -1,0 +1,35 @@
+{
+    "Snippet: bcptSuite": {
+        "prefix": "tbctpSuitewaldo",
+        "body": [
+            "{",
+            "\t\"code\": \"${1:codeunitID}\",",
+            "\t\"description\": \"${2:description}\",",
+            "\t\"durationInMinutes\": ${3:durationsInMinutes},",
+            "\t\"defaultMinimumUserDelayInMilliSeconds\": ${4:defaultMinimumUserDelayInMilliSeconds},",
+            "\t\"oneDayCorrespondsToInMinutes\": ${5:oneDayCorrespondsToInMinutes},",
+            "\t\"tag\": \"${6:tag}\",",
+            "\t\"bcptSuiteLines\": [",
+            "\t\t${7:tbcptSuiteLinewaldo}",
+            "\t]",
+            "}"
+        ],
+        "description": "Snippet: bcptSuite"
+    },
+    "Snippet: bcptSuiteLine": {
+        "prefix": "tbcptSuiteLinewaldo",
+        "body": [
+            "{",
+            "\t\"codeunitID\": ${1:codeunitID},",
+            "\t\"numberOfSessions\": ${2:numberOfSessions},",
+            "\t\"description\": \"${3:description}\",",
+            "\t\"minimumUserDelay\": ${4:minimumUserDelay},",
+            "\t\"maximumUserDelay\": ${5:maximumUserDelay},",
+            "\t\"delayBetweenIterations\": ${6:delayBetweenIterations},",
+            "\t\"delayType\": \"${7:delayType}\",",
+            "\t\"runInForeground\": ${8|false,true|}",
+            "}"
+        ],
+        "description": "Snippet: bcptSuiteLine"
+    }
+}

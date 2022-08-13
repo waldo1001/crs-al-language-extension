@@ -435,6 +435,10 @@
             {
                 "language": "al",
                 "path": "./snippets/Onboarding.json"
+            },
+            {
+                "language": "json",
+                "path": "./snippets/bcpt.json"
             }
         ],
         "menus": {
