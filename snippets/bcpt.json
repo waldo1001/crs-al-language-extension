@@ -26,7 +26,7 @@
             "\t\"minimumUserDelay\": ${4:minimumUserDelay},",
             "\t\"maximumUserDelay\": ${5:maximumUserDelay},",
             "\t\"delayBetweenIterations\": ${6:delayBetweenIterations},",
-            "\t\"delayType\": \"${7:delayType}\",",
+            "\t\"delayType\": \"${7|Fixed,Random|}\",",
             "\t\"runInForeground\": ${8|false,true|}",
             "}"
         ],
