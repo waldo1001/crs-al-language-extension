@@ -438,7 +438,7 @@
             },
             {
                 "language": "json",
-                "path": "./snippets/bcpt.json"
+                "path": "./snippets/bcptSuite.json"
             }
         ],
         "menus": {
