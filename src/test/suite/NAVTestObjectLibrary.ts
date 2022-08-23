@@ -228,6 +228,34 @@ export function getPageExtensionWrongFileNameWithActions(): NAVTestObject {
                     {
                         ApplicationArea = All;
                     }
+                    field(ShortcutDimCode3; ShortcutDimCode[3])
+                    {
+                        ApplicationArea = Dimensions;
+                        CaptionClass = '1,2,3';
+                        TableRelation = "Dimension Value".Code WHERE("Global Dimension No." = CONST(3),
+                                                                    "Dimension Value Type" = CONST(Standard),
+                                                                    Blocked = CONST(false));
+                        Visible = DimVisible3;
+
+                        trigger OnValidate()
+                        begin
+                            ValidateShortcutDimension(3);
+                        end;
+                    }
+                    field(ShortcutDimCode4; ShortcutDimCode[4])
+                    {
+                        ApplicationArea = Dimensions;
+                        CaptionClass = '1,2,4';
+                        TableRelation = "Dimension Value".Code WHERE("Global Dimension No." = CONST(4),
+                                                                    "Dimension Value Type" = CONST(Standard),
+                                                                    Blocked = CONST(false));
+                        Visible = DimVisible4;
+
+                        trigger OnValidate()
+                        begin
+                            ValidateShortcutDimension(4);
+                        end;
+                    }
                 }
             }
         }
