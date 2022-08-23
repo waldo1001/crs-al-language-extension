@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension:
 
+## [1.5.19] - 2022-08-23
+Add Support for Arrays in Report Columns, based on issue logged by [pri-kise](https://github.com/pri-kise).  Thanks!
+
 ## [1.5.18] - 2022-07-11
 Improved snippet `tpagefieldwaldo`.
 
