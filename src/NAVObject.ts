@@ -500,7 +500,7 @@ class NAVObjectAction {
     private _objectType: string;
 
     public static actionRegEx(): RegExp {
-        return /.*( (action\("?)([ a-zA-Z0-9._/&-]+)"?\))/g
+        return /.*( (action\("?)([ a-zA-Z0-9._/&-]+(\[([1-9]\d*)\])?)"?\))/g
     }
 
     get nameFixed(): string {
