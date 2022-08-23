@@ -931,6 +931,13 @@ export function getSimpleReportExtension(): NAVTestObject {
                 {
     
                 }
+                column(APO_YourReference4; CustomerAddr[1])
+                {
+    
+                }
+                column(APO_YourReference5; CustomerAddr[10])
+                {
+    
             }
         }
     
@@ -976,6 +983,13 @@ export function getReportExtensionWithSuffix(): NAVTestObject {
                 {
     
                 }
+                column(APO_YourReference4waldo; CustomerAddr[1])
+                {
+    
+                }
+                column(APO_YourReference5waldo; CustomerAddr[10])
+                {
+    
             }
         }
     

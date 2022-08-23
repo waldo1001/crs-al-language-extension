@@ -340,6 +340,10 @@ suite("NAVObject ObjectNamePrefix Tests", () => {
             assert.strictEqual(column.name.endsWith(testSettings[Settings.ObjectNameSuffix]), true);
             assert.strictEqual(column.name, column.nameFixed);
         })
+
+        for (let i = 0; i < navObject2.reportColumns.length; i++) {
+            assert.strictEqual(navObject2.reportColumns[i].name, navObject.reportColumns[i].name)
+        }
     });
     test("Reportextension - Fields on request page", () => {
         let testSettings = Settings.GetConfigSettings(null)
@@ -388,5 +392,19 @@ suite("NAVObject ObjectNamePrefix Tests", () => {
         let navObject2 = new NAVObject(navObject.NAVObjectTextFixed, testSettings, navTestObject.ObjectFileName)
 
         assert.strictEqual(navObject.reportColumns[0].fullColumnTextFixed, navObject2.reportColumns[0].fullColumnTextFixed)
+    });
+    test("Reportextension - Column with array", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+        testSettings[Settings.ObjectNameSuffix] = ' waldo';
+
+        let navTestObject = NAVTestObjectLibrary.getSimpleReportExtension();
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
+
+        let navObject2 = new NAVObject(navObject.NAVObjectTextFixed, testSettings, navTestObject.ObjectFileName)
+
+        assert.strictEqual(navObject2.reportColumns.length, 5)
+        assert.strictEqual(navObject2.reportColumns[3].fullColumnTextFixed.includes('waldo'), true)
+        assert.strictEqual(navObject2.reportColumns[3].expression, navObject.reportColumns[3].expression)
+        assert.strictEqual(navObject2.reportColumns[3].name, navObject.reportColumns[3].name + 'waldo')
     });
 });
