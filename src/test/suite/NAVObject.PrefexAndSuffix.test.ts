@@ -166,26 +166,6 @@ suite("NAVObject ObjectNamePrefix Tests", () => {
             assert.strictEqual(field.name.startsWith(testSettings[Settings.ObjectNamePrefix]), true)
         })
     });
-    test("Tableextension - set prefixes to fields", () => {
-        let testSettings = Settings.GetConfigSettings(null)
-        testSettings[Settings.ObjectNamePrefixes] = ['waldo'];
-
-        let navTestObject = NAVTestObjectLibrary.getTableExtensionWrongFileNameAndKeyWord();
-        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
-
-        assert.strictEqual(navObject.tableFields[0].nameFixed, testSettings[Settings.ObjectNamePrefixes][0] + navObject.tableFields[0].name)
-        assert.strictEqual(navObject.tableFields[0].nameFixed.startsWith(testSettings[Settings.ObjectNamePrefixes][0]), true)
-        assert.strictEqual(navObject.tableFields.length, 5) //has 5 fields 
-        navObject.tableFields.forEach(field => {
-            assert.strictEqual(field.nameFixed.startsWith(testSettings[Settings.ObjectNamePrefixes][0]), true)
-        })
-
-        //check result text that would be saved to file
-        let navObject2 = new NAVObject(navObject.NAVObjectTextFixed, testSettings, navTestObject.ObjectFileName)
-        navObject2.tableFields.forEach(field => {
-            assert.strictEqual(field.name.startsWith(testSettings[Settings.ObjectNamePrefixes][0]), true)
-        })
-    });
     test("Tableextension - skip setting prefix to fields", () => {
         let testSettings = Settings.GetConfigSettings(null)
         testSettings[Settings.ObjectNamePrefix] = 'waldo';
@@ -224,6 +204,30 @@ suite("NAVObject ObjectNamePrefix Tests", () => {
             assert.strictEqual(field.name.endsWith(testSettings[Settings.ObjectNameSuffix]), true)
         })
     });
+    
+    
+    test("Tableextension - Don't set double Affix", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+        testSettings[Settings.ObjectNamePrefix] = 'waldo';
+        testSettings[Settings.MandatoryAffixes] = ['waldo'];
+
+        let navTestObject = NAVTestObjectLibrary.getTableExtensionWithSuffix();
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
+
+        assert.notStrictEqual(navObject.tableFields.length, 0)
+
+        let navObject2 = new NAVObject(navObject.NAVObjectTextFixed, testSettings, navTestObject.ObjectFileName)
+        navObject2.tableFields.forEach(tableField => {
+            assert.strictEqual(tableField.name.endsWith(testSettings[Settings.MandatoryAffixes][0]), true);
+            assert.strictEqual(tableField.name, tableField.nameFixed);
+        })
+
+        for (let i = 0; i < navObject2.tableFields.length; i++) {
+            assert.strictEqual(navObject2.tableFields[i].name, navObject.tableFields[i].name)
+        }
+    });
+
+
     test("Tableextension - Don't change fieldnumber", () => {
         let testSettings = Settings.GetConfigSettings(null)
         testSettings[Settings.ObjectNameSuffix] = 'waldo';
@@ -365,6 +369,28 @@ suite("NAVObject ObjectNamePrefix Tests", () => {
             assert.strictEqual(navObject2.reportColumns[i].name, navObject.reportColumns[i].name)
         }
     });
+    
+    test("Reportextension - Don't set double Affix", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+        testSettings[Settings.ObjectNamePrefix] = 'waldo';
+        testSettings[Settings.MandatoryAffixes] = ['waldo'];
+
+        let navTestObject = NAVTestObjectLibrary.getReportExtensionWithSuffix();
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
+
+        assert.notStrictEqual(navObject.reportColumns.length, 0)
+
+        let navObject2 = new NAVObject(navObject.NAVObjectTextFixed, testSettings, navTestObject.ObjectFileName)
+        navObject2.reportColumns.forEach(column => {
+            assert.strictEqual(column.name.endsWith(testSettings[Settings.MandatoryAffixes][0]), true);
+            assert.strictEqual(column.name, column.nameFixed);
+        })
+
+        for (let i = 0; i < navObject2.reportColumns.length; i++) {
+            assert.strictEqual(navObject2.reportColumns[i].name, navObject.reportColumns[i].name)
+        }
+    });
+
     test("Reportextension - Fields on request page", () => {
         let testSettings = Settings.GetConfigSettings(null)
         testSettings[Settings.ObjectNameSuffix] = 'waldo';
