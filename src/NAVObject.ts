@@ -300,7 +300,7 @@ export class NAVObject {
         var reg = NAVTableField.fieldRegEx();
         var result;
         while ((result = reg.exec(this.NAVObjectText)) !== null) {
-            this.tableFields.push(new NAVTableField(result[1], this.objectType, this._workSpaceSettings[Settings.ObjectNamePrefix], this._workSpaceSettings[Settings.ObjectNameSuffix]))
+            this.tableFields.push(new NAVTableField(result[1], this.objectType, this._workSpaceSettings[Settings.ObjectNamePrefix], this._workSpaceSettings[Settings.ObjectNamePrefixes], this._workSpaceSettings[Settings.ObjectNameSuffix]))
         }
 
         var reg = NAVPageField.fieldRegEx();
@@ -548,6 +548,7 @@ class NAVTableField {
     public type: string;
     private _objectType: string;
     private _prefix: string;
+    private _prefixes: string[];
     private _suffix: string;
 
     public static fieldRegEx(): RegExp {
@@ -555,12 +556,24 @@ class NAVTableField {
     }
 
     get nameFixed(): string {
-        if (!this._prefix && !this._suffix) { return this.name }
+        if (!this._prefix && !this._suffix && !this._prefixes) { return this.name }
         if (!this._objectType.toLocaleLowerCase().endsWith('extension')) { return this.name }; //only for extensionobjects
 
         let result = this.name
         if (this._prefix && !this.name.startsWith(this._prefix)) {
             result = this._prefix + result
+        }
+        if (!this._prefix && this._prefixes) {
+            var addPrefix = true;
+            this._prefixes.forEach(prefix => {
+                if (this.name.startsWith(prefix))
+                {
+                    addPrefix = false;
+                }
+            });
+            if (addPrefix) {
+                result = this._prefixes[0] + result
+            }
         }
         if (this._suffix && !this.name.endsWith(this._suffix)) {
             result = result + this._suffix
@@ -569,14 +582,15 @@ class NAVTableField {
     }
 
     get fullFieldTextFixed(): string {
-        if (!this._prefix && !this._suffix) { return this.fullFieldText }
+        if (!this._prefix && !this._suffix && !this._prefixes) { return this.fullFieldText }
 
         return "field(" + this.number + "; " + StringFunctions.encloseInQuotesIfNecessary(this.nameFixed) + "; " + this.type + ")"
     }
 
-    constructor(fullFieldText: string, objectType: string, prefix?: string, suffix?: string) {
+    constructor(fullFieldText: string, objectType: string, prefix?: string, prefixes?: string[], suffix?: string) {
         this.fullFieldText = fullFieldText;
         this._prefix = prefix ? prefix : null;
+        this._prefixes = prefixes ? prefixes : null;
         this._suffix = suffix ? suffix : null;
         this._objectType = objectType;
 

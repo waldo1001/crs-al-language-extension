@@ -166,6 +166,26 @@ suite("NAVObject ObjectNamePrefix Tests", () => {
             assert.strictEqual(field.name.startsWith(testSettings[Settings.ObjectNamePrefix]), true)
         })
     });
+    test("Tableextension - set prefixes to fields", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+        testSettings[Settings.ObjectNamePrefixes] = ['waldo'];
+
+        let navTestObject = NAVTestObjectLibrary.getTableExtensionWrongFileNameAndKeyWord();
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
+
+        assert.strictEqual(navObject.tableFields[0].nameFixed, testSettings[Settings.ObjectNamePrefixes][0] + navObject.tableFields[0].name)
+        assert.strictEqual(navObject.tableFields[0].nameFixed.startsWith(testSettings[Settings.ObjectNamePrefixes][0]), true)
+        assert.strictEqual(navObject.tableFields.length, 5) //has 5 fields 
+        navObject.tableFields.forEach(field => {
+            assert.strictEqual(field.nameFixed.startsWith(testSettings[Settings.ObjectNamePrefixes][0]), true)
+        })
+
+        //check result text that would be saved to file
+        let navObject2 = new NAVObject(navObject.NAVObjectTextFixed, testSettings, navTestObject.ObjectFileName)
+        navObject2.tableFields.forEach(field => {
+            assert.strictEqual(field.name.startsWith(testSettings[Settings.ObjectNamePrefixes][0]), true)
+        })
+    });
     test("Tableextension - skip setting prefix to fields", () => {
         let testSettings = Settings.GetConfigSettings(null)
         testSettings[Settings.ObjectNamePrefix] = 'waldo';

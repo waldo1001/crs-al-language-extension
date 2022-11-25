@@ -27,6 +27,7 @@ export class Settings {
     static readonly FileNamePatternPageCustomizations = 'FileNamePatternPageCustomizations';
     static readonly OnSaveAlFileAction = 'OnSaveAlFileAction';
     static readonly ObjectNamePrefix = 'ObjectNamePrefix';
+    static readonly ObjectNamePrefixes = 'ObjectNamePrefixes';
     static readonly ObjectNameSuffix = 'ObjectNameSuffix';
     static readonly RemovePrefixFromFilename = 'RemovePrefixFromFilename';
     static readonly RemoveSuffixFromFilename = 'RemoveSuffixFromFilename';
@@ -89,6 +90,7 @@ export class Settings {
         this.SettingCollection[this.FileNamePatternExtensions] = this.getSetting(this.FileNamePatternExtensions);
         this.SettingCollection[this.FileNamePatternPageCustomizations] = this.getSetting(this.FileNamePatternPageCustomizations);
         this.SettingCollection[this.ObjectNamePrefix] = this.getSetting(this.ObjectNamePrefix);
+        this.SettingCollection[this.ObjectNamePrefixes] = this.getSetting(this.ObjectNamePrefixes);
         this.SettingCollection[this.ObjectNameSuffix] = this.getSetting(this.ObjectNameSuffix);
         this.SettingCollection[this.RemovePrefixFromFilename] = this.getSetting(this.RemovePrefixFromFilename);
         this.SettingCollection[this.RemoveSuffixFromFilename] = this.getSetting(this.RemoveSuffixFromFilename);
