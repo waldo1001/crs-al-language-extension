@@ -150,14 +150,30 @@ export class Settings {
     }
 
     private static getAppSourceCopSettings(ResourceUri: vscode.Uri) {
-        let appSourceCopSettings = ResourceUri ?
-            require(join(vscode.workspace.getWorkspaceFolder(ResourceUri).uri.fsPath, "AppSourceCop.json")) :
-            vscode.window.activeTextEditor ?
-                require(join(vscode.workspace.getWorkspaceFolder(vscode.window.activeTextEditor.document.uri).uri.fsPath, "AppSourceCop.json")) :
-                vscode.workspace.workspaceFolders ?
-                require(join(vscode.workspace.workspaceFolders[0].uri.fsPath, "AppSourceCop.json")): null;
+        // let appSourceCopSettings = ResourceUri ?
+        //     require(join(vscode.workspace.getWorkspaceFolder(ResourceUri).uri.fsPath, "AppSourceCop.json")) :
+        //     vscode.window.activeTextEditor ?
+        //         require(join(vscode.workspace.getWorkspaceFolder(vscode.window.activeTextEditor.document.uri).uri.fsPath, "AppSourceCop.json")) :
+        //         vscode.workspace.workspaceFolders ?
+        //         require(join(vscode.workspace.workspaceFolders[0].uri.fsPath, "AppSourceCop.json")): null;
+
+        let appSourceCopSettings;
+
+        try {
+            appSourceCopSettings = ResourceUri ?
+                require(join(vscode.workspace.getWorkspaceFolder(ResourceUri).uri.fsPath, "AppSourceCop.json")) :
+                vscode.window.activeTextEditor ?
+                    require(join(vscode.workspace.getWorkspaceFolder(vscode.window.activeTextEditor.document.uri).uri.fsPath, "AppSourceCop.json")) :
+                    vscode.workspace.workspaceFolders ?
+                        require(join(vscode.workspace.workspaceFolders[0].uri.fsPath, "AppSourceCop.json")) : null;
+        } catch {
+            appSourceCopSettings = null;
+        }
+
         if (appSourceCopSettings) {
             this.SettingCollection[this.MandatoryAffixes] = appSourceCopSettings.mandatoryAffixes
+        } else {
+            this.SettingCollection[this.MandatoryAffixes] = null
         }
     }
 
