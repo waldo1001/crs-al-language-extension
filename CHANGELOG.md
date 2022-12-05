@@ -3,6 +3,7 @@ All notable changes to the "crs-al-language-extension" extension:
 
 ## [1.5.20] - 2022???
 - Snippet contribution from [christianbraeunlich](https://github.com/christianbraeunlich).  Thanks!
+- Support for multiple affixes by [pri-kise](https://github.com/pri-kise).  Thanks for [the PR](https://github.com/waldo1001/crs-al-language-extension/pull/254)!
 
 ## [1.5.19] - 2022-08-23
 Add Support for Arrays in Report Columns, based on issue logged by [pri-kise](https://github.com/pri-kise).  Thanks!
