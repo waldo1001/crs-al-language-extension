@@ -300,7 +300,7 @@ export class NAVObject {
         var reg = NAVTableField.fieldRegEx();
         var result;
         while ((result = reg.exec(this.NAVObjectText)) !== null) {
-            this.tableFields.push(new NAVTableField(result[1], this.objectType, this._workSpaceSettings[Settings.ObjectNamePrefix], this._workSpaceSettings[Settings.ObjectNameSuffix]))
+            this.tableFields.push(new NAVTableField(result[1], this.objectType, this._workSpaceSettings[Settings.ObjectNamePrefix], this._workSpaceSettings[Settings.ObjectNameSuffix], this._workSpaceSettings[Settings.MandatoryAffixes]))
         }
 
         var reg = NAVPageField.fieldRegEx();
@@ -318,7 +318,7 @@ export class NAVObject {
         var reg = NAVReportColumn.columnRegEx();
         var result;
         while ((result = reg.exec(this.NAVObjectText)) !== null) {
-            this.reportColumns.push(new NAVReportColumn(result[1], this.objectType, this._workSpaceSettings[Settings.ObjectNamePrefix], this._workSpaceSettings[Settings.ObjectNameSuffix]))
+            this.reportColumns.push(new NAVReportColumn(result[1], this.objectType, this._workSpaceSettings[Settings.ObjectNamePrefix], this._workSpaceSettings[Settings.ObjectNameSuffix], this._workSpaceSettings[Settings.MandatoryAffixes]))
         }
 
         this.NAVObjectText = initNAVObjectText;
@@ -548,6 +548,7 @@ class NAVTableField {
     public type: string;
     private _objectType: string;
     private _prefix: string;
+    private _affixes: string[];
     private _suffix: string;
 
     public static fieldRegEx(): RegExp {
@@ -555,10 +556,24 @@ class NAVTableField {
     }
 
     get nameFixed(): string {
-        if (!this._prefix && !this._suffix) { return this.name }
+        if (!this._prefix && !this._suffix && !this.hasAffixesDefined()) { return this.name }
         if (!this._objectType.toLocaleLowerCase().endsWith('extension')) { return this.name }; //only for extensionobjects
+        
+        if (this.hasAffixesDefined()) {
+            var affixNeeded = true;
+            this._affixes.forEach(affix => {
+                if (this.name.startsWith(affix) || this.name.endsWith(affix))
+                {
+                    affixNeeded = false;
+                    return
+                }
+            });
+            if (!affixNeeded) {                
+                return this.name;
+            }
+        }
 
-        let result = this.name
+        let result = this.name;
         if (this._prefix && !this.name.startsWith(this._prefix)) {
             result = this._prefix + result
         }
@@ -569,15 +584,16 @@ class NAVTableField {
     }
 
     get fullFieldTextFixed(): string {
-        if (!this._prefix && !this._suffix) { return this.fullFieldText }
+        if (!this._prefix && !this._suffix && !this.hasAffixesDefined()) { return this.fullFieldText }
 
         return "field(" + this.number + "; " + StringFunctions.encloseInQuotesIfNecessary(this.nameFixed) + "; " + this.type + ")"
     }
 
-    constructor(fullFieldText: string, objectType: string, prefix?: string, suffix?: string) {
+    constructor(fullFieldText: string, objectType: string, prefix?: string, suffix?: string, affixes?: string[]) {
         this.fullFieldText = fullFieldText;
         this._prefix = prefix ? prefix : null;
         this._suffix = suffix ? suffix : null;
+        this._affixes = affixes ? affixes : null;
         this._objectType = objectType;
 
         this.parseFieldText();
@@ -591,6 +607,11 @@ class NAVTableField {
             this.name = result[3].trim().toString();
             this.type = result[4].trim().toString();
         }
+    } 
+    
+    private hasAffixesDefined() : boolean
+    {
+        return (Array.isArray(this._affixes) && this._affixes.length > 0 )
     }
 }
 
@@ -704,6 +725,7 @@ class NAVReportColumn {
     private _objectType: string;
     private _prefix: string;
     private _suffix: string;
+    private _affixes: string[];
 
     public static columnRegEx(): RegExp {
         // return /.*(column\( *"?([ a-zA-Z0-9._/&%\/()-]+)"? *; *([" a-zA-Z0-9._/&%\/()-]+) *\))/g;
@@ -711,8 +733,22 @@ class NAVReportColumn {
     }
 
     get nameFixed(): string {
-        if (!this._prefix && !this._suffix) { return this.name }
+        if (!this._prefix && !this._suffix && !this.hasAffixesDefined()) { return this.name }
         if (!this._objectType.toLocaleLowerCase().endsWith('extension')) { return this.name }; //only for extensionobjects
+
+        if (this.hasAffixesDefined()) {
+            var affixNeeded = true;
+            this._affixes.forEach(affix => {
+                if (this.name.startsWith(affix) || this.name.endsWith(affix))
+                {
+                    affixNeeded = false;
+                    return
+                }
+            });
+            if (!affixNeeded) {                
+                return this.name;
+            }
+        }
 
         let result = this.name
         if (this._prefix && !this.name.startsWith(this._prefix.replace(" ", ""))) {
@@ -726,15 +762,16 @@ class NAVReportColumn {
     }
 
     get fullColumnTextFixed(): string {
-        if (!this._prefix && !this._suffix) { return this.fullColumnText }
+        if (!this._prefix && !this._suffix && !this.hasAffixesDefined()) { return this.fullColumnText }
 
         return "column(" + StringFunctions.encloseInQuotesIfNecessary(this.nameFixed) + "; " + this.expression + ")"
     }
 
-    constructor(fullColumnText: string, objectType: string, prefix?: string, suffix?: string) {
+    constructor(fullColumnText: string, objectType: string, prefix?: string, suffix?: string, affixes?: string[]) {
         this.fullColumnText = fullColumnText;
         this._prefix = prefix ? prefix : null;
         this._suffix = suffix ? suffix : null;
+        this._affixes = affixes ? affixes : null;
         this._objectType = objectType;
 
         this.parseColumnText();
@@ -747,6 +784,11 @@ class NAVReportColumn {
             this.name = result[2].trim().toString();
             this.expression = result[3].trim().toString();
         }
+    }
+    
+    private hasAffixesDefined() : boolean
+    {
+        return (Array.isArray(this._affixes) && this._affixes.length > 0 )
     }
 
 }
