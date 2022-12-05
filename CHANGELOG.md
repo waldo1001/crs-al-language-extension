@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension:
 
-## [1.5.20] - 2022???
+## [1.5.21] - 2022-12-05
 - Snippet contribution from [christianbraeunlich](https://github.com/christianbraeunlich).  Thanks!
 - Support for multiple affixes by [pri-kise](https://github.com/pri-kise).  Thanks for [the PR](https://github.com/waldo1001/crs-al-language-extension/pull/254)!
 
