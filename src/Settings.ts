@@ -50,6 +50,7 @@ export class Settings {
     static readonly DependencyGraphExcludePublishers = 'DependencyGraph.ExcludePublishers';
     static readonly DependencyGraphRemovePrefix = 'DependencyGraph.RemovePrefix';
 
+    static readonly MandatoryAffixes = 'AppSourceCop.MandatoryAffixes';
 
     private static config: vscode.WorkspaceConfiguration;
     private static launchconfig: vscode.WorkspaceConfiguration;
@@ -148,16 +149,35 @@ export class Settings {
         this.SettingCollection[this.SandboxName] = currentLaunchConfig[0].sandboxName;
     }
 
+    private static getAppSourceCopSettings(ResourceUri: vscode.Uri) {
+        let appSourceCopSettings = ResourceUri ?
+            require(join(vscode.workspace.getWorkspaceFolder(ResourceUri).uri.fsPath, "AppSourceCop.json")) :
+            vscode.window.activeTextEditor ?
+                require(join(vscode.workspace.getWorkspaceFolder(vscode.window.activeTextEditor.document.uri).uri.fsPath, "AppSourceCop.json")) :
+                vscode.workspace.workspaceFolders ?
+                require(join(vscode.workspace.workspaceFolders[0].uri.fsPath, "AppSourceCop.json")): null;
+        if (appSourceCopSettings) {
+            this.SettingCollection[this.MandatoryAffixes] = appSourceCopSettings.mandatoryAffixes
+        }
+    }
+
     public static GetAllSettings(ResourceUri: vscode.Uri) {
         this.getConfigSettings(ResourceUri);
         this.getAppSettings(ResourceUri);
         this.getLaunchSettings(ResourceUri);
+        this.getAppSourceCopSettings(ResourceUri);
 
         return this.SettingCollection;
     }
 
     public static GetAppSettings(ResourceUri: vscode.Uri) {
         this.getAppSettings(ResourceUri);
+
+        return this.SettingCollection;
+    }
+
+    public static GetAppSourceCopSettings(ResourceUri: vscode.Uri) {
+        this.getAppSourceCopSettings(ResourceUri);
 
         return this.SettingCollection;
     }
@@ -170,6 +190,8 @@ export class Settings {
 
     public static GetConfigSettings(ResourceUri: vscode.Uri) {
         this.getConfigSettings(ResourceUri);
+        //TODO: How to integrate AppSourceCopSettings into NAVObject?
+        this.getAppSourceCopSettings(ResourceUri);
 
         return this.SettingCollection;
     }
