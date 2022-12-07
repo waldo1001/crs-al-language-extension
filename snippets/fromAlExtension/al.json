@@ -122,8 +122,8 @@
     "Snippet: Event Subscriber": {
         "prefix": "teventsubwaldo",
         "body": [
-            "[EventSubscriber(ObjectType::${1|Codeunit,Page,Query,Report,Table,XmlPort|}, ${2|Codeunit::,Database::,Page::,Query::,Report::,XmlPort::|}, ${3:'OnSomeEvent'}, ${4:'ElementName'}, ${5:SkipOnMissingLicense}, ${6:SkipOnMissingPermission})]",
-            "local procedure ${7:MyProcedure}(${8})",
+            "[EventSubscriber(ObjectType::${1|Codeunit,Page,Query,Report,Table,XmlPort|}, ${2|Codeunit::,Database::,Page::,Query::,Report::,XmlPort::|}${3}, ${4:''}, ${5:''}, ${6|false,true|}, ${7|false,true|})]",
+            "local procedure ${8:MyProcedure}(${9})",
             "begin",
             "\t$0",
             "end;"
