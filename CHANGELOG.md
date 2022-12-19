@@ -1,6 +1,9 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension:
 
+## [1.5.23] - 2022-12-19
+- New snippet `tUpgradeCodeunitJobQueuewaldo`: schedule upgrade routine with Job Queue.
+
 ## [1.5.22] - 2022-12-05
 - Snippet contribution from [christianbraeunlich](https://github.com/christianbraeunlich).  Thanks!
 - Support for multiple affixes by [pri-kise](https://github.com/pri-kise).  Thanks for [the PR](https://github.com/waldo1001/crs-al-language-extension/pull/254)!
