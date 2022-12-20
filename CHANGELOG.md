@@ -1,5 +1,7 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension:
+## [1.5.24] - 2022-12-20
+[Added Support for Arrays on Page Extensions](https://github.com/waldo1001/crs-al-language-extension/pull/261) by [pri-kise](https://github.com/pri-kise).  Thanks so much!
 
 ## [1.5.23] - 2022-12-19
 - New snippet `tUpgradeCodeunitJobQueuewaldo`: schedule upgrade routine with Job Queue.
