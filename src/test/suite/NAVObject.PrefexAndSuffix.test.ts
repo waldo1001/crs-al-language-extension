@@ -102,7 +102,7 @@ suite("NAVObject ObjectNamePrefix Tests", () => {
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
 
         assert.strictEqual(navObject.pageGroups.length, 2);
-        assert.strictEqual(navObject.pageFields.length, 3);
+        assert.strictEqual(navObject.pageFields.length, 5);
         navObject.pageFields.forEach(field => {
             assert.strictEqual(field.nameFixed.startsWith(testSettings[Settings.ObjectNamePrefix]), true)
         })
@@ -128,7 +128,7 @@ suite("NAVObject ObjectNamePrefix Tests", () => {
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
 
         assert.strictEqual(navObject.pageGroups.length, 2);
-        assert.strictEqual(navObject.pageFields.length, 3);
+        assert.strictEqual(navObject.pageFields.length, 5);
         navObject.pageFields.forEach(field => {
             assert.strictEqual(field.nameFixed.endsWith(testSettings[Settings.ObjectNameSuffix]), true)
         })
