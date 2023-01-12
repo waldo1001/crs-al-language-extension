@@ -956,6 +956,20 @@ export function getSimpleInterface(): NAVTestObject {
     `
     return object;
 }
+export function getSimpleEntitlement(): NAVTestObject {
+    let object = new NAVTestObject;
+
+    object.ObjectFileName = 'SomeEntitlement.al';
+    object.ObjectText = `entitlement "The Entitlement"
+    {
+        Id = '62e90394-69f5-4237-9190-012177145e10';
+        ObjectEntitlements = "The PermissionSet";
+        RoleType = Local;
+        Type = Role;    
+    }
+`;
+    return object;
+}
 export function getSimpleReportExtension(): NAVTestObject {
     let object = new NAVTestObject;
 

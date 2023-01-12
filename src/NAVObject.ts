@@ -135,7 +135,7 @@ export class NAVObject {
     }
 
     private loadObjectProperties(): any {
-        var patternObjectType = new RegExp('(codeunit |page |pagecustomization |pageextension |reportextension |permissionset |permissionsetextension |profile |query |report |requestpage |table |tableextension |xmlport |enum |enumextension |controladdin |interface)', "i")
+        var patternObjectType = new RegExp('(codeunit |page |pagecustomization |pageextension |reportextension |permissionset |permissionsetextension |profile |query |report |requestpage |table |tableextension |xmlport |enum |enumextension |controladdin |interface |entitlement)', "i");
 
         //Remove content between crs-al disable -> enable
         var initNAVObjectText = this.NAVObjectText;
@@ -163,7 +163,8 @@ export class NAVObject {
         if (!ObjectTypeArr) { return null }
 
         if (ObjectTypeArr) {
-            switch (ObjectTypeArr[0].trim().toLowerCase()) {
+            const objectType = ObjectTypeArr[0].trim().toLowerCase();
+            switch (objectType) {
                 case 'page':
                 case 'codeunit':
                 case 'query':
@@ -213,8 +214,9 @@ export class NAVObject {
 
                     break;
                 }
+                case 'entitlement':
                 case 'interface': {
-                    var patternObject = new RegExp('(interface)( +"?[ a-zA-Z0-9._/&-]+"?)', "i");
+                    var patternObject = new RegExp(`(${objectType})( +"?[ a-zA-Z0-9._/&-]+"?)`, "i");
                     let currObject = this.NAVObjectText.match(patternObject);
 
                     this.objectType = currObject[1];
@@ -344,6 +346,7 @@ export class NAVObject {
             case 'interface':
             case 'permissionset':
             case 'permissionsetextension':
+            case 'entitlement':
                 return true;
             default: return false;
         }
