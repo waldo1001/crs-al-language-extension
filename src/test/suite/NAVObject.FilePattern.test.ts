@@ -435,6 +435,15 @@ suite("NAVObject FilePattern Tests", () => {
 
         assert.strictEqual(navObject.objectFileNameFixed, 'IBallColorIdentifier.Interface.al')
     })
+    test("FileName - Simple Entitlement (not DataAgnostic)", () => {
+        let testSettings = Settings.GetConfigSettings(null);
+        testSettings[Settings.FileNamePattern] = '<ObjectNameShort>.<ObjectTypeShortPascalCase>.al';
+
+        let navTestObject = NAVTestObjectLibrary.getSimpleEntitlement();
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
+
+        assert.strictEqual(navObject.objectFileNameFixed, 'TheEntitlement.Entitlement.al');
+    });
 
     test("Filename - Rename PageExtension with Suffix with underscore in object name, and remove suffix in filename (not data-agnostic)", () => {
         let testSettings = Settings.GetConfigSettings(null)
