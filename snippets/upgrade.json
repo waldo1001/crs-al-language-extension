@@ -1,6 +1,6 @@
 {
     "Upgrade Table Codeunit": {
-        "prefix": "tUpgradeCodeunitwaldo",
+        "prefix": "tcUpgradeCodeunitwaldo",
         "description": "Move data from obsolete table to new table",
         "body": [
             "codeunit ${1:id} \"${3:Name} Upgrade\"",
@@ -8,20 +8,19 @@
             "\tSubtype = Upgrade;",
             "",
             "\ttrigger OnUpgradePerCompany()",
+            "\tbegin",
+            "\t\t${4:Reason}();",
+            "\tend;",
+            "",
+            "\tlocal procedure ${4:Reason}()",
             "\tvar",
             "\t\tUpgradeTag: Codeunit \"Upgrade Tag\";",
             "\tbegin",
             "\t\tif UpgradeTag.HasUpgradeTag(${4:Reason}Lbl) then exit;",
             "",
-            "\t\tPerformUpgrade();",
+            "\t\t${0}",
             "",
             "\t\tUpgradeTag.SetUpgradeTag(${4:Reason}Lbl);",
-            "\tend;",
-            "",
-            "\tlocal procedure PerformUpgrade()",
-            "\tvar",
-            "\tbegin",
-            "\t\t${0}",
             "\tend;",
             "",
             "",
@@ -33,7 +32,7 @@
             "",
             "",
             "\tvar",
-            "\t\t${4:Reason}Lbl: Label '${5:CompanyName}-${4:Reason}-${CURRENT_YEAR}${CURRENT_MONTH}${CURRENT_DATE}', Locked = true;",
+            "\t\t${4:Reason}Lbl: Label '${4:Reason}-${5:ID}-${CURRENT_YEAR}${CURRENT_MONTH}${CURRENT_DATE}', Locked = true;",
             "}"
         ]
     },
