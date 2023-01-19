@@ -1,6 +1,6 @@
 {
     "Snippet: install codeunit": {
-        "prefix": "tinstallcodeunitwaldo",
+        "prefix": "tcinstallcodeunitwaldo",
         "description": "Snippet: Install Codeunit",
         "body": [
             "codeunit ${1:Id} ${2:Name}",
@@ -9,7 +9,6 @@
             "",
             "\ttrigger ${3|OnInstallAppPerDatabase,OnInstallAppPerCompany|}();",
             "\tvar",
-            "\t\tUpgradeTag: Codeunit \"Upgrade Tag\";",
             "\t\tmyAppInfo: ModuleInfo;",
             "\tbegin",
             "\t\tNavApp.GetCurrentModuleInfo(myAppInfo);",
@@ -18,13 +17,15 @@
             "\t\t\tHandleFreshInstall()",
             "\t\telse",
             "\t\t\tHandleReinstall();",
-            "",
-            "\t\tUpgradeTag.SetAllUpgradeTags();",
             "\tend;",
             "",
             "\tlocal procedure HandleFreshInstall();",
+            "\tvar",
+            "\t\tUpgradeTag: Codeunit \"Upgrade Tag\";",
             "\tbegin",
             "\t\t${0}",
+            "",
+            "\t\tUpgradeTag.SetAllUpgradeTags();",
             "\tend;",
             "",
             "\tlocal procedure HandleReinstall();",
