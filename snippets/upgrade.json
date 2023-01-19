@@ -32,7 +32,7 @@
             "",
             "",
             "\tvar",
-            "\t\t${4:Reason}Lbl: Label '${4:Reason}-${5:ID}-${CURRENT_YEAR}${CURRENT_MONTH}${CURRENT_DATE}', Locked = true;",
+            "\t\t${4:Reason}Lbl: Label '${5:PublisherAffix}-${4:Reason}-${6:ID}-${CURRENT_YEAR}${CURRENT_MONTH}${CURRENT_DATE}', Locked = true;",
             "}"
         ]
     },
