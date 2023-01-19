@@ -1,6 +1,6 @@
 {
     "Snippet: install codeunit": {
-        "prefix": "tcinstallcodeunitwaldo",
+        "prefix": "tinstallcodeunitwaldo",
         "description": "Snippet: Install Codeunit",
         "body": [
             "codeunit ${1:Id} ${2:Name}",
