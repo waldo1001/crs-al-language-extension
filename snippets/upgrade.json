@@ -1,6 +1,6 @@
 {
     "Upgrade Table Codeunit": {
-        "prefix": "tcUpgradeCodeunitwaldo",
+        "prefix": "tUpgradeCodeunitwaldo",
         "description": "Move data from obsolete table to new table",
         "body": [
             "codeunit ${1:id} \"${3:Name} Upgrade\"",
