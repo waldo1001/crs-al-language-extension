@@ -1,5 +1,10 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension:
+## [1.5.25] - 2023-01-20
+Some new pullrequests from the community for which I'm very thankful :-).
+- [Support for Entitlements](https://github.com/waldo1001/crs-al-language-extension/commit/c67c31a89aa59a0e84c529ef1ef9e021dd9e315f) by [Johannes Wikman](https://github.com/jwikman)
+- [Changes to Upgrade Snippet](https://github.com/waldo1001/crs-al-language-extension/commit/d65cf42e6dfcdac445e2eddfbf4e1f097e28255c) by [Stefan Maroń](https://github.com/StefanMaron)
+
 ## [1.5.24] - 2022-12-20
 [Added Support for Arrays on Page Extensions](https://github.com/waldo1001/crs-al-language-extension/pull/261) by [pri-kise](https://github.com/pri-kise).  Thanks so much!
 
