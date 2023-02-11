@@ -228,6 +228,34 @@ export function getPageExtensionWrongFileNameWithActions(): NAVTestObject {
                     {
                         ApplicationArea = All;
                     }
+                    field(ShortcutDimCode3; ShortcutDimCode[3])
+                    {
+                        ApplicationArea = Dimensions;
+                        CaptionClass = '1,2,3';
+                        TableRelation = "Dimension Value".Code WHERE("Global Dimension No." = CONST(3),
+                                                                    "Dimension Value Type" = CONST(Standard),
+                                                                    Blocked = CONST(false));
+                        Visible = DimVisible3;
+
+                        trigger OnValidate()
+                        begin
+                            ValidateShortcutDimension(3);
+                        end;
+                    }
+                    field(ShortcutDimCode4; ShortcutDimCode[4])
+                    {
+                        ApplicationArea = Dimensions;
+                        CaptionClass = '1,2,4';
+                        TableRelation = "Dimension Value".Code WHERE("Global Dimension No." = CONST(4),
+                                                                    "Dimension Value Type" = CONST(Standard),
+                                                                    Blocked = CONST(false));
+                        Visible = DimVisible4;
+
+                        trigger OnValidate()
+                        begin
+                            ValidateShortcutDimension(4);
+                        end;
+                    }
                 }
             }
         }
@@ -473,6 +501,25 @@ export function getTableExtension(): NAVTestObject {
         fields
         {
             field(50021; "Prefix Test Field"; Code[20])
+            {
+                Caption = 'Test Field';
+                DataClassification = CustomerContent;
+            }        
+    }
+    `
+    return object;
+}
+
+
+export function getTableExtensionWithSuffix(): NAVTestObject {
+    let object = new NAVTestObject;
+
+    object.ObjectFileName = 'SomeTableExt.al'
+    object.ObjectText = `tableextension 50006 "Sales Cr.Memo Header waldo" extends "Sales Cr.Memo Header"
+    {
+        fields
+        {
+            field(50021; "Test Fieldwaldo "; Code[20])
             {
                 Caption = 'Test Field';
                 DataClassification = CustomerContent;
@@ -909,6 +956,20 @@ export function getSimpleInterface(): NAVTestObject {
     `
     return object;
 }
+export function getSimpleEntitlement(): NAVTestObject {
+    let object = new NAVTestObject;
+
+    object.ObjectFileName = 'SomeEntitlement.al';
+    object.ObjectText = `entitlement "The Entitlement"
+    {
+        Id = '62e90394-69f5-4237-9190-012177145e10';
+        ObjectEntitlements = "The PermissionSet";
+        RoleType = Local;
+        Type = Role;    
+    }
+`;
+    return object;
+}
 export function getSimpleReportExtension(): NAVTestObject {
     let object = new NAVTestObject;
 
@@ -931,6 +992,13 @@ export function getSimpleReportExtension(): NAVTestObject {
                 {
     
                 }
+                column(APO_YourReference4; CustomerAddr[1])
+                {
+    
+                }
+                column(APO_YourReference5; CustomerAddr[10])
+                {
+    
             }
         }
     
@@ -976,6 +1044,13 @@ export function getReportExtensionWithSuffix(): NAVTestObject {
                 {
     
                 }
+                column(APO_YourReference4waldo; CustomerAddr[1])
+                {
+    
+                }
+                column(APO_YourReference5waldo; CustomerAddr[10])
+                {
+    
             }
         }
     

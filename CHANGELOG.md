@@ -1,5 +1,22 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension:
+## [1.5.25] - 2023-01-20
+Some new pullrequests from the community for which I'm very thankful :-).
+- [Support for Entitlements](https://github.com/waldo1001/crs-al-language-extension/commit/c67c31a89aa59a0e84c529ef1ef9e021dd9e315f) by [Johannes Wikman](https://github.com/jwikman)
+- [Changes to Upgrade Snippet](https://github.com/waldo1001/crs-al-language-extension/commit/d65cf42e6dfcdac445e2eddfbf4e1f097e28255c) by [Stefan Maroń](https://github.com/StefanMaron)
+
+## [1.5.24] - 2022-12-20
+[Added Support for Arrays on Page Extensions](https://github.com/waldo1001/crs-al-language-extension/pull/261) by [pri-kise](https://github.com/pri-kise).  Thanks so much!
+
+## [1.5.23] - 2022-12-19
+- New snippet `tUpgradeCodeunitJobQueuewaldo`: schedule upgrade routine with Job Queue.
+
+## [1.5.22] - 2022-12-05
+- Snippet contribution from [christianbraeunlich](https://github.com/christianbraeunlich).  Thanks!
+- Support for multiple affixes by [pri-kise](https://github.com/pri-kise).  Thanks for [the PR](https://github.com/waldo1001/crs-al-language-extension/pull/254)!
+
+## [1.5.19] - 2022-08-23
+Add Support for Arrays in Report Columns, based on issue logged by [pri-kise](https://github.com/pri-kise).  Thanks!
 
 ## [1.5.18] - 2022-07-11
 Improved snippet `tpagefieldwaldo`.

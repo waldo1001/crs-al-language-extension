@@ -202,6 +202,7 @@ export class DynamicsNAV {
             case 'dotnet': return 'Dotnet';
             case 'permissionset': return 'PermissionSet';
             case 'permissionsetextension': return 'PermissionSetExt';
+            case 'entitlement': return 'Entitlement';
         }
     }
 
@@ -224,6 +225,7 @@ export class DynamicsNAV {
             case 'interface': return 'Interface';
             case 'permissionset': return 'PermissionSet';
             case 'permissionsetextension': return 'PermissionSetExt';
+            case 'entitlement': return 'Entitlement';
         }
     }
 
