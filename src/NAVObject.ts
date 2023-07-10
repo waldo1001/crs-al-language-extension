@@ -448,8 +448,17 @@ export class NAVObject {
         if (objectText.indexOf("\"" + this.objectName + "\"") >= 0) {
             return objectText.replace(searchPattern, fixedObjectName);
         } else {
-            return objectText.replace(searchPattern, "\"" + fixedObjectName + "\"");
+            if (this.objectNameRequiresQuotes(fixedObjectName)) {
+                return objectText.replace(searchPattern, "\"" + fixedObjectName + "\"");
+            }
+            else {
+                return objectText.replace(searchPattern, fixedObjectName);
+            }
         }
+    }
+
+    private objectNameRequiresQuotes(objectName: string): boolean {
+        return !(/^[A-Za-z0-9]+$/.test(objectName));
     }
 
     private escapeRegExp(str) {
