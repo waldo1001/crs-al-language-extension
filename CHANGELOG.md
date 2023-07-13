@@ -1,6 +1,6 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension:
-## [1.5.26] - 2023-07-12
+## [1.5.27] - 2023-07-12
 Fix from [James Pearson](https://github.com/jimmymcp): pull request [#282 - Do not add quotes to object names if not necessary when reorganising](https://github.com/waldo1001/crs-al-language-extension/pull/282/files) - thanks!
 
 ## [1.5.25] - 2023-01-20
