@@ -267,6 +267,12 @@
                     "description": "Use 'git mv' to rename a file.  This keeps history of the file, but stages the rename, which you should commit separately.  The feature is still in preview-mode, therefore the default value is 'false'",
                     "scope": "resource"
                 },
+                "CRS.ReorganizeByNamespace": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "This is a feature that allows for the automatic reorganization of files by creating folder structures based on the namespaces defined within the files.  The feature is still in preview-mode, therefore the default value is 'false'",
+                    "scope": "resource"
+                },
                 "CRS.SearchObjectNamesRegexPattern": {
                     "type": "string",
                     "default": "^\\w+ (\\d* )?\"*",
