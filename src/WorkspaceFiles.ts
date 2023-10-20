@@ -88,7 +88,7 @@ export class WorkspaceFiles {
         if (navObject.objectFileName && navObject.objectFileName != '' && fixedname && fixedname != '') {
 
             let objectFolder = path.join(vscode.workspace.getWorkspaceFolder(fileName).uri.fsPath, this.getDestinationFolder(navObject, settings));
-            let objectTypeFolder = path.join(objectFolder, this.getObjectTypeFolder(navObject, settings));//Boe
+            let objectTypeFolder = path.join(objectFolder, this.getObjectTypeFolder(navObject, settings));
             let objectSubFolder = path.join(objectTypeFolder, this.getObjectSubFolder(navObject));
             let destinationFileName = path.join(objectSubFolder, fixedname);
 
@@ -316,8 +316,7 @@ export class WorkspaceFiles {
             }
         }
 
-        if (mySettings[Settings.ReorganizeByNamespace])
-        {
+        if (mySettings[Settings.ReorganizeByNamespace]) {
             let directoryPath = path.join(...navObject.objectNamespace.split("."))
             return directoryPath
         }
@@ -336,7 +335,7 @@ export class WorkspaceFiles {
     static createDirectoryIfNotExists(dir) {
         const segments = dir.split(path.sep);
         let currentPath = segments[0];
-    
+
         for (let i = 1; i < segments.length; i++) {
             if (segments[i]) {
                 currentPath = path.join(currentPath, segments[i]);

@@ -1,5 +1,10 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension:
+
+## [1.5.29] - 2023-10-20
+New! Organize your folders by Namespace.
+Pretty neat idea from [Spyco Clown](https://github.com/Spycoclown), which he also turned into reality by [this pullrequest](https://github.com/waldo1001/crs-al-language-extension/pull/292).  Many thanks!
+
 ## [1.5.28] - 2023-07-12
 Fix from [James Pearson](https://github.com/jimmymcp): pull request [#282 - Do not add quotes to object names if not necessary when reorganising](https://github.com/waldo1001/crs-al-language-extension/pull/282/files) - thanks!
 
