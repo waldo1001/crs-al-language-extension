@@ -88,7 +88,7 @@ export class WorkspaceFiles {
         if (navObject.objectFileName && navObject.objectFileName != '' && fixedname && fixedname != '') {
 
             let objectFolder = path.join(vscode.workspace.getWorkspaceFolder(fileName).uri.fsPath, this.getDestinationFolder(navObject, settings));
-            let objectTypeFolder = path.join(objectFolder, this.getObjectTypeFolder(navObject));
+            let objectTypeFolder = path.join(objectFolder, this.getObjectTypeFolder(navObject, settings));//Boe
             let objectSubFolder = path.join(objectTypeFolder, this.getObjectSubFolder(navObject));
             let destinationFileName = path.join(objectSubFolder, fixedname);
 
@@ -97,9 +97,10 @@ export class WorkspaceFiles {
                 return fileName.fsPath;
             } else {
 
-                (!fs.existsSync(objectFolder)) ? fs.mkdirSync(objectFolder) : '';
-                (!fs.existsSync(objectTypeFolder)) ? fs.mkdirSync(objectTypeFolder) : '';
-                (!fs.existsSync(objectSubFolder)) ? fs.mkdirSync(objectSubFolder) : '';
+                //(!fs.existsSync(objectFolder)) ? fs.mkdirSync(objectFolder) : '';
+                //(!fs.existsSync(objectTypeFolder)) ? fs.mkdirSync(objectTypeFolder) : '';
+                //(!fs.existsSync(objectSubFolder)) ? fs.mkdirSync(objectSubFolder) : '';
+                this.createDirectoryIfNotExists(objectSubFolder);
 
                 withGit = withGit ? withGit : (git.isGitRepositorySync() && settings[Settings.RenameWithGit])
                 this.DoRenameFile(fileName, destinationFileName, withGit)
@@ -308,11 +309,17 @@ export class WorkspaceFiles {
         return mySettings[Settings.AlSubFolderName]
     }
 
-    static getObjectTypeFolder(navObject: NAVObject): string {
+    static getObjectTypeFolder(navObject: NAVObject, mySettings: any): string {
         if (navObject.objectCodeunitSubType) {
             if (navObject.objectCodeunitSubType.toLowerCase() == 'test') {
                 return ''
             }
+        }
+
+        if (mySettings[Settings.ReorganizeByNamespace])
+        {
+            let directoryPath = path.join(...navObject.objectNamespace.split("."))
+            return directoryPath
         }
 
         return navObject.objectType
@@ -324,6 +331,20 @@ export class WorkspaceFiles {
         }
 
         return "";
+    }
+
+    static createDirectoryIfNotExists(dir) {
+        const segments = dir.split(path.sep);
+        let currentPath = segments[0];
+    
+        for (let i = 1; i < segments.length; i++) {
+            if (segments[i]) {
+                currentPath = path.join(currentPath, segments[i]);
+                if (!fs.existsSync(currentPath)) {
+                    fs.mkdirSync(currentPath);
+                }
+            }
+        }
     }
 
     static async CreateGraphVizDependencyGraph() {
