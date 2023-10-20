@@ -344,5 +344,40 @@
           "    end;",
           "}"
         ]
+    },
+    "Snippet (waldo): Set Signup Context": {
+        "description": "Snippet (waldo): Set Signup Context",
+        "prefix": "tSetSignupContext",
+        "body": [
+          "    [EventSubscriber(ObjectType::Codeunit, Codeunit::\"System Initialization\", 'OnSetSignupContext', '', false, false)]",
+          "    local procedure SetSignupContext()",
+          "    var",
+          "        AllProfile: Record \"All Profile\";",
+          "        SignupContext: Record \"Signup Context\";",
+          "        SignupContextValues: Record \"Signup Context Values\";",
+          "        Checklist: Codeunit Checklist;",
+          "        GuidedExperienceType: Enum \"Guided Experience Type\";",
+          "        SpotlightTourType: Enum \"Spotlight Tour Type\";",
+          "        OnboardingSampleValueTxt: Label 'bcsamples-onboarding', Locked = true;",
+          "    begin",
+          "        if not SignupContext.Get('name') then",
+          "            exit;",
+          "",
+          "        if not (LowerCase(SignupContext.Value) = OnboardingSampleValueTxt) then",
+          "            exit;",
+          "",
+          "        Clear(SignupContextValues);",
+          "        if not SignupContextValues.IsEmpty() then",
+          "            exit;",
+          "",
+          "        SignupContext.Reset();",
+          "        SignupContext.SetRange(SignupContext.KeyName, 'users');",
+          "        SignupContext.SetRange(SignupContext.Value, '10-25');",
+          "        if not SignupContext.IsEmpty() then begin",
+          "            Checklist.Insert(Page::\"Vendor List\", SpotlightTourType::\"Open in Excel\", 1000, AllProfile, false);",
+          "            Checklist.Insert(GuidedExperienceType::Video, 'https://www.youtube.com/embed/nqM79hlHuOs', 8000, AllProfile, false);",
+          "        end;",
+          "    end;"
+        ]
     }
 }
