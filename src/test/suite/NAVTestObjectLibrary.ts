@@ -113,6 +113,27 @@ export function getNormalCodeunitWithLongName(): NAVTestObject {
     return object;
 }
 
+export function getNormalCodeunitWithNamespace(): NAVTestObject {
+    let object = new NAVTestObject;
+
+    object.ObjectFileName = 'Cod50100.justAName.al'
+    object.ObjectText = `
+        namespace spycoclown.test;
+        using Microsoft.Inventory.Item;
+        codeunit 50100 "Test Overload"
+        {
+            [EventSubscriber(ObjectType::Codeunit, Codeunit::LogInManagement, 'OnAfterLogInStart', '', false, false)]
+            local procedure TestOverLoad()
+            var
+                Item: Record Item;
+            begin
+                item.CalculateClassification(true, 'namespace');
+            end;
+        }
+    `
+    return object;
+}
+
 export function getTestCodeunit(): NAVTestObject {
     let object = new NAVTestObject;
 

@@ -2,7 +2,7 @@
     "name": "crs-al-language-extension",
     "displayName": "waldo's CRS AL Language Extension",
     "description": "Make working with the (Dynamics NAV / 365) AL Language easier and more efficient.",
-    "version": "1.5.26",
+    "version": "1.5.28",
     "publisher": "waldo",
     "icon": "images/waldo.png",
     "author": {
@@ -265,6 +265,12 @@
                     "type": "boolean",
                     "default": false,
                     "description": "Use 'git mv' to rename a file.  This keeps history of the file, but stages the rename, which you should commit separately.  The feature is still in preview-mode, therefore the default value is 'false'",
+                    "scope": "resource"
+                },
+                "CRS.ReorganizeByNamespace": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "This is a feature that allows for the automatic reorganization of files by creating folder structures based on the namespaces defined within the files.  The feature is still in preview-mode, therefore the default value is 'false'",
                     "scope": "resource"
                 },
                 "CRS.SearchObjectNamesRegexPattern": {
