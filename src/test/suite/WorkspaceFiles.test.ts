@@ -34,7 +34,7 @@ suite("WorkspaceFiles Tests", () => {
         let navTestObject = NAVTestObjectLibrary.getTestCodeunit();
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
 
-        let foldersuggestion = WorkspaceFiles.getObjectTypeFolder(navObject);
+        let foldersuggestion = WorkspaceFiles.getObjectTypeFolder(navObject,testSettings);
 
         assert.strictEqual(foldersuggestion.toLowerCase(), '');
     })
@@ -44,9 +44,20 @@ suite("WorkspaceFiles Tests", () => {
         let navTestObject = NAVTestObjectLibrary.getNormalCodeunitWithLongName();
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
 
-        let foldersuggestion = WorkspaceFiles.getObjectTypeFolder(navObject);
+        let foldersuggestion = WorkspaceFiles.getObjectTypeFolder(navObject,testSettings);
 
         assert.strictEqual(foldersuggestion.toLowerCase().toString(), navObject.objectType.toString());
         assert.notStrictEqual(foldersuggestion.toLowerCase().toString(), '');
+    })
+    test("getObjectTypeFolder - return namespace", () => {
+        let testSettings = Settings.GetConfigSettings(null);
+        testSettings[Settings.ReorganizeByNamespace] = true;
+        let navTestObject = NAVTestObjectLibrary.getNormalCodeunitWithNamespace();
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
+
+        let foldersuggestion = WorkspaceFiles.getObjectTypeFolder(navObject,testSettings);
+
+        assert.notStrictEqual(foldersuggestion.toLowerCase().toString(), navObject.objectNamespace.toLowerCase().toString());
+        assert.strictEqual(foldersuggestion.toLowerCase().toString(), 'spycoclown\\test');
     })
 })
