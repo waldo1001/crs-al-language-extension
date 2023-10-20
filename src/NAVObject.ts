@@ -8,6 +8,7 @@ export class NAVObject {
     public objectType: string;
     public objectId: string;
     public objectName: string;
+    public objectNamespace: string;
     public objectActions: NAVObjectAction[] = new Array();
     public tableFields: NAVTableField[] = new Array();
     public pageFields: NAVPageField[] = new Array();
@@ -155,6 +156,7 @@ export class NAVObject {
         this.objectType = '';
         this.objectId = '';
         this.objectName = '';
+        this.objectNamespace = '';
         this.extendedObjectName = '';
         this.extendedObjectId = '';
         var ObjectNamePattern = '"[^"]*"' // All characters except "
@@ -273,7 +275,11 @@ export class NAVObject {
                     return null
                 }
             }
-
+            var patternObject = new RegExp('namespace\\s+([A-Za-z0-9_.]+?)\\s*;', "i");
+            var match = this.NAVObjectText.match(patternObject);
+            if (match && match[1]) {
+                this.objectNamespace = match[1];
+            }
             this.objectType = this.objectType.trim().toString();
             this.objectId = this.objectId.trim().toString();
             this.objectName = this.objectName.trim().toString().replace(/["]/g, '');
