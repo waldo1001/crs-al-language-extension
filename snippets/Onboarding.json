@@ -379,5 +379,32 @@
           "\tend;",
           "end;"
         ]
+    },
+    "Snippet (waldo): Update Banner Labels": {
+        "description": "Snippet (waldo): Update Banner Labels",
+        "prefix": "tUpdateBannerLabels",
+        "body": [
+          "[EventSubscriber(ObjectType::Codeunit, Codeunit::\"Checklist Banner\", 'OnBeforeUpdateBannerLabels', '', false, false)]",
+          "local procedure OnBeforeUpdateBannerLabels(var IsHandled: Boolean; IsEvaluationCompany: Boolean; var TitleTxt: Text; var TitleCollapsedTxt: Text; var HeaderTxt: Text; var HeaderCollapsedTxt: Text; var DescriptionTxt: Text)",
+          "var",
+          "\tUser: Record User;",
+          "\tTitle: Label 'Welcome %1!', Comment = '%1 = user full name';",
+          "\tTitleCollapsed: Label 'My collapsed title';",
+          "\tHeader: Label 'My Header';",
+          "\tHeaderCollapsed: Label 'My collapsed header';",
+          "\tDescription: Label 'My description';",
+          "begin",
+          "\tIsHandled := true;",
+          "",
+          "\tUser.SetRange(User.\"User Security ID\", Database.UserSecurityId());",
+          "\tUser.FindFirst();",
+          "",
+          "\tTitleTxt := StrSubstNo(Title, User.\"Full Name\");",
+          "\tTitleCollapsedTxt := TitleCollapsed;",
+          "\tHeaderTxt := Header;",
+          "\tHeaderCollapsedTxt := HeaderCollapsed;",
+          "\tDescriptionTxt := Description;",
+          "end;"
+        ]
     }
 }
