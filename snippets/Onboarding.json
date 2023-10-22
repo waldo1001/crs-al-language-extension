@@ -406,5 +406,54 @@
           "\tDescriptionTxt := Description;",
           "end;"
         ]
+    },
+    "Snippet (waldo): Guided Experience: Insert Application Feature": {
+        "description": "Snippet (waldo): Guided Experience: Insert Application Feature",
+        "prefix": "tGuidedExperienceInsertApplicationFeature",
+        "body": [
+            "GuidedExperience.InsertApplicationFeature(${1:Title}, ${2:ShortTitle}, ${3:Description}, ${4:ExpectedDuration}, ObjectType::${5:}, ${6:ObjectType}::${7:});"
+        ]
+    },
+    "Snippet (waldo): Guided Experience: Insert Assisted Setup": {
+        "description": "Snippet (waldo): Guided Experience: Insert Assisted Setup",
+        "prefix": "tGuidedExperienceInsertAssistedSetup",
+        "body": [
+            "GuidedExperience.InsertAssistedSetup(${1:Title}, ${2:ShortTitle}, ${3:Description}, ${4:ExpectedDuration}, ObjectType::${5:}, ${6:ObjectType}::${7:}, Enum::\"Assisted Setup Group\"::\"${8}, ${9:VideoUrl}, Enum::\"Video Category\"::${10:}, ${11:HelpUrl});"
+        ]
+    },
+    "Snippet (waldo): Guided Experience: Insert Learn Link": {
+        "description": "Snippet (waldo): Guided Experience: Insert Learn Link",
+        "prefix": "tGuidedExperienceInsertLearnLink",
+        "body": [
+            "GuidedExperience.InsertLearnLink(${1:Title}, ${2:ShortTitle}, ${3:Description}, ${4:ExpectedDuration}, ${5:Link});"
+        ]
+    },
+    "Snippet (waldo): Guided Experience: Insert Manual Setup": {
+        "description": "Snippet (waldo): Guided Experience: Insert Manual Setup",
+        "prefix": "tGuidedExperienceInsertManualSetup",
+        "body": [
+            "GuidedExperience.InsertManualSetup(${1:Title}, ${2:ShortTitle}, ${3:Description}, ${4:ExpectedDuration}, ObjectType::${5:}, ${6:ObjectType}::${7:}, Enum::\"Manual Setup Category\"::${8:}, ${9:Keywords});"
+        ]
+    },
+    "Snippet (waldo): Guided Experience: Insert Spotlight Tour": {
+        "description": "Snippet (waldo): Guided Experience: Insert Spotlight Tour",
+        "prefix": "tGuidedExperienceInsertSpotlightTour",
+        "body": [
+            "GuidedExperience.InsertSpotlightTour(${1:Title}, ${2:ShortTitle}, ${3:Description}, ${4:ExpectedDuration}, Page::${5:}, Enum::\"Spotlight Tour Type\"::${8:}, ${9:SpotlightTourTexts});"
+        ]
+    },
+    "Snippet (waldo): Guided Experience: Insert Tour": {
+        "description": "Snippet (waldo): Guided Experience: Insert Tour",
+        "prefix": "tGuidedExperienceInsertTour",
+        "body": [
+            "GuidedExperience.InsertTour(${1:Title}, ${2:ShortTitle}, ${3:Description}, ${4:ExpectedDuration}, Page::${5:});"
+        ]
+    },
+    "Snippet (waldo): Guided Experience: Insert Video": {
+        "description": "Snippet (waldo): Guided Experience: Insert Video",
+        "prefix": "tGuidedExperienceInsertVideo",
+        "body": [
+            "GuidedExperience.InsertVideo(${1:Title}, ${2:ShortTitle}, ${3:Description}, ${4:ExpectedDuration}, ${5:VideoUrl}, Enum::\"Video Category\"::${6:});"
+        ]
     }
 }
