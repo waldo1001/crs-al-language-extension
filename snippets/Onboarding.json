@@ -197,25 +197,25 @@
             ""
         ]
     },
-    "Snippet (waldo): Checklist Insert - Page": {
-        "description": "Snippet (waldo): Checklist Insert - Page",
-        "prefix": "tChecklistInsertPage",
-        "body": [
-          "Checklist.Insert(GuidedExperienceType::${1|\"Application Feature\",\"Assisted Setup\",Learn,\"Manual Setup\",\"Spotlight Tour\",Tour,Video|}, ObjectType::Page, Page::${2}, ${3:OrderID}, TempAllProfile${4}, ${5|true,false|});"
-        ]
-    },
     "Snippet (waldo): Checklist Insert - Link": {
         "description": "Snippet (waldo): Checklist Insert - Link",
         "prefix": "tChecklistInsertLink",
         "body": [
-          "Checklist.Insert(GuidedExperienceType::${1|\"Application Feature\",\"Assisted Setup\",Learn,\"Manual Setup\",\"Spotlight Tour\",Tour,Video|}, ${2:Your Link}, ${3:OrderID}, TempAllProfile${4}, ${5|true,false|});"
+          "Checklist.Insert(Enum::\"Guided Experience Type\"::${1:}, ${2:Link}, ${3:OrderID}, TempAllProfile, ${4|true,false|});"
+        ]
+    },
+    "Snippet (waldo): Checklist Insert - Page": {
+        "description": "Snippet (waldo): Checklist Insert - Page",
+        "prefix": "tChecklistInsertPage",
+        "body": [
+          "Checklist.Insert(Enum::\"Guided Experience Type\"::${1:}, ObjectType::Page, Page::${2}, ${3:OrderID}, TempAllProfile, ${4|true,false|});"
         ]
     },
     "Snippet (waldo): Checklist Insert (SpotlightTourType)": {
         "description": "Snippet (waldo): Checklist Insert (SpotlightTourType)",
         "prefix": "tChecklistInsertSpotlightTourType",
         "body": [
-          "Checklist.Insert(Page::${1}, SpotlightTourType::${2|None,\"Open in Excel\",\"Share to Teams\"|}, ${3:OrderID}, TempAllProfile${4}, ${5|true,false|});"
+          "Checklist.Insert(Page::${1}, Enum::\"Spotlight Tour Type\"::${2:}, ${3:OrderID}, TempAllProfile, ${4|true,false|});"
         ]
     },
     "Snippet (waldo): Checklist Codeunit": {
