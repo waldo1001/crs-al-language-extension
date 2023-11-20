@@ -898,6 +898,59 @@ export function getPageNoPrefixCorrectNameWithActions(): NAVTestObject {
     return object;
 }
 
+export function getPageWithIntegerPrefixedNames(): NAVTestObject {
+    let object = new NAVTestObject;
+
+    object.ObjectFileName = 'FieldsWithIntegers.Page.al'
+    object.ObjectText = `page 50104 FieldsWithIntegers
+    {
+        PageType = Card;
+        SourceTable = test;
+
+        layout
+        {
+            area(content)
+            {
+                group(GroupName)
+                {
+                    field(Field1; RandomSource)
+                    {
+                        ApplicationArea = All;
+                    }
+                    field(2Field; RandomSource)
+                    {
+                        ApplicationArea = All;
+                    }
+                }
+            }
+        }
+
+        actions
+        {
+            area(processing)
+            {
+                action(Action1)
+                {
+                    ApplicationArea = All;
+
+                    trigger OnAction()
+                    begin
+                    end;
+                }
+                action(2Action)
+                {
+                    ApplicationArea = All;
+
+                    trigger OnAction()
+                    begin
+                    end;
+                }
+            }
+        }
+    }`
+    return object;
+}
+
 export function getObjectWithBracketsInName(): NAVTestObject {
     let object = new NAVTestObject;
 

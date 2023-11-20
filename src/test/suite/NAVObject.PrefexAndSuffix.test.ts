@@ -268,6 +268,27 @@ suite("NAVObject ObjectNamePrefix Tests", () => {
             assert.strictEqual(field.name.startsWith(testSettings[Settings.ObjectNamePrefix]), false) //does not start with prefix
         })
     });
+    test("Page - add quotations to fields/actions", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+        testSettings[Settings.ObjectNamePrefix] = 'waldo';
+
+        let navTestObject = NAVTestObjectLibrary.getPageWithIntegerPrefixedNames();
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
+
+        // Non integer-prefixed actions and fields are not contained in double-quotes
+        assert.strictEqual(navObject.objectActions.find(a => a.name === 'Action1')
+                            .fullActionTextFixed, " action(Action1)");
+
+        assert.strictEqual(navObject.pageFields.find(a => a.name === 'Field1')
+                            .fullFieldTextFixed, "field(Field1; RandomSource)");
+
+        // Integer-prefixed actions and fields are contained in double-quotes
+        assert.strictEqual(navObject.objectActions.find(a => a.name === '2Action')
+                            .fullActionTextFixed, " action(\"2Action\")");
+
+        assert.strictEqual(navObject.pageFields.find(a => a.name === '2Field')
+                            .fullFieldTextFixed, "field(\"2Field\"; RandomSource)");
+    });
     test("Pageextension - avoid setting double prefixes to actions", () => {
         let testSettings = Settings.GetConfigSettings(null)
         testSettings[Settings.ObjectNamePrefix] = 'waldo';
