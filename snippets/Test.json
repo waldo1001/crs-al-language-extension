@@ -25,7 +25,7 @@
         "description": "Snippet (waldo): ModelPageHandler Procedure",
         "body": [
             "[ModalPageHandler]",
-            "procedure ${1:ModalPageHandler}(var ${2:Modalpage}: TestPage ${3:\"Your Page\"});",
+            "procedure ${1:ModalPageHandler}(var ${2:Modalpage}: TestPage ${3:\"Your Page\"})",
             "begin",
             "\t${0}",
             "end;"
@@ -47,7 +47,7 @@
         "description": "Snippet (waldo): ModelPageHandler Procedure",
         "body": [
             "[ConfirmHandler]",
-            "procedure ${1:ConfirmHandler}(Question: Text[1024]; var Reply: Boolean);",
+            "procedure ${1:ConfirmHandler}(Question: Text[1024]; var Reply: Boolean)",
             "begin",
             "\t${0}",
             "\tReply := ${2|true,false|};",
