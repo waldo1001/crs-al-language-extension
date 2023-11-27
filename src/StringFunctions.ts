@@ -18,7 +18,7 @@ export class StringFunctions {
             return str;
         }
 
-        if (/[^a-zA-Z0-9_]/.test(str) || DynamicsNAV.isKeyWord(str)) {
+        if (/[^a-zA-Z0-9_]/.test(str) || /^[0-9]/.test(str) || DynamicsNAV.isKeyWord(str)) {
             return "\"" + str + "\"";
         } else {
             return str;
