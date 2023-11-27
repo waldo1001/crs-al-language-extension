@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension:
 
+## [1.5.30] - 2023-11-27
+Fixed snippets (removed ";" after procedure).
+[Zech Andersen](https://github.com/zeande) fixed an issue to [use quotes around field names that start with an integer](https://github.com/waldo1001/crs-al-language-extension/pull/293).  Thanks!
+
 ## [1.5.29] - 2023-10-20
 New! Organize your folders by Namespace.
 Pretty neat idea from [Spyco Clown](https://github.com/Spycoclown), which he also turned into reality by [this pullrequest](https://github.com/waldo1001/crs-al-language-extension/pull/292).  Many thanks!
