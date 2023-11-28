@@ -951,6 +951,38 @@ export function getPageWithIntegerPrefixedNames(): NAVTestObject {
     return object;
 }
 
+export function getTableWithIntegerPrefixedNames(): NAVTestObject {
+    let object = new NAVTestObject;
+
+    object.ObjectFileName = 'FieldsWithIntegers.Page.al'
+    object.ObjectText = `table 50104 FieldsWithIntegers
+    {
+        DataClassification = ToBeClassified;
+
+        fields
+        {
+            field(1; MyField; Integer)
+            {
+            }
+            field(2; "2Field"; Integer)
+            {
+            }
+            field(3; "With (Parenthesis)"; Decimal)
+            {
+            }
+        }
+
+        keys
+        {
+            key(PK; MyField)
+            {
+                Clustered = true;
+            }
+        }
+    }`
+    return object;
+}
+
 export function getObjectWithBracketsInName(): NAVTestObject {
     let object = new NAVTestObject;
 
