@@ -298,6 +298,28 @@ suite("NAVObject ObjectNamePrefix Tests", () => {
         assert.strictEqual(navObject.pageFields.find(a => a.name === '2Field')
             .fullFieldTextFixed, "field(\"2Field\"; RandomSource)");
     });
+    test("Test - add quotations to table fields", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+        testSettings[Settings.ObjectNamePrefix] = 'waldo';
+
+        let navTestObject = NAVTestObjectLibrary.getTableWithIntegerPrefixedNames();
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
+
+        // Non integer-prefixed actions and fields are not contained in double-quotes
+        assert.strictEqual(navObject.tableFields.find(a => a.name === 'MyField')
+                            .fullFieldTextFixed, "field(1; MyField; Integer)");
+
+        // Integer-prefixed actions and fields are contained in double-quotes
+        assert.strictEqual(navObject.tableFields.find(a => a.name === '2Field')
+                            .fullFieldTextFixed, "field(2; \"2Field\"; Integer)");
+
+        // Field with parenthesis is correctly quoted
+        assert.strictEqual(navObject.tableFields.find(a => a.name === 'With (Parenthesis)')
+                            .fullFieldTextFixed, "field(3; \"With (Parenthesis)\"; Decimal)");
+
+        // Object should be unchanged other than object prefix
+        assert.strictEqual(navTestObject.ObjectText.replace('FieldsWithIntegers', 'waldoFieldsWithIntegers'), navObject.NAVObjectTextFixed);
+    });
     test("Pageextension - avoid setting double prefixes to actions", () => {
         let testSettings = Settings.GetConfigSettings(null)
         testSettings[Settings.ObjectNamePrefix] = 'waldo';

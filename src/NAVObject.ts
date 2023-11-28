@@ -483,6 +483,10 @@ export class NAVObject {
     }
 
     private AddPrefixAndSuffixToFields(objectText: string): string {
+        if (!/table/.test(this.objectType)) {
+            return objectText;
+        }
+
         this.tableFields.forEach(field => {
             objectText = objectText.replace(field.fullFieldText, field.fullFieldTextFixed);
         })
@@ -490,6 +494,10 @@ export class NAVObject {
         return objectText;
     }
     private AddPrefixAndSuffixToPageFields(objectText: string): string {
+        if (!/page/.test(this.objectType)) {
+            return objectText;
+        }
+
         this.pageFields.forEach(field => {
             objectText = objectText.replace(field.fullFieldText, field.fullFieldTextFixed);
         })
@@ -497,6 +505,10 @@ export class NAVObject {
         return objectText;
     }
     private AddPrefixAndSuffixToPageGroups(objectText: string): string {
+        if (!/page/.test(this.objectType)) {
+            return objectText;
+        }
+
         this.pageGroups.forEach(group => {
             objectText = objectText.replace(group.fullGroupText, group.fullGroupTextFixed);
         })
@@ -504,6 +516,10 @@ export class NAVObject {
         return objectText;
     }
     private AddPrefixAndSuffixToReportColumns(objectText: string): string {
+        if (!/report/.test(this.objectType)) {
+            return objectText;
+        }
+
         this.reportColumns.forEach(column => {
             objectText = objectText.replace(column.fullColumnText, column.fullColumnTextFixed);
         })
