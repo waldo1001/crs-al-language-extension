@@ -507,9 +507,44 @@ export function getTableExtensionWrongFileNameAndKeyWord(): NAVTestObject {
             Caption = 'page';
             DataClassification = CustomerContent;
         }
+        field(116; "page with (brackets)"; Boolean) 
+        {
+            Caption = 'page with (brackes)';
+            DataClassification = CustomerContent;
+        }
     }
     
 }
+    `
+    return object;
+}
+export function getTableWithBracketsInFieldName(): NAVTestObject {
+    let object = new NAVTestObject;
+
+    object.ObjectFileName = 'SomeTableExt.al'
+    object.ObjectText = `table 50100 "Prefix2 MyTabl e"
+    {
+        DataClassification = ToBeClassified;
+    
+        fields
+        {
+            field(1; "MyField (LCY)"; Integer)
+            {
+                Caption = 'MyField';
+                DataClassification = ToBeClassified;
+            }
+    
+        }
+    
+        keys
+        {
+            key(PK; "MyField")
+            {
+                Clustered = true;
+            }
+        }
+    
+    }
     `
     return object;
 }

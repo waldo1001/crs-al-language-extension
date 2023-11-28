@@ -155,7 +155,7 @@ suite("NAVObject ObjectNamePrefix Tests", () => {
 
         assert.strictEqual(navObject.tableFields[0].nameFixed, testSettings[Settings.ObjectNamePrefix] + navObject.tableFields[0].name)
         assert.strictEqual(navObject.tableFields[0].nameFixed.startsWith(testSettings[Settings.ObjectNamePrefix]), true)
-        assert.strictEqual(navObject.tableFields.length, 5) //has 5 fields 
+        assert.strictEqual(navObject.tableFields.length, 6) //has 6 fields 
         navObject.tableFields.forEach(field => {
             assert.strictEqual(field.nameFixed.startsWith(testSettings[Settings.ObjectNamePrefix]), true)
         })
@@ -165,6 +165,15 @@ suite("NAVObject ObjectNamePrefix Tests", () => {
         navObject2.tableFields.forEach(field => {
             assert.strictEqual(field.name.startsWith(testSettings[Settings.ObjectNamePrefix]), true)
         })
+    });
+    test("Table - set prefix to fields with brackets", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+        testSettings[Settings.ObjectNamePrefix] = 'waldo';
+
+        let navTestObject = NAVTestObjectLibrary.getTableWithBracketsInFieldName();
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
+
+        let FullFixedText = navObject.NAVObjectTextFixed
     });
     test("Tableextension - skip setting prefix to fields", () => {
         let testSettings = Settings.GetConfigSettings(null)
@@ -193,7 +202,7 @@ suite("NAVObject ObjectNamePrefix Tests", () => {
 
         assert.strictEqual(navObject.tableFields[0].nameFixed, navObject.tableFields[0].name + testSettings[Settings.ObjectNameSuffix])
         assert.strictEqual(navObject.tableFields[0].nameFixed.endsWith(testSettings[Settings.ObjectNameSuffix]), true)
-        assert.strictEqual(navObject.tableFields.length, 5) //has 5 fields 
+        assert.strictEqual(navObject.tableFields.length, 6) //has 6 fields 
         navObject.tableFields.forEach(field => {
             assert.strictEqual(field.nameFixed.endsWith(testSettings[Settings.ObjectNameSuffix]), true)
         })
@@ -204,8 +213,8 @@ suite("NAVObject ObjectNamePrefix Tests", () => {
             assert.strictEqual(field.name.endsWith(testSettings[Settings.ObjectNameSuffix]), true)
         })
     });
-    
-    
+
+
     test("Tableextension - Don't set double Affix", () => {
         let testSettings = Settings.GetConfigSettings(null)
         testSettings[Settings.ObjectNamePrefix] = 'waldo';
@@ -277,17 +286,17 @@ suite("NAVObject ObjectNamePrefix Tests", () => {
 
         // Non integer-prefixed actions and fields are not contained in double-quotes
         assert.strictEqual(navObject.objectActions.find(a => a.name === 'Action1')
-                            .fullActionTextFixed, " action(Action1)");
+            .fullActionTextFixed, " action(Action1)");
 
         assert.strictEqual(navObject.pageFields.find(a => a.name === 'Field1')
-                            .fullFieldTextFixed, "field(Field1; RandomSource)");
+            .fullFieldTextFixed, "field(Field1; RandomSource)");
 
         // Integer-prefixed actions and fields are contained in double-quotes
         assert.strictEqual(navObject.objectActions.find(a => a.name === '2Action')
-                            .fullActionTextFixed, " action(\"2Action\")");
+            .fullActionTextFixed, " action(\"2Action\")");
 
         assert.strictEqual(navObject.pageFields.find(a => a.name === '2Field')
-                            .fullFieldTextFixed, "field(\"2Field\"; RandomSource)");
+            .fullFieldTextFixed, "field(\"2Field\"; RandomSource)");
     });
     test("Pageextension - avoid setting double prefixes to actions", () => {
         let testSettings = Settings.GetConfigSettings(null)
@@ -390,7 +399,7 @@ suite("NAVObject ObjectNamePrefix Tests", () => {
             assert.strictEqual(navObject2.reportColumns[i].name, navObject.reportColumns[i].name)
         }
     });
-    
+
     test("Reportextension - Don't set double Affix", () => {
         let testSettings = Settings.GetConfigSettings(null)
         testSettings[Settings.ObjectNamePrefix] = 'waldo';

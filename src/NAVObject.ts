@@ -311,16 +311,18 @@ export class NAVObject {
             this.tableFields.push(new NAVTableField(result[1], this.objectType, this._workSpaceSettings[Settings.ObjectNamePrefix], this._workSpaceSettings[Settings.ObjectNameSuffix], this._workSpaceSettings[Settings.MandatoryAffixes]))
         }
 
-        var reg = NAVPageField.fieldRegEx();
-        var result;
-        while ((result = reg.exec(this.NAVObjectText)) !== null) {
-            this.pageFields.push(new NAVPageField(result[1], this.objectType, this._workSpaceSettings[Settings.ObjectNamePrefix], this._workSpaceSettings[Settings.ObjectNameSuffix]))
-        }
+        if ((this.objectType.toLocaleLowerCase().startsWith('page')) || (this.objectType.toLocaleLowerCase().startsWith('report'))) {  //page-stuff should only be parsed for pages
+            var reg = NAVPageField.fieldRegEx();
+            var result;
+            while ((result = reg.exec(this.NAVObjectText)) !== null) {
+                this.pageFields.push(new NAVPageField(result[1], this.objectType, this._workSpaceSettings[Settings.ObjectNamePrefix], this._workSpaceSettings[Settings.ObjectNameSuffix]))
+            }
 
-        var reg = NAVPageGroup.fieldRegEx();
-        var result;
-        while ((result = reg.exec(this.NAVObjectText)) !== null) {
-            this.pageGroups.push(new NAVPageGroup(result[1], this.objectType, this._workSpaceSettings[Settings.ObjectNamePrefix], this._workSpaceSettings[Settings.ObjectNameSuffix]))
+            var reg = NAVPageGroup.fieldRegEx();
+            var result;
+            while ((result = reg.exec(this.NAVObjectText)) !== null) {
+                this.pageGroups.push(new NAVPageGroup(result[1], this.objectType, this._workSpaceSettings[Settings.ObjectNamePrefix], this._workSpaceSettings[Settings.ObjectNameSuffix]))
+            }
         }
 
         var reg = NAVReportColumn.columnRegEx();
@@ -576,17 +578,16 @@ class NAVTableField {
     get nameFixed(): string {
         if (!this._prefix && !this._suffix && !this.hasAffixesDefined()) { return this.name }
         if (!this._objectType.toLocaleLowerCase().endsWith('extension')) { return this.name }; //only for extensionobjects
-        
+
         if (this.hasAffixesDefined()) {
             var affixNeeded = true;
             this._affixes.forEach(affix => {
-                if (this.name.startsWith(affix) || this.name.endsWith(affix))
-                {
+                if (this.name.startsWith(affix) || this.name.endsWith(affix)) {
                     affixNeeded = false;
                     return
                 }
             });
-            if (!affixNeeded) {                
+            if (!affixNeeded) {
                 return this.name;
             }
         }
@@ -625,11 +626,10 @@ class NAVTableField {
             this.name = result[3].trim().toString();
             this.type = result[4].trim().toString();
         }
-    } 
-    
-    private hasAffixesDefined() : boolean
-    {
-        return (Array.isArray(this._affixes) && this._affixes.length > 0 )
+    }
+
+    private hasAffixesDefined(): boolean {
+        return (Array.isArray(this._affixes) && this._affixes.length > 0)
     }
 }
 
@@ -642,7 +642,7 @@ class NAVPageField {
     private _suffix: string;
 
     public static fieldRegEx(): RegExp {
-        return /.*(field\( *"?([ a-zA-Z0-9._/&%\/()-]+)"? *; *([" a-zA-Z0-9._/&%\/()-]+(\[([1-9]\d*)\])?) *\))/g; 
+        return /.*(field\( *"?([ a-zA-Z0-9._/&%\/()-]+)"? *; *([" a-zA-Z0-9._/&%\/()-]+(\[([1-9]\d*)\])?) *\))/g;
     }
 
     get nameFixed(): string {
@@ -757,13 +757,12 @@ class NAVReportColumn {
         if (this.hasAffixesDefined()) {
             var affixNeeded = true;
             this._affixes.forEach(affix => {
-                if (this.name.startsWith(affix) || this.name.endsWith(affix))
-                {
+                if (this.name.startsWith(affix) || this.name.endsWith(affix)) {
                     affixNeeded = false;
                     return
                 }
             });
-            if (!affixNeeded) {                
+            if (!affixNeeded) {
                 return this.name;
             }
         }
@@ -803,10 +802,9 @@ class NAVReportColumn {
             this.expression = result[3].trim().toString();
         }
     }
-    
-    private hasAffixesDefined() : boolean
-    {
-        return (Array.isArray(this._affixes) && this._affixes.length > 0 )
+
+    private hasAffixesDefined(): boolean {
+        return (Array.isArray(this._affixes) && this._affixes.length > 0)
     }
 
 }
