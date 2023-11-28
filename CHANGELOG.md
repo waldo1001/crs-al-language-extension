@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension:
 
-## [1.5.30] - 2023-11-27
+## [1.5.31] - 2023-11-27
 Fixed snippets (removed ";" after procedure).
 [Zech Andersen](https://github.com/zeande) fixed an issue to [use quotes around field names that start with an integer](https://github.com/waldo1001/crs-al-language-extension/pull/293).  Thanks!
 
