@@ -151,6 +151,7 @@ This extension contributes the following settings:
     - `<Prefix>`
     - `<Suffix>`
     - `<ObjectType>`
+    - `<ObjectTypeLower>` - same as "ObjectType", but lowercased
     - `<ObjectTypeShort>` - a short notation of the object type.
     - `<ObjectTypeShortPascalCase>` - PascalCased object type
     - `<ObjectTypeShortUpper>` - Same as "ObjectTypeShort" but uppercased
@@ -162,6 +163,7 @@ This extension contributes the following settings:
     - `<Prefix>` - just the prefix separately
     - `<Suffix>` - just the suffix separately
     - `<ObjectType>`
+    - `<ObjectTypeLower>` - same as "ObjectType", but lowercased
     - `<ObjectTypeShort>` - a short notation of the object type.
     - `<ObjectTypeShortPascalCase>` - PascalCased object type
     - `<ObjectTypeShortUpper>` - Same as "ObjectTypeShort" but uppercased
@@ -172,6 +174,7 @@ This extension contributes the following settings:
     - `<Prefix>` - just the prefix separately
     - `<Suffix>` - just the suffix separately
     - `<ObjectType>`
+    - `<ObjectTypeLower>` - same as "ObjectType", but lowercased
     - `<ObjectTypeShort>` - a short notation of the object type.
     - `<ObjectTypeShortPascalCase>` - PascalCased object type
     - `<ObjectTypeShortUpper>` - Same as "ObjectTypeShort" but uppercased
@@ -198,6 +201,7 @@ tableextension 50100 "Just Some Table Extension" extends Customer //18
     - `<Prefix>` - just the prefix separately
     - `<Suffix>` - just the suffix separately
     - `<ObjectType>`
+    - `<ObjectTypeLower>` - same as "ObjectType", but lowercased
     - `<ObjectTypeShort>` - a short notation of the object type.
     - `<ObjectTypeShortPascalCase>` - PascalCased object type
     - `<ObjectTypeShortUpper>` - Same as "ObjectTypeShort" but uppercased
@@ -206,6 +210,19 @@ tableextension 50100 "Just Some Table Extension" extends Customer //18
     - `<BaseName>` - weird chars are removed - does NOT include prefix nor suffix
     - `<BaseNameShort>` - does NOT include prefix nor suffix
     - `<BaseId>` - same remarks as above!
+* `CRS.FolderPathPattern`: The pattern of the path containing the file, relative to the app folder. These vars can be used:
+    - `<Prefix>` - just the prefix separately
+    - `<Suffix>` - just the suffix separately
+    - `<ObjectType>`
+    - `<ObjectTypeLower>` - same as "ObjectType", but lowercased
+    - `<ObjectTypeShort>` - a short notation of the object type.
+    - `<ObjectTypeShortPascalCase>` - PascalCased object type
+    - `<ObjectTypeShortUpper>` - Same as "ObjectTypeShort" but uppercased
+    - `<ObjectId>`
+    - `<ObjectName>` - weird chars are removed - includes prefix and suffix
+    - `<ObjectNameShort>`
+    - `<AlSubFolder>` - same as "CRS.AlSubFolderName"
+    - `<ControlAddIn>` - same as "ObjectNameShort" if the object type is "Control Addin", otherwise skipped
 * `CRS.ObjectNamePrefix`: When using the Reorganize/Rename-commands, this setting will make sure the object name (and filename) will have a Prefix.  
     - Tip 1: use as a workspace-setting.
     - Tip 2: use an ending-space if you want the prefix to be separated with a space.
