@@ -324,14 +324,6 @@ export class WorkspaceFiles {
         return navObject.objectType
     }
 
-    static getObjectSubFolder(navObject: NAVObject): string {
-        if (navObject.objectType == 'controladdin') {
-            return navObject.objectNameFixedShort
-        }
-
-        return "";
-    }
-
     static createDirectoryIfNotExists(dir) {
         const segments = dir.split(path.sep);
         let currentPath = segments[0];
