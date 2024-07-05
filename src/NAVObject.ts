@@ -74,6 +74,10 @@ export class NAVObject {
         if (objectNameFixed == this.objectName.trim().toString()) {
             objectNameFixed = this.AddPrefixAndSuffixToObjectNameFixed(objectNameFixed);
         }
+        //Accept original value when characters added to the end of the objectname
+        if (this.objectName.startsWith(objectNameFixed)) {
+            objectNameFixed = this.objectName;
+        }
 
         return objectNameFixed;
     }

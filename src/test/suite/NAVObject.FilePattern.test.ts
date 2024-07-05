@@ -405,6 +405,18 @@ suite("NAVObject FilePattern Tests", () => {
             + navObject.extendedObjectId)
     })
 
+    test("TableExtension - Dont Change Name is not necessary", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+        testSettings[Settings.ExtensionObjectNamePattern] = '<BaseNameShort> Ext';
+
+        let navTestObject = NAVTestObjectLibrary.getTableExtensionWithDecentNameAlready()
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
+
+        assert.strictEqual(
+            navObject.objectNameFixed,
+            navObject.objectName)
+    })
+
 
     test("FileName - Extension Object with which would be too", () => {
         let testSettings = Settings.GetConfigSettings(null)

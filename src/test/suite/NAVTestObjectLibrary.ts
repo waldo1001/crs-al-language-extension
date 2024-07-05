@@ -518,6 +518,21 @@ export function getTableExtensionWrongFileNameAndKeyWord(): NAVTestObject {
     `
     return object;
 }
+export function getTableExtensionWithDecentNameAlready(): NAVTestObject {
+    let object = new NAVTestObject;
+
+    object.ObjectFileName = 'SomeTableExt.al'
+    object.ObjectText = `tableextension 50100 "Customer Ext 2" extends Customer //18
+{
+    fields
+    {
+        
+    }
+    
+}
+    `
+    return object;
+}
 export function getTableWithBracketsInFieldName(): NAVTestObject {
     let object = new NAVTestObject;
 

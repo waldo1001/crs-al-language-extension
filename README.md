@@ -147,7 +147,7 @@ This extension contributes the following settings:
 * `CRS.WinServerInstance`: Serverinstance where the windows client is connecting to
 * `CRS.WinServerInstancePort`: Portnumber of the serverinstance where the windows client is connecting to
 * `CRS.PublicWebBaseUrl`: Override Launch.json settings with this setting if necessary to run objects from VSCode
-* `CRS.ExtensionObjectNamePattern`: The pattern for the object name. If set (it's not set by default), it will perform an automatic object name for extension objects
+* `CRS.ExtensionObjectNamePattern`: The pattern for the object name. If set (it's not set by default), it will perform an automatic object name for extension objects.  To support multiple extensions per app, the system will accept manually added characters at the end of the pattern as well.  These vars can be used:
     - `<Prefix>`
     - `<Suffix>`
     - `<ObjectType>`
