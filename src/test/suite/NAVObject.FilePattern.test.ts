@@ -6,7 +6,6 @@ import { WorkspaceFiles } from '../../WorkspaceFiles'
 import * as myExtension from '../../extension';
 import * as NAVTestObjectLibrary from './NAVTestObjectLibrary'
 import { Settings } from '../../Settings';
-import { settings } from 'cluster';
 import { StringFunctions } from '../../StringFunctions'
 
 suite("NAVObject FilePattern Tests", () => {

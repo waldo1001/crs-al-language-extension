@@ -3,7 +3,6 @@ import { Settings } from './Settings';
 import * as crsOutput from './CRSOutput';
 import { exec, spawn } from 'child_process';
 import * as vscode from 'vscode';
-import { settings } from 'cluster';
 import { AppInsights, EventName } from './ApplicationInsights';
 
 const open = require('open');
