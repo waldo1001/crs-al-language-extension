@@ -359,6 +359,57 @@ export function getPageExtensionWithWaldoPrefixWithActions(): NAVTestObject {
     return object;
 }
 
+export function getPageExtensionWithWaldoSuffix(): NAVTestObject {
+    let object = new NAVTestObject;
+
+    object.ObjectFileName = 'SomeFile.al'
+    object.ObjectText = `pageextension 50100 "Some Page Extwaldo" extends "Customer List" //22
+{
+    layout
+    {
+        addfirst(Content)
+        {
+            field("Telex No. waldo"; "Telex No.")
+            {
+                ApplicationArea = All;
+            }
+            field("Telex No. waldo"; "Telex No.")
+            {
+                ApplicationArea = All;
+            }
+            field("Telex No. waldo"; "Telex No.")
+            {
+                ApplicationArea = All;
+            }
+        }
+    }
+
+    actions
+    {
+        addfirst("&Customer")
+        {
+            action(SomeActionwaldo)
+            {
+                RunObject = page "_Empl. Absences by Cat. Matrix";
+            }
+            group(someGroupwaldo)
+            {
+                action(SomeAction2waldo)
+                {
+                    RunObject = page "_Empl. Absences by Cat. Matrix";
+                }
+                action("Some Action 3 waldo")
+                {
+                    RunObject = page "_Empl. Absences by Cat. Matrix";
+                }
+            }
+        }
+    }
+}
+    `
+    return object;
+}
+
 export function getPageExtensionWithSlashInFileName(): NAVTestObject {
     let object = new NAVTestObject;
 
