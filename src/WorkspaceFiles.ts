@@ -317,8 +317,15 @@ export class WorkspaceFiles {
         }
 
         if (mySettings[Settings.ReorganizeByNamespace]) {
-            let directoryPath = path.join(...navObject.objectNamespace.split("."))
-            return directoryPath
+            let directoryPath = path.join(...navObject.objectNamespace.split("."));
+
+            if (mySettings[Settings.NamespacePrefixToIgnore]) {
+                directoryPath = path.join(
+                    ...navObject.objectNamespace.replace(new RegExp(`^${mySettings[Settings.NamespacePrefixToIgnore]}\\.?`), "").split(".")
+                    );                    
+            }
+
+            return directoryPath;
         }
 
         return navObject.objectType

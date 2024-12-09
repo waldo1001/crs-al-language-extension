@@ -297,6 +297,7 @@ export class NAVObject {
             this.objectType = '';
             this.objectId = '';
             this.objectName = '';
+            this.objectNamespace = '';
             this.extendedObjectName = '';
             this.extendedObjectId = '';
 

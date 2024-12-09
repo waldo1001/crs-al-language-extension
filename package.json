@@ -273,6 +273,12 @@
                     "description": "This is a feature that allows for the automatic reorganization of files by creating folder structures based on the namespaces defined within the files.  The feature is still in preview-mode, therefore the default value is 'false'",
                     "scope": "resource"
                 },
+                "CRS.NamespacePrefixToIgnore": {
+                    "type": "string",
+                    "default": "",
+                    "description": "This configuration allows you to exclude a part of Namespace during the files reorganization process based on the namespaces defined within the files.  The feature is still in preview-mode, therefore the default value is 'false'",
+                    "scope": "resource"
+                },
                 "CRS.SearchObjectNamesRegexPattern": {
                     "type": "string",
                     "default": "^\\w+ (\\d* )?\"*",
