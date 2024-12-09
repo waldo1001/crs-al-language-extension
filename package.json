@@ -276,7 +276,7 @@
                 "CRS.NamespacePrefixToIgnore": {
                     "type": "string",
                     "default": "",
-                    "description": "This configuration allows you to exclude a part of Namespace during the files reorganization process based on the namespaces defined within the files.  The feature is still in preview-mode, therefore the default value is 'false'",
+                    "description": "This configuration allows you to exclude a part of Namespace during the files reorganization process based on the namespaces defined within the files.  The feature is still in preview-mode",
                     "scope": "resource"
                 },
                 "CRS.SearchObjectNamesRegexPattern": {
