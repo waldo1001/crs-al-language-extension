@@ -1,5 +1,10 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension:
+## [1.5.34] - 2024-12-19
+Added Support for AppSourceCop Setting MandatoryAffixes by [Kilian Seizinger](https://github.com/pri-kise)
+Exclude Namespace prefix by [Vito Iacovone](https://github.com/vdevmt)
+Thanks so much!
+
 ## [1.5.33] - 2024-07-15
 Made it possible to have multiple extension objects names (thanks for [reporting](https://github.com/waldo1001/crs-al-language-extension/issues/305), [Natalie](https://github.com/NKarolak)).
 The way it works: It's regarding setting `ExtensionObjectNamePattern`.

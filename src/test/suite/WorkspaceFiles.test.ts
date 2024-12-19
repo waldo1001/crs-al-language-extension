@@ -1,10 +1,9 @@
 import * as assert from 'assert';
 import { suite, test } from 'mocha';
-
 import { Settings } from '../../Settings';
+import * as NAVTestObjectLibrary from './NAVTestObjectLibrary'
 import { NAVObject } from '../../NAVObject'
 import { WorkspaceFiles } from '../../WorkspaceFiles';
-import * as NAVTestObjectLibrary from './NAVTestObjectLibrary'
 
 suite("WorkspaceFiles Tests", () => {
     test("getDestinationFolder - test", () => {
@@ -33,7 +32,7 @@ suite("WorkspaceFiles Tests", () => {
         let navTestObject = NAVTestObjectLibrary.getTestCodeunit();
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
 
-        let foldersuggestion = WorkspaceFiles.getObjectTypeFolder(navObject,testSettings);
+        let foldersuggestion = WorkspaceFiles.getObjectTypeFolder(navObject, testSettings);
 
         assert.strictEqual(foldersuggestion.toLowerCase(), '');
     })
@@ -43,7 +42,7 @@ suite("WorkspaceFiles Tests", () => {
         let navTestObject = NAVTestObjectLibrary.getNormalCodeunitWithLongName();
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
 
-        let foldersuggestion = WorkspaceFiles.getObjectTypeFolder(navObject,testSettings);
+        let foldersuggestion = WorkspaceFiles.getObjectTypeFolder(navObject, testSettings);
 
         assert.strictEqual(foldersuggestion.toLowerCase().toString(), navObject.objectType.toString());
         assert.notStrictEqual(foldersuggestion.toLowerCase().toString(), '');
@@ -54,7 +53,7 @@ suite("WorkspaceFiles Tests", () => {
         let navTestObject = NAVTestObjectLibrary.getNormalCodeunitWithNamespace();
         let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
 
-        let foldersuggestion = WorkspaceFiles.getObjectTypeFolder(navObject,testSettings);
+        let foldersuggestion = WorkspaceFiles.getObjectTypeFolder(navObject, testSettings);
 
         assert.notStrictEqual(foldersuggestion.toLowerCase().toString(), navObject.objectNamespace.toLowerCase().toString());
         assert.strictEqual(foldersuggestion.toLowerCase().toString(), 'spycoclown\\test');
