@@ -1,5 +1,9 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension:
+## [1.5.33] - 2024-07-15
+Made it possible to have multiple extension objects names (thanks for [reporting](https://github.com/waldo1001/crs-al-language-extension/issues/305), [Natalie](https://github.com/NKarolak)).
+The way it works: It's regarding setting `ExtensionObjectNamePattern`.
+If you, as deverlop, would add extra characters after this pattern, the extension will accept them.  For example, if you would have a setting `<BaseNameShort> Ext`, and you would have an extension object named `MyTable Ext 2`, the extension will accept this as a valid object name and not change it bak to `MyTable Ext`.  
 
 ## [1.5.31] - 2023-11-27
 Fixed snippets (removed ";" after procedure).

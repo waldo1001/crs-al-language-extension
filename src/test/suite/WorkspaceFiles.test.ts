@@ -5,7 +5,6 @@ import { Settings } from '../../Settings';
 import { NAVObject } from '../../NAVObject'
 import { WorkspaceFiles } from '../../WorkspaceFiles';
 import * as NAVTestObjectLibrary from './NAVTestObjectLibrary'
-import { settings } from 'cluster';
 
 suite("WorkspaceFiles Tests", () => {
     test("getDestinationFolder - test", () => {

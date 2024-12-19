@@ -359,6 +359,57 @@ export function getPageExtensionWithWaldoPrefixWithActions(): NAVTestObject {
     return object;
 }
 
+export function getPageExtensionWithWaldoSuffix(): NAVTestObject {
+    let object = new NAVTestObject;
+
+    object.ObjectFileName = 'SomeFile.al'
+    object.ObjectText = `pageextension 50100 "Some Page Extwaldo" extends "Customer List" //22
+{
+    layout
+    {
+        addfirst(Content)
+        {
+            field("Telex No. waldo"; "Telex No.")
+            {
+                ApplicationArea = All;
+            }
+            field("Telex No. waldo"; "Telex No.")
+            {
+                ApplicationArea = All;
+            }
+            field("Telex No. waldo"; "Telex No.")
+            {
+                ApplicationArea = All;
+            }
+        }
+    }
+
+    actions
+    {
+        addfirst("&Customer")
+        {
+            action(SomeActionwaldo)
+            {
+                RunObject = page "_Empl. Absences by Cat. Matrix";
+            }
+            group(someGroupwaldo)
+            {
+                action(SomeAction2waldo)
+                {
+                    RunObject = page "_Empl. Absences by Cat. Matrix";
+                }
+                action("Some Action 3 waldo")
+                {
+                    RunObject = page "_Empl. Absences by Cat. Matrix";
+                }
+            }
+        }
+    }
+}
+    `
+    return object;
+}
+
 export function getPageExtensionWithSlashInFileName(): NAVTestObject {
     let object = new NAVTestObject;
 
@@ -512,6 +563,21 @@ export function getTableExtensionWrongFileNameAndKeyWord(): NAVTestObject {
             Caption = 'page with (brackes)';
             DataClassification = CustomerContent;
         }
+    }
+    
+}
+    `
+    return object;
+}
+export function getTableExtensionWithDecentNameAlready(): NAVTestObject {
+    let object = new NAVTestObject;
+
+    object.ObjectFileName = 'SomeTableExt.al'
+    object.ObjectText = `tableextension 50100 "Customer Ext 2" extends Customer //18
+{
+    fields
+    {
+        
     }
     
 }

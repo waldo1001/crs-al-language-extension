@@ -6,7 +6,6 @@ import { WorkspaceFiles } from '../../WorkspaceFiles'
 import * as myExtension from '../../extension';
 import * as NAVTestObjectLibrary from './NAVTestObjectLibrary'
 import { Settings } from '../../Settings';
-import { settings } from 'cluster';
 import { StringFunctions } from '../../StringFunctions'
 
 suite("NAVObject FilePattern Tests", () => {
@@ -403,6 +402,18 @@ suite("NAVObject FilePattern Tests", () => {
             + navObject.extendedObjectName
             + navObject.extendedObjectNameFixedShort
             + navObject.extendedObjectId)
+    })
+
+    test("TableExtension - Dont Change Name is not necessary", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+        testSettings[Settings.ExtensionObjectNamePattern] = '<BaseNameShort> Ext';
+
+        let navTestObject = NAVTestObjectLibrary.getTableExtensionWithDecentNameAlready()
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
+
+        assert.strictEqual(
+            navObject.objectNameFixed,
+            navObject.objectName)
     })
 
 

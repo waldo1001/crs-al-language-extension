@@ -147,7 +147,7 @@ This extension contributes the following settings:
 * `CRS.WinServerInstance`: Serverinstance where the windows client is connecting to
 * `CRS.WinServerInstancePort`: Portnumber of the serverinstance where the windows client is connecting to
 * `CRS.PublicWebBaseUrl`: Override Launch.json settings with this setting if necessary to run objects from VSCode
-* `CRS.ExtensionObjectNamePattern`: The pattern for the object name. If set (it's not set by default), it will perform an automatic object name for extension objects
+* `CRS.ExtensionObjectNamePattern`: The pattern for the object name. If set (it's not set by default), it will perform an automatic object name for extension objects.  To support multiple extensions per app, the system will accept manually added characters at the end of the pattern as well.  These vars can be used:
     - `<Prefix>`
     - `<Suffix>`
     - `<ObjectType>`
@@ -222,6 +222,7 @@ tableextension 50100 "Just Some Table Extension" extends Customer //18
 * `SkipWarningMessageOnRenameAll`: Skips the Warning when renaming all files which can disturb custom VS tasks.
 * `RenameWithGit`: Use 'git mv' to rename a file.  This keeps history of the file, but stages the rename, which you should commit separately.  **The feature is still in preview-mode, therefore the default value is 'false'**
 * `ReorganizeByNamespace`: This is a feature that allows for the automatic reorganization of files by creating folder structures based on the namespaces defined within the files.  **The feature is still in preview-mode, therefore the default value is 'false'**
+* `NamespacePrefixToIgnore`: This configuration allows you to exclude a part of Namespace during the files reorganization process based on the namespaces defined within the files.  **The feature is still in preview-mode**
 ## Skip String manipulation
 
 You can skip string manipulation by adding comments to your code:
