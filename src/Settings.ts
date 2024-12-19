@@ -35,6 +35,7 @@ export class Settings {
     static readonly DisableCRSSnippets = 'DisableCRSSnippets';
     static readonly RenameWithGit = 'RenameWithGit';
     static readonly ReorganizeByNamespace = 'ReorganizeByNamespace';
+    static readonly NamespacePrefixToIgnore = 'NamespacePrefixToIgnore';
     static readonly Browser = 'browser';
     static readonly Incognito = 'incognito';
     static readonly packageCachePath = 'packageCachePath';
@@ -102,6 +103,7 @@ export class Settings {
         this.SettingCollection[this.PublicWebBaseUrl] = this.getSetting(this.PublicWebBaseUrl);
         this.SettingCollection[this.RenameWithGit] = this.getSetting(this.RenameWithGit);
         this.SettingCollection[this.ReorganizeByNamespace] = this.getSetting(this.ReorganizeByNamespace);
+        this.SettingCollection[this.NamespacePrefixToIgnore] = this.getSetting(this.NamespacePrefixToIgnore);
         this.SettingCollection[this.SearchObjectNamesRegexPattern] = this.getSetting(this.SearchObjectNamesRegexPattern);
         this.SettingCollection[this.DependencyGraphIncludeTestApps] = this.getSetting(this.DependencyGraphIncludeTestApps);
         this.SettingCollection[this.DependencyGraphExcludeAppNames] = this.getSetting(this.DependencyGraphExcludeAppNames);

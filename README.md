@@ -222,6 +222,7 @@ tableextension 50100 "Just Some Table Extension" extends Customer //18
 * `SkipWarningMessageOnRenameAll`: Skips the Warning when renaming all files which can disturb custom VS tasks.
 * `RenameWithGit`: Use 'git mv' to rename a file.  This keeps history of the file, but stages the rename, which you should commit separately.  **The feature is still in preview-mode, therefore the default value is 'false'**
 * `ReorganizeByNamespace`: This is a feature that allows for the automatic reorganization of files by creating folder structures based on the namespaces defined within the files.  **The feature is still in preview-mode, therefore the default value is 'false'**
+* `NamespacePrefixToIgnore`: This configuration allows you to exclude a part of Namespace during the files reorganization process based on the namespaces defined within the files.  **The feature is still in preview-mode**
 ## Skip String manipulation
 
 You can skip string manipulation by adding comments to your code:
