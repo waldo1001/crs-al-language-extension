@@ -334,6 +334,25 @@ suite("NAVObject ObjectNamePrefix Tests", () => {
             assert.strictEqual(action.name, action.nameFixed);
         })
     });
+    
+    test("Pageextension - avoid setting double affixes", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+        testSettings[Settings.MandatoryAffixes] = ['waldo'];
+
+        let navTestObject = NAVTestObjectLibrary.getPageExtensionWithWaldoSuffix();
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
+
+        assert.notStrictEqual(navObject.objectActions.length, 0)
+
+        let navObject2 = new NAVObject(navObject.NAVObjectTextFixed, testSettings, navTestObject.ObjectFileName)
+        
+        assert.strictEqual(navObject2.objectName.endsWith(testSettings[Settings.MandatoryAffixes][0]), true);
+        assert.strictEqual(navObject2.objectName, navObject2.objectNameFixed)
+        navObject2.objectActions.forEach(action => {
+            assert.strictEqual(action.name.endsWith(testSettings[Settings.MandatoryAffixes][0]), true);
+            assert.strictEqual(action.name, action.nameFixed);
+        })
+    });
     test("Page - avoid removing prefixes from actions", () => {
         let testSettings = Settings.GetConfigSettings(null)
         testSettings[Settings.ObjectNamePrefix] = 'waldo';

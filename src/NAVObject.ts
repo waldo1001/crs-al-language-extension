@@ -307,7 +307,7 @@ export class NAVObject {
         var reg = NAVObjectAction.actionRegEx();
         var result;
         while ((result = reg.exec(this.NAVObjectText)) !== null) {
-            this.objectActions.push(new NAVObjectAction(result[1], this.objectType, this._workSpaceSettings[Settings.ObjectNamePrefix], this._workSpaceSettings[Settings.ObjectNameSuffix]))
+            this.objectActions.push(new NAVObjectAction(result[1], this.objectType, this._workSpaceSettings[Settings.ObjectNamePrefix], this._workSpaceSettings[Settings.ObjectNameSuffix], this._workSpaceSettings[Settings.MandatoryAffixes]))
         }
 
         var reg = NAVTableField.fieldRegEx();
@@ -320,13 +320,13 @@ export class NAVObject {
             var reg = NAVPageField.fieldRegEx();
             var result;
             while ((result = reg.exec(this.NAVObjectText)) !== null) {
-                this.pageFields.push(new NAVPageField(result[1], this.objectType, this._workSpaceSettings[Settings.ObjectNamePrefix], this._workSpaceSettings[Settings.ObjectNameSuffix]))
+                this.pageFields.push(new NAVPageField(result[1], this.objectType, this._workSpaceSettings[Settings.ObjectNamePrefix], this._workSpaceSettings[Settings.ObjectNameSuffix], this._workSpaceSettings[Settings.MandatoryAffixes]))
             }
 
             var reg = NAVPageGroup.fieldRegEx();
             var result;
             while ((result = reg.exec(this.NAVObjectText)) !== null) {
-                this.pageGroups.push(new NAVPageGroup(result[1], this.objectType, this._workSpaceSettings[Settings.ObjectNamePrefix], this._workSpaceSettings[Settings.ObjectNameSuffix]))
+                this.pageGroups.push(new NAVPageGroup(result[1], this.objectType, this._workSpaceSettings[Settings.ObjectNamePrefix], this._workSpaceSettings[Settings.ObjectNameSuffix], this._workSpaceSettings[Settings.MandatoryAffixes]))
             }
         }
 
@@ -538,6 +538,7 @@ class NAVObjectAction {
     public fullActionText: string;
     private _prefix: string;
     private _suffix: string;
+    private _affixes: string[];
     private _objectType: string;
 
     public static actionRegEx(): RegExp {
@@ -545,8 +546,21 @@ class NAVObjectAction {
     }
 
     get nameFixed(): string {
-        if (!this._prefix && !this._suffix) { return this.name }
+        if (!this._prefix && !this._suffix && !this.hasAffixesDefined()) { return this.name }
         if (!this._objectType.toLocaleLowerCase().endsWith('extension')) { return this.name }; //only for extensionobjects
+
+        if (this.hasAffixesDefined()) {
+            var affixNeeded = true;
+            this._affixes.forEach(affix => {
+                if (this.name.startsWith(affix) || this.name.endsWith(affix)) {
+                    affixNeeded = false;
+                    return
+                }
+            });
+            if (!affixNeeded) {
+                return this.name;
+            }
+        }
 
         let result = this.name
         if (this._prefix && !this.name.startsWith(this._prefix)) {
@@ -559,15 +573,16 @@ class NAVObjectAction {
     }
 
     get fullActionTextFixed(): string {
-        if (!this._prefix && !this._suffix) { return this.fullActionText };
+        if (!this._prefix && !this._suffix && !this.hasAffixesDefined()) { return this.fullActionText };
 
         return " action(" + StringFunctions.encloseInQuotesIfNecessary(this.nameFixed) + ")"
     }
 
-    constructor(fullActionText: string, objectType: string, prefix?: string, suffix?: string) {
+    constructor(fullActionText: string, objectType: string, prefix?: string, suffix?: string, affixes?: string[]) {
         this.fullActionText = fullActionText;
         this._prefix = prefix ? prefix : null;
         this._suffix = suffix ? suffix : null;
+        this._affixes = affixes ? affixes : null;
         this._objectType = objectType;
 
         this.parseActionText();
@@ -579,6 +594,10 @@ class NAVObjectAction {
         if (result !== null) {
             this.name = result[3];
         }
+    }
+
+    private hasAffixesDefined(): boolean {
+        return (Array.isArray(this._affixes) && this._affixes.length > 0)
     }
 }
 
@@ -661,15 +680,29 @@ class NAVPageField {
     private _objectType: string;
     private _prefix: string;
     private _suffix: string;
+    private _affixes: string[];
 
     public static fieldRegEx(): RegExp {
         return /.*(field\( *"?([ a-zA-Z0-9._/&%\/()-]+)"? *; *([" a-zA-Z0-9._/&%\/()-]+(\[([1-9]\d*)\])?) *\))/g;
     }
 
     get nameFixed(): string {
-        if (!this._prefix && !this._suffix) { return this.name }
+        if (!this._prefix && !this._suffix && !this.hasAffixesDefined()) { return this.name }
         if (!this._objectType.toLocaleLowerCase().endsWith('extension')) { return this.name }; //only for extensionobjects
         if (this._objectType.toLocaleLowerCase().startsWith('table')) { return this.name };    //table-fields should not be parsed as pagefields
+
+        if (this.hasAffixesDefined()) {
+            var affixNeeded = true;
+            this._affixes.forEach(affix => {
+                if (this.name.startsWith(affix) || this.name.endsWith(affix)) {
+                    affixNeeded = false;
+                    return
+                }
+            });
+            if (!affixNeeded) {
+                return this.name;
+            }
+        }
 
         let result = this.name
         if (this._prefix && !this.name.startsWith(this._prefix)) {
@@ -682,15 +715,16 @@ class NAVPageField {
     }
 
     get fullFieldTextFixed(): string {
-        if (!this._prefix && !this._suffix) { return this.fullFieldText }
+        if (!this._prefix && !this._suffix && !this.hasAffixesDefined()) { return this.fullFieldText }
 
         return "field(" + StringFunctions.encloseInQuotesIfNecessary(this.nameFixed) + "; " + this.expression + ")"
     }
 
-    constructor(fullFieldText: string, objectType: string, prefix?: string, suffix?: string) {
+    constructor(fullFieldText: string, objectType: string, prefix?: string, suffix?: string, affixes?: string[]) {
         this.fullFieldText = fullFieldText;
         this._prefix = prefix ? prefix : null;
         this._suffix = suffix ? suffix : null;
+        this._affixes = affixes ? affixes : null;
         this._objectType = objectType;
 
         this.parseFieldText();
@@ -705,6 +739,10 @@ class NAVPageField {
         }
     }
 
+    private hasAffixesDefined(): boolean {
+        return (Array.isArray(this._affixes) && this._affixes.length > 0)
+    }
+
 }
 
 class NAVPageGroup {
@@ -713,15 +751,29 @@ class NAVPageGroup {
     private _objectType: string;
     private _prefix: string;
     private _suffix: string;
+    private _affixes: string[];
 
     public static fieldRegEx(): RegExp {
         return /.*(group\( *"?([ a-zA-Z0-9._/&%\/()-]+)"? *\))/g;
     }
 
     get nameFixed(): string {
-        if (!this._prefix && !this._suffix) { return this.name }
+        if (!this._prefix && !this._suffix && !this.hasAffixesDefined()) { return this.name }
         if (!this._objectType.toLocaleLowerCase().endsWith('extension')) { return this.name }; //only for extensionobjects
 
+        if (this.hasAffixesDefined()) {
+            var affixNeeded = true;
+            this._affixes.forEach(affix => {
+                if (this.name.startsWith(affix) || this.name.endsWith(affix)) {
+                    affixNeeded = false;
+                    return
+                }
+            });
+            if (!affixNeeded) {
+                return this.name;
+            }
+        }
+        
         let result = this.name
         if (this._prefix && !this.name.startsWith(this._prefix)) {
             result = this._prefix + result
@@ -733,15 +785,16 @@ class NAVPageGroup {
     }
 
     get fullGroupTextFixed(): string {
-        if (!this._prefix && !this._suffix) { return this.fullGroupText }
+        if (!this._prefix && !this._suffix && !this.hasAffixesDefined()) { return this.fullGroupText }
 
         return "group(" + StringFunctions.encloseInQuotesIfNecessary(this.nameFixed) + ")"
     }
 
-    constructor(fullGroupText: string, objectType: string, prefix?: string, suffix?: string) {
+    constructor(fullGroupText: string, objectType: string, prefix?: string, suffix?: string, affixes?: string[]) {
         this.fullGroupText = fullGroupText;
         this._prefix = prefix ? prefix : null;
         this._suffix = suffix ? suffix : null;
+        this._affixes = affixes ? affixes : null;
         this._objectType = objectType;
 
         this.parseFieldText();
@@ -753,6 +806,10 @@ class NAVPageGroup {
         if (result !== null) {
             this.name = result[2].trim().toString();
         }
+    }
+    
+    private hasAffixesDefined(): boolean {
+        return (Array.isArray(this._affixes) && this._affixes.length > 0)
     }
 
 }
