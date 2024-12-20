@@ -410,7 +410,23 @@ export class NAVObject {
     private AddPrefixAndSuffixToObjectNameFixed(objectName: string): string {
         let prefix = this._workSpaceSettings[Settings.ObjectNamePrefix];
         let suffix = this._workSpaceSettings[Settings.ObjectNameSuffix];
-        if (!prefix && !suffix) { return objectName }
+        let affixes = this._workSpaceSettings[Settings.MandatoryAffixes];
+        let affixesDefined = Array.isArray(affixes) && (affixes.length > 0);
+        
+        if (!prefix && !suffix && !affixesDefined) { return objectName }
+
+        if (affixesDefined) {
+            var affixNeeded = true;
+            affixes.forEach((affix: string) => {
+                if (objectName.startsWith(affix) || objectName.endsWith(affix)) {
+                    affixNeeded = false;
+                    return
+                }
+            });
+            if (!affixNeeded) {
+                return objectName;
+            }
+        }
 
         if (prefix && !objectName.startsWith(prefix)) {
             objectName = prefix + objectName;
