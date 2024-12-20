@@ -180,19 +180,25 @@
                 "CRS.FileNamePattern": {
                     "Type": "string",
                     "default": "<ObjectTypeShort><ObjectId>.<ObjectNameShort>.al",
-                    "description": "The pattern of the filename for non-extension objects..  These vars can be used: <Prefix>,<Suffix>,<ObjectType>,<ObjectTypeShort>,<ObjectTypeShortPascalCase>,<ObjectId>,<ObjectName>,<ObjectNameShort>,<ObjectTypeShortUpper>",
+                    "description": "The pattern of the filename for non-extension objects..  These vars can be used: <Prefix>,<Suffix>,<ObjectType>,<ObjectTypeShort>,<ObjectTypeShortPascalCase>,<ObjectId>,<ObjectName>,<ObjectNameShort>,<ObjectTypeShortUpper>,<ObjectTypeLower>",
                     "scope": "resource"
                 },
                 "CRS.FileNamePatternExtensions": {
                     "Type": "string",
                     "default": "<ObjectTypeShort><BaseId>-Ext<ObjectId>.<ObjectNameShort>.al",
-                    "description": "The pattern of the filename for extension objects.  These vars can be used: <Prefix>,<Suffix>,<ObjectType>,<ObjectTypeShort>,<ObjectTypeShortPascalCase>,<ObjectId>,<ObjectName>,<ObjectNameShort>,<ObjectTypeShortUpper>,<BaseName>,<BaseNameShort>,<BaseId> (If you want this to work, you need to put the Id in comment after the base name, like //21)",
+                    "description": "The pattern of the filename for extension objects.  These vars can be used: <Prefix>,<Suffix>,<ObjectType>,<ObjectTypeShort>,<ObjectTypeShortPascalCase>,<ObjectId>,<ObjectName>,<ObjectNameShort>,<ObjectTypeShortUpper>,<ObjectTypeLower>,<BaseName>,<BaseNameShort>,<BaseId> (If you want this to work, you need to put the Id in comment after the base name, like //21)",
                     "scope": "resource"
                 },
                 "CRS.FileNamePatternPageCustomizations": {
                     "Type": "string",
                     "default": "<ObjectTypeShort><BaseId>-PageCust.<ObjectNameShort>.al",
-                    "description": "The pattern of the filename for extension objects.  These vars can be used: <Prefix>,<Suffix>,<ObjectType>,<ObjectTypeShort>,<ObjectTypeShortPascalCase>,<ObjectName>,<ObjectNameShort>,<ObjectTypeShortUpper>,<BaseName>,<BaseNameShort>,<BaseId> (If you want this to work, you need to put the Id in comment after the base name, like //21)",
+                    "description": "The pattern of the filename for extension objects.  These vars can be used: <Prefix>,<Suffix>,<ObjectType>,<ObjectTypeShort>,<ObjectTypeShortPascalCase>,<ObjectName>,<ObjectNameShort>,<ObjectTypeShortUpper>,<ObjectTypeLower>,<BaseName>,<BaseNameShort>,<BaseId> (If you want this to work, you need to put the Id in comment after the base name, like //21)",
+                    "scope": "resource"
+                },
+                "CRS.FolderPathPattern": {
+                    "Type": "string",
+                    "default": "<AlSubFolder>\\<ObjectTypeLower>\\<ControlAddIn>",
+                    "description": "The pattern of the folder containing the object.  These vars can be used: <Prefix>,<Suffix>,<ObjectType>,<ObjectTypeShort>,<ObjectTypeShortPascalCase>,<ObjectId>,<ObjectName>,<ObjectNameShort>,<ObjectTypeShortUpper>,<ObjectTypeLower>,<AlSubFolder>,<ControlAddIn>",
                     "scope": "resource"
                 },
                 "CRS.AlSubFolderName": {

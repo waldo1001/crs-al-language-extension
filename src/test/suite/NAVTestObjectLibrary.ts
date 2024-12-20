@@ -1291,4 +1291,28 @@ export function getSimpleReportExtensionWithSummaryComments(): NAVTestObject {
     return object;
 
 }
+export function getControlAddinObject(): NAVTestObject {
+    let object = new NAVTestObject;
 
+    object.ObjectFileName = 'SomeControlAddin.al'
+    object.ObjectText = `controladdin "My Control Addin"
+    {
+        RequestedHeight = 1;
+        MinimumHeight = 1;
+        MaximumHeight = 1;
+        RequestedWidth = 1;
+        MinimumWidth = 1;
+        MaximumWidth = 1;
+        VerticalStretch = true;
+        VerticalShrink = true;
+        HorizontalStretch = true;
+        HorizontalShrink = true;
+        Scripts = '.\src\javascript\MyScript.js';
+
+        event Ready()
+
+        procedure MyProcedure()
+    }
+    `
+    return object;
+}
