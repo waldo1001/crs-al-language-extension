@@ -614,6 +614,21 @@ export function getTableWithBracketsInFieldName(): NAVTestObject {
     `
     return object;
 }
+
+export function getInterfaceWithSuffix(): NAVTestObject {
+    let object = new NAVTestObject;
+
+    object.ObjectFileName = 'Magic.Interface.al'
+    object.ObjectText = `interface "Magic_waldo"
+{
+    Access = Internal;
+    procedure GetDocumentNo(): Code[20]
+    procedure GetPostingDate(): Date
+}
+    `
+    return object;
+}
+
 export function getTableExtension(): NAVTestObject {
     let object = new NAVTestObject;
 

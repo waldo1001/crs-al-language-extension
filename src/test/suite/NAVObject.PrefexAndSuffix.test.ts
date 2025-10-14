@@ -394,6 +394,18 @@ suite("NAVObject ObjectNamePrefix Tests", () => {
         assert.strictEqual(navObject.objectFileName.endsWith(testSettings[Settings.ObjectNameSuffix]), false)
         assert.notStrictEqual(navObject.objectFileNameFixed.indexOf(testSettings[Settings.ObjectNameSuffix]), -1)
     });
+    
+    test("interface - Don't set double Affix", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+        testSettings[Settings.ObjectNamePrefix] = 'waldo';
+        testSettings[Settings.MandatoryAffixes] = ['waldo'];
+
+        let navTestObject = NAVTestObjectLibrary.getInterfaceWithSuffix();
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName)
+
+        assert.strictEqual(navObject.objectNameFixed,navObject.objectName);
+    });
+
     test("Reportextension - Set prefix", () => {
         let testSettings = Settings.GetConfigSettings(null)
         testSettings[Settings.ObjectNamePrefix] = 'waldo';
