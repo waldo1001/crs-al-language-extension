@@ -439,11 +439,34 @@ export class NAVObject {
     private RemovePrefixAndSuffix(objectName: string): string {
         let removePrefix = this._workSpaceSettings[Settings.RemovePrefixFromFilename];
         let removeSuffix = this._workSpaceSettings[Settings.RemoveSuffixFromFilename];
-        if (!removePrefix && !removeSuffix) { return objectName }
+        let removeAffixes = this._workSpaceSettings[Settings.RemoveAffixesFromFilename];
+        if (!removeAffixes && !removePrefix && !removeSuffix) { return objectName }
 
         let prefix: string = this._workSpaceSettings[Settings.ObjectNamePrefix];
         let suffix: string = this._workSpaceSettings[Settings.ObjectNameSuffix];
-        if (!prefix && !suffix) { return objectName }
+        let affixes = this._workSpaceSettings[Settings.MandatoryAffixes];
+        let affixesDefined = Array.isArray(affixes) && (affixes.length > 0);
+
+        if (!prefix && !suffix && !affixesDefined) { return objectName }
+
+        if (affixesDefined && removeAffixes) {
+            var affixRemoved = false;
+            affixes.forEach((affix: string) => {
+                if (objectName.startsWith(affix)) {
+                    objectName = objectName.substr(affix.length);
+                    affixRemoved = true;
+                    return
+                };
+                if (objectName.endsWith(affix)) {
+                    objectName = objectName.substr(0, objectName.length - affix.length);
+                    affixRemoved = true;
+                    return
+                }
+            });
+            if (affixRemoved) {
+                return objectName;
+            }
+        }
 
         if (prefix && removePrefix && objectName.startsWith(prefix)) {
             objectName = objectName.substr(prefix.length);

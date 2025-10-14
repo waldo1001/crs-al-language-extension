@@ -231,6 +231,12 @@
                     "description": "When using the Reorganize/Rename-commands, this setting will make sure the object name (and filename) will have a Suffix.  Tips: use as a workspace-setting. Use an ending-space if you want the prefix to be separated with a space.",
                     "scope": "resource"
                 },
+                "CRS.RemoveAffixesFromFilename": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "When using the Reorganize/Rename-commands, this setting will remove any affix from the filename (but keep it in object name).  Tip: use as a workspace-setting",
+                    "scope": "resource"
+                },
                 "CRS.RemovePrefixFromFilename": {
                     "type": "boolean",
                     "default": false,
@@ -494,5 +500,6 @@
         "glob": "^7.2.0",
         "mocha": "^11.0.2",
         "typescript": "^4.5.4"
-    }
+    },
+    "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }
