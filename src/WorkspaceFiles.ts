@@ -89,7 +89,7 @@ export class WorkspaceFiles {
 
             let objectFolder = path.join(vscode.workspace.getWorkspaceFolder(fileName).uri.fsPath, this.getDestinationFolder(navObject, settings));
             let objectTypeFolder = path.join(objectFolder, this.getObjectTypeFolder(navObject, settings));
-            let objectSubFolder = path.join(objectTypeFolder, this.getObjectSubFolder(navObject));
+            let objectSubFolder = path.join(objectTypeFolder, this.getObjectSubFolder(navObject, objectTypeFolder, settings));
             let destinationFileName = path.join(objectSubFolder, fixedname);
 
             if (destinationFileName.toLocaleLowerCase() == fileName.fsPath.toLocaleLowerCase()) {
@@ -322,7 +322,7 @@ export class WorkspaceFiles {
             if (mySettings[Settings.NamespacePrefixToIgnore]) {
                 directoryPath = path.join(
                     ...navObject.objectNamespace.replace(new RegExp(`^${mySettings[Settings.NamespacePrefixToIgnore]}\\.?`), "").split(".")
-                    );                    
+                );
             }
 
             return directoryPath;
@@ -331,8 +331,20 @@ export class WorkspaceFiles {
         return navObject.objectType
     }
 
-    static getObjectSubFolder(navObject: NAVObject): string {
+    static getObjectSubFolder(navObject: NAVObject, objectTypeFolder: string, mySettings: any): string {
         if (navObject.objectType == 'controladdin') {
+
+            if (mySettings[Settings.ReorganizeByNamespace]) {
+                // Avoid duplicating the subfolder if the path already ends with the object name.
+                // This situation can occur due to the folder reorganization process for namespaces.
+                // However, always add the subfolder if the current path is at the root level
+
+                const isRootLevel = !objectTypeFolder.includes('/') && !objectTypeFolder.includes('\\');
+                if (objectTypeFolder.endsWith(navObject.objectNameFixedShort) && !isRootLevel) {
+                    return "";
+                }
+            }
+
             return navObject.objectNameFixedShort
         }
 
