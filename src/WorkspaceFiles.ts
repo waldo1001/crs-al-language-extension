@@ -341,7 +341,7 @@ export class WorkspaceFiles {
 
     static createDirectoryIfNotExists(dir) {
         const segments = dir.split(path.sep);
-        let currentPath = segments[0];
+        let currentPath = segments[0] || path.sep;
 
         for (let i = 1; i < segments.length; i++) {
             if (segments[i]) {
