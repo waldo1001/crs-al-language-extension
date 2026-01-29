@@ -1,5 +1,9 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension:
+## [1.5.36] - 2026-01-29
+- Handle linux paths for create directory by [Christian Hovenbitzer](https://github.com/ChristianHovenbitzer) - [#325](https://github.com/waldo1001/crs-al-language-extension/pull/325)
+Thanks so much!
+
 ## [1.5.35] - 2025-10-14
 - Affix Objectname - Tests & Rename by [Kilian Seizinger](https://github.com/pri-kise) - [#318](https://github.com/waldo1001/crs-al-language-extension/pull/318)
 - Add Affix Check for Object Name by [Kilian Seizinger](https://github.com/pri-kise) - [#314](https://github.com/waldo1001/crs-al-language-extension/pull/314)
