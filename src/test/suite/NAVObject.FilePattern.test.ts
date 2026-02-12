@@ -537,4 +537,38 @@ suite("NAVObject FilePattern Tests", () => {
 
         assert.strictEqual(navObject.objectFileNameFixed, 'CustomerTop10ListExt.ReportExt.al')
     })
+    test("Folder path - Default folder path", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+
+        let navTestObject = NAVTestObjectLibrary.getPageNoPrefixCorrectNameWithActions();
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
+
+        assert.strictEqual(navObject.objectFolderPathFixed,
+            testSettings[Settings.AlSubFolderName] + '\\' +
+            navObject.objectType.toLowerCase() + '\\');
+    })
+    test("Folder path - Default folder path with control addin", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+
+        let navTestObject = NAVTestObjectLibrary.getControlAddinObject();
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
+
+        assert.strictEqual(navObject.objectFolderPathFixed,
+            testSettings[Settings.AlSubFolderName] + '\\' +
+            navObject.objectType.toLowerCase() + '\\' +
+            navObject.objectNameFixedShort);
+    })
+    test("Folder path - Custom folder path with prefix", () => {
+        let testSettings = Settings.GetConfigSettings(null)
+
+        testSettings[Settings.FolderPathPattern] = '<AlSubFolder>\\<Prefix>\\<ObjectType>';
+
+        let navTestObject = NAVTestObjectLibrary.getTestCodeunitWithPrefix();
+        let navObject = new NAVObject(navTestObject.ObjectText, testSettings, navTestObject.ObjectFileName);
+
+        assert.strictEqual(navObject.objectFolderPathFixed,
+            testSettings[Settings.AlSubFolderName] + '\\' +
+            testSettings[Settings.ObjectNamePrefix] + '\\' +
+            navObject.objectType.toLowerCase());
+    })
 })

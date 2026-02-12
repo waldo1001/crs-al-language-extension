@@ -19,6 +19,7 @@ export class NAVObject {
     public NAVObjectText: string;
     private _workSpaceSettings: Settings;
     private _objectFileNamePattern: string;
+    private _objectFolderPathPattern: string;
 
     // Windows chars not allowed in filenames or paths (includes Linux):
     // < (less than)
@@ -44,16 +45,12 @@ export class NAVObject {
     }
 
     setObjectProperies(objectType: string, objectId: string, objectName: string) {
-        this._objectFileNamePattern = this._workSpaceSettings[Settings.FileNamePattern];
-        this.objectType = objectType;
-        this.objectId = objectId;
-        this.objectName = objectName;
-        this.extendedObjectName = '';
-        this.extendedObjectId = '';
+        this.setObjectExtensionProperies(objectType, objectId, objectName, '', '');
     }
 
     setObjectExtensionProperies(objectType: string, objectId: string, objectName: string, extendedObjectId: string, extendedObjectName: string) {
         this._objectFileNamePattern = this._workSpaceSettings[Settings.FileNamePatternExtensions];
+        this._objectFolderPathPattern = this._workSpaceSettings[Settings.FolderPathPattern];
         this.objectType = objectType;
         this.objectId = objectId;
         this.objectName = objectName;
@@ -127,6 +124,15 @@ export class NAVObject {
         return objectFileNameFixed;
     }
 
+    get objectFolderPathFixed(): string {
+        let objectFolderPathFixed = this._objectFolderPathPattern
+
+        objectFolderPathFixed = this.ApplyPatternToFolderPath(objectFolderPathFixed);
+        objectFolderPathFixed = this.RemoveUnderscore(objectFolderPathFixed);
+
+        return objectFolderPathFixed;
+    }
+
     get objectCodeunitSubType(): string {
         if (this.objectType.toLowerCase() != 'codeunit') { return null }
 
@@ -157,6 +163,7 @@ export class NAVObject {
         let ObjectTypeArr = filteredlines.toString().match(patternObjectType);
 
         this._objectFileNamePattern = '';
+        this._objectFolderPathPattern = '';
         this.objectType = '';
         this.objectId = '';
         this.objectName = '';
@@ -194,6 +201,7 @@ export class NAVObject {
                     this.objectName = currObject[3];
 
                     this._objectFileNamePattern = this._workSpaceSettings[Settings.FileNamePattern];
+                    this._objectFolderPathPattern = this._workSpaceSettings[Settings.FolderPathPattern];
 
                     break;
                 }
@@ -217,6 +225,7 @@ export class NAVObject {
                     this.extendedObjectId = currObject[6] ? currObject[6] : '';
 
                     this._objectFileNamePattern = this._workSpaceSettings[Settings.FileNamePatternExtensions];
+                    this._objectFolderPathPattern = this._workSpaceSettings[Settings.FolderPathPattern];
 
                     break;
                 }
@@ -230,6 +239,7 @@ export class NAVObject {
                     this.objectName = currObject[2];
 
                     this._objectFileNamePattern = this._workSpaceSettings[Settings.FileNamePattern];
+                    this._objectFolderPathPattern = this._workSpaceSettings[Settings.FolderPathPattern];
 
                     break;
                 }
@@ -243,6 +253,7 @@ export class NAVObject {
                     this.objectName = currObject[2];
 
                     this._objectFileNamePattern = this._workSpaceSettings[Settings.FileNamePattern];
+                    this._objectFolderPathPattern = this._workSpaceSettings[Settings.FolderPathPattern];
 
                     break;
                 }
@@ -255,6 +266,7 @@ export class NAVObject {
                     this.objectName = currObject[2];
 
                     this._objectFileNamePattern = this._workSpaceSettings[Settings.FileNamePattern];
+                    this._objectFolderPathPattern = this._workSpaceSettings[Settings.FolderPathPattern];
 
                     break;
                 }
@@ -269,6 +281,7 @@ export class NAVObject {
                     this.extendedObjectName = currObject[3];
                     this.extendedObjectId = currObject[5] ? currObject[5] : '';
                     this._objectFileNamePattern = this._workSpaceSettings[Settings.FileNamePatternPageCustomizations];
+                    this._objectFolderPathPattern = this._workSpaceSettings[Settings.FolderPathPattern];
 
                     break;
                 }
@@ -294,6 +307,7 @@ export class NAVObject {
         if (!(this.IsValidObjectType(this.objectType))) {
             //reset variables
             this._objectFileNamePattern = '';
+            this._objectFolderPathPattern = '';
             this.objectType = '';
             this.objectId = '';
             this.objectName = '';
@@ -379,6 +393,7 @@ export class NAVObject {
         result = StringFunctions.replaceAll(result, '<Prefix>', this._workSpaceSettings[Settings.ObjectNamePrefix]);
         result = StringFunctions.replaceAll(result, '<Suffix>', this._workSpaceSettings[Settings.ObjectNameSuffix]);
         result = StringFunctions.replaceAll(result, '<ObjectType>', this.objectType)
+        result = StringFunctions.replaceAll(result, '<ObjectTypeLower>', this.objectType.toLowerCase());
         result = StringFunctions.replaceAll(result, '<ObjectTypeShort>', this.objectTypeShort);
         result = StringFunctions.replaceAll(result, '<ObjectTypeShortPascalCase>', this.ObjectTypeShortPascalCase);
         result = StringFunctions.replaceAll(result, '<ObjectTypeShortUpper>', this.objectTypeShort.toUpperCase());
@@ -392,19 +407,38 @@ export class NAVObject {
     private ApplyPatternToFileName(pattern: string): string {
         let result = pattern;
 
-        result = StringFunctions.replaceAll(result, '<Prefix>', this._workSpaceSettings[Settings.ObjectNamePrefix]);
-        result = StringFunctions.replaceAll(result, '<Suffix>', this._workSpaceSettings[Settings.ObjectNameSuffix]);
-        result = StringFunctions.replaceAll(result, '<ObjectType>', this.objectType)
-        result = StringFunctions.replaceAll(result, '<ObjectTypeShort>', this.objectTypeShort);
-        result = StringFunctions.replaceAll(result, '<ObjectTypeShortPascalCase>', this.ObjectTypeShortPascalCase);
-        result = StringFunctions.replaceAll(result, '<ObjectTypeShortUpper>', this.objectTypeShort.toUpperCase());
-        result = StringFunctions.replaceAll(result, '<ObjectId>', this.objectId);
         result = StringFunctions.replaceAll(result, '<ObjectName>', this.objectNameFixedForFileName);
         result = StringFunctions.replaceAll(result, '<ObjectNameShort>', this.objectNameFixedShort);
-        result = StringFunctions.replaceAll(result, '<BaseName>', this.extendedObjectNameFixedForFileName);
-        result = StringFunctions.replaceAll(result, '<BaseNameShort>', this.extendedObjectNameFixedShort);
-        result = StringFunctions.replaceAll(result, '<BaseId>', this.extendedObjectId);
+        result = this.ApplyPatternToObjectName(result);
 
+        return result;
+    }
+    private ApplyPatternToFolderPath(pattern: string): string {
+        let result = pattern;
+
+        result = this.replaceControlAddIn(result);
+        result = StringFunctions.replaceAll(result, '<AlSubFolder>', this._workSpaceSettings[Settings.AlSubFolderName]);
+        result = this.ApplyPatternToFileName(result);
+
+        let folders = result.split('\\');
+        folders = folders.map(folder => folder.replace(/^\s+|\s+$/g, ''));
+        result = folders.join('\\');
+
+        return result;
+    }
+    private replaceControlAddIn(pattern: string): string {
+        let result = pattern;
+        let controladdin = '';
+        const controlAddInPattern = '<ControlAddIn>';
+        const doubleBackslashPattern = '\\<ControlAddIn>';
+        if (this.objectType.toLocaleLowerCase() == 'controladdin') {
+            controladdin = this.objectNameFixedShort;
+        }
+        if (controladdin == '' && result.includes(doubleBackslashPattern)) {
+            result = StringFunctions.replaceAll(result, doubleBackslashPattern, controladdin);
+        } else {
+            result = StringFunctions.replaceAll(result, controlAddInPattern, controladdin);
+        }
         return result;
     }
     private AddPrefixAndSuffixToObjectNameFixed(objectName: string): string {

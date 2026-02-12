@@ -87,12 +87,12 @@ export class WorkspaceFiles {
         let fixedname = navObject.objectFileNameFixed
         if (navObject.objectFileName && navObject.objectFileName != '' && fixedname && fixedname != '') {
 
-            let objectFolder = path.join(vscode.workspace.getWorkspaceFolder(fileName).uri.fsPath, this.getDestinationFolder(navObject, settings));
-            let objectTypeFolder = path.join(objectFolder, this.getObjectTypeFolder(navObject, settings));
-            let objectSubFolder = path.join(objectTypeFolder, this.getObjectSubFolder(navObject));
-            let destinationFileName = path.join(objectSubFolder, fixedname);
+            let appFolder = vscode.workspace.getWorkspaceFolder(fileName).uri.fsPath;
+            let relativeFolderPath = navObject.objectFolderPathFixed;
+            let absoluteFolderPath = path.join(appFolder, relativeFolderPath);
+            let destinationFileName = path.join(absoluteFolderPath, fixedname);
 
-            if (destinationFileName.toLocaleLowerCase() == fileName.fsPath.toLocaleLowerCase()) {
+            if (destinationFileName == fileName.fsPath) {
                 //console.log('paths are the same.');
                 return fileName.fsPath;
             } else {
@@ -100,7 +100,7 @@ export class WorkspaceFiles {
                 //(!fs.existsSync(objectFolder)) ? fs.mkdirSync(objectFolder) : '';
                 //(!fs.existsSync(objectTypeFolder)) ? fs.mkdirSync(objectTypeFolder) : '';
                 //(!fs.existsSync(objectSubFolder)) ? fs.mkdirSync(objectSubFolder) : '';
-                this.createDirectoryIfNotExists(objectSubFolder);
+                this.createDirectoryIfNotExists(absoluteFolderPath);
 
                 withGit = withGit ? withGit : (git.isGitRepositorySync() && settings[Settings.RenameWithGit])
                 this.DoRenameFile(fileName, destinationFileName, withGit)
@@ -329,14 +329,6 @@ export class WorkspaceFiles {
         }
 
         return navObject.objectType
-    }
-
-    static getObjectSubFolder(navObject: NAVObject): string {
-        if (navObject.objectType == 'controladdin') {
-            return navObject.objectNameFixedShort
-        }
-
-        return "";
     }
 
     static createDirectoryIfNotExists(dir) {
