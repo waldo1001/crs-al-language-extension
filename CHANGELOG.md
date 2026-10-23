@@ -1,5 +1,9 @@
 # Change Log
 All notable changes to the "crs-al-language-extension" extension:
+## [1.5.37] - 2026-10-23
+- CI: updated GitHub Actions (checkout/setup-node v4) and switched to `@vscode/vsce` for publishing
+Thanks so much!
+
 ## [1.5.36] - 2026-01-29
 - Handle linux paths for create directory by [Christian Hovenbitzer](https://github.com/ChristianHovenbitzer) - [#325](https://github.com/waldo1001/crs-al-language-extension/pull/325)
 Thanks so much!
