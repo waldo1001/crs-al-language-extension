@@ -10,13 +10,13 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 22
       - run: yarn install
       # - run: yarn test
-      - run: npm install -g vsce
+      - run: npm install -g @vscode/vsce
       - run: vsce package
       - run: |
           $path = (Get-ChildItem '*.vsix')
